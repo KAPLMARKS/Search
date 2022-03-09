@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Таиланд. Пхукет. Документы, банки. 2022 / Комментарии / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/page-article-comments.5497aa9d.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/page-article-comments.97bb766a.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/page-article-comments.5497aa9d.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" itemprop="image" content="/img/habr_ru.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="/img/habr_ru.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="/img/habr_ru.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="/img/habr_ru.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="/img/habr_ru.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" property="og:type" content="website" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Хабр" data-vmid="og:title">
+  <meta data-vue-meta="ssr" property="og:url" content="https://habr.com/ru/post/654859/comments/" data-vmid="og:url"> 
+  <link data-vue-meta="ssr" image_src="image" href="/img/habr_ru.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654859/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654859/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <article class="tm-article-comments__article-body">
+            <div class="tm-article-comments__article-snippet">
+             <div class="tm-article-snippet">
+              <div class="tm-article-snippet__meta-container">
+               <div class="tm-article-snippet__meta">
+                <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/mag/" title="mag" class="tm-user-info__userpic">
+                  <div class="tm-entity-image">
+                   <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_pink">
+                    <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                   </svg>
+                  </div></a> <span class="tm-user-info__user"><a href="/ru/users/mag/" class="tm-user-info__username"> mag </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T16:58:47.000Z" title="2022-03-09, 19:58">сегодня в 19:58</time></span>
+               </div> <!---->
+              </div> 
+              <h1 class="tm-article-snippet__title tm-article-snippet__title_h1"><a href="/ru/post/654859/" data-article-link="" class="tm-article-snippet__title-link router-link-active"><span>Таиланд. Пхукет. Документы, банки. 2022</span></a></h1> 
+              <div class="tm-article-snippet__hubs">
+               <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/business-laws/" class="tm-article-snippet__hubs-item-link"><span>Законодательство в IT</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/finance/" class="tm-article-snippet__hubs-item-link"><span>Финансы в IT</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/lifehacks/" class="tm-article-snippet__hubs-item-link"><span>Лайфхаки для гиков</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/remote/" class="tm-article-snippet__hubs-item-link"><span>Удалённая работа</span> <!----></a></span>
+              </div> <!----> <!----> <!---->
+             </div> 
+             <div class="tm-data-icons">
+              <!----> 
+              <div class="tm-votes-meter tm-data-icons__item">
+               <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                <title>Всего голосов 10: ↑9 и ↓1</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+               </svg> <span title="Всего голосов 10: ↑9 и ↓1" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+8</span>
+              </div> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+               <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+               </svg> <span class="tm-icon-counter__value">2.8K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                 <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 6 </span></button> 
+              <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+               <a href="/ru/post/654859/comments/" aria-current="page" class="tm-article-comments-counter-link__link">
+                <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                 <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                </svg> <span class="tm-article-comments-counter-link__value"> 10 </span></a> <!---->
+              </div> <!----> 
+              <div class="v-portal" style="display:none;"></div>
+             </div>
+            </div>
+           </article> 
+           <div class="tm-ad-banner__container tm-article-comments__top-banner">
+            <!----> 
+            <div id="commentsBanner6608" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+           </div> 
+           <div data-async-called="true" class="tm-article-comments-offloaded">
+            <div class="tm-article-comments">
+             <div class="tm-comments-wrapper">
+              <div class="tm-comments-wrapper__wrapper">
+               <header class="tm-comments-wrapper__header">
+                <h2 class="tm-comments-wrapper__title"> Комментарии <span class="tm-comments-wrapper__comments-count"> 10 </span></h2> 
+                <div class="tm-comments-wrapper__header-aside">
+                 <!----> <button class="tm-rss-button tm-rss-button_comments-header"><span class="tm-svg-icon__wrapper tm-rss-button__icon">
+                   <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+                    <title>Скопировать ссылку на RSS</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#rss"></use>
+                   </svg></span></button> <!---->
+                </div>
+               </header> 
+               <div class="tm-comments-wrapper__inner"> 
+                <div class="tm-comments__tree">
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24149595" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24149595" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/Sap_ru/" title="Sap_ru" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                           <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                          </svg>
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/Sap_ru/" class="tm-user-info__username"> Sap_ru </a> <a href="#comment_24149595" class="tm-comment-thread__comment-link"> 09.03.2022 в 20:22 
+                          <svg height="16" width="16" class="tm-svg-img tm-comment-thread__icon-pencil">
+                           <title>Комментарий был изменен</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pencil-small"></use>
+                          </svg></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content tm-comment__body-content_v2">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <p>А ещё через 60 дней есть варианты продления визы?</p>
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24149595" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> 
+                  <div class="tm-comment-thread__children" style="display:;">
+                   <section class="tm-comment-thread">
+                    <!----> 
+                    <article class="tm-comment-thread__comment">
+                     <a name="comment_24149635" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-1">
+                      <div class="tm-comment-thread__circle"></div></button> <!----> 
+                     <div data-comment-body="24149635" class="tm-comment-thread__indent_l-1">
+                      <div data-gallery-root="" class="tm-comment">
+                       <header data-comment-header tabindex="-1" class="tm-comment__header">
+                        <div class="tm-comment__header-inner">
+                         <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/mag/" title="mag" class="tm-user-info__userpic">
+                           <div class="tm-entity-image">
+                            <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_pink">
+                             <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                            </svg>
+                           </div></a> <span class="tm-user-info__user"><a href="/ru/users/mag/" class="tm-user-info__username"> mag </a> <a href="#comment_24149635" class="tm-comment-thread__comment-link"> 09.03.2022 в 20:40 <!----></a></span></span>
+                        </div> 
+                        <div class="tm-comment__buttons">
+                         <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                          <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                           <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                          </svg></button> <!---->
+                        </div>
+                       </header> 
+                       <div class="tm-comment__body-content tm-comment__body-content_v2">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                         <p>тут люди с 2019 года по ковиду вот так продлеваются каждые 60 дней, но что будет и как дальше - никто точно не знает, пока работает и до 25 марта точно будут продлеваеть</p>
+                        </div>
+                       </div> <!----> <!---->
+                      </div> 
+                      <div class="tm-comment-footer">
+                       <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                        <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                         <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                        </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                       </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                         <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                          <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                         </svg></span> <!----></button> <button data-comment-popup="24149635" class="tm-comment__button tm-comment__button_with-icon">
+                        <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                         <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                        </svg></button> <!---->
+                      </div>
+                     </div>
+                    </article> <!----> <!---->
+                   </section>
+                  </div> <!---->
+                 </section>
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24149605" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24149605" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/sashellite/" title="sashellite" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                           <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                          </svg>
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/sashellite/" class="tm-user-info__username"> sashellite </a> <a href="#comment_24149605" class="tm-comment-thread__comment-link"> 09.03.2022 в 20:28 <!----></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content tm-comment__body-content_v2">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <p>Большое спасибо за подробную статью!</p>
+                       <p>Можете еще поделиться, пожалуйста:</p>
+                       <ol>
+                        <li><p>Смог ли ваш работодатель устроить вам получение зарплаты на этот счет? Если да, то это работодатель РФ или зарубежный? Или, может, вы ИП/самозанятый? </p></li>
+                        <li><p>Как вы обходите (или игнорируете) запрет для резидентов РФ на начисления валюты на собственные счета в иностранных банках? </p></li>
+                       </ol>
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Всего голосов 2: ↑2 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Всего голосов 2: ↑2 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">+2</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24149605" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> 
+                  <div class="tm-comment-thread__children" style="display:;">
+                   <section class="tm-comment-thread">
+                    <!----> 
+                    <article class="tm-comment-thread__comment">
+                     <a name="comment_24149663" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-1">
+                      <div class="tm-comment-thread__circle"></div></button> <!----> 
+                     <div data-comment-body="24149663" class="tm-comment-thread__indent_l-1">
+                      <div data-gallery-root="" class="tm-comment">
+                       <header data-comment-header tabindex="-1" class="tm-comment__header">
+                        <div class="tm-comment__header-inner">
+                         <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/mag/" title="mag" class="tm-user-info__userpic">
+                           <div class="tm-entity-image">
+                            <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_pink">
+                             <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                            </svg>
+                           </div></a> <span class="tm-user-info__user"><a href="/ru/users/mag/" class="tm-user-info__username"> mag </a> <a href="#comment_24149663" class="tm-comment-thread__comment-link"> 09.03.2022 в 20:58 <!----></a></span></span>
+                        </div> 
+                        <div class="tm-comment__buttons">
+                         <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                          <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                           <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                          </svg></button> <!---->
+                        </div>
+                       </header> 
+                       <div class="tm-comment__body-content tm-comment__body-content_v2">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                         <ol>
+                          <li><p>да смог, зарубежный, я ип</p></li>
+                         </ol>
+                         <ol start="2">
+                          <li><p>запрет касается резидентов, то есть я сам себе не могу не счёт зачислить, но я так и не делаю</p></li>
+                         </ol>
+                        </div>
+                       </div> <!----> <!---->
+                      </div> 
+                      <div class="tm-comment-footer">
+                       <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                        <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                         <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                        </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                       </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                         <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                          <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                         </svg></span> <!----></button> <button data-comment-popup="24149663" class="tm-comment__button tm-comment__button_with-icon">
+                        <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                         <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                        </svg></button> <!---->
+                      </div>
+                     </div>
+                    </article> 
+                    <div class="tm-comment-thread__children" style="display:;">
+                     <section class="tm-comment-thread">
+                      <!----> 
+                      <article class="tm-comment-thread__comment">
+                       <a name="comment_24149671" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-2">
+                        <div class="tm-comment-thread__circle"></div></button> <!----> 
+                       <div data-comment-body="24149671" class="tm-comment-thread__indent_l-2">
+                        <div data-gallery-root="" class="tm-comment">
+                         <header data-comment-header tabindex="-1" class="tm-comment__header">
+                          <div class="tm-comment__header-inner">
+                           <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/Ritan/" title="Ritan" class="tm-user-info__userpic">
+                             <div class="tm-entity-image">
+                              <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                              <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                              </svg>
+                             </div></a> <span class="tm-user-info__user"><a href="/ru/users/Ritan/" class="tm-user-info__username"> Ritan </a> <a href="#comment_24149671" class="tm-comment-thread__comment-link"> 09.03.2022 в 21:03 <!----></a></span></span>
+                          </div> 
+                          <div class="tm-comment__buttons">
+                           <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                            <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                             <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                            </svg></button> <!---->
+                          </div>
+                         </header> 
+                         <div class="tm-comment__body-content tm-comment__body-content_v2">
+                          <div xmlns="http://www.w3.org/1999/xhtml">
+                           <ol start="2">
+                            <li><p>А не считается ли внесение Minimal Initial Deposit нарушением?</p></li>
+                           </ol>
+                          </div>
+                         </div> <!----> <!---->
+                        </div> 
+                        <div class="tm-comment-footer">
+                         <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                          <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                           <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                          </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                         </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                           <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                            <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                           </svg></span> <!----></button> <button data-comment-popup="24149671" class="tm-comment__button tm-comment__button_with-icon">
+                          <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                           <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                          </svg></button> <!---->
+                        </div>
+                       </div>
+                      </article> 
+                      <div class="tm-comment-thread__children" style="display:;">
+                       <section class="tm-comment-thread">
+                        <!----> 
+                        <article class="tm-comment-thread__comment">
+                         <a name="comment_24149685" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-3">
+                          <div class="tm-comment-thread__circle"></div></button> <!----> 
+                         <div data-comment-body="24149685" class="tm-comment-thread__indent_l-3">
+                          <div data-gallery-root="" class="tm-comment">
+                           <header data-comment-header tabindex="-1" class="tm-comment__header">
+                            <div class="tm-comment__header-inner">
+                             <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/mag/" title="mag" class="tm-user-info__userpic">
+                              <div class="tm-entity-image">
+                              <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_pink">
+                              <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                              </svg>
+                              </div></a> <span class="tm-user-info__user"><a href="/ru/users/mag/" class="tm-user-info__username"> mag </a> <a href="#comment_24149685" class="tm-comment-thread__comment-link"> 09.03.2022 в 21:13 <!----></a></span></span>
+                            </div> 
+                            <div class="tm-comment__buttons">
+                             <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                              <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                              <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                              </svg></button> <!---->
+                            </div>
+                           </header> 
+                           <div class="tm-comment__body-content tm-comment__body-content_v2">
+                            <div xmlns="http://www.w3.org/1999/xhtml">
+                             <p>фактически - запрет на банковские переводы, но формально такое внесение скорее всего тоже нарушение, хотя и никакой ответственности за это в указе нет</p>
+                            </div>
+                           </div> <!----> <!---->
+                          </div> 
+                          <div class="tm-comment-footer">
+                           <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                            <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                             <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                            </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                           </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                             <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                              <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                             </svg></span> <!----></button> <button data-comment-popup="24149685" class="tm-comment__button tm-comment__button_with-icon">
+                            <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                             <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                            </svg></button> <!---->
+                          </div>
+                         </div>
+                        </article> <!----> <!---->
+                       </section>
+                      </div> <!---->
+                     </section>
+                     <section class="tm-comment-thread">
+                      <!----> 
+                      <article class="tm-comment-thread__comment">
+                       <a name="comment_24149693" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-2">
+                        <div class="tm-comment-thread__circle"></div></button> <!----> 
+                       <div data-comment-body="24149693" class="tm-comment-thread__indent_l-2">
+                        <div data-gallery-root="" class="tm-comment">
+                         <header data-comment-header tabindex="-1" class="tm-comment__header">
+                          <div class="tm-comment__header-inner">
+                           <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/hapcode/" title="hapcode" class="tm-user-info__userpic">
+                             <div class="tm-entity-image">
+                              <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_blue">
+                              <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                              </svg>
+                             </div></a> <span class="tm-user-info__user"><a href="/ru/users/hapcode/" class="tm-user-info__username"> hapcode </a> <a href="#comment_24149693" class="tm-comment-thread__comment-link"> 09.03.2022 в 21:16 <!----></a></span></span>
+                          </div> 
+                          <div class="tm-comment__buttons">
+                           <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                            <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                             <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                            </svg></button> <!---->
+                          </div>
+                         </header> 
+                         <div class="tm-comment__body-content">
+                          <div xmlns="http://www.w3.org/1999/xhtml">
+                           А у вас ИП Российский? Как считаются налоги?
+                          </div>
+                         </div> <!----> <!---->
+                        </div> 
+                        <div class="tm-comment-footer">
+                         <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                          <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                           <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                          </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                         </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                           <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                            <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                           </svg></span> <!----></button> <button data-comment-popup="24149693" class="tm-comment__button tm-comment__button_with-icon">
+                          <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                           <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                          </svg></button> <!---->
+                        </div>
+                       </div>
+                      </article> 
+                      <div class="tm-comment-thread__children" style="display:;">
+                       <section class="tm-comment-thread">
+                        <!----> 
+                        <article class="tm-comment-thread__comment">
+                         <a name="comment_24149695" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-3">
+                          <div class="tm-comment-thread__circle"></div></button> <!----> 
+                         <div data-comment-body="24149695" class="tm-comment-thread__indent_l-3">
+                          <div data-gallery-root="" class="tm-comment">
+                           <header data-comment-header tabindex="-1" class="tm-comment__header">
+                            <div class="tm-comment__header-inner">
+                             <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/mag/" title="mag" class="tm-user-info__userpic">
+                              <div class="tm-entity-image">
+                              <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_pink">
+                              <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                              </svg>
+                              </div></a> <span class="tm-user-info__user"><a href="/ru/users/mag/" class="tm-user-info__username"> mag </a> <a href="#comment_24149695" class="tm-comment-thread__comment-link"> 09.03.2022 в 21:17 <!----></a></span></span>
+                            </div> 
+                            <div class="tm-comment__buttons">
+                             <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                              <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                              <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                              </svg></button> <!---->
+                            </div>
+                           </header> 
+                           <div class="tm-comment__body-content tm-comment__body-content_v2">
+                            <div xmlns="http://www.w3.org/1999/xhtml">
+                             <p>статья не про налоги, это другой момент который требует дальнейшего изучения</p>
+                             <p>а так да, ИП российский</p>
+                            </div>
+                           </div> <!----> <!---->
+                          </div> 
+                          <div class="tm-comment-footer">
+                           <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                            <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                             <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                            </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                           </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                             <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                              <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                             </svg></span> <!----></button> <button data-comment-popup="24149695" class="tm-comment__button tm-comment__button_with-icon">
+                            <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                             <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                            </svg></button> <!---->
+                          </div>
+                         </div>
+                        </article> <!----> <!---->
+                       </section>
+                      </div> <!---->
+                     </section>
+                    </div> <!---->
+                   </section>
+                  </div> <!---->
+                 </section>
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24149659" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24149659" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/rPman/" title="rPman" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                           <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                          </svg>
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/rPman/" class="tm-user-info__username"> rPman </a> <a href="#comment_24149659" class="tm-comment-thread__comment-link"> 09.03.2022 в 20:57 <!----></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       вы сказали про нюансы с криптовалютами, заинтриговали но ничего не рассказали
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24149659" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> 
+                  <div class="tm-comment-thread__children" style="display:;">
+                   <section class="tm-comment-thread">
+                    <!----> 
+                    <article class="tm-comment-thread__comment">
+                     <a name="comment_24149669" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-1">
+                      <div class="tm-comment-thread__circle"></div></button> <!----> 
+                     <div data-comment-body="24149669" class="tm-comment-thread__indent_l-1">
+                      <div data-gallery-root="" class="tm-comment">
+                       <header data-comment-header tabindex="-1" class="tm-comment__header">
+                        <div class="tm-comment__header-inner">
+                         <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/mag/" title="mag" class="tm-user-info__userpic">
+                           <div class="tm-entity-image">
+                            <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_pink">
+                             <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                            </svg>
+                           </div></a> <span class="tm-user-info__user"><a href="/ru/users/mag/" class="tm-user-info__username"> mag </a> <a href="#comment_24149669" class="tm-comment-thread__comment-link"> 09.03.2022 в 21:03 <!----></a></span></span>
+                        </div> 
+                        <div class="tm-comment__buttons">
+                         <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                          <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                           <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                          </svg></button> <!---->
+                        </div>
+                       </header> 
+                       <div class="tm-comment__body-content tm-comment__body-content_v2">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                         <p>так как этим способом не пользовался, но вообще самый очевидный - купить в России usdt и продать в Таиланде в локальном обменнике</p>
+                         <p>да, в Таиланде криптовалюта разрешена, даже недвижимость можно <a href="https://prian.ru/pub/kak-kupit-nedvizhimost-v-tailande-za-kriptu-sdelka-v-efirah-invoys-v-valyute-platyozh-za-paru-minut.html" rel="noopener noreferrer nofollow">взять</a></p>
+                        </div>
+                       </div> <!----> <!---->
+                      </div> 
+                      <div class="tm-comment-footer">
+                       <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                        <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                         <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                        </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                       </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                         <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                          <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                         </svg></span> <!----></button> <button data-comment-popup="24149669" class="tm-comment__button tm-comment__button_with-icon">
+                        <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                         <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                        </svg></button> <!---->
+                      </div>
+                     </div>
+                    </article> <!----> <!---->
+                   </section>
+                  </div> <!---->
+                 </section>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div>
+              </div> 
+              <div class="tm-notice tm-comments__comment-notice tm-notice_positive">
+               <!----> 
+               <div class="tm-notice__inner">
+                <!----> 
+                <div class="tm-notice__content">
+                 <span>Только полноправные пользователи могут оставлять комментарии. <a rel="nofollow" href="/kek/v1/auth/habrahabr/?back=/ru/post/654859/comments/&amp;hl=ru">Войдите</a>, пожалуйста.</span>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div> <!----> <!---->
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div hl="ru" id="654859" class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner6609" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom6610" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654859/comments/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654859/comments/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654859":{"id":"654859","timePublished":"2022-03-09T16:58:47+00:00","isCorporative":false,"lang":"ru","titleHtml":"Таиланд. Пхукет. Документы, банки. 2022","leadData":{"textHtml":"\u003Cp\u003EДанная статься - практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться какие-то нюансы.\u003C\u002Fp\u003E\u003Cp\u003EТак получилось, что давно запланированный отпуск с семьёй на Пхукете заканчивается тем, что отменены рейсы, невозможно дозвониться в авиакомпанию, отрезана возможность получать зарплату, не работают карточки российских банков и даже никакие средства не отправить через системы мгновенных переводов. Остались ещё криптовалюты, но и с ними есть нюансы.\u003C\u002Fp\u003E\u003Cp\u003EНиже будет информация, которая будет полезна тем, кто оказался в подобной ситуации, что именно нужно сделать, куда обратиться, какие именно бумаги требуются и для чего. Так как информация постоянно меняется, то не могу гарантировать, что через неделю всё будет также, но практика показывает, что если что-то и меняется, то как ни странно, в упрощение, в лучшую сторону.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7dd\u002F1c3\u002F22c\u002F7dd1c322c705f8223263074d72ef2a5e.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7dd\u002F1c3\u002F22c\u002F7dd1c322c705f8223263074d72ef2a5e.jpg","fit":"cover","positionY":55.454545454545,"positionX":4.2307692307692}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":38,"votesCount":48},"rating":4,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"8740","alias":"mag","fullname":"mag","avatarUrl":null,"speciality":null},"statistics":{"commentsCount":10,"favoritesCount":6,"readingCount":2768,"score":8,"votesCount":10},"hubs":[{"relatedData":null,"id":"20738","alias":"business-laws","type":"collective","title":"Законодательство в IT","titleHtml":"Законодательство в IT","isProfiled":false},{"relatedData":null,"id":"21928","alias":"finance","type":"collective","title":"Финансы в IT","titleHtml":"Финансы в IT","isProfiled":false},{"relatedData":null,"id":"21982","alias":"lifehacks","type":"collective","title":"Лайфхаки для гиков","titleHtml":"Лайфхаки для гиков","isProfiled":false},{"relatedData":null,"id":"22470","alias":"remote","type":"collective","title":"Удалённая работа","titleHtml":"Удалённая работа","isProfiled":false}],"flows":[{"id":"3","alias":"management","title":"Менеджмент"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F92d\u002F7bf\u002F511\u002F92d7bf511cba6b9ff55a6eadb7750bf4.jpg\" width=\"1280\" height=\"960\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F92d\u002F7bf\u002F511\u002F92d7bf511cba6b9ff55a6eadb7750bf4.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EДанная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться какие-то нюансы.\u003C\u002Fp\u003E\u003Cp\u003EТак получилось, что давно запланированный отпуск с семьёй на Пхукете заканчивается тем, что отменены рейсы, невозможно дозвониться в авиакомпанию, отрезана возможность получать зарплату, не работают карточки российских банков и даже никакие средства не отправить через системы мгновенных переводов. Остались ещё криптовалюты, но и с ними есть нюансы.\u003C\u002Fp\u003E\u003Cp\u003EНиже будет информация, которая будет полезна тем, кто оказался в подобной ситуации, что именно нужно сделать, куда обратиться, какие именно бумаги требуются и для чего. Так как информация постоянно меняется, то не могу гарантировать, что через неделю всё будет также, но практика показывает, что если что-то и меняется, то как ни странно, в упрощение, в лучшую сторону.\u003C\u002Fp\u003E\u003Ch2\u003EШаг 1. Продление пребывания\u003C\u002Fh2\u003E\u003Cp\u003EЯ въехал по \"штампу\" – ставят в аэропорту по прилёту и по нему можно находиться 30 дней. Этот срок необходим продлевать. Для этого есть несколько вариантов, но в данный момент самый оптимальный (на мой взгляд) вариант – это так называемое \"ковидное продление\", по которому на 60 дней увеличивают срок действия \"штампа\", то есть именно на 60 дней с даты окончания действия, а не с даты когда подашь заявление.\u003C\u002Fp\u003E\u003Cp\u003EЧто надо для продления?\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЗагран паспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКопия заграна с лицом + копия иммиграционной карточки (заполняется в самолёте, маленький квиток - форма TM6) + копия страницы со штампом. Нужно расписаться на каждой копии. Копии можно сделать в отеле, обычно это бесплатно\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЦветное фото 4х6 - его можно сделать рядом с иммиграционным офисом, я делал тут: \u003Ca href=\"https:\u002F\u002Fgoo.gl\u002Fmaps\u002Fdoi1X59wBDjKSwn49\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fgoo.gl\u002Fmaps\u002Fdoi1X59wBDjKSwn49\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eформа TM30 - подтверждение проживания, выдаётся в отеле, для тех кто снимает квартиру, она иная, нужно получать у того у кого снимаете, они должны знать. Я брал в отеле, делают её не сразу, лучше заказать заранее за день до похода. Выглядит форма так: \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F561\u002F40b\u002F0ab\u002F56140b0abde5472ec77f6845a16af893.jpg\" alt=\"TM30\" title=\"TM30\" width=\"1280\" height=\"960\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F561\u002F40b\u002F0ab\u002F56140b0abde5472ec77f6845a16af893.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003ETM30\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003Eто есть это по сути скрин с их какой-то системы учёта и такое принимается – все именно такое и приносят. На мой взгляд несколько странно, но там так.\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eзаполненные формы: TM7, STM2, Affidavit Covid-19\u003Cbr\u002F\u003EНастоятельно рекомендую распечатать это всё заранее и спокойно заполнить дома\u002Fв отеле. Формы можно \u003Ca href=\"https:\u002F\u002Fdrive.google.com\u002Fdrive\u002Ffolders\u002F18pS8QbrERWPBvw6XBs52Zwi80oyQsI9U?usp=sharing\" rel=\"noopener noreferrer nofollow\"\u003Eнайти тут\u003C\u002Fa\u003E. Пример заполнения отлично описан по этой ссылке: \u003Ca href=\"http:\u002F\u002Froom-number.ru\u002Fthailand\u002Fcovid-60-days\u002F\" rel=\"noopener noreferrer nofollow\"\u003EКовидная виза в Таиланде на 2 месяца (60 дней) (room-number.ru)\u003C\u002Fa\u003E  \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eцена вопроса: 1900 бат на каждого заявителя. Есть информация что этот сбор собираются отменить, но пока так.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EВсе документы делаются на каждого члена семьи. Подавать может кто-то один за всех, но присутствовать при подаче должны все, нужно будет показаться оператору и оператор сфотает вас с паспортом и номерком. По этому номерку потом получать сам паспорт со штампиком.\u003C\u002Fp\u003E\u003Cp\u003EКуда ехать? 482 Phuket Rd, Tambon Talat Yai, Mueang Phuket District, Phuket 83000 или \u003Ca href=\"https:\u002F\u002Fgoo.gl\u002Fmaps\u002FpqkkyTrNPPru1iWK7\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fgoo.gl\u002Fmaps\u002FpqkkyTrNPPru1iWK7\u003C\u002Fa\u003E Режим работы: с 8:30 до 12:00 и с 13:00 до 16:30.\u003C\u002Fp\u003E\u003Cp\u003EЛучше всего с утра. Если до обеда подать документы, то после обеда их уже отдадут и не надо будет второй раз туда мотаться. \u003C\u002Fp\u003E\u003Cp\u003EПри первом посещении этого заведения может быть некоторая растерянность, но на самом деле всё довольно просто. Везде висят таблички куда идти, часто на русском, всегда на английском. Если вообще ничего не понятно – можно спросить у оператора, расскажут подробно и направят в нужное окошко. В целом всё довольно просто, но долго, лучше выделить на это день и спокойно сделать.\u003C\u002Fp\u003E\u003Ch2\u003EШаг 2. Временное \"резидентство\"\u003C\u002Fh2\u003E\u003Cp\u003EЧтоб наладить какой-то финансовый процесс хорошо бы открыть счёт в банке. Для этого в том же центре иммиграции нужно получить вот такую бумажку:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F23a\u002F8ab\u002F471\u002F23a8ab471d0bbc39effb3ebdac2ec8f5.jpg\" width=\"901\" height=\"1280\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F23a\u002F8ab\u002F471\u002F23a8ab471d0bbc39effb3ebdac2ec8f5.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EГоворите \"document for bank account\" – сразу понятно что вам нужно.\u003C\u002Fp\u003E\u003Cp\u003Eдля её оформления требуется:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eформа TM30 из шага 1\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eтакое же фото 4х6\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E300 бат\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eоколо часа времени на ожидание в очередях\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EЕсли подать документы на продление пребывания (шаг 1), затем получить после обеда паспорт и сразу подать на получение этой бумаги, то можно значительно упростить себе жизнь и сэкономить время. Я этого не знал и пришлось ездить несколько раз.\u003C\u002Fp\u003E\u003Cp\u003EЗачем она нужна эта бумажка? Иностранцам с таким вот временным \"штампиком\" нигде вообще счёт не открывают. Специально сегодня обошёл наверное 6 банков – везде нужен work permit или виза на долгий срок. Зато есть замечательный Bangkok Bank, который открывает именно с такой бумажкой.\u003C\u002Fp\u003E\u003Ch2\u003EШаг 3. Открытие счёта в банке\u003C\u002Fh2\u003E\u003Cp\u003EОткрытие счёта со страховкой от несчастных случаев, карточкой UnionPay и стартовыми 500 батами на счету стоит 7100 бат. Сегодня появилась информация, что страховку поменяют и будет раза в два дешевле. Хорошо если так.\u003C\u002Fp\u003E\u003Cp\u003EЗа дополнительные 500 бат можно сразу же получить мастеркард.\u003C\u002Fp\u003E\u003Cp\u003EКуда обращаться?\u003Cbr\u002F\u003E\u003Cbr\u002F\u003EВ любой офис Bangkok Bank, он есть в Old Town, в Central Festival – на 4-м этаже торгового центра. В общем куда ближе – туда и надо идти.\u003C\u002Fp\u003E\u003Cp\u003EЧто нужно?\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eпаспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eместный мобильный номер телефона\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eбумажка из шага 2\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eв банке примерно минут 30 времени для заполнения кучи бумажек\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EПо итогу будет счёт в банке в тайских батах. Можно открыть счёт и в другой валюте, вот тарифы:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F71d\u002F693\u002F19b\u002F71d69319bb78184cc5b250621b966075.jpg\" width=\"947\" height=\"1280\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F71d\u002F693\u002F19b\u002F71d69319bb78184cc5b250621b966075.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd76\u002F86a\u002F55b\u002Fd7686a55bd130595ec05a6785de4b9b2.jpg\" width=\"890\" height=\"1280\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd76\u002F86a\u002F55b\u002Fd7686a55bd130595ec05a6785de4b9b2.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EСвифт-переводы работают, уже проверено. При переводе валюты отличной от батов – сконвертируется по курсу банка, который не такой ужи плохой. Карточки тоже работают сразу. В общем можно немного вздохнуть.\u003C\u002Fp\u003E\u003Cp\u003EВ банке сразу лучше поставить приложение (для iOS это: \u003Ca href=\"https:\u002F\u002Fapps.apple.com\u002Fru\u002Fapp\u002Fbualuang-mbanking\u002Fid660238716\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fapps.apple.com\u002Fru\u002Fapp\u002Fbualuang-mbanking\u002Fid660238716\u003C\u002Fa\u003E), залогиниться, проверить что всё хорошо. Само приложение вроде как неплохое, всё основное есть, но до российских примерно как до луны.\u003C\u002Fp\u003E\u003Cp\u003EНадеюсь, информация будет полезна и сэкономит время тем кто оказался в подобной моей ситуации.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"таиланд"},{"titleHtml":"пхукет"},{"titleHtml":"счёт"},{"titleHtml":"банк"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7dd\u002F1c3\u002F22c\u002F7dd1c322c705f8223263074d72ef2a5e.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7dd\u002F1c3\u002F22c\u002F7dd1c322c705f8223263074d72ef2a5e.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654859\\\u002F\"},\"headline\":\"Таиланд. Пхукет. Документы, банки. 2022\",\"datePublished\":\"2022-03-09T19:58:47+03:00\",\"dateModified\":\"2022-03-09T20:35:27+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"mag\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Данная статья &ndash; практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в оста...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654859\\\u002F#post-content-body\",\"about\":[\"h_business-laws\",\"h_finance\",\"h_lifehacks\",\"h_remote\",\"f_management\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654859\\\u002F1d75750650dabe942e0090834fe6df60\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F92d\\\u002F7bf\\\u002F511\\\u002F92d7bf511cba6b9ff55a6eadb7750bf4.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F561\\\u002F40b\\\u002F0ab\\\u002F56140b0abde5472ec77f6845a16af893.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F23a\\\u002F8ab\\\u002F471\\\u002F23a8ab471d0bbc39effb3ebdac2ec8f5.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F71d\\\u002F693\\\u002F19b\\\u002F71d69319bb78184cc5b250621b966075.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fd76\\\u002F86a\\\u002F55b\\\u002Fd7686a55bd130595ec05a6785de4b9b2.jpg\"]}","metaDescription":"Данная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{"654859":{"refs":{"24149595":{"id":"24149595","parentId":null,"level":0,"timePublished":"2022-03-09T17:22:04+00:00","timeChanged":"2022-03-09T17:22:10+00:00","isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EА ещё через 60 дней есть варианты продления визы?\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"21742","alias":"Sap_ru","fullname":"Артём","avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":["24149635"],"vote":{"value":null,"isCanVote":false}},"24149605":{"id":"24149605","parentId":null,"level":0,"timePublished":"2022-03-09T17:28:37+00:00","timeChanged":null,"isSuspended":false,"score":2,"votesCount":2,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EБольшое спасибо за подробную статью!\u003C\u002Fp\u003E\u003Cp\u003EМожете еще поделиться, пожалуйста:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EСмог ли ваш работодатель устроить вам получение зарплаты на этот счет? Если да, то это работодатель РФ или зарубежный? Или, может, вы ИП\u002Fсамозанятый? \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКак вы обходите (или игнорируете) запрет для резидентов РФ на начисления валюты на собственные счета в иностранных банках? \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"1452542","alias":"sashellite","fullname":null,"avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":["24149663"],"vote":{"value":null,"isCanVote":false}},"24149635":{"id":"24149635","parentId":"24149595","level":1,"timePublished":"2022-03-09T17:40:33+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003Eтут люди с 2019 года по ковиду вот так продлеваются каждые 60 дней, но что будет и как дальше - никто точно не знает, пока работает и до 25 марта точно будут продлеваеть\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"8740","alias":"mag","fullname":"mag","avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":true,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":[],"vote":{"value":null,"isCanVote":false}},"24149659":{"id":"24149659","parentId":null,"level":0,"timePublished":"2022-03-09T17:57:31+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003Eвы сказали про нюансы с криптовалютами, заинтриговали но ничего не рассказали\u003C\u002Fdiv\u003E","editorVersion":1,"author":{"id":"50563","alias":"rPman","fullname":null,"avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":["24149669"],"vote":{"value":null,"isCanVote":false}},"24149663":{"id":"24149663","parentId":"24149605","level":1,"timePublished":"2022-03-09T17:58:21+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003Eда смог, зарубежный, я ип\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Col start=\"2\"\u003E\u003Cli\u003E\u003Cp\u003Eзапрет касается резидентов, то есть я сам себе не могу не счёт зачислить, но я так и не делаю\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"8740","alias":"mag","fullname":"mag","avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":true,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":["24149671","24149693"],"vote":{"value":null,"isCanVote":false}},"24149669":{"id":"24149669","parentId":"24149659","level":1,"timePublished":"2022-03-09T18:03:12+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003Eтак как этим способом не пользовался, но вообще самый очевидный - купить в России usdt и продать в Таиланде в локальном обменнике\u003C\u002Fp\u003E\u003Cp\u003Eда, в Таиланде криптовалюта разрешена, даже недвижимость можно \u003Ca href=\"https:\u002F\u002Fprian.ru\u002Fpub\u002Fkak-kupit-nedvizhimost-v-tailande-za-kriptu-sdelka-v-efirah-invoys-v-valyute-platyozh-za-paru-minut.html\" rel=\"noopener noreferrer nofollow\"\u003Eвзять\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"8740","alias":"mag","fullname":"mag","avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":true,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":[],"vote":{"value":null,"isCanVote":false}},"24149671":{"id":"24149671","parentId":"24149663","level":2,"timePublished":"2022-03-09T18:03:33+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Col start=\"2\"\u003E\u003Cli\u003E\u003Cp\u003EА не считается ли внесение Minimal Initial Deposit нарушением?\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"219212","alias":"Ritan","fullname":null,"avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":["24149685"],"vote":{"value":null,"isCanVote":false}},"24149685":{"id":"24149685","parentId":"24149671","level":3,"timePublished":"2022-03-09T18:13:56+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003Eфактически - запрет на банковские переводы, но формально такое внесение скорее всего тоже нарушение, хотя и никакой ответственности за это в указе нет\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"8740","alias":"mag","fullname":"mag","avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":true,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":[],"vote":{"value":null,"isCanVote":false}},"24149693":{"id":"24149693","parentId":"24149663","level":2,"timePublished":"2022-03-09T18:16:48+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003EА у вас ИП Российский? Как считаются налоги?\u003C\u002Fdiv\u003E","editorVersion":1,"author":{"id":"2561731","alias":"hapcode","fullname":null,"avatarUrl":null,"speciality":null},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorit

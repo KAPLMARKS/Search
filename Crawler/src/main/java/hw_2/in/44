@@ -1,0 +1,725 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>USB на регистрах: STM32L1 / STM32F1 / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/548150\/"},"headline":"USB на регистрах: STM32L1 \/ STM32F1","datePublished":"2021-03-21T16:14:40+03:00","dateModified":"2021-05-23T12:29:47+03:00","author":{"@type":"Person","name":"COKPOWEHEU"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Еще более низкий уровень (avr-vusb) USB на регистрах: bulk endpoint на примере Mass Storage USB на регистрах: interrupt endpoint на примере HID USB на регистра...","url":"https:\/\/habr.com\/ru\/post\/548150\/#post-content-body","about":["h_controllers","h_circuit-design","f_develop"],"image":["https:\/\/habrastorage.org\/webt\/ko\/fi\/r7\/kofir7w21c7e2dgobhcq-3-m7to.png"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="USB на регистрах: STM32L1 / STM32F1" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="USB на регистрах: STM32L1 / STM32F1" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="USB на регистрах: STM32L1 / STM32F1" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: bulk endpoint на примере Mass Storage
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: bulk endpoint на примере Mass Storage
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: bulk endpoint на примере Mass Storage
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: bulk endpoint на примере Mass Storage
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: bulk endpoint на примере Mass Storage
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habr.com/share/publication/548150/cc4384bf85c17fc22b05d27ce9c914f0/" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habr.com/share/publication/548150/cc4384bf85c17fc22b05d27ce9c914f0/" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habr.com/share/publication/548150/cc4384bf85c17fc22b05d27ce9c914f0/" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habr.com/share/publication/548150/cc4384bf85c17fc22b05d27ce9c914f0/" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habr.com/share/publication/548150/cc4384bf85c17fc22b05d27ce9c914f0/?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="548150" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2021-03-21T13:14:40.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/548150/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="arm, stm32, stm32f103, stm32l151, usb, usb-hid, грабли и велосипеды"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/548150/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/548150/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habr.com/share/publication/548150/cc4384bf85c17fc22b05d27ce9c914f0/" data-vmid="image:href"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/COKPOWEHEU/" title="COKPOWEHEU" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/COKPOWEHEU/" class="tm-user-info__username"> COKPOWEHEU </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2021-03-21T13:14:40.000Z" title="2021-03-21, 16:14">21 марта 2021 в 16:14</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>USB на регистрах: STM32L1 / STM32F1</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/controllers/" class="tm-article-snippet__hubs-item-link"><span>Программирование микроконтроллеров</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/circuit-design/" class="tm-article-snippet__hubs-item-link"><span>Схемотехника</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span>
+                  </div> <!----> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-1">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <img src="https://habrastorage.org/r/w1560/webt/ko/fi/r7/kofir7w21c7e2dgobhcq-3-m7to.png" data-src="https://habrastorage.org/webt/ko/fi/r7/kofir7w21c7e2dgobhcq-3-m7to.png">
+                     <br> 
+                     <br> <a href="https://habr.com/ru/post/460815/">Еще более низкий уровень (avr-vusb)</a>
+                     <br> <a href="https://habr.com/ru/post/549016/">USB на регистрах: bulk endpoint на примере Mass Storage</a>
+                     <br> <a href="https://habr.com/ru/post/551720/">USB на регистрах: interrupt endpoint на примере HID</a>
+                     <br> <a href="https://habr.com/ru/post/558822/">USB на регистрах: isochronous endpoint на примере Audio device</a>
+                     <br> 
+                     <br> С программным USB на примере AVR мы уже познакомились, пришла пора взяться за более тяжелые камни — STM32. Подопытными у нас будут классический STM32F103C8T6 а также представитель малопотребляющей серии STM32L151RCT6. Как и раньше, пользоваться покупными отладочными платами и HAL'ом не будем, отдав предпочтение велосипеду.
+                     <br> <a name="habracut"></a>
+                     <br> Раз уж в заглавии указано два контроллера, стоит рассказать об основных отличиях. В первую очередь это резистор подтяжки, говорящий usb-хосту, что в него что-то воткнули. В L151 он встроен и управляется битом SYSCFG_PMC_USB_PU, а в F103 — нет, придется впаивать на плату снаружи и соединять либо с VCC, либо с ножкой контроллера. В моем случае под руку попалась ножка PA10. На которой висит UART1… А другой вывод UART1 конфликтует с кнопкой… замечательную плату я развел, не находите? Второе отличие это объем флеш-памяти: в F103 ее 64 кБ, а в L151 целых 256 кБ, чем мы когда-нибудь и воспользуемся при изучении конечных точек типа Bulk. Также у них немного отличаются настройки тактирования, да и лампочками с кнопочками могут на разных ногах висеть, но это уже совсем мелочи. <a href="https://github.com/COKPOWEHEU/usb/tree/main/1.Core_F1" rel="nofollow noopener noreferrer">Пример для F103</a> доступен в репозитории, так что адаптировать под него остальные <a href="https://github.com/COKPOWEHEU/usb/tree/main/1.Core_L1" rel="nofollow noopener noreferrer">эксперименты с L151</a> будет несложно. Исходные коды доступны тут: <a href="https://github.com/COKPOWEHEU/usb" rel="nofollow noopener noreferrer">github.com/COKPOWEHEU/usb</a>
+                     <br> 
+                     <br> 
+                     <h3>Общий принцип работы с USB</h3>
+                     <br> Работа с USB в данном контроллере предполагается с использованием аппаратного модуля. То есть мы ему говорим что делать, он делает и в конце дергает прерывание «я готовое!». Соответственно, из основного main'а нам вызывать почти ничего не надо (хотя функцию usb_class_poll я на всякий случай предусмотрел). Обычный цикл работы ограничен единственным событием — обмен данными. Остальные — сброс, сон и прочие — события исключительные, разовые.
+                     <br> 
+                     <br> В низкоуровневые подробности обмена я на этот раз углубляться не буду. Кому интересно, может почитать про vusb. Но напомню, что обмен обычными данными идет не по одному байту, а по пакету, причем направление передачи задает хост. И названия этих направлений диктует тоже он: IN передача означает что хост принимает данные (а устройство передает), а OUT — что хост передает данные (а мы принимаем). Более того, каждый пакет имеет свой адрес — номер конечной точки, с которой хост хочет общаться. Пока что у нас будет единственная конечная точка 0, отвечающая за устройство в целом (для краткости я еще буду называть ее ep0). Для чего нужны остальные я расскажу в других статьях. Согласно стандарту, размер ep0 составляет строго 8 байт для низкоскоростных устройств (к каковым относится все тот же vusb) и на выбор 8, 16, 32, 64 байта для полноскоростных вроде нашего.
+                     <br> 
+                     <br> А если данных слишком мало и они не заполняют буфер полностью? Тут все просто: помимо данных в пакете передается и их размер (это может быть поле wLength либо низкоуровневая комбинация сигналов SE0, обозначающая конец передачи), так что даже если нам надо через ep0 размером 64 байта передать три байта, то переданы будут именно три байта. В результате расходовать пропускную способность, гоняя ненужные нули, мы не будем. Так что не стоит мельчить: если можем себе позволить потратить 64 байта, тратим не раздумывая. Помимо прочего это несколько уменьшит загруженность шины, ведь передать за раз кусок в 64 байта (плюс все заголовки и хвосты) проще, чем 8 раз по 8 байт (к каждому из которых опять-таки заголовки и хвосты).
+                     <br> UPD: Как оказалось, размер буферов под USB в этих контроллерах всего 512 байт, так что экономить все-таки придется
+                     <br> 
+                     <br> А если данных напротив слишком много? Тут сложнее. Данные приходится разбивать по размеру конечной точки и передавать порциями. Скажем, размер ep0 у нас 8 байт, а передать хост пытается 20 байт. При первом прерывании к нам придут байты 0-7, во втором 8-15, в третьем 16-20. То есть чтобы собрать посылку целиком нужно получить целых три прерывания. Для этого в том же HAL придуман хитрый буфер, с которым я попытался разобраться, но после четвертого уровня пересылки одного и того же между функциями, плюнул. Как результат, в моей реализации буферизация ложится на плечи программиста.
+                     <br> 
+                     <br> Но хост хотя бы всегда говорит сколько данных пытается передать. Когда же данные передаем мы, надо как-то хитро дернуть низкоуровневые состояния ножек чтобы дать понять что данные закончились. Точнее, дать понять модулю usb, что данные закончились и что надо дернуть ножки. Делается это вполне очевидным способом — записью только части буфера. Скажем, если буфер у нас 8 байт, а мы записали 4, то очевидно, данных у нас всего 4 байта, после которых модуль пошлет волшебную комбинацию SE0 и все будут довольны. А если мы записали 8 байт, это значит что у нас всего 8 байт или что это только часть данных, которая влезла в буфер? Модуль usb считает что часть. Поэтому если мы хотим остановить передачу, то после записи 8-байтного буфера должны записать следом 0-байтный. Это называется ZLP, Zero Length Packet. Про то, как это выглядит в коде, я расскажу чуть позже.
+                     <br> 
+                     <br> 
+                     <h3>Организация памяти</h3>
+                     <br> Согласно стандарту, размер конечной точки 0 может достигать 64 байт. Размер любой другой — аж 1024 байт. Количество точек также может отличаться от устройства к устройству. Те же STM32L1 поддерживают до 7 точек на вход и 7 на выход (не считая ep0). Поскольку с этими буферами активно взаимодействует соответствующая периферия, они вынесены в отдельную область памяти, называемую PMA (packet memory area). Модуль USB взаимодействует с ней напрямую и нумерует начиная с 0, а для контроллера она отображается на общаю память начиная с адреса USB_PMAADDR. Чтобы указать где внутри PMA располагаются буферы каждой конечной точки, в начале выделен массив на 8 элементов каждый со следующей структурой, и только потом собственно область для данных:
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">typedef struct{
+    volatile uint32_t usb_tx_addr;
+    volatile uint32_t usb_tx_count;
+    volatile uint32_t usb_rx_addr;
+    volatile union{
+      uint32_t usb_rx_count;
+      struct{
+        uint32_t rx_count:10;
+        uint32_t rx_num_blocks:5;
+        uint32_t rx_blocksize:1;
+      };
+    };
+}usb_epdata_t;</code></pre>
+                     <br> Здесь задаются начало буфера передачи, его размер, потом начало буфера приема и его размер. Обратите внимание во-первых, что usb_tx_count задает не собственно размер буфера, а количество данных для передачи. То есть наш код должен записать по адресу usb_tx_addr данные, потом записать в usb_tx_count их размер и только потом дернуть регистр модуля usb что данные мол записаны, передавай. Еще большее внимание обратите внимание на странный формат размера буфера приема: он представляет собой структуру, в которой 10 бит rx_count отвечают за реальное количество прочитанных данных, а вот остальные — уже действительно за размер буфера. Надо же железке знать докуда писать можно, а где начинаются чужие данные. Формат этой настройки тоже довольно интересный: флаг rx_block_size говорит в каких единицах задается размер. Если он сброшен в 0, то в 2-байтных словах, тогда размер буфера равен 2*rx_num_blocks, то есть от 0 до 62. А если выставлен в 1, то в 32-байтных блоках, соответственно размер буфера тогда оказывается 32*rx_num_blocks и лежит в диапазоне от 32 до 512 (да, не до 1024, такое вот ограничение контроллера).
+                     <br> 
+                     <br> <b>Внимание, грабли! Размер PMA буфера составляет всего 512 байт.</b> Причем указано это не в разделе о USB и не в каком-то еще очевидном месте вроде заголовочных файлов, а как бы между прочим в разделе memory map. Даже ссылку туда поленились шлепнуть. В общем, на все буферы у вас остается 448 байт (поскольку 64 занято под таблицу размещения).
+                     <br> 
+                     <br> Для размещения буферов в этой области будем использовать полудинамический подход. То есть выделять память по запросу, но не освобождать ее (еще не хватало malloc / free изобретать!). На начало неразмеченного пространства будет указывать переменная lastaddr, изначально указывающая на начало области PMA за вычетом таблицы структур, рассмотренной выше. Ну а при каждом вызове функции настройки очередной конечной точки usb_ep_init() она будет сдвигаться на указанный там размер буфера. И в соответствующую ячейку таблицы будет вносится нужное значение, естественно. Значение этой переменной сбрасывается по событию ресета, после чего тут же следует вызов usb_class_init(), в котором точки настраиваются заново в соответствии с юзерской задачей.
+                     <br> 
+                     <br> 
+                     <h3>Работа с регистрами приема-передачи</h3>
+                     <br> Как было только что сказано, на прием мы читаем сколько же реально данных пришло (поле usb_rx_count), потом читаем сами данные, потом дергаем модуль usb что буфер свободен, можно принимать следующий пакет. На передачу наоборот: записываем данные в буфер, потом выставляем в usb_tx_count сколько же записано и наконец дергаем модуль что буфер заполнен, можно передавать.
+                     <br> 
+                     <br> <b>Первые грабли</b> начинаются при собственно работе с буфером: он организован не по 32 бита, как весь остальной контроллер, и не по 8 бит, как можно было ожидать. А по 16 бит! В результате запись и чтение в него осуществляются по 2 байта, выровненные по 4 байта. Спасибо, ST, что сделали такое извращение! Как бы скучно без этого жилось! Теперь обычным memcpy не обойтись, придется городить специальные функции. Кстати, если кто любит DMA, то оно такое преобразование делать вроде умеет самостоятельно, хотя я это не проверял.
+                     <br> 
+                     <br> И тут же <b>вторые грабли</b> с записью в регистры модуля. Дело в том, что за настройку каждой конечной точки — за ее тип (control, bulk и т.д.) и состояние — отвечает один регистр USB_EPnR, то есть просто так в нем бит не поменяешь, надо следить чтобы не попортить остальные. А во-вторых, в этом регистре присутствуют биты аж четырех типов! Одни доступны только на чтение (это замечательно), другие на чтение и запись (тоже нормально), третьи игнорируют запись 0, но при записи 1 меняют состояние на противоположное (начинается веселье), а четвертые напротив игнорируют запись 1, но запись 0 сбрасывает их в 0. Скажите мне, какой наркоман додумался в одном регистре сделать биты, игнорирующие 0 и игнорирующие 1?! Нет, я готов предположить что это сделано ради сохранения целостности регистра, когда к нему обращаются и из кода, и из железа. Но вам что, лень было поставить инвертор чтобы биты сбрасывались записью 1? Или в другом месте инвертор чтобы другие биты инвертировались записью 0? В результате выставление двух битов регистра выглядит так (еще раз спасибо ST за такое извращение):
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">#define ENDP_STAT_RX(num, stat) do{USB_EPx(num) = ((USB_EPx(num) &amp; ~(USB_EP_DTOG_RX | USB_EP_DTOG_TX | USB_EPTX_STAT)) | USB_EP_CTR_RX | USB_EP_CTR_TX) ^ stat; }while(0)</code></pre>
+                     <br> Ах да, чуть не забыл: доступа к регистру по номеру у них тоже нет. То есть макросы USB_EP0R, USB_EP1R и т.д. у них есть, но вот если номер пришел в переменной, то увы. Пришлось изобретать свой USB_EPx() — а что поделать.
+                     <br> 
+                     <br> Ну и для соблюдения формальностей укажу, что флаг готовности к чтению (то есть что предыдущие данные мы уже прочитали) задается битовой маской USB_EP_RX_VALID, а к записи (то есть что данные мы записали полностью и их можно передавать) — маской USB_EP_TX_VALID.
+                     <br> 
+                     <br> 
+                     <h3>Обработка IN и OUT запросов</h3>
+                     <br> Возникновение прерывания USB может сигнализировать о разных вещах, но сейчас мы сосредоточимся на запросах обмена данными. Флагом такого события будет бит USB_ISTR_CTR. Если увидели его, можем разбираться с какой точкой хочет общаться хост. Номер точки скрывается под битовой маской USB_ISTR_EP_ID, а направление IN или OUT под битами USB_EP_CTR_TX и USB_EP_CTR_RX соответственно.
+                     <br> 
+                     <br> Поскольку точек у нас может быть много, и каждая со своим алгоритмом обработки, заведем им всем callback-функции, которые бы вызывались по соответствующим событиям. Например, послал хост данные в endpoint3, мы прочитали USB-&gt;ISTR, вытащили оттуда что запрос у нас OUT и что номер точки равен 3. Вот и вызываем epfunc_out[3](3). Номер точки в скобках передается если вдруг юзерский код захочет повесить один обработчик на несколько точек. Ах да, еще в стандарте USB принято входные точки IN помечать взведенным 7-м битом. То есть endpoint3 на выход будет иметь номер 0x03, а на вход — 0x83. Причем это разные точки, их можно использовать одновременно, друг другу они не мешают. Ну почти: в stm32 у них настройка типа (bulk, interrupt, ...) общая и на прием, и на передачу. Так что та же 0x83-я точка IN будет соответствовать callback'у epfunc_in[3](3 | 0x80).
+                     <br> 
+                     <br> Тот же принцип используется и для ep0. Разница только в том, что ее обработка происходит внутри библиотеки, а не внутри юзерского кода. Но что делать если нужно обрабатывать специфичные запросы вроде какого-нибудь HID — не лезть же ковырять код библиотеки? Для этого предусмотрены специальные callback'и usb_class_ep0_out и usb_class_ep0_in, которые вызываются в специальных местах и имеют специальный формат, рассказывать про который я буду ближе к концу.
+                     <br> 
+                     <br> Стоит упомянуть еще про один не очень очевидный момент, связанный с возникновением прерываний обработки пакетов. С OUT запросами все просто: данные пришли, вот они. А вот IN прерывание генерируется не тогда, когда хост послал IN запрос, а когда в буфере передачи пусто. То есть по принципу действия это прерывание аналогично прерыванию по опустошению буфера UART. Следовательно, когда мы хотим что-то передать хосту, мы это просто записываем данные в буфер передачи, ждем прерывания IN и дописываем что не поместилось (не забываем про ZLP). И ладно еще с «обычными» endpoint'ами, ими программист управляет, можно пока не обращать внимание. Но вот через ep0 обмен идет всегда. Поэтому и работа с ней должна быть встроена в библиотеку.
+                     <br> 
+                     <br> Как следствие, начало передачи осуществляется функцией ep0_send, которая записывает в глобальную переменную адрес начала буфера и объем данных для передачи, после чего, обратите внимание, сама в первый раз дергает обработчик события IN. В дальнейшем этот обработчик будет вызываться по аппаратным событиям, но толчок дать все же надо.
+                     <br> 
+                     <br> Ну а сам обработчик устроен довольно просто: записывает очередной кусок данных в буфер передачи, сдвигает адрес начала буфера и уменьшает количество оставшихся для передачи байтов. Отдельный костыль связан с тем самым ZLP и необходимостью на некоторые запросы отвечать пустым пакетом. В данном случае конец передачи обозначается тем, что адрес данных стал NULL. А пустой пакет — что он равен константе ZLPP. И то и другое происходит при равенстве размера нулю, так что реальной записи не происходит.
+                     <br> 
+                     <br> Похожий алгоритм придется реализовывать и при работе с другими конечными точками. Но это уже забота пользователя. Да и логика их работы зачастую отличается от работы с ep0, так что в ряде случаев такой вариант окажется удобнее буферизации на уровне библиотеки.
+                     <br> 
+                     <br> 
+                     <h3>Логика общения по USB</h3>
+                     <br> Сам факт подключения хост определяет по наличию подтягивающего резистора между какой-нибудь линией данных и питанием. Он производит сброс устройства, назначает ему адрес на шине и пытается определить что же именно в него воткнули. Для этого он читает дескрипторы устройства и конфигурации (а если надо, то и специфичные). Также он может прочитать строковые дескрипторы чтобы понять как устройство само себя называет (хотя если пара VID:PID ему знакома, предпочтет вытянуть строки из своей базы данных). После этого хост может подгрузить соответствующий драйвер и работать с устройством уже на понятном ему языке. В «понятный ему язык» входят специфичные запросы и обращения к конкретным интерфейсам и конечным точкам. До этого тоже дойдем, но сначала надо чтобы устройство хотя бы отобразилось в системе.
+                     <br> 
+                     <br> 
+                     <h3>Обработка SETUP запросов: DeviceDescriptor</h3>
+                     <br> Человек, хоть немного ковырявший USB, уже давно должен был насторожиться: COKPOWEHEU, ты говоришь про запросы IN и OUT, но ведь в стандарте прописан еще и SETUP. Да, так и есть, но это — скорее разновидность OUT запроса, специально структурированная и предназначенная исключительно для конечной точки 0. Об ее структуре и особенностях работы и поговорим. 
+                     <br> 
+                     <br> Сама структура выглядит следующим образом:
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">typedef struct{
+  uint8_t bmRequestType;
+  uint8_t bRequest;
+  uint16_t wValue;
+  uint16_t wIndex;
+  uint16_t wLength;
+}config_pack_t;</code></pre>
+                     <br> Поля этой структуры рассмотрены во множестве источников, но все же напомню.
+                     <br> bmRequestType — битовая маска, биты в которой означают следующее:
+                     <br> 7: направление передачи. 0 — от хоста к устройству, 1 — от устройства к хосту. Фактически, это тип следующей передачи, OUT или IN.
+                     <br> 6-5: класс запроса
+                     <br> 0x00 (USB_REQ_STANDARD) — стандартный (обрабатывать пока будем только их)
+                     <br> 0x20 (USB_REQ_CLASS) — специфичные для класса (до них дойдем в следующих статьях)
+                     <br> 0x40 (USB_REQ_VENDOR) — специфичные для производителя (надеюсь, не придется их трогать)
+                     <br> 4-0: собеседник
+                     <br> 0x00 (USB_REQ_DEVICE) — устройство в целом
+                     <br> 0x01 (USB_REQ_INTERFACE) — отдельный интерфейс
+                     <br> 0x02 (USB_REQ_ENDPOINT) — конечная точка
+                     <br> 
+                     <br> bRequest — собственно запрос
+                     <br> wValue — небольшое 16-битное поле данных. На случай простых запросов, чтобы не гонять полноценные пересылки.
+                     <br> wIndex — номер получателя. Например, интерфейса, с которым хост хочет пообщаться.
+                     <br> wLength — размер дополнительных данных, если 16 бит wValue недостаточно.
+                     <br> 
+                     <br> Первым делом при подключении устройства хост пытается узнать что же именно в него воткнули. Для этого он посылает запрос со следующими данными:
+                     <br> bmRequestType = 0x80 (запрос на чтение) + USB_REQ_STANDARD (стандартный) + USB_REQ_DEVICE (к устройству в целом)
+                     <br> bRequest = 0x06 (GET_DESCRIPTOR) — запрос дескриптора
+                     <br> wValue = 0x0100 (DEVICE_DESCRIPTOR) — дескриптор устройства в целом
+                     <br> wIndex = 0 — не используется
+                     <br> wLength = 0 — дополнительных данных нет
+                     <br> После чего шлет запрос IN, куда устройство должно положить ответ. Как мы помним, запрос IN от хоста и прерывание контроллера слабо связаны, так что записывать ответ будем сразу в буфер передатчика ep0. Теоретически, данные из этого, да и всех прочих, дескрипторов привязаны к конкретному устройству, поэтому помещать их в ядро библиотеки бессмысленно. Соответствующие запросы передаются функции usb_class_get_std_descr, которая возвращает ядру указатель на начало данных и их размер. Дело в том, что некоторые дескрипторы могут быть переменного размера. Но DEVICE_DESCRIPTOR к ним не относится. Его размер и структура стандартизованы и выглядят так:
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">uint8_t bLength; //размер дескриптора
+uint8_t bDescriptorType; //тип дескриптора. В данном случае USB_DESCR_DEVICE (0x01)
+uint16_t bcdUSB; //число 0x0110 для usb-1.1, либо 0x0200 для 2.0. Других значений я не встречал
+uint8_t bDeviceClass; //класс устройства
+uint8_t bDeviceSubClass; //подкласс
+uint8_t bDeviceProtocol; //протокол
+uint8_t bMaxPacketSize0; //размер ep0
+uint16_t idVendor; // VID
+uint16_t idProduct; // PID
+uint16_t bcdDevice_Ver; //версия в BCD-формате
+uint8_t iManufacturer; //номер строки названия производителя
+uint8_t iProduct; //номер строки названия продукта
+uint8_t iSerialNumber; //номер строки версии
+uint8_t bNumConfigurations; //количество конфигураций (почти всегда равно 1)</code></pre>
+                     <br> В первую очередь обратите внимание на первые два поля — размер дескриптора и его тип. Они характерны почти для всех дескрипторов USB (кроме HID, пожалуй). Причем если bDescriptorType это константа, то bLength приходится чуть ли не считать вручную для каждого дескриптора. В какой-то момент мне это надоело и был написан макрос
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">#define ARRLEN1(ign, x...) (1+sizeof((uint8_t[]){x})), x</code></pre>
+                     <br> Он считает размер переданных ему аргументов и подставляет <b>вместо</b> первого. Дело в том, что иногда дескрипторы бывают вложенными, так что один, скажем, требует размер в первом байте, другой в 3 и 4 (16-битное число), а третий в 6 и 7 (снова 16-битное число). Точные значения аргументов макросам безразличны, но хотя бы количество совпадать должно. Собственно, макросы для подстановки в 1, в 3 и 4, а также в 6 и 7 байты там тоже есть, но их применение я покажу на более характерном примере.
+                     <br> 
+                     <br> Пока же рассмотрим 16-битные поля вроде VID и PID. Понятное дело что в одном массиве смешать 8-битные и 16-битные константы не выйдет, да плюс endiannes… в общем, на выручку снова приходят макросы: USB_U16( x ).
+                     <br> 
+                     <br> В плане выбора VID:PID вопрос сложный. Если планируется выпускать продукцию серийно, все же стоит купить персональную пару. Для личного же пользования можно подобрать чужую от похожего устройства. Скажем, у меня в примерах будут пары от AVR LUFA и STM. Все равно хост определяет по этой паре скорее специфичные баги реализации, чем назначение. Потому что назначение устройства подробно расписывается в специальном дескрипторе.
+                     <br> 
+                     <br> <b>Внимание, грабли!</b> Как оказалось, Windows привязывает к этой паре драйвера, то есть вы, например, собрали устройство HID, показали системе и установили драйвера. А потом перепрошили устройство под MSD (флешку), не меняя VID:PID, то драйвера останутся старые и, естественно, работать устройство не будет. Придется лезть в «управление оборудованием», удалять драйвера и заставлять систему найти новые. Я думаю, ни для кого не станет неожиданностью, что в Linux такой проблемы нет: устройства просто подключаются и работают.
+                     <br> 
+                     <br> 
+                     <h3>StringDescriptor</h3>
+                     <br> Еще одной интересной особенностью дескрипторов USB является любовь к строкам. В шаблоне дескриптора они обозначаются префиксом i, как например iSerialNumber <s>или iPhone</s>. Эти строки входят во многие дескрипторы и, честно говоря, я не знаю, зачем их так много. Тем более что при подключении устройства видны будут только iManufacturer, iProduct и iSerialNumber. Как бы то ни было, строки представляют собой те же дескрипторы (то есть поля bLength и bDescriptorType в наличии), но вместо дальнейшей структуры идет поток 16-битных символов, похожих на юникод. Смысл данного извращения мне опять непонятен, ведь подобные названия даются все равно обычно на английском, где и 8-битного ASCII хватило бы. Ну хорошо, хотите расширенный набор символов, так UTF-8 бы взяли. Странные люди… Для удобного формирования строк удобно применять — угадайте что — правильно, макросы. Но на этот раз не моей разработки, а подсмотренные у EddyEm. Поскольку строки являются дескрипторами, то и запрашивать их хост будет как обычные дескрипторы, только в поле wValue подставит 0x0300 (STRING_DESCRIPTOR). А вместо младшего байта будет собственно индекс строки. Скажем, запрос 0x0300 это строка с индексом 0 (она зарезервирована под язык устройства и почти всегда равна u"\x0409"), а запрос 0x0302 — строка с индексом 2.
+                     <br> 
+                     <br> <b>Внимание, грабли!</b> Сколь бы ни был велик соблазн засунуть в iSerialNumber просто строку, даже строку с честной версией вида u''1.2.3'' — <b>не делайте этого!</b> Некоторые операционные системы считают, что там должны быть только шестнадцатеричные цифры, то есть '0'-'9', 'A'-'Z' и все. Даже точек нельзя. Наверное, они как-то считают от этого «числа» хэш чтобы идентифицировать при повторном подключении, не знаю. Но проблему такую заметил при тестировании на виртуальной машине с Windows 7, она считала устройство бракованным. Что интересно, Windows XP и 10 проблему не заметили.
+                     <br> 
+                     <br> 
+                     <h3>ConfigurationDescriptor</h3>
+                     <br> С точки зрения хоста устройство представляет набор отдельных интерфейсов, каждый из которых предназначен для решения какой-то задачи. В дескрипторе интерфейса описывается его устройство и привязанные конечные точки. Да, конечные точки описываются не сами по себе, а только как часть интерфейса. Обычно интерфейсы со сложной архитектурой управляются SETUP запросами (то есть через ep0), в которых поле wIndex номеру интерфейса и соответствует. Максимум позволяется прикарманить конечную точку для прерываний. А от интерфейсов данных хосту нужны только описания конечных точек и обмен будет идти через них.
+                     <br> 
+                     <br> Интерфейсов в одном устройстве может быть много, причем очень разных. Поэтому чтобы не путаться где заканчивается один интерфейс и начинается другой, в дескрипторе указывается не только размер «заголовка», но и отдельно (обычно 3-4 байтами) полный размер интерфейса. Таким образом интерфейс складывается подобно матрешке: внутри общего контейнера (который хранит размер «заголовка», bDescriptorType и полный размер содержимого, включая заголовок) может находиться еще парочка контейнеров поменьше, но устроенных точно так же. А внутри еще и еще. Приведу пример дескриптора примитивного HID-устройства:
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">
+static const uint8_t USB_ConfigDescriptor[] = {
+  ARRLEN34(
+  ARRLEN1(
+    bLENGTH, // bLength: Configuration Descriptor size
+    USB_DESCR_CONFIG,    //bDescriptorType: Configuration
+    wTOTALLENGTH, //wTotalLength
+    1, // bNumInterfaces
+    1, // bConfigurationValue: Configuration value
+    0, // iConfiguration: Index of string descriptor describing the configuration
+    0x80, // bmAttributes: bus powered
+    0x32, // MaxPower 100 mA
+  )
+  ARRLEN1(
+    bLENGTH, //bLength
+    USB_DESCR_INTERFACE, //bDescriptorType
+    0, //bInterfaceNumber
+    0, // bAlternateSetting
+    0, // bNumEndpoints
+    HIDCLASS_HID, // bInterfaceClass: 
+    HIDSUBCLASS_NONE, // bInterfaceSubClass: 
+    HIDPROTOCOL_NONE, // bInterfaceProtocol: 
+    0x00, // iInterface
+  )
+  ARRLEN1(
+    bLENGTH, //bLength
+    USB_DESCR_HID, //bDescriptorType
+    USB_U16(0x0101), //bcdHID
+    0, //bCountryCode
+    1, //bNumDescriptors
+    USB_DESCR_HID_REPORT, //bDescriptorType
+    USB_U16( sizeof(USB_HIDDescriptor) ), //wDescriptorLength
+  )
+  )
+};</code></pre>
+                     <br> Здесь уровень вложенности небольшой, плюс ни одной конечной точки не описано — ну так я старался выбрать устройство попроще. Некоторое недоумение здесь могут вызвать константы bLENGTH и wTOTALLENGTH, равные восьми- и шестнадцатибитному нулям. Поскольку в данном случае для расчета размера используются макросы, было бы странно дублировать их работу и считать байты руками. Как и странно писать нули. А константы штука заметная, наглядности кода способствующая.
+                     <br> 
+                     <br> Как можно видеть, данный дескриптор состоит из «заголовка» USB_DESCR_CONFIG (хранящего полный размер содержимого включая себя!), интерфейса USB_DESCR_INTERFACE (описывающего подробности устройства) и USB_DESCR_HID, в общих чертах говорящего что же именно за HID мы изображаем. Причем именно что в общих чертах: конкретная структура HID описывается в специальном дескрипторе HID_REPORT_DESCRIPTOR, рассматривать который я здесь не буду, просто потому что слишком плохо его знаю. Так что ограничимся копипастом из какого-нибудь <a href="http://we.easyelectronics.ru/electro-and-pc/usb-dlya-avr-chast-2-hid-class-na-v-usb.html" rel="nofollow noopener noreferrer">примера</a>.
+                     <br> 
+                     <br> Вернемся к интерфейсам. Учитывая, что у них есть номера, логично предположить, что в одном устройстве интерфейсов может быть много. Причем они могут отвечать как за одну общую задачу (скажем, интерфейс управления USB-CDC и интерфейс данных), так и за принципиально несвязанные. Скажем, ничто не мешает нам (кроме отсутствия знаний пока) на одном контроллере реализовать два переходника USB-CDC плюс флешку плюс, скажем, клавиатуру. Очевидно, что интерфейс флешки знать не знает про COM-порт. Впрочем, тут есть свои подводные камни, которые, надеюсь, когда-нибудь рассмотрим. Еще стоит отметить, что один интерфейс может иметь несколько альтернативных конфигураций (bAlternateSetting), отличающихся, скажем, количеством конечных точек или частотой их опроса. Собственно, для того и сделано: если хост считает, что лучше пропускную способность поберечь, он может переключить интерфейс в какой-нибудь альтернативный режим, который ему больше понравился.
+                     <br> 
+                     <br> 
+                     <h3>Обмен данными с HID</h3>
+                     <br> Вообще говоря, HID-устройства имитируют объекты реального мира, у которых есть не столько данные, сколько набор неких параметров, которые можно измерять или задавать (запросы SET_REPORT / GET_REPORT) и которые могут уведомлять хост о внезапном внешнем событии (INTERRUPT). Таким образом, собственно для обмена данными данные устройства не предназначены… но кого это когда останавливало!
+                     <br> 
+                     <br> Прерываний мы пока касаться не будем, поскольку им нужна специальная конечная точка. А вот чтение и настройку параметров рассмотрим. В данном случае параметр всего один, представляющий собой структуру из двух байтов, по замыслу отвечающих за два светодиода, либо за кнопку и счетчик.
+                     <br> 
+                     <br> Начнем с более простого — чтения по запросу HIDREQ_GET_REPORT. По сути это такой же запрос, как и всякие DEVICE_DESCRIPTOR, только специфичный именно для HID. Плюс этот запрос адресован не устройству в целом, а интерфейсу. То есть если мы реализовали в одном устройстве несколько независимых HID-устройств, их можно различить по полю wIndex запроса. Правда, именно для HID это не лучший подход: проще сам дескриптор сделать составным. В любом случае до таких извращений нам далеко, так что даже не будем анализировать что и куда хост пытался послать: на любой запрос к интерфейсу и с полем bRequest равным HIDREQ_GET_REPORT будем возвращать собственно данные. По идее, такой подход предназначен чтобы возвращать дескрипторы (со всеми bLength и bDescriptorType), но в случае HID разработчики решили все упростить и обмениваться только данными. Вот и возвращаем указатель на нашу структуру и ее размер. Ну и небольшая дополнительная логика вроде обработки кнопок и счетчика запросов.
+                     <br> 
+                     <br> Более сложный случай — запрос на запись. Это первый раз, когда мы сталкиваемся с наличием дополнительных данных в SETUP запросе. То есть ядро нашей библиотеки должно сначала прочитать сам запрос, и только потом данные. И передать их юзерской функции. А буфера у нас, напоминаю, нет. В результате некоторой низкоуровневой магии был разработан следующий алгоритм. Callback вызывать будем всегда, но укажем ему с какого по счету байта данные сейчас лежат в буфере приема конечной точки (offset) а также размер этих данных (size). То есть при приеме самого запроса значения offset и size равны нулю (данных-то нет). При приеме первого пакета offset все еще равен нулю, а size — размеру принятых данных. Для второго offset будет равен размеру ep0 (потому что если данные пришлось разбивать, делают это по размеру конечной точки), а size — размеру принятых данных. И так далее. <b>Важно!</b> Если данные приняты, их надо считать. Это может сделать либо обработчик вызовом usb_ep_read() и возвратом 1 (мол «я там сам считал, не утруждайся»), либо просто вернув 0 («мне эти данные не нужны») без чтения — тогда очисткой займется ядро библиотеки. По этому принципу и построена функция: она проверяет в наличии ли данные и если да, то читает их и зажигает светодиоды.
+                     <br> 
+                     <br> 
+                     <h3>Софт для обмена данными</h3>
+                     <br> Тут я велосипед изобретать не стал, а взял готовую <a href="https://github.com/COKPOWEHEU/vusb_dev/tree/master/vusb_dev/18_soft" rel="nofollow noopener noreferrer">программу</a> из предыдущей <a href="https://habr.com/ru/post/460815/">статьи</a>.
+                     <br> 
+                     <br> 
+                     <h3>Заключение</h3>
+                     <br> Вот, собственно, и все. Основы работы с USB при помощи аппаратного модуля в STM32 я рассказал, некоторый грабли тоже пощупал. Учитывая значительно меньший объем кода, чем тот ужас, что генерирует STMCube, разобраться в нем будет проще. Собственно говоря, в Cube'ической лапше я так и не разобрался, уж больно много там вызовов одного и того же в разных комбинациях. Гораздо лучше для понимания <a href="https://github.com/eddyem/stm32samples" rel="nofollow noopener noreferrer">вариант от EddyEm</a>, от которого я отталкивался. Конечно, и там не без косяков, но хотя бы пригодно для понимания. Также похвастаюсь, что размер моего варианта едва ли не в 5 раз меньше ST'шного (~2.7 кБ против 14) — при том, что оптимизацией я не занимался и наверняка можно еще ужать.
+                     <br> 
+                     <br> Отдельно хочу отметить разницу поведения различных операционных систем при подключении сомнительного оборудования. Linux просто работает, даже если в дескрипторах ошибки. Windows XP, 7, 10 при малейших ошибках ругаются что «устройство поломанное, я с ним работать отказываюсь». Причем XP иногда даже в BSOD падала от негодования. Ах да, еще они постоянно выводят «устройство может работать быстрее», что с этим делать я не знаю. UPD: похоже, это решается выставлением поля BCD_USB в 1.1 (USB_U16(0x0110) ), правда я не знаю будут ли побочные эффекты. В общем, как бы хорош Linux не был для разработки, он прощает слишком многое, тестировать надо и на менее юзер-френдли системах.
+                     <br> 
+                     <br> Дальнейшие планы: рассмотреть остальные типы конечных точек (пока что был пример только с Control); рассмотреть другие контроллеры (скажем, у меня еще at90usb162 (AVR) и gd32vf103 (RISC_V) валяются), но это совсем далекие планы. Также хорошо бы поподробнее разобраться с отдельными USB-устройствами вроде тех же HID, но тоже не приоритетная задача.
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Barm%5D" class="tm-tags-list__link">arm</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bstm32%5D" class="tm-tags-list__link">stm32</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bstm32f103%5D" class="tm-tags-list__link">stm32f103</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bstm32l151%5D" class="tm-tags-list__link">stm32l151</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Busb%5D" class="tm-tags-list__link">usb</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Busb-hid%5D" class="tm-tags-list__link">usb-hid</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B8%20%D0%B8%20%D0%B2%D0%B5%D0%BB%D0%BE%D1%81%D0%B8%D0%BF%D0%B5%D0%B4%D1%8B%5D" class="tm-tags-list__link">грабли и велосипеды</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/controllers/" class="tm-hubs-list__link"> Программирование микроконтроллеров </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/circuit-design/" class="tm-hubs-list__link"> Схемотехника </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 35: ↑33 и ↓2</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 35: ↑33 и ↓2" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+31</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">8K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 124 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/COKPOWEHEU/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <svg class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 90 голосов " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         56 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         18
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <!----> <a href="/ru/users/COKPOWEHEU/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @COKPOWEHEU </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Пользователь</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <!----> <!----> <!---->
+                  </div>
+                 </div> <!---->
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner7478" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/548150/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 10 </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> <!----> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner7479" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom7480" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/548150/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/548150/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"548150":{"id":"548150","timePublished":"2021-03-21T13:14:40+00:00","isCorporative":false,"lang":"ru","titleHtml":"USB на регистрах: STM32L1 \u002F STM32F1","leadData":{"textHtml":"\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Fko\u002Ffi\u002Fr7\u002Fkofir7w21c7e2dgobhcq-3-m7to.png\"\u003E\u003Cbr\u003E\r\n\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F460815\u002F\"\u003EЕще более низкий уровень (avr-vusb)\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F549016\u002F\"\u003EUSB на регистрах: bulk endpoint на примере Mass Storage\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F551720\u002F\"\u003EUSB на регистрах: interrupt endpoint на примере HID\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F558822\u002F\"\u003EUSB на регистрах: isochronous endpoint на примере Audio device\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Cbr\u003E\r\nС программным USB на примере AVR мы уже познакомились, пришла пора взяться за более тяжелые камни — STM32. Подопытными у нас будут классический STM32F103C8T6 а также представитель малопотребляющей серии STM32L151RCT6. Как и раньше, пользоваться покупными отладочными платами и HAL'ом не будем, отдав предпочтение велосипеду.\u003Cbr\u003E","imageUrl":null,"buttonTextHtml":"Читать дальше &rarr;","image":null},"editorVersion":"1.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":56,"votesCount":90},"rating":18,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"1876369","alias":"COKPOWEHEU","fullname":null,"avatarUrl":null,"speciality":null},"statistics":{"commentsCount":10,"favoritesCount":124,"readingCount":8023,"score":31,"votesCount":35},"hubs":[{"relatedData":null,"id":"19737","alias":"controllers","type":"collective","title":"Программирование микроконтроллеров","titleHtml":"Программирование микроконтроллеров","isProfiled":true},{"relatedData":null,"id":"21472","alias":"circuit-design","type":"collective","title":"Схемотехника","titleHtml":"Схемотехника","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fko\u002Ffi\u002Fr7\u002Fkofir7w21c7e2dgobhcq-3-m7to.png\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Fko\u002Ffi\u002Fr7\u002Fkofir7w21c7e2dgobhcq-3-m7to.png\"\u002F\u003E\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F460815\u002F\"\u003EЕще более низкий уровень (avr-vusb)\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F549016\u002F\"\u003EUSB на регистрах: bulk endpoint на примере Mass Storage\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F551720\u002F\"\u003EUSB на регистрах: interrupt endpoint на примере HID\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F558822\u002F\"\u003EUSB на регистрах: isochronous endpoint на примере Audio device\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nС программным USB на примере AVR мы уже познакомились, пришла пора взяться за более тяжелые камни — STM32. Подопытными у нас будут классический STM32F103C8T6 а также представитель малопотребляющей серии STM32L151RCT6. Как и раньше, пользоваться покупными отладочными платами и HAL'ом не будем, отдав предпочтение велосипеду.\u003Cbr\u002F\u003E\r\n\u003Ca name=\"habracut\"\u003E\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\nРаз уж в заглавии указано два контроллера, стоит рассказать об основных отличиях. В первую очередь это резистор подтяжки, говорящий usb-хосту, что в него что-то воткнули. В L151 он встроен и управляется битом SYSCFG_PMC_USB_PU, а в F103 — нет, придется впаивать на плату снаружи и соединять либо с VCC, либо с ножкой контроллера. В моем случае под руку попалась ножка PA10. На которой висит UART1… А другой вывод UART1 конфликтует с кнопкой… замечательную плату я развел, не находите? Второе отличие это объем флеш-памяти: в F103 ее 64 кБ, а в L151 целых 256 кБ, чем мы когда-нибудь и воспользуемся при изучении конечных точек типа Bulk. Также у них немного отличаются настройки тактирования, да и лампочками с кнопочками могут на разных ногах висеть, но это уже совсем мелочи. \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F1.Core_F1\" rel=\"nofollow noopener noreferrer\"\u003EПример для F103\u003C\u002Fa\u003E доступен в репозитории, так что адаптировать под него остальные \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F1.Core_L1\" rel=\"nofollow noopener noreferrer\"\u003Eэксперименты с L151\u003C\u002Fa\u003E будет несложно. Исходные коды доступны тут: \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\" rel=\"nofollow noopener noreferrer\"\u003Egithub.com\u002FCOKPOWEHEU\u002Fusb\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EОбщий принцип работы с USB\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nРабота с USB в данном контроллере предполагается с использованием аппаратного модуля. То есть мы ему говорим что делать, он делает и в конце дергает прерывание «я готовое!». Соответственно, из основного main'а нам вызывать почти ничего не надо (хотя функцию usb_class_poll я на всякий случай предусмотрел). Обычный цикл работы ограничен единственным событием — обмен данными. Остальные — сброс, сон и прочие — события исключительные, разовые.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nВ низкоуровневые подробности обмена я на этот раз углубляться не буду. Кому интересно, может почитать про vusb. Но напомню, что обмен обычными данными идет не по одному байту, а по пакету, причем направление передачи задает хост. И названия этих направлений диктует тоже он: IN передача означает что хост принимает данные (а устройство передает), а OUT — что хост передает данные (а мы принимаем). Более того, каждый пакет имеет свой адрес — номер конечной точки, с которой хост хочет общаться. Пока что у нас будет единственная конечная точка 0, отвечающая за устройство в целом (для краткости я еще буду называть ее ep0). Для чего нужны остальные я расскажу в других статьях. Согласно стандарту, размер ep0 составляет строго 8 байт для низкоскоростных устройств (к каковым относится все тот же vusb) и на выбор 8, 16, 32, 64 байта для полноскоростных вроде нашего.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nА если данных слишком мало и они не заполняют буфер полностью? Тут все просто: помимо данных в пакете передается и их размер (это может быть поле wLength либо низкоуровневая комбинация сигналов SE0, обозначающая конец передачи), так что даже если нам надо через ep0 размером 64 байта передать три байта, то переданы будут именно три байта. В результате расходовать пропускную способность, гоняя ненужные нули, мы не будем. Так что не стоит мельчить: если можем себе позволить потратить 64 байта, тратим не раздумывая. Помимо прочего это несколько уменьшит загруженность шины, ведь передать за раз кусок в 64 байта (плюс все заголовки и хвосты) проще, чем 8 раз по 8 байт (к каждому из которых опять-таки заголовки и хвосты).\u003Cbr\u002F\u003E\r\nUPD: Как оказалось, размер буферов под USB в этих контроллерах всего 512 байт, так что экономить все-таки придется\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nА если данных напротив слишком много? Тут сложнее. Данные приходится разбивать по размеру конечной точки и передавать порциями. Скажем, размер ep0 у нас 8 байт, а передать хост пытается 20 байт. При первом прерывании к нам придут байты 0-7, во втором 8-15, в третьем 16-20. То есть чтобы собрать посылку целиком нужно получить целых три прерывания. Для этого в том же HAL придуман хитрый буфер, с которым я попытался разобраться, но после четвертого уровня пересылки одного и того же между функциями, плюнул. Как результат, в моей реализации буферизация ложится на плечи программиста.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nНо хост хотя бы всегда говорит сколько данных пытается передать. Когда же данные передаем мы, надо как-то хитро дернуть низкоуровневые состояния ножек чтобы дать понять что данные закончились. Точнее, дать понять модулю usb, что данные закончились и что надо дернуть ножки. Делается это вполне очевидным способом — записью только части буфера. Скажем, если буфер у нас 8 байт, а мы записали 4, то очевидно, данных у нас всего 4 байта, после которых модуль пошлет волшебную комбинацию SE0 и все будут довольны. А если мы записали 8 байт, это значит что у нас всего 8 байт или что это только часть данных, которая влезла в буфер? Модуль usb считает что часть. Поэтому если мы хотим остановить передачу, то после записи 8-байтного буфера должны записать следом 0-байтный. Это называется ZLP, Zero Length Packet. Про то, как это выглядит в коде, я расскажу чуть позже.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EОрганизация памяти\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nСогласно стандарту, размер конечной точки 0 может достигать 64 байт. Размер любой другой — аж 1024 байт. Количество точек также может отличаться от устройства к устройству. Те же STM32L1 поддерживают до 7 точек на вход и 7 на выход (не считая ep0). Поскольку с этими буферами активно взаимодействует соответствующая периферия, они вынесены в отдельную область памяти, называемую PMA (packet memory area). Модуль USB взаимодействует с ней напрямую и нумерует начиная с 0, а для контроллера она отображается на общаю память начиная с адреса USB_PMAADDR. Чтобы указать где внутри PMA располагаются буферы каждой конечной точки, в начале выделен массив на 8 элементов каждый со следующей структурой, и только потом собственно область для данных:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Etypedef struct{\n    volatile uint32_t usb_tx_addr;\n    volatile uint32_t usb_tx_count;\n    volatile uint32_t usb_rx_addr;\n    volatile union{\n      uint32_t usb_rx_count;\n      struct{\n        uint32_t rx_count:10;\n        uint32_t rx_num_blocks:5;\n        uint32_t rx_blocksize:1;\n      };\n    };\n}usb_epdata_t;\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nЗдесь задаются начало буфера передачи, его размер, потом начало буфера приема и его размер. Обратите внимание во-первых, что usb_tx_count задает не собственно размер буфера, а количество данных для передачи. То есть наш код должен записать по адресу usb_tx_addr данные, потом записать в usb_tx_count их размер и только потом дернуть регистр модуля usb что данные мол записаны, передавай. Еще большее внимание обратите внимание на странный формат размера буфера приема: он представляет собой структуру, в которой 10 бит rx_count отвечают за реальное количество прочитанных данных, а вот остальные — уже действительно за размер буфера. Надо же железке знать докуда писать можно, а где начинаются чужие данные. Формат этой настройки тоже довольно интересный: флаг rx_block_size говорит в каких единицах задается размер. Если он сброшен в 0, то в 2-байтных словах, тогда размер буфера равен 2*rx_num_blocks, то есть от 0 до 62. А если выставлен в 1, то в 32-байтных блоках, соответственно размер буфера тогда оказывается 32*rx_num_blocks и лежит в диапазоне от 32 до 512 (да, не до 1024, такое вот ограничение контроллера).\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cb\u003EВнимание, грабли! Размер PMA буфера составляет всего 512 байт.\u003C\u002Fb\u003E Причем указано это не в разделе о USB и не в каком-то еще очевидном месте вроде заголовочных файлов, а как бы между прочим в разделе memory map. Даже ссылку туда поленились шлепнуть. В общем, на все буферы у вас остается 448 байт (поскольку 64 занято под таблицу размещения).\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nДля размещения буферов в этой области будем использовать полудинамический подход. То есть выделять память по запросу, но не освобождать ее (еще не хватало malloc \u002F free изобретать!). На начало неразмеченного пространства будет указывать переменная lastaddr, изначально указывающая на начало области PMA за вычетом таблицы структур, рассмотренной выше. Ну а при каждом вызове функции настройки очередной конечной точки usb_ep_init() она будет сдвигаться на указанный там размер буфера. И в соответствующую ячейку таблицы будет вносится нужное значение, естественно. Значение этой переменной сбрасывается по событию ресета, после чего тут же следует вызов usb_class_init(), в котором точки настраиваются заново в соответствии с юзерской задачей.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EРабота с регистрами приема-передачи\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nКак было только что сказано, на прием мы читаем сколько же реально данных пришло (поле usb_rx_count), потом читаем сами данные, потом дергаем модуль usb что буфер свободен, можно принимать следующий пакет. На передачу наоборот: записываем данные в буфер, потом выставляем в usb_tx_count сколько же записано и наконец дергаем модуль что буфер заполнен, можно передавать.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cb\u003EПервые грабли\u003C\u002Fb\u003E начинаются при собственно работе с буфером: он организован не по 32 бита, как весь остальной контроллер, и не по 8 бит, как можно было ожидать. А по 16 бит! В результате запись и чтение в него осуществляются по 2 байта, выровненные по 4 байта. Спасибо, ST, что сделали такое извращение! Как бы скучно без этого жилось! Теперь обычным memcpy не обойтись, придется городить специальные функции. Кстати, если кто любит DMA, то оно такое преобразование делать вроде умеет самостоятельно, хотя я это не проверял.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nИ тут же \u003Cb\u003Eвторые грабли\u003C\u002Fb\u003E с записью в регистры модуля. Дело в том, что за настройку каждой конечной точки — за ее тип (control, bulk и т.д.) и состояние — отвечает один регистр USB_EPnR, то есть просто так в нем бит не поменяешь, надо следить чтобы не попортить остальные. А во-вторых, в этом регистре присутствуют биты аж четырех типов! Одни доступны только на чтение (это замечательно), другие на чтение и запись (тоже нормально), третьи игнорируют запись 0, но при записи 1 меняют состояние на противоположное (начинается веселье), а четвертые напротив игнорируют запись 1, но запись 0 сбрасывает их в 0. Скажите мне, какой наркоман додумался в одном регистре сделать биты, игнорирующие 0 и игнорирующие 1?! Нет, я готов предположить что это сделано ради сохранения целостности регистра, когда к нему обращаются и из кода, и из железа. Но вам что, лень было поставить инвертор чтобы биты сбрасывались записью 1? Или в другом месте инвертор чтобы другие биты инвертировались записью 0? В результате выставление двух битов регистра выглядит так (еще раз спасибо ST за такое извращение):\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E#define ENDP_STAT_RX(num, stat) do{USB_EPx(num) = ((USB_EPx(num) &amp; ~(USB_EP_DTOG_RX | USB_EP_DTOG_TX | USB_EPTX_STAT)) | USB_EP_CTR_RX | USB_EP_CTR_TX) ^ stat; }while(0)\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nАх да, чуть не забыл: доступа к регистру по номеру у них тоже нет. То есть макросы USB_EP0R, USB_EP1R и т.д. у них есть, но вот если номер пришел в переменной, то увы. Пришлось изобретать свой USB_EPx() — а что поделать.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nНу и для соблюдения формальностей укажу, что флаг готовности к чтению (то есть что предыдущие данные мы уже прочитали) задается битовой маской USB_EP_RX_VALID, а к записи (то есть что данные мы записали полностью и их можно передавать) — маской USB_EP_TX_VALID.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EОбработка IN и OUT запросов\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nВозникновение прерывания USB может сигнализировать о разных вещах, но сейчас мы сосредоточимся на запросах обмена данными. Флагом такого события будет бит USB_ISTR_CTR. Если увидели его, можем разбираться с какой точкой хочет общаться хост. Номер точки скрывается под битовой маской USB_ISTR_EP_ID, а направление IN или OUT под битами USB_EP_CTR_TX и USB_EP_CTR_RX соответственно.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПоскольку точек у нас может быть много, и каждая со своим алгоритмом обработки, заведем им всем callback-функции, которые бы вызывались по соответствующим событиям. Например, послал хост данные в endpoint3, мы прочитали USB-\u003EISTR, вытащили оттуда что запрос у нас OUT и что номер точки равен 3. Вот и вызываем epfunc_out[3](3). Номер точки в скобках передается если вдруг юзерский код захочет повесить один обработчик на несколько точек. Ах да, еще в стандарте USB принято входные точки IN помечать взведенным 7-м битом. То есть endpoint3 на выход будет иметь номер 0x03, а на вход — 0x83. Причем это разные точки, их можно использовать одновременно, друг другу они не мешают. Ну почти: в stm32 у них настройка типа (bulk, interrupt, ...) общая и на прием, и на передачу. Так что та же 0x83-я точка IN будет соответствовать callback'у epfunc_in[3](3 | 0x80).\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nТот же принцип используется и для ep0. Разница только в том, что ее обработка происходит внутри библиотеки, а не внутри юзерского кода. Но что делать если нужно обрабатывать специфичные запросы вроде какого-нибудь HID — не лезть же ковырять код библиотеки? Для этого предусмотрены специальные callback'и usb_class_ep0_out и usb_class_ep0_in, которые вызываются в специальных местах и имеют специальный формат, рассказывать про который я буду ближе к концу.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nСтоит упомянуть еще про один не очень очевидный момент, связанный с возникновением прерываний обработки пакетов. С OUT запросами все просто: данные пришли, вот они. А вот IN прерывание генерируется не тогда, когда хост послал IN запрос, а когда в буфере передачи пусто. То есть по принципу действия это прерывание аналогично прерыванию по опустошению буфера UART. Следовательно, когда мы хотим что-то передать хосту, мы это просто записываем данные в буфер передачи, ждем прерывания IN и дописываем что не поместилось (не забываем про ZLP). И ладно еще с «обычными» endpoint'ами, ими программист управляет, можно пока не обращать внимание. Но вот через ep0 обмен идет всегда. Поэтому и работа с ней должна быть встроена в библиотеку.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nКак следствие, начало передачи осуществляется функцией ep0_send, которая записывает в глобальную переменную адрес начала буфера и объем данных для передачи, после чего, обратите внимание, сама в первый раз дергает обработчик события IN. В дальнейшем этот обработчик будет вызываться по аппаратным событиям, но толчок дать все же надо.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nНу а сам обработчик устроен довольно просто: записывает очередной кусок данных в буфер передачи, сдвигает адрес начала буфера и уменьшает количество оставшихся для передачи байтов. Отдельный костыль связан с тем самым ZLP и необходимостью на некоторые запросы отвечать пустым пакетом. В данном случае конец передачи обозначается тем, что адрес данных стал NULL. А пустой пакет — что он равен константе ZLPP. И то и другое происходит при равенстве размера нулю, так что реальной записи не происходит.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПохожий алгоритм придется реализовывать и при работе с другими конечными точками. Но это уже забота пользователя. Да и логика их работы зачастую отличается от работы с ep0, так что в ряде случаев такой вариант окажется удобнее буферизации на уровне библиотеки.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EЛогика общения по USB\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nСам факт подключения хост определяет по наличию подтягивающего резистора между какой-нибудь линией данных и питанием. Он производит сброс устройства, назначает ему адрес на шине и пытается определить что же именно в него воткнули. Для этого он читает дескрипторы устройства и конфигурации (а если надо, то и специфичные). Также он может прочитать строковые дескрипторы чтобы понять как устройство само себя называет (хотя если пара VID:PID ему знакома, предпочтет вытянуть строки из своей базы данных). После этого хост может подгрузить соответствующий драйвер и работать с устройством уже на понятном ему языке. В «понятный ему язык» входят специфичные запросы и обращения к конкретным интерфейсам и конечным точкам. До этого тоже дойдем, но сначала надо чтобы устройство хотя бы отобразилось в системе.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EОбработка SETUP запросов: DeviceDescriptor\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nЧеловек, хоть немного ковырявший USB, уже давно должен был насторожиться: COKPOWEHEU, ты говоришь про запросы IN и OUT, но ведь в стандарте прописан еще и SETUP. Да, так и есть, но это — скорее разновидность OUT запроса, специально структурированная и предназначенная исключительно для конечной точки 0. Об ее структуре и особенностях работы и поговорим. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nСама структура выглядит следующим образом:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Etypedef struct{\n  uint8_t bmRequestType;\n  uint8_t bRequest;\n  uint16_t wValue;\n  uint16_t wIndex;\n  uint16_t wLength;\n}config_pack_t;\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nПоля этой структуры рассмотрены во множестве источников, но все же напомню.\u003Cbr\u002F\u003E\r\nbmRequestType — битовая маска, биты в которой означают следующее:\u003Cbr\u002F\u003E\r\n7: направление передачи. 0 — от хоста к устройству, 1 — от устройства к хосту. Фактически, это тип следующей передачи, OUT или IN.\u003Cbr\u002F\u003E\r\n6-5: класс запроса\u003Cbr\u002F\u003E\r\n 0x00 (USB_REQ_STANDARD) — стандартный (обрабатывать пока будем только их)\u003Cbr\u002F\u003E\r\n 0x20 (USB_REQ_CLASS) — специфичные для класса (до них дойдем в следующих статьях)\u003Cbr\u002F\u003E\r\n 0x40 (USB_REQ_VENDOR) — специфичные для производителя (надеюсь, не придется их трогать)\u003Cbr\u002F\u003E\r\n4-0: собеседник\u003Cbr\u002F\u003E\r\n 0x00 (USB_REQ_DEVICE) — устройство в целом\u003Cbr\u002F\u003E\r\n 0x01 (USB_REQ_INTERFACE) — отдельный интерфейс\u003Cbr\u002F\u003E\r\n 0x02 (USB_REQ_ENDPOINT) — конечная точка\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nbRequest — собственно запрос\u003Cbr\u002F\u003E\r\nwValue — небольшое 16-битное поле данных. На случай простых запросов, чтобы не гонять полноценные пересылки.\u003Cbr\u002F\u003E\r\nwIndex — номер получателя. Например, интерфейса, с которым хост хочет пообщаться.\u003Cbr\u002F\u003E\r\nwLength — размер дополнительных данных, если 16 бит wValue недостаточно.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПервым делом при подключении устройства хост пытается узнать что же именно в него воткнули. Для этого он посылает запрос со следующими данными:\u003Cbr\u002F\u003E\r\nbmRequestType = 0x80 (запрос на чтение) + USB_REQ_STANDARD (стандартный) + USB_REQ_DEVICE (к устройству в целом)\u003Cbr\u002F\u003E\r\nbRequest = 0x06 (GET_DESCRIPTOR) — запрос дескриптора\u003Cbr\u002F\u003E\r\nwValue = 0x0100 (DEVICE_DESCRIPTOR) — дескриптор устройства в целом\u003Cbr\u002F\u003E\r\nwIndex = 0 — не используется\u003Cbr\u002F\u003E\r\nwLength = 0 — дополнительных данных нет\u003Cbr\u002F\u003E\r\nПосле чего шлет запрос IN, куда устройство должно положить ответ. Как мы помним, запрос IN от хоста и прерывание контроллера слабо связаны, так что записывать ответ будем сразу в буфер передатчика ep0. Теоретически, данные из этого, да и всех прочих, дескрипторов привязаны к конкретному устройству, поэтому помещать их в ядро библиотеки бессмысленно. Соответствующие запросы передаются функции usb_class_get_std_descr, которая возвращает ядру указатель на начало данных и их размер. Дело в том, что некоторые дескрипторы могут быть переменного размера. Но DEVICE_DESCRIPTOR к ним не относится. Его размер и структура стандартизованы и выглядят так:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Euint8_t bLength; \u002F\u002Fразмер дескриптора\nuint8_t bDescriptorType; \u002F\u002Fтип дескриптора. В данном случае USB_DESCR_DEVICE (0x01)\nuint16_t bcdUSB; \u002F\u002Fчисло 0x0110 для usb-1.1, либо 0x0200 для 2.0. Других значений я не встречал\nuint8_t bDeviceClass; \u002F\u002Fкласс устройства\nuint8_t bDeviceSubClass; \u002F\u002Fподкласс\nuint8_t bDeviceProtocol; \u002F\u002Fпротокол\nuint8_t bMaxPacketSize0; \u002F\u002Fразмер ep0\nuint16_t idVendor; \u002F\u002F VID\nuint16_t idProduct; \u002F\u002F PID\nuint16_t bcdDevice_Ver; \u002F\u002Fверсия в BCD-формате\nuint8_t iManufacturer; \u002F\u002Fномер строки названия производителя\nuint8_t iProduct; \u002F\u002Fномер строки названия продукта\nuint8_t iSerialNumber; \u002F\u002Fномер строки версии\nuint8_t bNumConfigurations; \u002F\u002Fколичество конфигураций (почти всегда равно 1)\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nВ первую очередь обратите внимание на первые два поля — размер дескриптора и его тип. Они характерны почти для всех дескрипторов USB (кроме HID, пожалуй). Причем если bDescriptorType это константа, то bLength приходится чуть ли не считать вручную для каждого дескриптора. В какой-то момент мне это надоело и был написан макрос\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E#define ARRLEN1(ign, x...) (1+sizeof((uint8_t[]){x})), x\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nОн считает размер переданных ему аргументов и подставляет \u003Cb\u003Eвместо\u003C\u002Fb\u003E первого. Дело в том, что иногда дескрипторы бывают вложенными, так что один, скажем, требует размер в первом байте, другой в 3 и 4 (16-битное число), а третий в 6 и 7 (снова 16-битное число). Точные значения аргументов макросам безразличны, но хотя бы количество совпадать должно. Собственно, макросы для подстановки в 1, в 3 и 4, а также в 6 и 7 байты там тоже есть, но их применение я покажу на более характерном примере.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПока же рассмотрим 16-битные поля вроде VID и PID. Понятное дело что в одном массиве смешать 8-битные и 16-битные константы не выйдет, да плюс endiannes… в общем, на выручку снова приходят макросы: USB_U16( x ).\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nВ плане выбора VID:PID вопрос сложный. Если планируется выпускать продукцию серийно, все же стоит купить персональную пару. Для личного же пользования можно подобрать чужую от похожего устройства. Скажем, у меня в примерах будут пары от AVR LUFA и STM. Все равно хост определяет по этой паре скорее специфичные баги реализации, чем назначение. Потому что назначение устройства подробно расписывается в специальном дескрипторе.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cb\u003EВнимание, грабли!\u003C\u002Fb\u003E Как оказалось, Windows привязывает к этой паре драйвера, то есть вы, например, собрали устройство HID, показали системе и установили драйвера. А потом перепрошили устройство под MSD (флешку), не меняя VID:PID, то драйвера останутся старые и, естественно, работать устройство не будет. Придется лезть в «управление оборудованием», удалять драйвера и заставлять систему найти новые. Я думаю, ни для кого не станет неожиданностью, что в Linux такой проблемы нет: устройства просто подключаются и работают.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EStringDescriptor\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nЕще одной интересной особенностью дескрипторов USB является любовь к строкам. В шаблоне дескриптора они обозначаются префиксом i, как например iSerialNumber \u003Cs\u003Eили iPhone\u003C\u002Fs\u003E. Эти строки входят во многие дескрипторы и, честно говоря, я не знаю, зачем их так много. Тем более что при подключении устройства видны будут только iManufacturer, iProduct и iSerialNumber. Как бы то ни было, строки представляют собой те же дескрипторы (то есть поля bLength и bDescriptorType в наличии), но вместо дальнейшей структуры идет поток 16-битных символов, похожих на юникод. Смысл данного извращения мне опять непонятен, ведь подобные названия даются все равно обычно на английском, где и 8-битного ASCII хватило бы. Ну хорошо, хотите расширенный набор символов, так UTF-8 бы взяли. Странные люди… Для удобного формирования строк удобно применять — угадайте что — правильно, макросы. Но на этот раз не моей разработки, а подсмотренные у EddyEm. Поскольку строки являются дескрипторами, то и запрашивать их хост будет как обычные дескрипторы, только в поле wValue подставит 0x0300 (STRING_DESCRIPTOR). А вместо младшего байта будет собственно индекс строки. Скажем, запрос 0x0300 это строка с индексом 0 (она зарезервирована под язык устройства и почти всегда равна u\"\\x0409\"), а запрос 0x0302 — строка с индексом 2.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cb\u003EВнимание, грабли!\u003C\u002Fb\u003E Сколь бы ни был велик соблазн засунуть в iSerialNumber просто строку, даже строку с честной версией вида u''1.2.3'' — \u003Cb\u003Eне делайте этого!\u003C\u002Fb\u003E Некоторые операционные системы считают, что там должны быть только шестнадцатеричные цифры, то есть '0'-'9', 'A'-'Z' и все. Даже точек нельзя. Наверное, они как-то считают от этого «числа» хэш чтобы идентифицировать при повторном подключении, не знаю. Но проблему такую заметил при тестировании на виртуальной машине с Windows 7, она считала устройство бракованным. Что интересно, Windows XP и 10 проблему не заметили.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EConfigurationDescriptor\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nС точки зрения хоста устройство представляет набор отдельных интерфейсов, каждый из которых предназначен для решения какой-то задачи. В дескрипторе интерфейса описывается его устройство и привязанные конечные точки. Да, конечные точки описываются не сами по себе, а только как часть интерфейса. Обычно интерфейсы со сложной архитектурой управляются SETUP запросами (то есть через ep0), в которых поле wIndex номеру интерфейса и соответствует. Максимум позволяется прикарманить конечную точку для прерываний. А от интерфейсов данных хосту нужны только описания конечных точек и обмен будет идти через них.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nИнтерфейсов в одном устройстве может быть много, причем очень разных. Поэтому чтобы не путаться где заканчивается один интерфейс и начинается другой, в дескрипторе указывается не только размер «заголовка», но и отдельно (обычно 3-4 байтами) полный размер интерфейса. Таким образом интерфейс складывается подобно матрешке: внутри общего контейнера (который хранит размер «заголовка», bDescriptorType и полный размер содержимого, включая заголовок) может находиться еще парочка контейнеров поменьше, но устроенных точно так же. А внутри еще и еще. Приведу пример дескриптора примитивного HID-устройства:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E\nstatic const uint8_t USB_ConfigDescriptor[] = {\n  ARRLEN34(\n  ARRLEN1(\n    bLENGTH, \u002F\u002F bLength: Configuration Descriptor size\n    USB_DESCR_CONFIG,    \u002F\u002FbDescriptorType: Configuration\n    wTOTALLENGTH, \u002F\u002FwTotalLength\n    1, \u002F\u002F bNumInterfaces\n    1, \u002F\u002F bConfigurationValue: Configuration value\n    0, \u002F\u002F iConfiguration: Index of string descriptor describing the configuration\n    0x80, \u002F\u002F bmAttributes: bus powered\n    0x32, \u002F\u002F MaxPower 100 mA\n  )\n  ARRLEN1(\n    bLENGTH, \u002F\u002FbLength\n    USB_DESCR_INTERFACE, \u002F\u002FbDescriptorType\n    0, \u002F\u002FbInterfaceNumber\n    0, \u002F\u002F bAlternateSetting\n    0, \u002F\u002F bNumEndpoints\n    HIDCLASS_HID, \u002F\u002F bInterfaceClass: \n    HIDSUBCLASS_NONE, \u002F\u002F bInterfaceSubClass: \n    HIDPROTOCOL_NONE, \u002F\u002F bInterfaceProtocol: \n    0x00, \u002F\u002F iInterface\n  )\n  ARRLEN1(\n    bLENGTH, \u002F\u002FbLength\n    USB_DESCR_HID, \u002F\u002FbDescriptorType\n    USB_U16(0x0101), \u002F\u002FbcdHID\n    0, \u002F\u002FbCountryCode\n    1, \u002F\u002FbNumDescriptors\n    USB_DESCR_HID_REPORT, \u002F\u002FbDescriptorType\n    USB_U16( sizeof(USB_HIDDescriptor) ), \u002F\u002FwDescriptorLength\n  )\n  )\n};\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nЗдесь уровень вложенности небольшой, плюс ни одной конечной точки не описано — ну так я старался выбрать устройство попроще. Некоторое недоумение здесь могут вызвать константы bLENGTH и wTOTALLENGTH, равные восьми- и шестнадцатибитному нулям. Поскольку в данном случае для расчета размера используются макросы, было бы странно дублировать их работу и считать байты руками. Как и странно писать нули. А константы штука заметная, наглядности кода способствующая.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nКак можно видеть, данный дескриптор состоит из «заголовка» USB_DESCR_CONFIG (хранящего полный размер содержимого включая себя!), интерфейса USB_DESCR_INTERFACE (описывающего подробности устройства) и USB_DESCR_HID, в общих чертах говорящего что же именно за HID мы изображаем. Причем именно что в общих чертах: конкретная структура HID описывается в специальном дескрипторе HID_REPORT_DESCRIPTOR, рассматривать который я здесь не буду, просто потому что слишком плохо его знаю. Так что ограничимся копипастом из какого-нибудь \u003Ca href=\"http:\u002F\u002Fwe.easyelectronics.ru\u002Felectro-and-pc\u002Fusb-dlya-avr-chast-2-hid-class-na-v-usb.html\" rel=\"nofollow noopener noreferrer\"\u003Eпримера\u003C\u002Fa\u003E.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nВернемся к интерфейсам. Учитывая, что у них есть номера, логично предположить, что в одном устройстве интерфейсов может быть много. Причем они могут отвечать как за одну общую задачу (скажем, интерфейс управления USB-CDC и интерфейс данных), так и за принципиально несвязанные. Скажем, ничто не мешает нам (кроме отсутствия знаний пока) на одном контроллере реализовать два переходника USB-CDC плюс флешку плюс, скажем, клавиатуру. Очевидно, что интерфейс флешки знать не знает про COM-порт. Впрочем, тут есть свои подводные камни, которые, надеюсь, когда-нибудь рассмотрим. Еще стоит отметить, что один интерфейс может иметь несколько альтернативных конфигураций (bAlternateSetting), отличающихся, скажем, количеством конечных точек или частотой их опроса. Собственно, для того и сделано: если хост считает, что лучше пропускную способность поберечь, он может переключить интерфейс в какой-нибудь альтернативный режим, который ему больше понравился.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EОбмен данными с HID\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nВообще говоря, HID-устройства имитируют объекты реального мира, у которых есть не столько данные, сколько набор неких параметров, которые можно измерять или задавать (запросы SET_REPORT \u002F GET_REPORT) и которые могут уведомлять хост о внезапном внешнем событии (INTERRUPT). Таким образом, собственно для обмена данными данные устройства не предназначены… но кого это когда останавливало!\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПрерываний мы пока касаться не будем, поскольку им нужна специальная конечная точка. А вот чтение и настройку параметров рассмотрим. В данном случае параметр всего один, представляющий собой структуру из двух байтов, по замыслу отвечающих за два светодиода, либо за кнопку и счетчик.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nНачнем с более простого — чтения по запросу HIDREQ_GET_REPORT. По сути это такой же запрос, как и всякие DEVICE_DESCRIPTOR, только специфичный именно для HID. Плюс этот запрос адресован не устройству в целом, а интерфейсу. То есть если мы реализовали в одном устройстве несколько независимых HID-устройств, их можно различить по полю wIndex запроса. Правда, именно для HID это не лучший подход: проще сам дескриптор сделать составным. В любом случае до таких извращений нам далеко, так что даже не будем анализировать что и куда хост пытался послать: на любой запрос к интерфейсу и с полем bRequest равным HIDREQ_GET_REPORT будем возвращать собственно данные. По идее, такой подход предназначен чтобы возвращать дескрипторы (со всеми bLength и bDescriptorType), но в случае HID разработчики решили все упростить и обмениваться только данными. Вот и возвращаем указатель на нашу структуру и ее размер. Ну и небольшая дополнительная логика вроде обработки кнопок и счетчика запросов.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nБолее сложный случай — запрос на запись. Это первый раз, когда мы сталкиваемся с наличием дополнительных данных в SETUP запросе. То есть ядро нашей библиотеки должно сначала прочитать сам запрос, и только потом данные. И передать их юзерской функции. А буфера у нас, напоминаю, нет. В результате некоторой низкоуровневой магии был разработан следующий алгоритм. Callback вызывать будем всегда, но укажем ему с какого по счету байта данные сейчас лежат в буфере приема конечной точки (offset) а также размер этих данных (size). То есть при приеме самого запроса значения offset и size равны нулю (данных-то нет). При приеме первого пакета offset все еще равен нулю, а size — размеру принятых данных. Для второго offset будет равен размеру ep0 (потому что если данные пришлось разбивать, делают это по размеру конечной точки), а size — размеру принятых данных. И так далее. \u003Cb\u003EВажно!\u003C\u002Fb\u003E Если данные приняты, их надо считать. Это может сделать либо обработчик вызовом usb_ep_read() и возвратом 1 (мол «я там сам считал, не утруждайся»), либо просто вернув 0 («мне эти данные не нужны») без чтения — тогда очисткой займется ядро библиотеки. По этому принципу и построена функция: она проверяет в наличии ли данные и если да, то читает их и зажигает светодиоды.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EСофт для обмена данными\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nТут я велосипед изобретать не стал, а взял готовую \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fvusb_dev\u002Ftree\u002Fmaster\u002Fvusb_dev\u002F18_soft\" rel=\"nofollow noopener noreferrer\"\u003Eпрограмму\u003C\u002Fa\u003E из предыдущей \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F460815\u002F\"\u003Eстатьи\u003C\u002Fa\u003E.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EЗаключение\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nВот, собственно, и все. Основы работы с USB при помощи аппаратного модуля в STM32 я рассказал, некоторый грабли тоже пощупал. Учитывая значительно меньший объем кода, чем тот ужас, что генерирует STMCube, разобраться в нем будет проще. Собственно говоря, в Cube'ической лапше я так и не разобрался, уж больно много там вызовов одного и того же в разных комбинациях. Гораздо лучше для понимания \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Feddyem\u002Fstm32samples\" rel=\"nofollow noopener noreferrer\"\u003Eвариант от EddyEm\u003C\u002Fa\u003E, от которого я отталкивался. Конечно, и там не без косяков, но хотя бы пригодно для понимания. Также похвастаюсь, что размер моего варианта едва ли не в 5 раз меньше ST'шного (~2.7 кБ против 14) — при том, что оптимизацией я не занимался и наверняка можно еще ужать.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nОтдельно хочу отметить разницу поведения различных операционных систем при подключении сомнительного оборудования. Linux просто работает, даже если в дескрипторах ошибки. Windows XP, 7, 10 при малейших ошибках ругаются что «устройство поломанное, я с ним работать отказываюсь». Причем XP иногда даже в BSOD падала от негодования. Ах да, еще они постоянно выводят «устройство может работать быстрее», что с этим делать я не знаю. UPD: похоже, это решается выставлением поля BCD_USB в 1.1 (USB_U16(0x0110) ), правда я не знаю будут ли побочные эффекты. В общем, как бы хорош Linux не был для разработки, он прощает слишком многое, тестировать надо и на менее юзер-френдли системах.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nДальнейшие планы: рассмотреть остальные типы конечных точек (пока что был пример только с Control); рассмотреть другие контроллеры (скажем, у меня еще at90usb162 (AVR) и gd32vf103 (RISC_V) валяются), но это совсем далекие планы. Также хорошо бы поподробнее разобраться с отдельными USB-устройствами вроде тех же HID, но тоже не приоритетная задача.\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"arm"},{"titleHtml":"stm32"},{"titleHtml":"stm32f103"},{"titleHtml":"stm32l151"},{"titleHtml":"usb"},{"titleHtml":"usb-hid"},{"titleHtml":"грабли и велосипеды"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F548150\u002Fcc4384bf85c17fc22b05d27ce9c914f0\u002F","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F548150\u002Fcc4384bf85c17fc22b05d27ce9c914f0\u002F?format=vk","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F548150\\\u002F\"},\"headline\":\"USB на регистрах: STM32L1 \\\u002F STM32F1\",\"datePublished\":\"2021-03-21T16:14:40+03:00\",\"dateModified\":\"2021-05-23T12:29:47+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"COKPOWEHEU\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\

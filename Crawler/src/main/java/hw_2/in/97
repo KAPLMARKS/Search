@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Эволюция монолитного приложения, еще один подход / Комментарии / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/page-article-comments.5497aa9d.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/page-article-comments.97bb766a.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/page-article-comments.5497aa9d.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" itemprop="image" content="/img/habr_ru.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="/img/habr_ru.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="/img/habr_ru.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="/img/habr_ru.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="/img/habr_ru.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" property="og:type" content="website" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Хабр" data-vmid="og:title">
+  <meta data-vue-meta="ssr" property="og:url" content="https://habr.com/ru/post/654805/comments/" data-vmid="og:url"> 
+  <link data-vue-meta="ssr" image_src="image" href="/img/habr_ru.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654805/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654805/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <article class="tm-article-comments__article-body">
+            <div class="tm-article-comments__article-snippet">
+             <div class="tm-article-snippet">
+              <div class="tm-article-snippet__meta-container">
+               <div class="tm-article-snippet__meta">
+                <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/Semenych/" title="Semenych" class="tm-user-info__userpic">
+                  <div class="tm-entity-image">
+                   <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/3de/bfd/b86/3debfdb86c570be252856332a57162d7.png" width="24" class="tm-entity-image__pic">
+                  </div></a> <span class="tm-user-info__user"><a href="/ru/users/Semenych/" class="tm-user-info__username"> Semenych </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T11:01:20.000Z" title="2022-03-09, 14:01">сегодня в 14:01</time></span>
+               </div> <!---->
+              </div> 
+              <h1 class="tm-article-snippet__title tm-article-snippet__title_h1"><a href="/ru/post/654805/" data-article-link="" class="tm-article-snippet__title-link router-link-active"><span>Эволюция монолитного приложения, еще один подход</span></a></h1> 
+              <div class="tm-article-snippet__hubs">
+               <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/analysis_design/" class="tm-article-snippet__hubs-item-link"><span>Анализ и проектирование систем</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span>
+              </div> <!----> <!----> <!---->
+             </div> 
+             <div class="tm-data-icons">
+              <!----> 
+              <div class="tm-votes-meter tm-data-icons__item">
+               <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                <title>Всего голосов 12: ↑12 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+               </svg> <span title="Всего голосов 12: ↑12 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+12</span>
+              </div> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+               <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+               </svg> <span class="tm-icon-counter__value">2K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                 <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 8 </span></button> 
+              <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+               <a href="/ru/post/654805/comments/" aria-current="page" class="tm-article-comments-counter-link__link">
+                <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                 <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                </svg> <span class="tm-article-comments-counter-link__value"> 5 </span></a> <!---->
+              </div> <!----> 
+              <div class="v-portal" style="display:none;"></div>
+             </div>
+            </div>
+           </article> 
+           <div class="tm-ad-banner__container tm-article-comments__top-banner">
+            <!----> 
+            <div id="commentsBanner13458" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+           </div> 
+           <div data-async-called="true" class="tm-article-comments-offloaded">
+            <div class="tm-article-comments">
+             <div class="tm-comments-wrapper">
+              <div class="tm-comments-wrapper__wrapper">
+               <header class="tm-comments-wrapper__header">
+                <h2 class="tm-comments-wrapper__title"> Комментарии <span class="tm-comments-wrapper__comments-count"> 5 </span></h2> 
+                <div class="tm-comments-wrapper__header-aside">
+                 <!----> <button class="tm-rss-button tm-rss-button_comments-header"><span class="tm-svg-icon__wrapper tm-rss-button__icon">
+                   <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+                    <title>Скопировать ссылку на RSS</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#rss"></use>
+                   </svg></span></button> <!---->
+                </div>
+               </header> 
+               <div class="tm-comments-wrapper__inner"> 
+                <div class="tm-comments__tree">
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24148363" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24148363" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/amarao/" title="amarao" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/a4d/28c/40e/a4d28c40e664ad1a3632a3c0a2ca1c72.png" width="24" class="tm-entity-image__pic">
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/amarao/" class="tm-user-info__username"> amarao </a> <a href="#comment_24148363" class="tm-comment-thread__comment-link"> 09.03.2022 в 14:21 <!----></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content tm-comment__body-content_v2">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <p>Я тоже отказываюсь лазить глубоко в код, написанный до моего рождения. Мозги целее будут.</p>
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Всего голосов 2: ↑2 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Всего голосов 2: ↑2 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">+2</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24148363" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> <!----> <!---->
+                 </section>
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24148857" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24148857" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/XaBoK/" title="XaBoK" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/22e/491/b82/22e491b82f53f0f1a47f52d184843c71.jpg" width="24" class="tm-entity-image__pic">
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/XaBoK/" class="tm-user-info__username"> XaBoK </a> <a href="#comment_24148857" class="tm-comment-thread__comment-link"> 09.03.2022 в 16:10 <!----></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content tm-comment__body-content_v2">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <p>То что описывает статья - один из распространенных способов распила на живую. В таких вариантах, когда остановка легаси не возможна (единственный источник дохода) и ожидание нового продукта тоже не вариант (слишком долго, а изменения в работу необходимо). Допустим изменение регуляций - дедлайн, который нельзя отодвинуть и при этом легаси останется не у дел. Первый этап - увеличение уровня абстракций. Попытка разделить фронт и бэк, добавить устойчивости и масштабируемость, а потом пилить фронт и бэк на слои и кусочки.</p>
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24148857" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> <!----> <!---->
+                 </section>
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24149459" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24149459" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/koeshiro/" title="koeshiro" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/fc7/353/479/fc73534798d2c944e84cbe6a268d7e76.jpg" width="24" class="tm-entity-image__pic">
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/koeshiro/" class="tm-user-info__username"> koeshiro </a> <a href="#comment_24149459" class="tm-comment-thread__comment-link"> 09.03.2022 в 19:30 <!----></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content tm-comment__body-content_v2">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <p>Написано красиво, но на мой взгляд это типовое решение. </p>
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24149459" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> <!----> <!---->
+                 </section>
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24149475" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24149475" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/NeverIn/" title="NeverIn" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_green">
+                           <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                          </svg>
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/NeverIn/" class="tm-user-info__username"> NeverIn </a> <a href="#comment_24149475" class="tm-comment-thread__comment-link"> 09.03.2022 в 19:34 
+                          <svg height="16" width="16" class="tm-svg-img tm-comment-thread__icon-pencil">
+                           <title>Комментарий был изменен</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pencil-small"></use>
+                          </svg></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <blockquote>
+                        К счастью по базе данных там конфликтов не было и переделывать внутреннюю логику работы необходимости не было. 
+                       </blockquote>
+                       <br> что же это за монолит если БД такая независимая ?! может это уже и был один большой микросервис
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24149475" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> 
+                  <div class="tm-comment-thread__children" style="display:;">
+                   <section class="tm-comment-thread">
+                    <!----> 
+                    <article class="tm-comment-thread__comment">
+                     <a name="comment_24149481" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-1">
+                      <div class="tm-comment-thread__circle"></div></button> <!----> 
+                     <div data-comment-body="24149481" class="tm-comment-thread__indent_l-1">
+                      <div data-gallery-root="" class="tm-comment">
+                       <header data-comment-header tabindex="-1" class="tm-comment__header">
+                        <div class="tm-comment__header-inner">
+                         <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/Semenych/" title="Semenych" class="tm-user-info__userpic">
+                           <div class="tm-entity-image">
+                            <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/3de/bfd/b86/3debfdb86c570be252856332a57162d7.png" width="24" class="tm-entity-image__pic">
+                           </div></a> <span class="tm-user-info__user"><a href="/ru/users/Semenych/" class="tm-user-info__username"> Semenych </a> <a href="#comment_24149481" class="tm-comment-thread__comment-link"> 09.03.2022 в 19:36 <!----></a></span></span>
+                        </div> 
+                        <div class="tm-comment__buttons">
+                         <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                          <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                           <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                          </svg></button> <!---->
+                        </div>
+                       </header> 
+                       <div class="tm-comment__body-content tm-comment__body-content_v2">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                         <p>Я тут имел ввиду, что экземпляры сервиса работающие с разными процессами могут рабоать с одной и той же базой не конфликтуя по данным. </p>
+                        </div>
+                       </div> <!----> <!---->
+                      </div> 
+                      <div class="tm-comment-footer">
+                       <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                        <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                         <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                        </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                       </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                         <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                          <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                         </svg></span> <!----></button> <button data-comment-popup="24149481" class="tm-comment__button tm-comment__button_with-icon">
+                        <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                         <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                        </svg></button> <!---->
+                      </div>
+                     </div>
+                    </article> <!----> <!---->
+                   </section>
+                  </div> <!---->
+                 </section>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div>
+              </div> 
+              <div class="tm-notice tm-comments__comment-notice tm-notice_positive">
+               <!----> 
+               <div class="tm-notice__inner">
+                <!----> 
+                <div class="tm-notice__content">
+                 <span>Только полноправные пользователи могут оставлять комментарии. <a rel="nofollow" href="/kek/v1/auth/habrahabr/?back=/ru/post/654805/comments/&amp;hl=ru">Войдите</a>, пожалуйста.</span>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div> <!----> <!---->
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div hl="ru" id="654805" class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner13459" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom13460" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654805/comments/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654805/comments/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654805":{"id":"654805","timePublished":"2022-03-09T11:01:20+00:00","isCorporative":false,"lang":"ru","titleHtml":"Эволюция монолитного приложения, еще один подход","leadData":{"textHtml":"\u003Cp\u003EВ IT индустрии есть одна достаточно часто встречающаяся не простая проблема. Это старые монолитные приложения, которые приносят их текущим владельцам много денег прямо сейчас. Обычно эти приложения экстенсивно развивались долгие годы или даже десятки лет и достигли предела экстенсивного развития, когда даже далекие от техники люди в бизнесе понимают, что дальше так жить нельзя. \u003C\u002Fp\u003E\u003Cp\u003EВыбросить такой монолит невозможно, бизнес остановится. Переписать тоже либо нельзя, либо очень дорого, по причинам хорошо описанным еще у Фредерика Брукса в Мифическом человеко-месяце. Во первых как они там под капотом работают в точности, по прошествии 20+ лет уже никто не знает. Во вторых, пока приложение переписывается, а обычно это 1-2 года, бизнес успевает уйти вперед и новое приложение надо докатывать до актуального состояния и так без конца. \u003C\u002Fp\u003E\u003Cp\u003EНа данный момент в таких случаях обычно используются два возможных подхода. Либо сделать новый продукт, с похожим, но все же новым функционалом. Либо распилить монолит на несколько достаточно небольших сервисов, а уже их постепенно переписывать. \u003C\u002Fp\u003E\u003Cp\u003EНесколько лет назад к нам пришел заказчик с нераспиливаемым монолитом и необходимостью реализовать ряд новых нефункциональных требований как можно скорее. В статье я хочу рассказать, как мы с такой ситуаций справлялись.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":null},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":189,"votesCount":279},"rating":12.4,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"55911","alias":"Semenych","fullname":"Denis Tsyplakov","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F3de\u002Fbfd\u002Fb86\u002F3debfdb86c570be252856332a57162d7.png","speciality":null},"statistics":{"commentsCount":5,"favoritesCount":8,"readingCount":1995,"score":12,"votesCount":12},"hubs":[{"relatedData":null,"id":"397","alias":"analysis_design","type":"collective","title":"Анализ и проектирование систем","titleHtml":"Анализ и проектирование систем","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EВ IT индустрии есть одна достаточно часто встречающаяся не простая проблема. Это старые монолитные приложения, которые приносят их текущим владельцам много денег прямо сейчас. Обычно эти приложения экстенсивно развивались долгие годы или даже десятки лет и достигли предела экстенсивного развития, когда даже далекие от техники люди в бизнесе понимают, что дальше так жить нельзя. \u003C\u002Fp\u003E\u003Cp\u003EВыбросить такой монолит невозможно, бизнес остановится. Переписать тоже либо нельзя, либо очень дорого, по причинам хорошо описанным еще у Фредерика Брукса в Мифическом человеко-месяце. Во первых как они там под капотом работают в точности, по прошествии 20+ лет уже никто не знает. Во вторых, пока приложение переписывается, а обычно это 1-2 года, бизнес успевает уйти вперед и новое приложение надо докатывать до актуального состояния и так без конца. \u003C\u002Fp\u003E\u003Cp\u003EНа данный момент в таких случаях обычно используются два возможных подхода. Либо сделать новый продукт, с похожим, но все же новым функционалом. Либо распилить монолит на несколько достаточно небольших сервисов, а уже их постепенно переписывать. \u003C\u002Fp\u003E\u003Cp\u003EНесколько лет назад к нам пришел заказчик с нераспиливаемым монолитом и необходимостью реализовать ряд новых нефункциональных требований как можно скорее. В статье я хочу рассказать, как мы с такой ситуаций справлялись.\u003C\u002Fp\u003E\u003Ch3\u003EДано\u003C\u002Fh3\u003E\u003Cp\u003EИтак на входе у нас было монолитное приложение на Java 8, первый комит сделан в 1998 году. Приложение состоит из двух частей, одна часть web front end сделанный на JSP, вторая часть - сервер который отвечает за исполнение некоторых бизнес процессов. Обе части живут в одном репозитории и там есть хитрый процесс сборки который в зависимости от параметров собирает тот или иной сервис. \u003C\u002Fp\u003E\u003Cp\u003E\u003Cem\u003EЗабавная история получилась когда я собеседовал начинающего Java разработчика в команду. Узнав детали проекта он сказал, что не готов работать с кодовой базой которая была создана до его рождения\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003EБизнес процесс в виде весьма «лохматого» дерева объектов в общей сложности на сотни полей, целиком сидит в памяти. Он может исполняться до двух недель. В процессе исполнения он требует посылки множества сообщений пользователям и обработки ответов от них. Про бизнес заказчика я подробно рассказать не могу , часть этой истории все еще под соглашением о неразглашении. Но без конкретики, как мне кажется, воспринимать статью будет несколько сложно, приведу пример несколько видоизмененного сценария:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EВ следующую пятницу в первой половине дня нужна бригада из 3-х электриков  в город Бридж Рок\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСообщение отправляется группе из 12 электриков первой очереди.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВ течении суток надо получить не менее 3-х ответов, \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЕсли есть три ответа, послать фамилии ответивших менеджеру\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЕсли меньше трех, послать на группу эскалации второй очереди - там уже 50 электриков и ждать еще сутки\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЕсли все еще меньше трех ответов то послать сообщение старшему менеджеру. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EПри этом для каждого человека есть отдельная логика посылки, по каким каналом, в какое время суток слать. Разных каналов в общем сложности 12 штук, включая  всевозможную экзотику, например Blackberry, факс или TDD телефоны (https:\u002F\u002Fen.wikipedia.org\u002Fwiki\u002FTelecommunications_device_for_the_deaf), также надо в ряде случаев делать повторные посылки и т.п. \u003C\u002Fp\u003E\u003Cp\u003EСхематически все это выглядело примерно вот так:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F313\u002F5b0\u002Fd31\u002F3135b0d3141023ba4284405a58c1c78e.png\" width=\"810\" height=\"442\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F313\u002F5b0\u002Fd31\u002F3135b0d3141023ba4284405a58c1c78e.png\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПроцесс инициируется и дальше в течении какого-то времени, от часов до недель взаимодействует с пользователями. Сам процесс живет в памяти и сразу скажу, там все устроено достаточно сложно, чтобы простое решение - сделать все stateless не прошло. Собственно это было первое, что пришло мне в голову, но посмотрев на код и обсудив варианты с архитектором этого приложения мы поняли, что этот вариант не подходит. \u003C\u002Fp\u003E\u003Cp\u003EРаспилить на сервисы к сожалению тоже не получилось в силу очень высокой связанности кода и данных в приложении. Там по факту связанно все со всем, зачастую неявным образом. Активно используется паттерн Бизнес Объект - это классы которые инкапсулируют в себе данные, бизнес логику обработки этих данных и частично какую-то часть нефункциональных требований. \u003C\u002Fp\u003E\u003Cp\u003EОтступим на шаг назад, что именно хотел достичь заказчик и почему ему надо было сделать изменения достаточно срочно? Как часто бывает при таких запросах, необходимость меняться пришла в результате поглощения одной большой компанией другой компании поменьше. Большая компания купила мелкую, владеющую отличным сервисом, приносящим высокую прибыль. После поглощения большая компания более пристально заглянула под капот и удивилась (обычно такие вещи надо выявлять в ходе аудита, но в данном случае что-то пошло не так). Говоря конкретно, срочно надо было решить следующие проблемы\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EНеобходимо было иметь возможность выкатывать новые версии без остановки всего приложения на несколько часов. На момент, когда меня позвали помогать, редеплой требовал остановки backend сервиса, что требовало разрушения всех работающих на тот момент в нем процессов. Поэтому редеплои были редки и происходили воскресными ночами, что впрочем не решало всех проблем.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EBackend сервер и так уже работал на достаточно мощной машине и вопрос масштабирования стоял очень остро. Новые владельцы были готовы привести много новых пользователей, но система не была готова их принять. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EВ принципе для решения проблемы №2 есть стандартный подход - single tenant service. Т.е. разделение всех пользователей на группы и построение под каждую группу отдельной инфраструктуры. Но у такого подхода есть проблемы\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EОн ведет к значительному росту расходов на серверную инфраструктуру в том числе и по причине того что вокруг всего этого достаточно много громоздкой вспомогательной инфраструктуры которая без переделок с разными тенантами работать не умеет.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВсе равно не решает проблему с редеплоем без остановки сервиса.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EПоясню почему так важно было сделать возможность редеплоя без остановки сервиса. До покупки, основной массе пользователей была важна доступность в рабочие часы, отправка чего либо в выходные была очень и очень редким случаем . Плюс основными клиентами были компании мелкого и среднего размера, им как правило не так важен SLA, они готовы подстроиться и смириться с периодическим выключением системы в рабочие часы. Новый владелец был готов привести много больших (и несколько очень больших) клиентов для который доступность 24*7 критически важна и которые любят требовать формальный SLA.\u003C\u002Fp\u003E\u003Cp\u003EКороче, хороших вариантов решения не было, самый лучший план который был на момент начала работ у заказчика - собрать большую команду и за полтора-два года все переписать. Но поскольку в Стэнфорде Мифический Человеко-месяц входит в учебную программу, архитектор этой системы понимал, что с переписыванием не все так просто. \u003C\u002Fp\u003E\u003Ch3\u003EКак решали проблему\u003C\u002Fh3\u003E\u003Cp\u003EЯ предложил заказчику решать проблему следующим образом. Вместо распила одного большого и страшного монолита на несколько сервисов (что увы было невозможно по вышеизложенным причинам), было предложено запустить несколько больших и страшных монолитов, каждый на своем железе и посадить каждый из монолитов в виртуальную клетку так, чтобы он думал, что он работает в одиночестве и клетка изолировала его от работы других монолитов. К счастью по базе данных там конфликтов не было и переделывать внутреннюю логику работы необходимости не было. \u003C\u002Fp\u003E\u003Cp\u003EОсновные проблемы при таком подходе были с обработкой ответов от пользователей. Когда пользователь отвечал на сообщение, надо было маршрутизировать ответ к тому экземпляру бизнес процесса который сообщение отправлял. Для маршрутизации сообщений и заодно реализации механизма back pressure было решено использовать Rabbit MQ. Если перерисовать картинку выше для одного канала доставки. скажем для email - то идея, в том виде в каком она была нарисована во время мозгового штурма на доске с Сан Диего (у заказчика там офис), выглядела примерно вот так:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F27b\u002F543\u002Ff2b\u002F27b543f2b931e48793c6b284ce10381b.png\" width=\"981\" height=\"431\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F27b\u002F543\u002Ff2b\u002F27b543f2b931e48793c6b284ce10381b.png\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ результате двух дней обсуждений мы выписали на доске все «входы и выходы» имеющиеся в монолите и для каждого из придумали как \u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EСделать так, чтобы монолит думал, что он один во вселенной и может свободно слать  сообщения и получать ответы на них\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКак по ответу на сообщение понять какому экземпляру монолита он предназначен. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EТакое решение давало нам ответ на вопрос как запустить еще один новый экземпляр сервиса, но не давало ответ на вопрос - как остановить работающий сервис без потерь. \u003C\u002Fp\u003E\u003Cp\u003EОстановка без потерь была сопряжена с двумя проблемами\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EНе понятно, как заморозить состояние процессов и потом его разморозить уже в новом экземпляре\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКак не потерять ответы которые сервис получает, пока он заморожен. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EВторая проблема решалась маршрутизаторами и очередями в RabbitMQ. Ответы складывались в очереди и после разморозки состояния оттуда спокойно обрабатывались. \u003C\u002Fp\u003E\u003Cp\u003EПроблема заморозки была самой серьезной и в общем виде не решалась никак. К счастью совместно с автором системы нам удалось придумать последовательность из примерно 20 шагов которая позволяла заморозить состояние и сохранить его в БД. Сервис от этого stateless к сожалению не стал т.к. процесс заморозки занимал где-то от 3 до 10 минут и включал в себя крайне не очевидные шаги вида «остановить вот эту нить и подождать пару минут пока вон тот буфер очистится». Собственно отладка этой последовательности была пожалуй самым сложным местом во всем проекте. \u003C\u002Fp\u003E\u003Cp\u003EЕсли просуммировать все сделанные изменения, то в результате мы пришли к следующему\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EТри разных канала подачи команд были переделаны на использование RabbitMQ\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДля каждого из каналов получения ответов от пользователей был сделан маршрутизатор, учитывающий специфику канала и умеющий маршрутизировать сообщения для конкретной среды передачи.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМы научили сервис трюку который называется graceful shutdown \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМы научились делить «замороженное» состояние, которое осталось после остановившегося сервиса, на кусочки и «раздавать» по частям другим сервисам. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EТакже была сделана специальная логика обработки ответов которые пришли сервису находящемуся в процессе остановки. Т.е. мы обрабатывали ситуацию, когда ответ маршрутизируется экземпляру сервиса который в момент получения ответ начал останавливаться, но маршрутизатор об этом пока еще не знает. Вообще в этом месте возникла достаточно неожиданная сложность. В идеальной картине мира в целом хватало механизма Dead Letter Exchange. Если экземпляр сервиса не забрал ответ в течении минуты, то он видимо уже погашен и надо провести повторную машрутизацию. Когда сервисы тушатся и поднимаются ровно один за одним, этого хватало. Но если на проде начиналась неразбериха, несколько экземпляров одновременно тушились, потом поднимались опять тушились не дожидаясь завершения нормальной последовательности старта, то все начинало работать несколько криво. Нам пришлось сделать специальный механизм который позволял экземплярам сервиса договариваться между собой, кому же принадлежит тот этот иной процесс. \u003C\u002Fp\u003E\u003Cp\u003EРеализация всех эти задач заняла у нас примерно два с половиной месяца работы команды из 6-и человек. После этого мы получили версию сервиса который мог редеплоиться без остановки при этом одновременно работающие на стенде несколько экземпляров сервиса позволяли горизонтально масштабировать нагрузку. \u003C\u002Fp\u003E\u003Cp\u003EДалее перед нами встала следующая проблема. Откуда мы знаем, что такой тонкий процесс как остановка сервиса и ребалансировка работающих там процессов будет всегда работать бесшовно? Чтобы узнать ответ на этот вопрос был сделан специальный продукт «Test toolkit» симулирующий для основного сервиса одновременно входы и выходы и считающий все посланные сообщения. Схематически выглядело это так:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F56e\u002F010\u002Fdf5\u002F56e010df557fc3ca6aa133b489a96d94.png\" width=\"821\" height=\"480\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F56e\u002F010\u002Fdf5\u002F56e010df557fc3ca6aa133b489a96d94.png\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EГенератор сценариев запускал несколько десятков процессов разных типов в секунду, генератор ответов симулировал случайные ответы пользователей, а верификатор проверял, что ничего не потерялось и при это каждый 15 мин перезапускал один из экземпляров сервиса. \u003C\u002Fp\u003E\u003Cp\u003EТулкит помог нам найти еще 4 edge case сценария и еще один застарелый баг с отправкой, в самом приложении сидевший в коде где-то с 2015 года. После того как система проработала около недели под тестовой нагрузкой отрабатывая последовательность рестарта каждые 15 минут без потери сообщений, мы были готовы выкатываться на прод (после чего мы еще долго убеждали продопсов, что все должно работать нормально и проводили тренинги по редеплою).\u003C\u002Fp\u003E\u003Ch3\u003EВыводы\u003C\u002Fh3\u003E\u003Cp\u003EОсновная идея на которую я хотел обратить внимание в этой статье, это еще один способ эволюции монолитных приложений. Не переписывание и не распил на части, а изменение поверхностного слоя интерфейсов с другими системами при неизменном или почти неизменном ядре. Это позволят адаптировать монолит к новым не функциональным требованиям не меняя основную логику, которая как раз обычно сложнее всего поддается изменениям. \u003C\u002Fp\u003E\u003Cp\u003EСпособ этот относительно трудозатратный и получившийся результат требует тщательной верификации. Применять этот способ пожалуй стоит только в очень специальных случаях, например когда у нас есть большое сложное состояние сервера в памяти.\u003C\u002Fp\u003E\u003Ch3\u003EP.S.\u003C\u002Fh3\u003E\u003Cp\u003EЗа кадром осталась масса мелких технических деталей, таких как например кастомный control protocol на базе постоянно открытого TCP соединения которое нельзя закрывать пока есть хотя бы один работающий бизнес процесс (т.е. по факту никогда). Или пул быстрых распределенных семафоров с возможность передавать лок от одного сервера другому. Но об этом как-нибудь в другой раз\u003C\u002Fp\u003E\u003Cp\u003EГромадное спасибо команде. Коллеги - это был реально очень крутой, сложный проект. Мы вместе справились. Спасибо!\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"эволюционная архитектура"},{"titleHtml":"монолит"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F654805\u002F290f0dd8922f25ec88b0553c93dcdad1\u002F","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F654805\u002F290f0dd8922f25ec88b0553c93dcdad1\u002F?format=vk","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654805\\\u002F\"},\"headline\":\"Эволюция монолитного приложения, еще один подход\",\"datePublished\":\"2022-03-09T14:01:20+03:00\",\"dateModified\":\"2022-03-09T17:06:31+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Denis Tsyplakov\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"В IT индустрии есть одна достаточно часто встречающаяся не простая проблема. Это старые монолитные приложения, которые приносят их текущим владельцам много денег...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654805\\\u002F#post-content-body\",\"about\":[\"h_analysis_design\",\"f_develop\"],\"image\":[\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F313\\\u002F5b0\\\u002Fd31\\\u002F3135b0d3141023ba4284405a58c1c78e.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F27b\\\u002F543\\\u002Ff2b\\\u002F27b543f2b931e48793c6b284ce10381b.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F56e\\\u002F010\\\u002Fdf5\\\u002F56e010df557fc3ca6aa133b489a96d94.png\"]}","metaDescription":"В IT индустрии есть одна достаточно часто встречающаяся не простая проблема. Это старые монолитные приложения, которые приносят их текущим владельцам много денег прямо сейчас. Обычно эти приложения...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{"654805":{"refs":{"24148363":{"id":"24148363","parentId":null,"level":0,"timePublished":"2022-03-09T11:21:06+00:00","timeChanged":null,"isSuspended":false,"score":2,"votesCount":2,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EЯ тоже отказываюсь лазить глубоко в код, написанный до моего рождения. Мозги целее будут.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"55867","alias":"amarao","fullname":"Георгий Шуклин","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Fa4d\u002F28c\u002F40e\u002Fa4d28c40e664ad1a3632a3c0a2ca1c72.png","speciality":"оператор ЭВМ"},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":[],"vote":{"value":null,"isCanVote":false}},"24148857":{"id":"24148857","parentId":null,"level":0,"timePublished":"2022-03-09T13:10:58+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EТо что описывает статья - один из распространенных способов распила на живую. В таких вариантах, когда остановка легаси не возможна (единственный источник дохода) и ожидание нового продукта тоже не вариант (слишком долго, а изменения в работу необходимо). Допустим изменение регуляций - дедлайн, который нельзя отодвинуть и при этом легаси останется не у дел. Первый этап - увеличение уровня абстракций. Попытка разделить фронт и бэк, добавить устойчивости и масштабируемость, а потом пилить фронт и бэк на слои и кусочки.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"50846","alias":"XaBoK","fullname":"Яков","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F22e\u002F491\u002Fb82\u002F22e491b82f53f0f1a47f52d184843c71.jpg","speciality":"Enterprise Architect"},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":[],"vote":{"value":null,"isCanVote":false}},"24149459":{"id":"24149459","parentId":null,"level":0,"timePublished":"2022-03-09T16:30:06+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EНаписано красиво, но на мой взгляд это типовое решение. \u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"435120","alias":"koeshiro","fullname":null,"avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Ffc7\u002F353\u002F479\u002Ffc73534798d2c944e84cbe6a268d7e76.jpg","speciality":"Full-stack web dev"},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":[],"vote":{"value":null,"isCanVote":false}},"24149475":{"id":"24149475","parentId":null,"level":0,"timePublished":"2022-03-09T16:34:57+00:00","timeChanged":"2022-03-09T16:35:31+00:00","isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cblockquote\u003EК счастью по базе данных там конфликтов не было и переделывать внутреннюю логику работы необходимости не было. \u003C\u002Fblockquote\u003E\u003Cbr\u002F\u003E\r\nчто же это за монолит если БД такая независимая ?! может это уже и был один большой микросервис\u003C\u002Fdiv\u003E","editorVersion":1,"author":{"id":"65030","alias":"NeverIn","fullname":null,"avatarUrl":null,"speciality":"QA engineer"},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":["24149481"],"vote":{"value":null,"isCanVote":false}},"24149481":{"id":"24149481","parentId":"24149475","level":1,"timePublished":"2022-03-09T16:36:56+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EЯ тут имел ввиду, что экземпляры сервиса работающие с разными процессами могут рабоать с одной и той же базой не конфликтуя по данным. \u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"55911","alias":"Semenych","fullname":"Denis Tsyplakov","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F3de\u002Fbfd\u002Fb86\u002F3debfdb86c570be252856332a57162d7.png","speciality":null},"isAuthor":false,"isPostAuthor":true,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":[],"vote":{"value":null,"isCanVote":false}}},"root":["24148363","24148857","24149459","24149475"]}},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{"isCanComment":false,"cantCommentReasonKey":"AUTH_REQUIRED","cantCommentReason":"Authorization required","data":null},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":1646843816,"moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":false,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"technotext":{"nominationsList":[]},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"items":{},"pagesCache":{},"markedViewedSilently":{},"markedRead":{},"unreadCounters":{"applications":null,"system":null,"mentions":null,"subscribers":null,"posts_and_comments":null},"unviewedCounters":{"applications":null,"system":null,"mentions":null,"subscribers":null,"posts_and_comments":null}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script> 
+  <script src="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" defer></script>
+  <script src="https://assets.habr.com/habr-web/js/page-article-comments.97bb766a.js" defer></script>
+  <script src="https://assets.habr.com/habr-web/js/app.69ba180e.js" defer></script> 
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    </script> 
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(24049213, "init", {
+      defer:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:false,
+    });
+  </script> 
+  <noscript> 
+   <div> 
+    <img src="https://mc.yandex.ru/watch/24049213"

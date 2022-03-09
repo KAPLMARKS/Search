@@ -1,0 +1,838 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>USB на регистрах: виртуальная FAT16 / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/654853\/"},"headline":"USB на регистрах: виртуальная FAT16","datePublished":"2022-03-09T18:06:34+03:00","dateModified":"2022-03-09T20:38:54+03:00","author":{"@type":"Person","name":"COKPOWEHEU"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"USB на регистрах: STM32L1 \/ STM32F1 USB на регистрах: bulk endpoint на примере Mass Storage Уже довольно давно я пытался разобраться, как же устроена классическ...","url":"https:\/\/habr.com\/ru\/post\/654853\/#post-content-body","about":["h_controllers","h_circuit-design","f_develop"],"image":["https:\/\/habrastorage.org\/webt\/pa\/zr\/rp\/pazrrpyfrr91ekotummaet6ry1k.png"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="USB на регистрах: виртуальная FAT16" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="USB на регистрах: виртуальная FAT16" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="USB на регистрах: виртуальная FAT16" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: bulk endpoint на примере Mass Storage
+Уже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: bulk endpoint на примере Mass Storage
+Уже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: bulk endpoint на примере Mass Storage
+Уже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: bulk endpoint на примере Mass Storage
+Уже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: bulk endpoint на примере Mass Storage
+Уже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habr.com/share/publication/654853/e63cdd82c7e5153515cc37c1bc18f250/" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habr.com/share/publication/654853/e63cdd82c7e5153515cc37c1bc18f250/" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habr.com/share/publication/654853/e63cdd82c7e5153515cc37c1bc18f250/" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habr.com/share/publication/654853/e63cdd82c7e5153515cc37c1bc18f250/" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habr.com/share/publication/654853/e63cdd82c7e5153515cc37c1bc18f250/?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="654853" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2022-03-09T15:06:34.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/654853/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="arm, stm32, stm32l151, usb, usb-флэшки, msd, msc, грабли и велосипеды, fat, fat16"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654853/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654853/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habr.com/share/publication/654853/e63cdd82c7e5153515cc37c1bc18f250/" data-vmid="image:href"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/COKPOWEHEU/" title="COKPOWEHEU" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/COKPOWEHEU/" class="tm-user-info__username"> COKPOWEHEU </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T15:06:34.000Z" title="2022-03-09, 18:06">сегодня в 18:06</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>USB на регистрах: виртуальная FAT16</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/controllers/" class="tm-article-snippet__hubs-item-link"><span>Программирование микроконтроллеров</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/circuit-design/" class="tm-article-snippet__hubs-item-link"><span>Схемотехника</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span>
+                  </div> <!----> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-1">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <p><img src="https://habrastorage.org/r/w1560/webt/pa/zr/rp/pazrrpyfrr91ekotummaet6ry1k.png" alt="image" data-src="https://habrastorage.org/webt/pa/zr/rp/pazrrpyfrr91ekotummaet6ry1k.png"><br> <a href="https://habr.com/ru/post/548150/">USB на регистрах: STM32L1 / STM32F1</a><br> <a href="https://habr.com/ru/post/549016/">USB на регистрах: bulk endpoint на примере Mass Storage</a></p>
+                     <br> 
+                     <p>Уже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот наконец критическая масса обрывочных сведений в моей голове привела к качественному скачку и закономерному воплю "а что, все действительно настолько просто?!". Нет, разумеется, в FAT полно причудливых костылей, наросших за время ее эволюции, но сама идея и правда проста. Настолько, чтобы реализовать ее эмуляцию на контроллерах вроде stm32f103, stm32l151 в достаточном для ряда задач объеме. То есть наше устройство будет прикидываться флешкой смешного объема, запись и чтение которой будут не приводить к перезаписи памяти, а обрабатываться исключительно кодом.</p><a name="habracut"></a>
+                     <br> 
+                     <h3 id="vozmozhnosti-i-ogranicheniya">Возможности и ограничения</h3>
+                     <br> 
+                     <p>В первую очередь стоит отметить ряд чисто технических ограничений. Самое главное — хост (компьютер) твердо уверен, что данные на подключенной флешке меняет только он. Это значит, что отдавать данные в реальном времени не получится: хост просто не поверит, что они есть. Зато можно в момент подключения "заморозить" данные и отдавать уже их. Далее, единицей информации в протоколе USB-MSD (см. также соответствующую статью) является сектор, то есть блок 512 байт. Все, что меньше, добивается "мусорными нулями" до сектора, все, что больше — передается за несколько запросов. Таким образом (особенно с учетом фрагментирования, о котором ниже) мы на уровне устройства не можем гарантировать целостность данных внутри одного файла. Хост может записать сначала 2-й сектор, потом 10-й, а потом сказать, что к нашему файлу относятся только 3 и 6, тогда как 2 и 10 это System volume information или еще какой-то бесполезный мусор в том же роде. Простейший способ это обойти — использовать файлы размером менее 512 байт, плюс запретить их перемещение. Впрочем, к read-only файлам это не относится: мы заранее задаем им размер и диапазон секторов.</p>
+                     <br> 
+                     <p>Таким образом, библиотека будет эмулировать флешку с файловой системой FAT16 с фиксированным набором файлов, часть из которых доступна только на чтение (как результат — попытка записи может привести операционку в ступор), зато неограниченного объема (в пределах возможностей FAT, то есть до ~32&nbsp;МБ), а часть — на чтение и запись, но не более 512 байт. Первые можно применить для отображения всяческих логов, вторые — для конфигурации. Каталоги и вложенные каталоги не поддерживаются. Создание новых файлов или каталогов средствами ОС не поддерживается. Скорость доступа ограничивается железом и составляет ~600 кБ/с, если применить двойную буферизацию, можно чуть-чуть поднять, но ненамного.</p>
+                     <br> 
+                     <h3 id="vnutrennee-ustroystvo-fat">Внутреннее устройство FAT</h3>
+                     <br> 
+                     <p>Для начала напомню, что FAT это целое семейство файловых систем: FAT12, FAT16, FAT32 и FAT64 (exFAT). Отличаются они, как несложно догадаться, количеством битов, отводимых на адресацию памяти — от 12 до 64. Из них FAT32 а тем более FAT64 для контроллера явный перебор: ему физически негде хранить столько данных. FAT12 наоборот, подошла бы хорошо, но задача разбиения байтовой сетки по 12-битным переменным мне показалась противоестественной и дурацкой. Поэтому будет FAT16. То, что нам не нужно поддерживать все семейство и все опции форматирования, существенно упрощает задачу. Мы можем сразу "отформатировать" флешку именно так, как нам удобно и поддерживать единственный вариант. Далее речь пойдет исключительно про FAT16 именно с таким форматированием. У других файловых систем имеются свои особенности, как например отсутствие жестко заданного корневого каталога в FAT32.</p>
+                     <br> 
+                     <p>Итак FAT16 состоит из 4 идущих подряд областей: PBR (загрузочный сектор), fat (таблица цепочек секторов), root_dir (корневой каталог) и data (собственно данные). Рассмотрим их подробнее:</p>
+                     <br> 
+                     <h4 id="zagruzochnyy-sektor-pbr">Загрузочный сектор PBR</h4>
+                     <br> 
+                     <p>Загрузочный сектор PBR (partition boot record) представляет собой фиксированную структуру следующего вида:</p>
+                     <br> 
+                     <pre><code class="cpp">#pragma pack(push, 1)
+typedef struct __attribute__((__packed__)){
+  uint8_t JmpBoot[3];  //{0xEB, 0x3C, 0x90}
+  uint8_t OEMname[8];  //имя программы, создавшей ФС
+  uint16_t BytesPerSec;//512
+  uint8_t SecPerClust; //1
+  uint16_t SecReserved;//1
+  uint8_t NumFats;     //1
+  uint16_t RootEntCnt; //кратно 16
+  uint16_t TotSect;    //от 0x1000 до 0x10000
+  uint8_t DriveType;   //0xF8 - HDD, 0xF0 - 0xFF - различные флоппики
+  uint16_t fatsize;    //(TotSect / BytesPerSec / SecPerClust * 2)
+  uint16_t SecPerTrak; //0x0020 ?
+  uint16_t NumHeads;   //0x0040 ?
+  uint32_t SecHidden;  //0
+  uint32_t TotSect32;  //0
+
+  uint8_t DriveNum;    //0x80 ?
+  uint8_t NTErrFlag;   //0
+  uint8_t BootSig;     //0x29 ?
+  uint32_t VolID;      //по сути, UUID раздела, берем любое
+  char VolName[11];    //имя раздела (часте6нько игнорируется операционками)
+  char FSName[8];      //"FAT16   " и только так!
+  uint8_t reserved[448];
+  uint16_t EOS_AA55;   //контрольное значение 0xAA55 (в little-endian)
+}fat_pbr_t;
+#pragma pack(pop)</code></pre>
+                     <br> 
+                     <p>Поля <strong>SecPerTrak</strong> (количество секторов на дорожку), <strong>NumHeads</strong> (количество головок), <strong>DriveNum</strong> (номер привода), похоже, являются костылями времен, когда операционка была вынуждена сама следить за дорожками, головками и цилиндрами, не полагаясь на мозги жесткого диска. В современных жестких дисках, а тем более флешках этих понятий нет, так что возьмем из какого-нибудь чужого FAT'а и не будем обращать внимание.</p>
+                     <br> 
+                     <p>Поля <strong>JmpBoot</strong> и <strong>BootSig</strong>, похоже, как-то связаны с загрузкой системы с такого носителя, но несмотря на то, что грузиться с такой FAT явно никто не будет, выставить их в ноль нельзя — win10 (и, наверное, более новые тоже) от этого сходят с ума и считают флешку бракованной. Опять копируем у донора.</p>
+                     <br> 
+                     <p><strong>reserved[448]</strong>. Собственно загрузочный код. А чаще — сообщение, что отсюда грузиться нельзя. К счастью, можно оставить эти байты нулями, что избавляет от необходимости их хранить.</p>
+                     <br> 
+                     <p>Теперь о "косметических" полях, которые отвечают за представление флешки в системе, но не влияют ни на что больше. Это различные имена и сигнатуры (<strong>OEMname</strong>, <strong>VolName</strong>, <strong>FSName</strong>, <strong>VolID</strong>, <strong>DriveType</strong>). Наверное, их можно и не задавать, но лучше уж сделать по-нормальному.</p>
+                     <br> 
+                     <p><strong>SecReserved</strong> — количество служебных секторов перед FAT. Сюда относятся сам PBR и некоторые информационные, которые могут быть, а могут не быть. В нашем случае есть только PBR, поэтому оставляем 1.</p>
+                     <br> 
+                     <p>И наконец важные поля:</p>
+                     <br> 
+                     <p><strong>BytesPerSec</strong>. Количество байтов на сектор. Поскольку USB-MSD в любом случае использует 512-байтные посылки, здесь делаем так же. </p>
+                     <br> 
+                     <p><strong>SecPerClust</strong>. Вообще говоря, в FAT полезные данные, в отличие от служебных, хранятся не в секторах, а в кластерах — группах секторов. То есть области PBR, fat, root_dir адресуются в секторах, а data — в кластерах. Но мы для простоты эти два понятия смешаем: кластер всегда будет состоять из одного сектора.</p>
+                     <br> 
+                     <p><strong>NumFats</strong>. Количество копий таблицы FAT. Обычно делается две копии чтобы, если что, можно было файловую систему восстановить. Но у нас файловая система виртуальная, и если она сломается, так просто будет не починить. Так что обойдемся одной таблицей.</p>
+                     <br> 
+                     <p><strong>RootEntCnt</strong>. Количество файлов в корневом каталоге. В нашем случае оно задано изначально. Но область корневого каталога должна быть кратна размеру сектора. А размер одного описателя файла (элемент каталога) равен 32 байтам. Более подробно его структура будет рассмотрена ниже, пока же достаточно размера. Таким образом, для кратности сектору надо чтобы количество элементов каталога было кратно (512/32 = 16). Даже если у нас 3 файла, придется выделить все 16. Это делается с помощью простенькой битовой магии:</p>
+                     <br> 
+                     <pre><code class="cpp">#define VIRFAT_ROOTENT (( VIRFAT_FILES_TOTAL + 15 ) &amp;~ 15)</code></pre>
+                     <br> 
+                     <p><strong>TotSect</strong>, <strong>TotSect32</strong>. Вероятно, опять костыли для совместимости. Когда 16 битов на хранение количества секторов перестало хватать, выделили еще одно поле, побольше. Согласно стандарту, пользоваться 32-битным полем надо только если в 16-битное записан 0. Но нам такие большие флешки без надобности, поэтому устанавливаем <strong>TotSect32</strong>=0. А вот в <strong>TotSect</strong> уже надо записать осмысленное значение. Согласно стандарту, количество секторов это единственный способ узнать разрядность FAT'а: пока помещается в 12 бит (0 — 0x0FFF) это FAT12, пока помещается в 16 бит (0x0FFF — 0xFFFF) — FAT16 и так далее. На самом деле там еще должны учитываться зарезервированные сектора и все такое, но для прикидки на пальцах сойдет. Причем выбирать количество секторов, близкое к пороговому значению, не стоит, чтобы не вводить в ступор некорректно написанные драйвера. Поскольку мы используем FAT16, размер должен быть не меньше 0x0FFF, но лучше взять с запасом (все равно ведь хранить не будем) — 0x2000. Разумеется, если суммарный размер файлов будет больше, то и количество секторов придется увеличить.</p>
+                     <br> 
+                     <p><strong>fatsize</strong>. Учитывая, что это значение должно соответствовать количеству секторов, странной выглядит необходимость его хранить. Как бы то ни было, количество элементов FAT равно количеству кластеров (TotSect / SecPerClust), а размер одного элемента определяется типом FAT (в нашем случае 2 байта), откуда размер легко вычисляется: (TotSect / BytesPerSec / SecPerClust * 2). Не забываем, что размер задается не в байтах, а в секторах, отсюда и деление на BytesPerSec.</p>
+                     <br> 
+                     <p><strong>EOS_AA55</strong>. Контрольное значение, показывающее, что это не просто рандомный кусок данных, а именно служебный сектор. Всегда равно 0xAA55 и всегда занимает последние два байта сектора.</p>
+                     <br> 
+                     <p>Полный размер данной структуры составляет 512 байт, то есть <u>ровно один сектор</u>, причем <u>нулевой</u>. По идее, он создается единственный раз при форматировании, а потом не меняется. Правда, наблюдение показало, что реальная операционная система зачем-то пытается его перезаписать, причем им же самим. Какой в этом смысл, мне абсолютно непонятно. Не исключено даже что это может увеличивать износ реальных флешек.</p>
+                     <br> 
+                     <h4 id="tablica-fat">Таблица FAT</h4>
+                     <br> 
+                     <p>Таблица FAT представляет собой таблицу номеров, каждый из которых привязан к "своему" сектору и указывает на следующий в цепочке. Условно это можно записать так:</p>
+                     <br> 
+                     <pre><code class="cpp">uint16_t fat[ TotSect32 ];
+uint4096_t sector[ TotSect32 ]; //такая вот 4096-битная (512-байтная) "ячейка"</code></pre>
+                     <br> 
+                     <p>То есть если мы знаем, что файл хранится в 42, 43 и 111 секторах, то сначала мы читаем sector[42] чтобы получить данные, потом fat[42] чтобы получить адрес следующего сектора. В данном примере там будет храниться число 43. Следовательно, дальше мы читаем sector[43] и fat[43], в котором будет число 111. Читаем sector[111] и fat[111], но дальше файл закончился и по цепочке идти не надо. Чтобы это обозначить, используется специальный диапазон кодов 0xFFF8 — 0xFFFF (чем руководствоваться при выборе одного из них мне неизвестно, поэтому пусть концом цепочки всегда будет 0xFFFF). Если же сектор не занят вообще никаким файлом, его помечают кодом 0x0000. Есть и еще один специальный код — 0xFFF7, обозначающий, что данный сектор неисправен и пользоваться им нельзя.</p>
+                     <br> 
+                     <p>И это замечательный код! Объем виртуального носителя не может быть меньше 0x2000 секторов, то есть ~4&nbsp;МБ. Но в той же stm32f103 всего 20&nbsp;кБ, то есть при всем желании обслужить всю файловую систему честно мы не можем. Но можем все "лишние" сектора пометить битыми и реагировать на попытку работы с ними соответственно. Ну да, вот такая "полудохлая" флешка будет, полтора живых сектора и тонна мертвых, но кого это волнует!<br> Начинается эта таблица <u>с 1 сектора</u>, а занимаемый размер несложно вычислить, зная размер элемента FAT (у нас это 16 бит) и <u>их количество</u>:</p>
+                     <br> 
+                     <pre><code class="cpp">((sectotal * 2 + 511) / 512) //+511 нужно для округления в большую сторону</code></pre>
+                     <br> 
+                     <p><u>Отступление из соображений универсальности.</u> В общем случае зарезервирован может быть не только сектор PBR, но и еще некоторые. Если вам нужен универсальный алгоритм, область FAT начинается не с 1, а со значения SecReserved.</p>
+                     <br> 
+                     <p>Разрядность значений fat равна разрядности файловой системы, как и спецзначения. Так, за битый сектор в FAT12 будет отвечать значение 0x0FF7, а в FAT32 — 0xFFFFFFF7.</p>
+                     <br> 
+                     <h4 id="kornevoy-katalog">Корневой каталог</h4>
+                     <br> 
+                     <p>Любой каталог, включая корневой, представляет собой массив 32-байтных записей со следующей структурой:</p>
+                     <br> 
+                     <pre><code class="cpp">#pragma pack(push, 1)
+typedef struct __attribute__((__packed__)) {
+  char name[11];       //имя файла в DOS-формате, т.е. 8.3 и капсом, это важно
+  uint8_t dir_attr;    //атрибуты: скрытый, архивный, каталог, ...
+  uint8_t NTattr;      //не знаю что это
+  uint8_t create_time_10ms; //время создания с точностью до 10 мс (часто игнорируется)
+  uint16_t create_time_s; //время создания с точностью 2 с
+  uint16_t creae_date;    //дата создания
+  uint16_t acc_date;      //дата последнего доступа (даже чтения)
+  uint16_t cluster1_HI;   //=0, старшие 2 байта адреса 1-го кластера
+  uint16_t write_time;    //время последней записи
+  uint16_t write_date;    //дата последней записи
+  uint16_t cluster1_LO;   //младшие 2 байта адреса 1-го кластера
+  uint32_t size;          //размер в байтах
+}dir_elem;
+#pragma pack(pop)</code></pre>
+                     <br> 
+                     <p>И вот это уже просто карнавал костылей! Хотя пока скромный, "деревенский". Максимум извращения будет при попытке в рамках FAT реализовать длинные имена файлов (long file names, LFN). Я этого реализовывать не буду, но со стороны покажу.</p>
+                     <br> 
+                     <p>Так вот, разработчики зачем-то разделили время создания файла на сотые доли секунды и двойки секунд. Причем некоторые драйвера с этими полями работают криво, но тут уж не к разработчикам FAT претензия...</p>
+                     <br> 
+                     <p>Зачем-то разделили адрес первого кластера на два 16-битных поля (нам-то ладно, все равно вся адресация 16-битная, зануляем cluster1_HI и дело с концом), но в полноценном драйвере склеивать два куска это отдельное развлечение.</p>
+                     <br> 
+                     <p>Размер файла задается одной 32-битной переменной. Отсюда и растут ноги легендарного ограничения в 4 ГБ на один файл. А ведь исправить это было бы элементарно: считать размер по занятым кластерам плюс явно хранимый "хвост" — сколько байт последнего кластера занято. Тем более что размер каталогов считается именно так.</p>
+                     <br> 
+                     <p>В полях даты под год выделено всего 7 бит, а счет времени ведется от 1980 года. Переполнение надвигается! Осталось всего 85 лет.</p>
+                     <br> 
+                     <p>Ну и знаменитый формат 8.3, куда ж без него. Разумеется, современный FAT поддерживает нормальные имена файлов. Ну, почти нормальные… Для хранения вместо человеческого utf-8 зачем-то воткнули utf-16. Впрочем, использование неудачной кодировки это еще не самое веселое. Длинное имя в FAT организовано как еще одна или несколько записей в каталоге, то есть это "файлы" со странным форматом!</p>
+                     <br> 
+                     <pre><code class="cpp">#pragma pack(push, 1)
+typedef struct __attribute__((__packed__)) {
+  uint8_t ord;
+  uint16_t name1[5];
+  uint8_t attr;
+  uint8_t dtype;        //0
+  uint8_t checksum;
+  uint16_t name2[6];
+  uint16_t cluster1_LO; //0
+  uint16_t name3[2];
+}lfn_elem;
+#pragma pack(pop)</code></pre>
+                     <br> 
+                     <p>Подробно расписывать формат я не буду, обращу только внимание, что внутри одной структуры имя приходится складывать из ТРЕХ частей, плюс не забываем, что оно может занимать более 13 символов, тогда таких записей будет не одна, а несколько, и их тоже придется складывать. И не забываем про оригинальное имя 8.3, которое тоже никуда не девается. На фоне этого неиспользуемые атрибуты, оставленные для совместимости с обычными файлами, выглядят уже почти нормально...</p>
+                     <br> 
+                     <p>Как бы то ни было, из соображений экономии памяти (и опасения за целостность мозга), длинные имена в данной библиотеке поддерживаться не будут.</p>
+                     <br> 
+                     <p><u>Первый сектор</u> этой области равен (1 + ((sectotal * 2 + 511) / 512)), а чтобы узнать <u>размер</u>, берем количество элементов и делим их по количеству, помещающемуся в секторе: (VIRFAT_ROOTENT / 16).<br> <u>Отступление в сторону FAT32.</u><br> Там выделенного корневого каталога нет. Соответственно, нет и описанной здесь области. Вместо этого в PBR введено поле адреса первого сектора корневого каталога. То есть он теперь ничем не выделяется из всех остальных каталогов, и это гораздо удобнее.</p>
+                     <br> 
+                     <h4 id="oblast-dannyh">Область данных</h4>
+                     <br> 
+                     <p>Вот тут никакой особой структуры нет. Адресация идет посекторно, номера секторов 0 и 1 зарезервированы под какие-то другие цели и в таблице FAT обозначаются обычно как 0xFFF8 и 0xFFFF. Еще рекомендуется второй сектор отдать под "файл метки тома". По сути, это обычный файл нулевого размера, обладающий атрибутом dir_attr = VolID (0x08) и чье имя (8.3 разве что без точки) отображается как метка всей флешки в целом. В списке файлов он, разумеется, не виден.</p>
+                     <br> 
+                     <p>Начинается она, очевидно, сразу после dir_root и доходит до конца диска.</p>
+                     <br> 
+                     <p>Отступление в сторону FAT32. Поскольку корневого каталога нет, поле RootEntCnt равно 0, и слагаемого (VIRFAT_ROOTENT/16) там не будет.</p>
+                     <br> 
+                     <h4 id="tablica-adresov-oblastey">Таблица адресов областей</h4>
+                     <br> 
+                     <div class="scrollable-table">
+                      <table> 
+                       <thead> 
+                        <tr> 
+                         <th>Область</th> 
+                         <th>Адрес начала в VirFat</th> 
+                         <th>В общем виде</th> 
+                        </tr> 
+                       </thead> 
+                       <tbody> 
+                        <tr> 
+                         <td>PBR</td> 
+                         <td>0</td> 
+                         <td>0</td> 
+                        </tr> 
+                        <tr> 
+                         <td>FAT</td> 
+                         <td>PBR + 1</td> 
+                         <td>PBR + SecReserved</td> 
+                        </tr> 
+                        <tr> 
+                         <td>root_dir</td> 
+                         <td>FAT + ((sectotal * 2 + 511) / 512)</td> 
+                         <td>FAT + TotSect * fatN / SecPerClust / BytesPerSec</td> 
+                        </tr> 
+                        <tr> 
+                         <td>data</td> 
+                         <td>root_dir + (VIRFAT_ROOTENT/16)</td> 
+                         <td>root_dir + (RootEntCnt / fatN)</td> 
+                        </tr> 
+                        <tr> 
+                         <td>data[i]</td> 
+                         <td>data + (i-2)</td> 
+                         <td>data + (i-2)*SecPerClust</td> 
+                        </tr> 
+                       </tbody> 
+                      </table>
+                     </div>
+                     <br> 
+                     <p>, где значение fatN — количество байт на адрес. Для fat16 оно равно 2, для fat32 — 4. Вся адресация идет в секторах.</p>
+                     <br> 
+                     <h3 id="demo-kod-analiza-suschestvuyuschih-fat16">Демо-код анализа существующих FAT16</h3>
+                     <br> 
+                     <p>То, с чем я дольше всего возился при расковыривании FAT — по каким же адресам какая область расположена и какие параметры на это влияют. Чтобы визуализировать это более наглядно, я написал простенькую (~200 строк) программу, которая читает произвольный образ файловой системы с FAT16 и показывает адреса важных областей. Дополнительно можно тот же образ открыть в шестнадцатеричном редакторе вроде okteta или хотя бы hexdump и сравнить содержимое адресов. Важно, что эта программа работает только с FAT16 и только с образом отдельной файловой системы. Образ целого диска со всякими MBR, тремя основными разделами и кучей расширенных — мимо.</p>
+                     <br> 
+                     <p>Создать образцовый образ диска, чтобы сравнивать с ним нашу виртуальную флешку, можно простой парой команд:</p>
+                     <br> 
+                     <p>Создаем файл образа минимально допустимого для FAT16 размера 4 МБ:</p>
+                     <br> 
+                     <pre><code class="bash">$ dd if=/dev/zero of=fat16.img bs=1k count=4096</code></pre>
+                     <br> 
+                     <p>Создаем на нем файловую систему FAT16 (-F 16) с единственной копией таблицы FAT (-f 1) с единственным зарезервированным сектором (-R 1) с максимальным количеством файлов в корневом каталоге равным 16 (-r 16) и размером кластера 512 байт или 1 сектор (-s 1):</p>
+                     <br> 
+                     <pre><code class="bash"># mkfs.vfat -f 1 -F 16 -n SOMENAME -r 16 -R 1 -s 1 fat16.img</code></pre>
+                     <br> 
+                     <p>Теперь полученный образ можно куда-нибудь смонтировать, создавать там файлы или каталоги и смотреть по каким адресам они появятся.</p>
+                     <br> 
+                     <p>Разумеется, ничто не мешает посмотреть документацию на mkfs.vfat и выставить другие параметры, чтобы сравнить и их влияние на адреса.</p>
+                     <br> 
+                     <p>Исходный код программы доступен здесь: <a href="https://github.com/COKPOWEHEU/usb/tree/main/6.VirFat_DemoCode" rel="nofollow noopener noreferrer">https://github.com/COKPOWEHEU/usb/tree/main/6.VirFat_DemoCode</a></p>
+                     <br> 
+                     <h3 id="stykovka-s-usb-msd">Стыковка с USB-MSD</h3>
+                     <br> 
+                     <p>Сама по себе идея любой виртуальной файловой системы всегда одинакова: надо отобразить запрошенный хостом адрес на тот или иной алгоритм расчета значений. Например, если хост хочет прочитать нулевой сектор, нам не надо отдавать ему адрес реальных данных, можно скопировать содержательную часть PBR в буфер, добить бессодержательную нулями и не забыть контрольный 0xAA55. За это отвечает функция <strong>_virfat_read_pbr()</strong>.</p>
+                     <br> 
+                     <p>Аналогично обрабатываются попытки доступа ко всем остальным областям:<br> Если запрошенный сектор соответствует области таблицы FAT, <strong>_virfat_read_fat()</strong> перебирает существующие файлы и их диапазоны секторов и копирует в выходной буфер только их. Ну или 0xFFF7 если данные уже закончились, а сектора — нет.</p>
+                     <br> 
+                     <p>Если хосту понадобился сектор из области корневого каталога, <strong>_virfat_read_root()</strong> возвращает информацию по тем файлам, которые в него попали. Тоже, разумеется, не храня о них всю информацию. Так. например, дата создания у всех файлов задается прямо в прошивке, а дата последнего доступа обновляется у всех синхронно при доступе к любому отдельному файлу.</p>
+                     <br> 
+                     <p><u>FunFact:</u> по времени и дате последнего доступа можно попытаться синхронизировать время с компьютером. Правда, точность и надежность такого подхода оптимизма не внушают…<br> <strong>_virfat_read_data()</strong> определяет какому файлу соответствует запрошенный сектор из области данных и вызывает соответствующий callback. Более подробно о callback'ах и алгоритме использования библиотеки будет рассказано далее.</p>
+                     <br> 
+                     <p>Ну и разумеется, симметричные функции для записи: <strong>_virfat_write_fat()</strong>, <strong>_virfat_write_root()</strong>, <strong>_virfat_write_data()</strong>. Поскольку список файлов и их сектора в моей реализации прописаны жестко, первая из них не делает вообще ничего. Вторая в принципе тоже — только подправляет дату последнего доступа. А третья, как и <strong>_virfat_read_data()</strong>, переводит абсолютный адрес сектора в относительный для файла и вызывает callback.</p>
+                     <br> 
+                     <p>Собственно, с точки зрения USB-MSD больше ничего и не требуется: по запросу можно "прочитать" любой сектор, можно "записать" его. Разве что придется из 64-байтных посылок собирать-разбирать 512-байтные сектора. Ну и отдельный запрос на размер носителя.</p>
+                     <br> 
+                     <h3 id="primer-raboty-s-bibliotekoy">Пример работы с библиотекой</h3>
+                     <br> 
+                     <p>Первым делом надо заполнить список файлов в корневом каталоге (напоминаю, что других тут и не будет). Для этого служит специальная константная структура:</p>
+                     <br> 
+                     <pre><code class="cpp">typedef struct{
+  char *name;                //имя в формате 8.3, то есть 11 символов
+  virfat_callback file_read;    //callback на чтение
+  virfat_callback file_write;   //callback на запись
+  uint16_t size;             //размер файла
+}virfat_file_t;</code></pre>
+                     <br> 
+                     <p>Такие структуры собираются в массив:</p>
+                     <br> 
+                     <pre><code class="cpp">static const virfat_file_t virfat_rootdir[] = {
+  {
+    .name = "RLED    TXT",
+    .file_read = demo_led_read,
+    .file_write = demo_led_write,
+    .size = 1,
+  },
+  {
+    .name = "GLED    TXT",
+    .file_read = demo_led_read,
+    .file_write = demo_led_write,
+    .size = 1,
+  },
+  {
+    .name = "LOG     TXT",
+    .file_read = demo_log_read,
+    .file_write = virfat_file_dummy,
+    .size = DEMO_LOG_SIZE,
+  },
+  {
+    .name = "DUMMY   TXT",
+    .file_read = virfat_file_dummy,
+    .file_write = virfat_file_dummy,
+    .size = 1,
+  },
+};</code></pre>
+                     <br> 
+                     <p>Для каждого файла мы указали, какая функция будет вызываться при попытке его прочитать или записать. Диапазон адресов для каждого файла каждый раз вычисляется в рантайме простым сложением размеров предшествующих ему файлов.</p>
+                     <br> 
+                     <h3 id="konfig-fayly">Конфиг-файлы</h3>
+                     <br> 
+                     <p>Начнем с "конфигурационных" файлов, то есть тех, для которых запись вообще разрешена. Напоминаю, что их размер ограничен одним сектором. В качестве демонстрации, пусть первый файл будет прикреплен к красному светодиоду, а второй к зеленому. Если в файл записать 1, светодиод загорится, если 0 (или что угодно еще) — погаснет.</p>
+                     <br> 
+                     <pre><code class="cpp">void demo_led_read(uint8_t *buf, uint32_t addr, uint16_t file_idx){
+  for(uint16_t i=1; i&lt;512; i++)buf[i] = ' ';
+  if(file_idx == 0){
+    if( GPI_ON(RLED) )buf[0] = '1'; else buf[0] = '0';
+  }else{
+    if( GPI_ON(GLED) )buf[0] = '0'; else buf[0] = '0';
+  }
+}
+void demo_led_write(uint8_t *buf, uint32_t addr, uint16_t file_idx){
+  if(file_idx == 0){
+    if(buf[0] == '1')GPO_ON(RLED); else GPO_OFF(RLED);
+  }else{
+    if(buf[0] == '1')GPO_ON(GLED); else GPO_OFF(GLED);
+  }
+}</code></pre>
+                     <br> 
+                     <p>Думаю, особенного пояснения данный код не требует. Кроме аргумента file_idx. Он нужен чтобы вешать один и тот же callback на несколько файлов, как в данном случае. Он равен номеру файла в массиве virfat_rootdir.</p>
+                     <br> 
+                     <h3 id="data-fayly">Дата-файлы</h3>
+                     <br> 
+                     <p>Вторая задача, которую данная библиотека должна решить — отображение каких-либо измеренных данных в удобочитаемом виде. Например, у нас есть массив структур</p>
+                     <br> 
+                     <pre><code class="cpp">struct demolog_data_t{
+  uint16_t x;
+  uint16_t y;
+};
+#define DEMO_DATASIZE   1000
+const struct demolog_data_t demo_log[DEMO_DATASIZE] = {
+  [0]   = {0,   0},
+  [1]   = {1,   1},
+  [10]  = {10,  10},
+  [100] = {100, 100},
+  [500] = {500, 500},
+  [999] = {999, 999},
+};</code></pre>
+                     <br> 
+                     <p>Мы хотим его представить как красивый текстовый файл, с человеко-читаемой шапкой, с разделением в несколько столбцов, может даже какие-то расчеты провести дополнительно. Мало ли, перевести из внутренних "попугаев" в нормальные вольты. В первую очередь определимся как элемент массива перевести в строку. В моем примере это делается так:</p>
+                     <br> 
+                     <pre><code class="cpp">u32tobuf(i, &amp;buf[pos]); pos+=12; //первое число в "файле" будет просто номером
+u32tobuf(demo_log[i].x, &amp;buf[pos]); pos+=12;
+u32tobuf(demo_log[i].y, &amp;buf[pos]); pos+=12;
+buf[pos-1] = '\r';
+buf[pos] = '\n';
+pos++;</code></pre>
+                     <br> 
+                     <p>Функция u32tobuf написана так, чтобы вписывать десятичное представление числа строго в заданное поле размером 11 символов и символ '\t' после. Сделано это для того чтобы каждая строка была одинаковой длины. Таким образом можно рассчитать сколько записей помещается на один сектор. Но важнее обратный расчет — какие номера записей надо отдать по запросу данного сектора. В моем случае длина строки составила 37 символов. То есть "честно" на границу сектора она не ляжет. Но нам ничто не мешает "добить" последнюю строку пробелами до границы. Нам ведь не надо тратить на их хранение память, а программы работы с текстовыми таблицами прекрасно "сколлапсируют" любое количество пробелов и табуляций в один разделитель.</p>
+                     <br> 
+                     <p>Аналогичным способом решается добавление текстовой шапки. Она хранится где-то в постоянной памяти контроллера и подставляется в начало "файла" с последующим сдвигом адресов данных.</p>
+                     <br> 
+                     <p><strong>Важно!</strong> Если вы хотите отдавать не все снятые данные, а только часть (например, не успели заполнить буфер до конца), не провоцируйте хост на уменьшение файла (оно ведь не поддерживается). Лучше просто забейте неиспользуемые сектора пробелами.</p>
+                     <br> 
+                     <h3 id="zaklyuchenie">Заключение</h3>
+                     <br> 
+                     <p>Итак, мы получили относительно легкий эмулятор файловой системы FAT16, который позволяет достаточно кроссплатформенно проводить простую настройку USB-устройств а также отображать их внутренние данные в красивом текстовом (да даже не обязательно текстовом!) виде. Напоминаю, что для интерактивной настройки данный способ не сработает: устройству запрещено менять свои данные пока оно подключено к хосту. Ну а в приведенной демо-версии можно просто помигать светодиодами и почитать километровый лог.</p>
+                     <br> 
+                     <p>P.S. Почему-то Андроид записать файлы не смог. Пока не разобрался с чем это связано. Возможно, он хочет сначала создать новый файл, а потом переименовать его под старый. В Linux и Windows такой проблемы нет.</p>
+                     <br> 
+                     <p>Как обычно, исходные коды и кое-какая литература доступны по ссылкам:<br> <a href="https://github.com/COKPOWEHEU/usb/tree/main/6.VirFat_L1" rel="nofollow noopener noreferrer">https://github.com/COKPOWEHEU/usb/tree/main/6.VirFat_L1</a><br> <a href="https://github.com/COKPOWEHEU/usb/tree/main/6.VirFat_F1" rel="nofollow noopener noreferrer">https://github.com/COKPOWEHEU/usb/tree/main/6.VirFat_F1</a><br> (это часть основного репозитория <a href="https://github.com/COKPOWEHEU/usb" rel="nofollow noopener noreferrer">https://github.com/COKPOWEHEU/usb</a>)</p>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Barm%5D" class="tm-tags-list__link">arm</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bstm32%5D" class="tm-tags-list__link">stm32</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bstm32l151%5D" class="tm-tags-list__link">stm32l151</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Busb%5D" class="tm-tags-list__link">usb</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Busb-%D1%84%D0%BB%D1%8D%D1%88%D0%BA%D0%B8%5D" class="tm-tags-list__link">usb-флэшки</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bmsd%5D" class="tm-tags-list__link">msd</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bmsc%5D" class="tm-tags-list__link">msc</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B8%20%D0%B8%20%D0%B2%D0%B5%D0%BB%D0%BE%D1%81%D0%B8%D0%BF%D0%B5%D0%B4%D1%8B%5D" class="tm-tags-list__link">грабли и велосипеды</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bfat%5D" class="tm-tags-list__link">fat</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bfat16%5D" class="tm-tags-list__link">fat16</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/controllers/" class="tm-hubs-list__link"> Программирование микроконтроллеров </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/circuit-design/" class="tm-hubs-list__link"> Схемотехника </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 18: ↑18 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 18: ↑18 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+18</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">1.8K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 19 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/COKPOWEHEU/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <svg class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 90 голосов " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         56 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         18
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <!----> <a href="/ru/users/COKPOWEHEU/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @COKPOWEHEU </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Пользователь</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <!----> <!----> <!---->
+                  </div>
+                 </div> <!---->
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner2670" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/654853/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 1 </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> <!----> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner2671" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom2672" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654853/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654853/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654853":{"id":"654853","timePublished":"2022-03-09T15:06:34+00:00","isCorporative":false,"lang":"ru","titleHtml":"USB на регистрах: виртуальная FAT16","leadData":{"textHtml":"\u003Cp\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Fpa\u002Fzr\u002Frp\u002Fpazrrpyfrr91ekotummaet6ry1k.png\" alt=\"image\"\u003E\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F548150\u002F\"\u003EUSB на регистрах: STM32L1 \u002F STM32F1\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F549016\u002F\"\u003EUSB на регистрах: bulk endpoint на примере Mass Storage\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cbr\u003E\r\n\u003Cp\u003EУже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот наконец критическая масса обрывочных сведений в моей голове привела к качественному скачку и закономерному воплю &quot;а что, все действительно настолько просто?!&quot;. Нет, разумеется, в FAT полно причудливых костылей, наросших за время ее эволюции, но сама идея и правда проста. Настолько, чтобы реализовать ее эмуляцию на контроллерах вроде stm32f103, stm32l151 в достаточном для ряда задач объеме. То есть наше устройство будет прикидываться флешкой смешного объема, запись и чтение которой будут не приводить к перезаписи памяти, а обрабатываться исключительно кодом.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать дальше &rarr;","image":null},"editorVersion":"1.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":56,"votesCount":90},"rating":18,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"1876369","alias":"COKPOWEHEU","fullname":null,"avatarUrl":null,"speciality":null},"statistics":{"commentsCount":1,"favoritesCount":19,"readingCount":1768,"score":18,"votesCount":18},"hubs":[{"relatedData":null,"id":"19737","alias":"controllers","type":"collective","title":"Программирование микроконтроллеров","titleHtml":"Программирование микроконтроллеров","isProfiled":true},{"relatedData":null,"id":"21472","alias":"circuit-design","type":"collective","title":"Схемотехника","titleHtml":"Схемотехника","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fpa\u002Fzr\u002Frp\u002Fpazrrpyfrr91ekotummaet6ry1k.png\" alt=\"image\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Fpa\u002Fzr\u002Frp\u002Fpazrrpyfrr91ekotummaet6ry1k.png\"\u002F\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F548150\u002F\"\u003EUSB на регистрах: STM32L1 \u002F STM32F1\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F549016\u002F\"\u003EUSB на регистрах: bulk endpoint на примере Mass Storage\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EУже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот наконец критическая масса обрывочных сведений в моей голове привела к качественному скачку и закономерному воплю \"а что, все действительно настолько просто?!\". Нет, разумеется, в FAT полно причудливых костылей, наросших за время ее эволюции, но сама идея и правда проста. Настолько, чтобы реализовать ее эмуляцию на контроллерах вроде stm32f103, stm32l151 в достаточном для ряда задач объеме. То есть наше устройство будет прикидываться флешкой смешного объема, запись и чтение которой будут не приводить к перезаписи памяти, а обрабатываться исключительно кодом.\u003C\u002Fp\u003E\u003Ca name=\"habracut\"\u003E\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ch3 id=\"vozmozhnosti-i-ogranicheniya\"\u003EВозможности и ограничения\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EВ первую очередь стоит отметить ряд чисто технических ограничений. Самое главное — хост (компьютер) твердо уверен, что данные на подключенной флешке меняет только он. Это значит, что отдавать данные в реальном времени не получится: хост просто не поверит, что они есть. Зато можно в момент подключения \"заморозить\" данные и отдавать уже их. Далее, единицей информации в протоколе USB-MSD (см. также соответствующую статью) является сектор, то есть блок 512 байт. Все, что меньше, добивается \"мусорными нулями\" до сектора, все, что больше — передается за несколько запросов. Таким образом (особенно с учетом фрагментирования, о котором ниже) мы на уровне устройства не можем гарантировать целостность данных внутри одного файла. Хост может записать сначала 2-й сектор, потом 10-й, а потом сказать, что к нашему файлу относятся только 3 и 6, тогда как 2 и 10 это System volume information или еще какой-то бесполезный мусор в том же роде. Простейший способ это обойти — использовать файлы размером менее 512 байт, плюс запретить их перемещение. Впрочем, к read-only файлам это не относится: мы заранее задаем им размер и диапазон секторов.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EТаким образом, библиотека будет эмулировать флешку с файловой системой FAT16 с фиксированным набором файлов, часть из которых доступна только на чтение (как результат — попытка записи может привести операционку в ступор), зато неограниченного объема (в пределах возможностей FAT, то есть до ~32 МБ), а часть — на чтение и запись, но не более 512 байт. Первые можно применить для отображения всяческих логов, вторые — для конфигурации. Каталоги и вложенные каталоги не поддерживаются. Создание новых файлов или каталогов средствами ОС не поддерживается. Скорость доступа ограничивается железом и составляет ~600 кБ\u002Fс, если применить двойную буферизацию, можно чуть-чуть поднять, но ненамного.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch3 id=\"vnutrennee-ustroystvo-fat\"\u003EВнутреннее устройство FAT\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EДля начала напомню, что FAT это целое семейство файловых систем: FAT12, FAT16, FAT32 и FAT64 (exFAT). Отличаются они, как несложно догадаться, количеством битов, отводимых на адресацию памяти — от 12 до 64. Из них FAT32 а тем более FAT64 для контроллера явный перебор: ему физически негде хранить столько данных. FAT12 наоборот, подошла бы хорошо, но задача разбиения байтовой сетки по 12-битным переменным мне показалась противоестественной и дурацкой. Поэтому будет FAT16. То, что нам не нужно поддерживать все семейство и все опции форматирования, существенно упрощает задачу. Мы можем сразу \"отформатировать\" флешку именно так, как нам удобно и поддерживать единственный вариант. Далее речь пойдет исключительно про FAT16 именно с таким форматированием. У других файловых систем имеются свои особенности, как например отсутствие жестко заданного корневого каталога в FAT32.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EИтак FAT16 состоит из 4 идущих подряд областей: PBR (загрузочный сектор), fat (таблица цепочек секторов), root_dir (корневой каталог) и data (собственно данные). Рассмотрим их подробнее:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch4 id=\"zagruzochnyy-sektor-pbr\"\u003EЗагрузочный сектор PBR\u003C\u002Fh4\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EЗагрузочный сектор PBR (partition boot record) представляет собой фиксированную структуру следующего вида:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E#pragma pack(push, 1)\ntypedef struct __attribute__((__packed__)){\n  uint8_t JmpBoot[3];  \u002F\u002F{0xEB, 0x3C, 0x90}\n  uint8_t OEMname[8];  \u002F\u002Fимя программы, создавшей ФС\n  uint16_t BytesPerSec;\u002F\u002F512\n  uint8_t SecPerClust; \u002F\u002F1\n  uint16_t SecReserved;\u002F\u002F1\n  uint8_t NumFats;     \u002F\u002F1\n  uint16_t RootEntCnt; \u002F\u002Fкратно 16\n  uint16_t TotSect;    \u002F\u002Fот 0x1000 до 0x10000\n  uint8_t DriveType;   \u002F\u002F0xF8 - HDD, 0xF0 - 0xFF - различные флоппики\n  uint16_t fatsize;    \u002F\u002F(TotSect \u002F BytesPerSec \u002F SecPerClust * 2)\n  uint16_t SecPerTrak; \u002F\u002F0x0020 ?\n  uint16_t NumHeads;   \u002F\u002F0x0040 ?\n  uint32_t SecHidden;  \u002F\u002F0\n  uint32_t TotSect32;  \u002F\u002F0\n\n  uint8_t DriveNum;    \u002F\u002F0x80 ?\n  uint8_t NTErrFlag;   \u002F\u002F0\n  uint8_t BootSig;     \u002F\u002F0x29 ?\n  uint32_t VolID;      \u002F\u002Fпо сути, UUID раздела, берем любое\n  char VolName[11];    \u002F\u002Fимя раздела (часте6нько игнорируется операционками)\n  char FSName[8];      \u002F\u002F\"FAT16   \" и только так!\n  uint8_t reserved[448];\n  uint16_t EOS_AA55;   \u002F\u002Fконтрольное значение 0xAA55 (в little-endian)\n}fat_pbr_t;\n#pragma pack(pop)\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EПоля \u003Cstrong\u003ESecPerTrak\u003C\u002Fstrong\u003E (количество секторов на дорожку), \u003Cstrong\u003ENumHeads\u003C\u002Fstrong\u003E (количество головок), \u003Cstrong\u003EDriveNum\u003C\u002Fstrong\u003E (номер привода), похоже, являются костылями времен, когда операционка была вынуждена сама следить за дорожками, головками и цилиндрами, не полагаясь на мозги жесткого диска. В современных жестких дисках, а тем более флешках этих понятий нет, так что возьмем из какого-нибудь чужого FAT'а и не будем обращать внимание.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EПоля \u003Cstrong\u003EJmpBoot\u003C\u002Fstrong\u003E и \u003Cstrong\u003EBootSig\u003C\u002Fstrong\u003E, похоже, как-то связаны с загрузкой системы с такого носителя, но несмотря на то, что грузиться с такой FAT явно никто не будет, выставить их в ноль нельзя — win10 (и, наверное, более новые тоже) от этого сходят с ума и считают флешку бракованной. Опять копируем у донора.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003Ereserved[448]\u003C\u002Fstrong\u003E. Собственно загрузочный код. А чаще — сообщение, что отсюда грузиться нельзя. К счастью, можно оставить эти байты нулями, что избавляет от необходимости их хранить.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EТеперь о \"косметических\" полях, которые отвечают за представление флешки в системе, но не влияют ни на что больше. Это различные имена и сигнатуры (\u003Cstrong\u003EOEMname\u003C\u002Fstrong\u003E, \u003Cstrong\u003EVolName\u003C\u002Fstrong\u003E, \u003Cstrong\u003EFSName\u003C\u002Fstrong\u003E, \u003Cstrong\u003EVolID\u003C\u002Fstrong\u003E, \u003Cstrong\u003EDriveType\u003C\u002Fstrong\u003E). Наверное, их можно и не задавать, но лучше уж сделать по-нормальному.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003ESecReserved\u003C\u002Fstrong\u003E — количество служебных секторов перед FAT. Сюда относятся сам PBR и некоторые информационные, которые могут быть, а могут не быть. В нашем случае есть только PBR, поэтому оставляем 1.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EИ наконец важные поля:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003EBytesPerSec\u003C\u002Fstrong\u003E. Количество байтов на сектор. Поскольку USB-MSD в любом случае использует 512-байтные посылки, здесь делаем так же. \u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003ESecPerClust\u003C\u002Fstrong\u003E. Вообще говоря, в FAT полезные данные, в отличие от служебных, хранятся не в секторах, а в кластерах — группах секторов. То есть области PBR, fat, root_dir адресуются в секторах, а data — в кластерах. Но мы для простоты эти два понятия смешаем: кластер всегда будет состоять из одного сектора.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003ENumFats\u003C\u002Fstrong\u003E. Количество копий таблицы FAT. Обычно делается две копии чтобы, если что, можно было файловую систему восстановить. Но у нас файловая система виртуальная, и если она сломается, так просто будет не починить. Так что обойдемся одной таблицей.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003ERootEntCnt\u003C\u002Fstrong\u003E. Количество файлов в корневом каталоге. В нашем случае оно задано изначально. Но область корневого каталога должна быть кратна размеру сектора. А размер одного описателя файла (элемент каталога) равен 32 байтам. Более подробно его структура будет рассмотрена ниже, пока же достаточно размера. Таким образом, для кратности сектору надо чтобы количество элементов каталога было кратно (512\u002F32 = 16). Даже если у нас 3 файла, придется выделить все 16. Это делается с помощью простенькой битовой магии:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E#define VIRFAT_ROOTENT (( VIRFAT_FILES_TOTAL + 15 ) &amp;~ 15)\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003ETotSect\u003C\u002Fstrong\u003E, \u003Cstrong\u003ETotSect32\u003C\u002Fstrong\u003E. Вероятно, опять костыли для совместимости. Когда 16 битов на хранение количества секторов перестало хватать, выделили еще одно поле, побольше. Согласно стандарту, пользоваться 32-битным полем надо только если в 16-битное записан 0. Но нам такие большие флешки без надобности, поэтому устанавливаем \u003Cstrong\u003ETotSect32\u003C\u002Fstrong\u003E=0. А вот в \u003Cstrong\u003ETotSect\u003C\u002Fstrong\u003E уже надо записать осмысленное значение. Согласно стандарту, количество секторов это единственный способ узнать разрядность FAT'а: пока помещается в 12 бит (0 — 0x0FFF) это FAT12, пока помещается в 16 бит (0x0FFF — 0xFFFF) — FAT16 и так далее. На самом деле там еще должны учитываться зарезервированные сектора и все такое, но для прикидки на пальцах сойдет. Причем выбирать количество секторов, близкое к пороговому значению, не стоит, чтобы не вводить в ступор некорректно написанные драйвера. Поскольку мы используем FAT16, размер должен быть не меньше 0x0FFF, но лучше взять с запасом (все равно ведь хранить не будем) — 0x2000. Разумеется, если суммарный размер файлов будет больше, то и количество секторов придется увеличить.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003Efatsize\u003C\u002Fstrong\u003E. Учитывая, что это значение должно соответствовать количеству секторов, странной выглядит необходимость его хранить. Как бы то ни было, количество элементов FAT равно количеству кластеров (TotSect \u002F SecPerClust), а размер одного элемента определяется типом FAT (в нашем случае 2 байта), откуда размер легко вычисляется: (TotSect \u002F BytesPerSec \u002F SecPerClust * 2). Не забываем, что размер задается не в байтах, а в секторах, отсюда и деление на BytesPerSec.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003EEOS_AA55\u003C\u002Fstrong\u003E. Контрольное значение, показывающее, что это не просто рандомный кусок данных, а именно служебный сектор. Всегда равно 0xAA55 и всегда занимает последние два байта сектора.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EПолный размер данной структуры составляет 512 байт, то есть \u003Cu\u003Eровно один сектор\u003C\u002Fu\u003E, причем \u003Cu\u003Eнулевой\u003C\u002Fu\u003E. По идее, он создается единственный раз при форматировании, а потом не меняется. Правда, наблюдение показало, что реальная операционная система зачем-то пытается его перезаписать, причем им же самим. Какой в этом смысл, мне абсолютно непонятно. Не исключено даже что это может увеличивать износ реальных флешек.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch4 id=\"tablica-fat\"\u003EТаблица FAT\u003C\u002Fh4\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EТаблица FAT представляет собой таблицу номеров, каждый из которых привязан к \"своему\" сектору и указывает на следующий в цепочке. Условно это можно записать так:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Euint16_t fat[ TotSect32 ];\nuint4096_t sector[ TotSect32 ]; \u002F\u002Fтакая вот 4096-битная (512-байтная) \"ячейка\"\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EТо есть если мы знаем, что файл хранится в 42, 43 и 111 секторах, то сначала мы читаем sector[42] чтобы получить данные, потом fat[42] чтобы получить адрес следующего сектора. В данном примере там будет храниться число 43. Следовательно, дальше мы читаем sector[43] и fat[43], в котором будет число 111. Читаем sector[111] и fat[111], но дальше файл закончился и по цепочке идти не надо. Чтобы это обозначить, используется специальный диапазон кодов 0xFFF8 — 0xFFFF (чем руководствоваться при выборе одного из них мне неизвестно, поэтому пусть концом цепочки всегда будет 0xFFFF). Если же сектор не занят вообще никаким файлом, его помечают кодом 0x0000. Есть и еще один специальный код — 0xFFF7, обозначающий, что данный сектор неисправен и пользоваться им нельзя.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EИ это замечательный код! Объем виртуального носителя не может быть меньше 0x2000 секторов, то есть ~4 МБ. Но в той же stm32f103 всего 20 кБ, то есть при всем желании обслужить всю файловую систему честно мы не можем. Но можем все \"лишние\" сектора пометить битыми и реагировать на попытку работы с ними соответственно. Ну да, вот такая \"полудохлая\" флешка будет, полтора живых сектора и тонна мертвых, но кого это волнует!\u003Cbr\u002F\u003E\r\nНачинается эта таблица \u003Cu\u003Eс 1 сектора\u003C\u002Fu\u003E, а занимаемый размер несложно вычислить, зная размер элемента FAT (у нас это 16 бит) и \u003Cu\u003Eих количество\u003C\u002Fu\u003E:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E((sectotal * 2 + 511) \u002F 512) \u002F\u002F+511 нужно для округления в большую сторону\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cu\u003EОтступление из соображений универсальности.\u003C\u002Fu\u003E В общем случае зарезервирован может быть не только сектор PBR, но и еще некоторые. Если вам нужен универсальный алгоритм, область FAT начинается не с 1, а со значения SecReserved.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EРазрядность значений fat равна разрядности файловой системы, как и спецзначения. Так, за битый сектор в FAT12 будет отвечать значение 0x0FF7, а в FAT32 — 0xFFFFFFF7.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch4 id=\"kornevoy-katalog\"\u003EКорневой каталог\u003C\u002Fh4\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EЛюбой каталог, включая корневой, представляет собой массив 32-байтных записей со следующей структурой:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E#pragma pack(push, 1)\ntypedef struct __attribute__((__packed__)) {\n  char name[11];       \u002F\u002Fимя файла в DOS-формате, т.е. 8.3 и капсом, это важно\n  uint8_t dir_attr;    \u002F\u002Fатрибуты: скрытый, архивный, каталог, ...\n  uint8_t NTattr;      \u002F\u002Fне знаю что это\n  uint8_t create_time_10ms; \u002F\u002Fвремя создания с точностью до 10 мс (часто игнорируется)\n  uint16_t create_time_s; \u002F\u002Fвремя создания с точностью 2 с\n  uint16_t creae_date;    \u002F\u002Fдата создания\n  uint16_t acc_date;      \u002F\u002Fдата последнего доступа (даже чтения)\n  uint16_t cluster1_HI;   \u002F\u002F=0, старшие 2 байта адреса 1-го кластера\n  uint16_t write_time;    \u002F\u002Fвремя последней записи\n  uint16_t write_date;    \u002F\u002Fдата последней записи\n  uint16_t cluster1_LO;   \u002F\u002Fмладшие 2 байта адреса 1-го кластера\n  uint32_t size;          \u002F\u002Fразмер в байтах\n}dir_elem;\n#pragma pack(pop)\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EИ вот это уже просто карнавал костылей! Хотя пока скромный, \"деревенский\". Максимум извращения будет при попытке в рамках FAT реализовать длинные имена файлов (long file names, LFN). Я этого реализовывать не буду, но со стороны покажу.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EТак вот, разработчики зачем-то разделили время создания файла на сотые доли секунды и двойки секунд. Причем некоторые драйвера с этими полями работают криво, но тут уж не к разработчикам FAT претензия...\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EЗачем-то разделили адрес первого кластера на два 16-битных поля (нам-то ладно, все равно вся адресация 16-битная, зануляем cluster1_HI и дело с концом), но в полноценном драйвере склеивать два куска это отдельное развлечение.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EРазмер файла задается одной 32-битной переменной. Отсюда и растут ноги легендарного ограничения в 4 ГБ на один файл. А ведь исправить это было бы элементарно: считать размер по занятым кластерам плюс явно хранимый \"хвост\" — сколько байт последнего кластера занято. Тем более что размер каталогов считается именно так.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EВ полях даты под год выделено всего 7 бит, а счет времени ведется от 1980 года. Переполнение надвигается! Осталось всего 85 лет.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EНу и знаменитый формат 8.3, куда ж без него. Разумеется, современный FAT поддерживает нормальные имена файлов. Ну, почти нормальные… Для хранения вместо человеческого utf-8 зачем-то воткнули utf-16. Впрочем, использование неудачной кодировки это еще не самое веселое. Длинное имя в FAT организовано как еще одна или несколько записей в каталоге, то есть это \"файлы\" со странным форматом!\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E#pragma pack(push, 1)\ntypedef struct __attribute__((__packed__)) {\n  uint8_t ord;\n  uint16_t name1[5];\n  uint8_t attr;\n  uint8_t dtype;        \u002F\u002F0\n  uint8_t checksum;\n  uint16_t name2[6];\n  uint16_t cluster1_LO; \u002F\u002F0\n  uint16_t name3[2];\n}lfn_elem;\n#pragma pack(pop)\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EПодробно расписывать формат я не буду, обращу только внимание, что внутри одной структуры имя приходится складывать из ТРЕХ частей, плюс не забываем, что оно может занимать более 13 символов, тогда таких записей будет не одна, а несколько, и их тоже придется складывать. И не забываем про оригинальное имя 8.3, которое тоже никуда не девается. На фоне этого неиспользуемые атрибуты, оставленные для совместимости с обычными файлами, выглядят уже почти нормально...\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EКак бы то ни было, из соображений экономии памяти (и опасения за целостность мозга), длинные имена в данной библиотеке поддерживаться не будут.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cu\u003EПервый сектор\u003C\u002Fu\u003E этой области равен (1 + ((sectotal * 2 + 511) \u002F 512)), а чтобы узнать \u003Cu\u003Eразмер\u003C\u002Fu\u003E, берем количество элементов и делим их по количеству, помещающемуся в секторе: (VIRFAT_ROOTENT \u002F 16).\u003Cbr\u002F\u003E\r\n\u003Cu\u003EОтступление в сторону FAT32.\u003C\u002Fu\u003E\u003Cbr\u002F\u003E\r\nТам выделенного корневого каталога нет. Соответственно, нет и описанной здесь области. Вместо этого в PBR введено поле адреса первого сектора корневого каталога. То есть он теперь ничем не выделяется из всех остальных каталогов, и это гораздо удобнее.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch4 id=\"oblast-dannyh\"\u003EОбласть данных\u003C\u002Fh4\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EВот тут никакой особой структуры нет. Адресация идет посекторно, номера секторов 0 и 1 зарезервированы под какие-то другие цели и в таблице FAT обозначаются обычно как 0xFFF8 и 0xFFFF. Еще рекомендуется второй сектор отдать под \"файл метки тома\". По сути, это обычный файл нулевого размера, обладающий атрибутом dir_attr = VolID (0x08) и чье имя (8.3 разве что без точки) отображается как метка всей флешки в целом. В списке файлов он, разумеется, не виден.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EНачинается она, очевидно, сразу после dir_root и доходит до конца диска.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EОтступление в сторону FAT32. Поскольку корневого каталога нет, поле RootEntCnt равно 0, и слагаемого (VIRFAT_ROOTENT\u002F16) там не будет.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch4 id=\"tablica-adresov-oblastey\"\u003EТаблица адресов областей\u003C\u002Fh4\u003E\u003Cbr\u002F\u003E\r\n\u003Cdiv class=\"scrollable-table\"\u003E\u003Ctable\u003E\r\n\u003Cthead\u003E\r\n\u003Ctr\u003E\r\n\u003Cth\u003EОбласть\u003C\u002Fth\u003E\r\n\u003Cth\u003EАдрес начала в VirFat\u003C\u002Fth\u003E\r\n\u003Cth\u003EВ общем виде\u003C\u002Fth\u003E\r\n\u003C\u002Ftr\u003E\r\n\u003C\u002Fthead\u003E\r\n\u003Ctbody\u003E\r\n\u003Ctr\u003E\r\n\u003Ctd\u003EPBR\u003C\u002Ftd\u003E\r\n\u003Ctd\u003E0\u003C\u002Ftd\u003E\r\n\u003Ctd\u003E0\u003C\u002Ftd\u003E\r\n\u003C\u002Ftr\u003E\r\n\u003Ctr\u003E\r\n\u003Ctd\u003EFAT\u003C\u002Ftd\u003E\r\n\u003Ctd\u003EPBR + 1\u003C\u002Ftd\u003E\r\n\u003Ctd\u003EPBR + SecReserved\u003C\u002Ftd\u003E\r\n\u003C\u002Ftr\u003E\r\n\u003Ctr\u003E\r\n\u003Ctd\u003Eroot_dir\u003C\u002Ftd\u003E\r\n\u003Ctd\u003EFAT + ((sectotal * 2 + 511) \u002F 512)\u003C\u002Ftd\u003E\r\n\u003Ctd\u003EFAT + TotSect * fatN \u002F SecPerClust \u002F BytesPerSec\u003C\u002Ftd\u003E\r\n\u003C\u002Ftr\u003E\r\n\u003Ctr\u003E\r\n\u003Ctd\u003Edata\u003C\u002Ftd\u003E\r\n\u003Ctd\u003Eroot_dir + (VIRFAT_ROOTENT\u002F16)\u003C\u002Ftd\u003E\r\n\u003Ctd\u003Eroot_dir + (RootEntCnt \u002F fatN)\u003C\u002Ftd\u003E\r\n\u003C\u002Ftr\u003E\r\n\u003Ctr\u003E\r\n\u003Ctd\u003Edata[i]\u003C\u002Ftd\u003E\r\n\u003Ctd\u003Edata + (i-2)\u003C\u002Ftd\u003E\r\n\u003Ctd\u003Edata + (i-2)*SecPerClust\u003C\u002Ftd\u003E\r\n\u003C\u002Ftr\u003E\r\n\u003C\u002Ftbody\u003E\r\n\u003C\u002Ftable\u003E\u003C\u002Fdiv\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E, где значение fatN — количество байт на адрес. Для fat16 оно равно 2, для fat32 — 4. Вся адресация идет в секторах.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch3 id=\"demo-kod-analiza-suschestvuyuschih-fat16\"\u003EДемо-код анализа существующих FAT16\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EТо, с чем я дольше всего возился при расковыривании FAT — по каким же адресам какая область расположена и какие параметры на это влияют. Чтобы визуализировать это более наглядно, я написал простенькую (~200 строк) программу, которая читает произвольный образ файловой системы с FAT16 и показывает адреса важных областей. Дополнительно можно тот же образ открыть в шестнадцатеричном редакторе вроде okteta или хотя бы hexdump и сравнить содержимое адресов. Важно, что эта программа работает только с FAT16 и только с образом отдельной файловой системы. Образ целого диска со всякими MBR, тремя основными разделами и кучей расширенных — мимо.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EСоздать образцовый образ диска, чтобы сравнивать с ним нашу виртуальную флешку, можно простой парой команд:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EСоздаем файл образа минимально допустимого для FAT16 размера 4 МБ:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"bash\"\u003E$ dd if=\u002Fdev\u002Fzero of=fat16.img bs=1k count=4096\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EСоздаем на нем файловую систему FAT16 (-F 16) с единственной копией таблицы FAT (-f 1) с единственным зарезервированным сектором (-R 1) с максимальным количеством файлов в корневом каталоге равным 16 (-r 16) и размером кластера 512 байт или 1 сектор (-s 1):\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"bash\"\u003E# mkfs.vfat -f 1 -F 16 -n SOMENAME -r 16 -R 1 -s 1 fat16.img\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EТеперь полученный образ можно куда-нибудь смонтировать, создавать там файлы или каталоги и смотреть по каким адресам они появятся.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EРазумеется, ничто не мешает посмотреть документацию на mkfs.vfat и выставить другие параметры, чтобы сравнить и их влияние на адреса.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EИсходный код программы доступен здесь: \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F6.VirFat_DemoCode\" rel=\"nofollow noopener noreferrer\"\u003Ehttps:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F6.VirFat_DemoCode\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch3 id=\"stykovka-s-usb-msd\"\u003EСтыковка с USB-MSD\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EСама по себе идея любой виртуальной файловой системы всегда одинакова: надо отобразить запрошенный хостом адрес на тот или иной алгоритм расчета значений. Например, если хост хочет прочитать нулевой сектор, нам не надо отдавать ему адрес реальных данных, можно скопировать содержательную часть PBR в буфер, добить бессодержательную нулями и не забыть контрольный 0xAA55. За это отвечает функция \u003Cstrong\u003E_virfat_read_pbr()\u003C\u002Fstrong\u003E.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EАналогично обрабатываются попытки доступа ко всем остальным областям:\u003Cbr\u002F\u003E\r\nЕсли запрошенный сектор соответствует области таблицы FAT, \u003Cstrong\u003E_virfat_read_fat()\u003C\u002Fstrong\u003E перебирает существующие файлы и их диапазоны секторов и копирует в выходной буфер только их. Ну или 0xFFF7 если данные уже закончились, а сектора — нет.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EЕсли хосту понадобился сектор из области корневого каталога, \u003Cstrong\u003E_virfat_read_root()\u003C\u002Fstrong\u003E возвращает информацию по тем файлам, которые в него попали. Тоже, разумеется, не храня о них всю информацию. Так. например, дата создания у всех файлов задается прямо в прошивке, а дата последнего доступа обновляется у всех синхронно при доступе к любому отдельному файлу.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cu\u003EFunFact:\u003C\u002Fu\u003E по времени и дате последнего доступа можно попытаться синхронизировать время с компьютером. Правда, точность и надежность такого подхода оптимизма не внушают…\u003Cbr\u002F\u003E\r\n\u003Cstrong\u003E_virfat_read_data()\u003C\u002Fstrong\u003E определяет какому файлу соответствует запрошенный сектор из области данных и вызывает соответствующий callback. Более подробно о callback'ах и алгоритме использования библиотеки будет рассказано далее.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EНу и разумеется, симметричные функции для записи: \u003Cstrong\u003E_virfat_write_fat()\u003C\u002Fstrong\u003E, \u003Cstrong\u003E_virfat_write_root()\u003C\u002Fstrong\u003E, \u003Cstrong\u003E_virfat_write_data()\u003C\u002Fstrong\u003E. Поскольку список файлов и их сектора в моей реализации прописаны жестко, первая из них не делает вообще ничего. Вторая в принципе тоже — только подправляет дату последнего доступа. А третья, как и \u003Cstrong\u003E_virfat_read_data()\u003C\u002Fstrong\u003E, переводит абсолютный адрес сектора в относительный для файла и вызывает callback.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EСобственно, с точки зрения USB-MSD больше ничего и не требуется: по запросу можно \"прочитать\" любой сектор, можно \"записать\" его. Разве что придется из 64-байтных посылок собирать-разбирать 512-байтные сектора. Ну и отдельный запрос на размер носителя.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch3 id=\"primer-raboty-s-bibliotekoy\"\u003EПример работы с библиотекой\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EПервым делом надо заполнить список файлов в корневом каталоге (напоминаю, что других тут и не будет). Для этого служит специальная константная структура:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Etypedef struct{\n  char *name;                \u002F\u002Fимя в формате 8.3, то есть 11 символов\n  virfat_callback file_read;    \u002F\u002Fcallback на чтение\n  virfat_callback file_write;   \u002F\u002Fcallback на запись\n  uint16_t size;             \u002F\u002Fразмер файла\n}virfat_file_t;\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EТакие структуры собираются в массив:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Estatic const virfat_file_t virfat_rootdir[] = {\n  {\n    .name = \"RLED    TXT\",\n    .file_read = demo_led_read,\n    .file_write = demo_led_write,\n    .size = 1,\n  },\n  {\n    .name = \"GLED    TXT\",\n    .file_read = demo_led_read,\n    .file_write = demo_led_write,\n    .size = 1,\n  },\n  {\n    .name = \"LOG     TXT\",\n    .file_read = demo_log_read,\n    .file_write = virfat_file_dummy,\n    .size = DEMO_LOG_SIZE,\n  },\n  {\n    .name = \"DUMMY   TXT\",\n    .file_read = virfat_file_dummy,\n    .file_write = virfat_file_dummy,\n    .size = 1,\n  },\n};\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EДля каждого файла мы указали, какая функция будет вызываться при попытке его прочитать или записать. Диапазон адресов для каждого файла каждый раз вычисляется в рантайме простым сложением размеров предшествующих ему файлов.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch3 id=\"konfig-fayly\"\u003EКонфиг-файлы\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EНачнем с \"конфигурационных\" файлов, то есть тех, для которых запись вообще разрешена. Напоминаю, что их размер ограничен одним сектором. В качестве демонстрации, пусть первый файл будет прикреплен к красному светодиоду, а второй к зеленому. Если в файл записать 1, светодиод загорится, если 0 (или что угодно еще) — погаснет.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Evoid demo_led_read(uint8_t *buf, uint32_t addr, uint16_t file_idx){\n  for(uint16_t i=1; i&lt;512; i++)buf[i] = ' ';\n  if(file_idx == 0){\n    if( GPI_ON(RLED) )buf[0] = '1'; else buf[0] = '0';\n  }else{\n    if( GPI_ON(GLED) )buf[0] = '0'; else buf[0] = '0';\n  }\n}\nvoid demo_led_write(uint8_t *buf, uint32_t addr, uint16_t file_idx){\n  if(file_idx == 0){\n    if(buf[0] == '1')GPO_ON(RLED); else GPO_OFF(RLED);\n  }else{\n    if(buf[0] == '1')GPO_ON(GLED); else GPO_OFF(GLED);\n  }\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EДумаю, особенного пояснения данный код не требует. Кроме аргумента file_idx. Он нужен чтобы вешать один и тот же callback на несколько файлов, как в данном случае. Он равен номеру файла в массиве virfat_rootdir.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch3 id=\"data-fayly\"\u003EДата-файлы\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EВторая задача, которую данная библиотека должна решить — отображение каких-либо измеренных данных в удобочитаемом виде. Например, у нас есть массив структур\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Estruct demolog_data_t{\n  uint16_t x;\n  uint16_t y;\n};\n#define DEMO_DATASIZE   1000\nconst struct demolog_data_t demo_log[DEMO_DATASIZE] = {\n  [0]   = {0,   0},\n  [1]   = {1,   1},\n  [10]  = {10,  10},\n  [100] = {100, 100},\n  [500] = {500, 500},\n  [999] = {999, 999},\n};\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EМы хотим его представить как красивый текстовый файл, с человеко-читаемой шапкой, с разделением в несколько столбцов, может даже какие-то расчеты провести дополнительно. Мало ли, перевести из внутренних \"попугаев\" в нормальные вольты. В первую очередь определимся как элемент массива перевести в строку. В моем примере это делается так:\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Eu32tobuf(i, &amp;buf[pos]); pos+=12; \u002F\u002Fпервое число в \"файле\" будет просто номером\nu32tobuf(demo_log[i].x, &amp;buf[pos]); pos+=12;\nu32tobuf(demo_log[i].y, &amp;buf[pos]); pos+=12;\nbuf[pos-1] = '\\r';\nbuf[pos] = '\\n';\npos++;\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EФункция u32tobuf написана так, чтобы вписывать десятичное представление числа строго в заданное поле размером 11 символов и символ '\\t' после. Сделано это для того чтобы каждая строка была одинаковой длины. Таким образом можно рассчитать сколько записей помещается на один сектор. Но важнее обратный расчет — какие номера записей надо отдать по запросу данного сектора. В моем случае длина строки составила 37 символов. То есть \"честно\" на границу сектора она не ляжет. Но нам ничто не мешает \"добить\" последнюю строку пробелами до границы. Нам ведь не надо тратить на их хранение память, а программы работы с текстовыми таблицами прекрасно \"сколлапсируют\" любое количество пробелов и табуляций в один разделитель.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EАналогичным способом решается добавление текстовой шапки. Она хранится где-то в постоянной памяти контроллера и подставляется в начало \"файла\" с последующим сдвигом адресов данных.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003E\u003Cstrong\u003EВажно!\u003C\u002Fstrong\u003E Если вы хотите отдавать не все снятые данные, а только часть (например, не успели заполнить буфер до конца), не провоцируйте хост на уменьшение файла (оно ведь не поддерживается). Лучше просто забейте неиспользуемые сектора пробелами.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Ch3 id=\"zaklyuchenie\"\u003EЗаключение\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EИтак, мы получили относительно легкий эмулятор файловой системы FAT16, который позволяет достаточно кроссплатформенно проводить простую настройку USB-устройств а также отображать их внутренние данные в красивом текстовом (да даже не обязательно текстовом!) виде. Напоминаю, что для интерактивной настройки данный способ не сработает: устройству запрещено менять свои данные пока оно подключено к хосту. Ну а в приведенной демо-версии можно просто помигать светодиодами и почитать километровый лог.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EP.S. Почему-то Андроид записать файлы не смог. Пока не разобрался с чем это связано. Возможно, он хочет сначала создать новый файл, а потом переименовать его под старый. В Linux и Windows такой проблемы нет.\u003C\u002Fp\u003E\u003Cbr\u002F\u003E\r\n\u003Cp\u003EКак обычно, исходные коды и кое-какая литература доступны по ссылкам:\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F6.VirFat_L1\" rel=\"nofollow noopener noreferrer\"\u003Ehttps:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F6.VirFat_L1\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F6.VirFat_F1\" rel=\"nofollow noopener noreferrer\"\u003Ehttps:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F6.VirFat_F1\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n(это часть основного репозитория \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\" rel=\"nofollow noopener noreferrer\"\u003Ehttps:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u003C\u002Fa\u003E)\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"arm"},{"titleHtml":"stm32"},{"titleHtml":"stm32l151"},{"titleHtml":"usb"},{"titleHtml":"usb-флэшки"},{"titleHtml":"msd"},{"titleHtml":"msc"},{"titleHtml":"грабли и велосипеды"},{"titleHtml":"fat"},{"titleHtml":"fat16"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F654853\u002Fe63cdd82c7e5153515cc37c1bc18f250\u002F","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F654853\u002Fe63cdd82c7e5153515cc37c1bc18f250\u002F?format=vk","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654853\\\u002F\"},\"headline\":\"USB на регистрах: виртуальная FAT16\",\"datePublished\":\"2022-03-09T18:06:34+03:00\",\"dateModified\":\"2022-03-09T20:38:54+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"COKPOWEHEU\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"USB на регистрах: STM32L1 \\\u002F STM32F1 USB на регистрах: bulk endpoint на примере Mass Storage Уже довольно давно я пытался разобраться, как же устроена классическ...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654853\\\u002F#post-content-body\",\"about\":[\"h_controllers\",\"h_circuit-design\",\"f_develop\"],\"image\":[\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fpa\\\u002Fzr\\\u002Frp\\\u002Fpazrrpyfrr91ekotummaet6ry1k.png\"]}","metaDescription":"USB на регистрах: STM32L1 \u002F STM32F1\r\nUSB на регистрах: bulk endpoint на примере Mass Storage\r\nУже довольно давно я пытался разобраться, как же устроена классическая файловая система FAT и вот...","mainImageUrl":null,"amp":false,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":"controllers,circuit-design"},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":false,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"technotext":{"nominationsList":[]},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"items":{},"pagesCache":{},"markedViewedSilently":{},"markedRead":{},"unreadCounters":{"applications":null,"system":null,"mentions":null,"subscribers":null,"posts_and_comments":null},"unviewedCounters":{"applications":null,"system":null,"mentions":null,"subscribers":null,"posts_and_comments":null}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script> 
+  <script src="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" defer></script>
+  <script src="https://assets.habr.com/habr-web/js/app.69ba180e.js" defe

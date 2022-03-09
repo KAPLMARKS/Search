@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Создание TabBarController и NavigationController программно в UIKit / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/652543\/"},"headline":"Создание TabBarController и NavigationController программно в UIKit","datePublished":"2022-02-20T11:46:45+03:00","dateModified":"2022-03-09T16:37:16+03:00","author":{"@type":"Person","name":"MaksMai"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Зачем UIKit в 2022В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много прило...","url":"https:\/\/habr.com\/ru\/post\/652543\/#post-content-body","about":["h_swift","f_develop"],"image":["https:\/\/habr.com\/share\/publication\/652543\/f0e8da474a080d89284232e8fe3545ff\/"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Создание TabBarController и NavigationController программно в UIKit" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="Создание TabBarController и NavigationController программно в UIKit" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="Создание TabBarController и NavigationController программно в UIKit" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="Зачем UIKit в 2022В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много приложений которые созданы на основе..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="Зачем UIKit в 2022В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много приложений которые созданы на основе..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="Зачем UIKit в 2022В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много приложений которые созданы на основе..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="Зачем UIKit в 2022В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много приложений которые созданы на основе..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="Зачем UIKit в 2022В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много приложений которые созданы на основе..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/8ca/247/f27/8ca247f2715d0dd3db381c6f0aaa0b73.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/8ca/247/f27/8ca247f2715d0dd3db381c6f0aaa0b73.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/8ca/247/f27/8ca247f2715d0dd3db381c6f0aaa0b73.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/8ca/247/f27/8ca247f2715d0dd3db381c6f0aaa0b73.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/8ca/247/f27/8ca247f2715d0dd3db381c6f0aaa0b73.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="652543" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2022-02-20T08:46:45.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/652543/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="uitabbarcontroller, uinavigationcontroller, scenedelegate, TabBarItem"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/652543/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/652543/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habrastorage.org/getpro/habr/upload_files/8ca/247/f27/8ca247f2715d0dd3db381c6f0aaa0b73.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" rel="amphtml" href="https://habr.com/ru/amp/post/652543/"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/MaksMai/" title="MaksMai" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_green">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/MaksMai/" class="tm-user-info__username"> MaksMai </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-02-20T08:46:45.000Z" title="2022-02-20, 11:46">20 февраля в 11:46</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>Создание TabBarController и NavigationController программно в UIKit</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/swift/" class="tm-article-snippet__hubs-item-link"><span>Swift</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span>
+                  </div> 
+                  <div class="tm-article-snippet__labels">
+                   <div class="tm-article-snippet__label tm-article-snippet__label_variant-sandbox">
+                    <span> Из песочницы </span>
+                   </div>
+                   <div class="tm-article-snippet__label tm-article-snippet__label_variant-tutorial">
+                    <span> Tutorial </span>
+                   </div>
+                  </div> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-2">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <h2>Зачем UIKit в 2022</h2>
+                     <p>В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много приложений которые созданы на основе фреймворка UIKit и у нас в России до сих пор на нем создается, то его актуальность еще на довольно солидном уровне.</p>
+                     <p>А еще более важным будет знание, как это работает. Сейчас идет постепенный переход от Storyboard к чистому коду в SwiftUI. Переход медленный и это дает нам возможность, еще пока, учится с помощью картинок и кода создавать приложения и одновременно учится создавать приложения с помощью кода.</p>
+                     <h2>Задача</h2>
+                     <p>Давайте сразу перейдем к задаче:</p>
+                     <ol>
+                      <li><p>Создайте новый проект с названием&nbsp;<code>Navigation</code>, используя шаблон&nbsp;<code>Single View App</code>.</p></li>
+                      <li><p>Удалите из проекта&nbsp;<code>Main.storyboard</code>, который создался по умолчанию. Не забудьте изменить конфигурацию в&nbsp;<code>Info.plist</code>.</p></li>
+                      <li><p>В&nbsp;<code>SceneDelegate.swift</code>&nbsp;добавьте&nbsp;<code>UITabBarController</code>. Добавьте в него два&nbsp;<code>UINavigationController</code>. Первый будет показывать ленту пользователя, а второй — профиль.</p></li>
+                      <li><p>Измените&nbsp;<code>Tab Bar Item</code>&nbsp;у добавленных контроллеров, добавьте заголовок и картинку. Картинки можно добавить в&nbsp;<code>Assets.xcassets</code>&nbsp;или использовать SF Symbols.</p></li>
+                      <li><p>Создайте&nbsp;<code>FeedViewController</code>&nbsp;и&nbsp;<code>ProfileViewController</code>&nbsp;и добавьте их как root view controller у навигационных контроллеров.</p></li>
+                      <li><p>Добавьте&nbsp;<code>PostViewController</code>&nbsp;для показа выбранного поста. Поменяйте заголовок у контроллера и цвет главной view. Добавьте кнопку на&nbsp;<code>FeedViewController</code>&nbsp;и сделайте переход на экран поста. Контроллер должен показаться в стеке&nbsp;<code>UINavigationController</code>.</p></li>
+                      <li><p>Создайте структуру&nbsp;<code>Post</code>&nbsp;со свойством&nbsp;<code>title: String</code>. Создайте объект типа&nbsp;<code>Post</code>&nbsp;в&nbsp;<code>FeedViewController</code>&nbsp;и передайте его в&nbsp;<code>PostViewController</code>. В классе&nbsp;<code>PostViewController</code>&nbsp;выставьте&nbsp;<code>title</code>&nbsp;полученного поста в качестве заголовка контроллера.</p></li>
+                      <li><p>На&nbsp;<code>PostViewController</code>&nbsp;добавьте&nbsp;<code>Bar Button Item</code>&nbsp;в навигейшн бар. При нажатии на него должен открываться новый контроллер&nbsp;<code>InfoViewController</code>. Контроллер должен показаться модально.</p></li>
+                      <li><p>На&nbsp;<code>InfoViewController</code>&nbsp;создайте кнопку. При нажатии на неё должен показаться&nbsp;<code>UIAlertController</code>&nbsp;с заданным&nbsp;<code>title</code>,&nbsp;<code>message</code>&nbsp;и двумя&nbsp;<code>UIAlertAction</code>. При нажатии на&nbsp;<code>UIAlertAction</code>&nbsp;в консоль должно выводиться сообщение.</p></li>
+                     </ol>
+                     <p>В рамках данной статьи мы не будем рассматривать пункты 1 и 2. Не в смысле их примитивности, а потому-что подобными ответами пестрит интернет. Замечу только, что после удаления не забудьте вернуть в SceneDelegate (если вы еще используете Xcode до 13 версии, то AppDelegate), строку, которая удаляется автоматически с Main.storyboard.</p>
+                     <p><code>var window: UIWindow</code></p>
+                     <h2>Реализация</h2>
+                     <p>В данной статье мы рассмотрим пункты 3, 4, 5. Остальны в последующих <a href="https://habr.com/ru/post/654839/" rel="noopener noreferrer nofollow">статьях</a>. Приступим!</p>
+                     <p>Для реализации пункта 2 существуют 2 способа: </p>
+                     <ol>
+                      <li><p>Релизация <code>UITabBarController</code> внутри <code>SceneDelegate.swift</code></p></li>
+                      <li><p>Создание собственного <code>UITabBarController.swift</code> и в него инкапсулировать два&nbsp;<code>UINavigationController</code></p></li>
+                     </ol>
+                     <h2>Релизация UITabBarController внутри SceneDelegate.swift</h2>
+                     <p>Перейдем в <code>SceneDelegate.swift</code> и первым делом заменим ViewController на TabBarController</p>
+                     <p><code>window = UIWindow(frame: windowScene.coordinateSpace.bounds)</code></p>
+                     <p><code>window?.windowScene = windowScene</code></p>
+                     <p><code>window?.rootViewController = UITabBarController()</code></p>
+                     <p><code>window?.makeKeyAndVisible()</code></p>
+                     <p>Теперь можно удалить сам контроллер просмотра <code>ViewController.swift</code>. А сейчас мы пойдем от обратного. Наш TabBarController будет удерживать навигационные контроллеры и для того, чтобы TabBarController что-то отобразил, нам придется сначала создать навигационные контроллеры. Приступим.</p>
+                     <p>Создаем 2 <code>ViewController</code> (cmd⌘ + N -&gt; Cocoa Touch Class), где Class: у нас будут <code>FeedViewController</code>&nbsp;и&nbsp;<code>ProfileViewController</code>, а Subclass of: <code>UIViewController</code> соответственно. С самого начала контроллеры прозрачные и для того, чтобы мы могли понять, что они у нас есть, мы зададим им фоновый цвет:</p>
+                     <p><code>override func viewDidLoad() {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; super.viewDidLoad()</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; // Задаем фоновый цвет</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; view.backgroundColor = .lightGray</code></p>
+                     <p><code>}</code></p>
+                     <blockquote>
+                      <p> Конечно для фона лучше использовать системные цвета (например: .systemBlue). Apple адаптировала системные цвета к темному и светлому режижам работы в отличии от простых цветов.</p>
+                     </blockquote>
+                     <p>В качестве эксперимента давай зададим нашим <code>ViewController</code> разные цвета.</p>
+                     <p>Теперь давай создадим два навигационных контроллераr и добавим<code>FeedViewController</code>&nbsp;и&nbsp;<code>ProfileViewController</code>&nbsp;и как root view controller. В <code>SceneDelegate.swift</code> перед <code>window = UIWindow(frame: windowScene.coordinateSpace.bounds</code> создаем навигационные контроллеры </p>
+                     <p><code>let feedViewController = UINavigationController(rootViewController: FeedViewController()) </code></p>
+                     <p><code>let profileViewController = UINavigationController(rootViewController: profileViewController())</code></p>
+                     <p>Теперь помещаем навигационные контроллеры в панель вкладок пользовательского интерфейса. Создаем панель вкладок: </p>
+                     <p><code>let tabBarController = UITabBarController()</code></p>
+                     <p>Помещаем в нее навигационнные контроллеры:</p>
+                     <p><code>tabBarController.viewControllers = [feedViewController, profileViewController]</code></p>
+                     <p>Не забудь поменять <code>UITabBarController()</code> на пользовательский <code>tabBarController</code> в</p>
+                     <p><code>window?.rootViewController = UITabBarController()</code></p>
+                     <p>Теперь когда мы запустим наш проект, мы увидим что экран отображает заданный цвет и если пощелкать внизу справа и слева, то даже будут переключаться экраны. Хотя наш TabBar и не отображает ничего. Это говорит, что у нас все прекрасно работает.</p>
+                     <p>Давай теперь настроим наш TabBar, чтобы не играть в игру: Куда я нажимаю?</p>
+                     <h2>Настройка TabBar</h2>
+                     <p>Давай сделаем наш код красивым и не будем все собирать в кучу, а разделим каждый блок в методы.</p>
+                     <p>В первый метод соберем наш <code>FeedViewController</code>, во второй <code>ProfileViewController</code>, ну а в третий <code>TabBarController</code>. Реализация методов в <code>SceneDelegate.swift</code> станет выполнением пункда 6 нашего задания, мы добавим и иконки и заголовки.</p>
+                     <p> Создаем фукцию контроллера поисковой навигации, который возвращает контроллер пользовательского интерфейса:</p>
+                     <p><code>func createFeedViewController() -&gt; UINavigationController {</code></p>
+                     <p> Инициализируем поисковый контроллер, который заменим созданный выше</p>
+                     <p>l<code>et feedViewController = FeedViewController()</code></p>
+                     <p>Добавляем заголовок, который отобразится вверху нашего экрана</p>
+                     <p><code>feedViewController.title = "Лента"</code></p>
+                     <p>А теперь настроим и саму кнопку, добавив на нее иконку и название. Создаем элемент панели вкладок пользовательского интерфейса <code>UITabBarIt</code>, где <code>title:</code> это заголовок, а <code>image:</code> в нашем случае системная иконка (системные иконки можно найти в программе "Символы SF" или в самом Xcode Edit -&gt; Emoji &amp; Symbols) и последнее <code>tag:</code>это индекс положения, где 0 - положение слева, а 1 справа. </p>
+                     <p><code>feedViewController.tabBarItem = UITabBarItem(title: "Лента", image: UIImage(systemName: "doc.richtext"), tag: 0)</code></p>
+                     <p>Возвращаем навигатор пользовательского интерфейса</p>
+                     <p><code>return UINavigationController(rootViewController: feedViewController)</code></p>
+                     <p><code>}</code></p>
+                     <p>Делаем тоже самое для навигационного контроллера <code>ProfileViewController</code> </p>
+                     <p>&nbsp;<code>func createProfileViewController() -&gt; UINavigationController {</code></p>
+                     <p><code>let profileViewController = ProfileViewController()</code></p>
+                     <p><code>profileViewController.title = "Профиль"</code></p>
+                     <p><code>profileViewController.tabBarItem = UITabBarItem(title: "Профиль", image: UIImage(systemName: "person.circle"), tag: 1)</code></p>
+                     <p><code>return UINavigationController(rootViewController: profileViewController)</code></p>
+                     <p><code>}</code></p>
+                     <p>Теперь удалим, за ненадобностью вверху: </p>
+                     <p><code>let feedViewController = UINavigationController(rootViewController: FeedViewController()) </code></p>
+                     <p><code>let profileViewController = UINavigationController(rootViewController: profileViewController())</code></p>
+                     <p>Теперь давай создадим метод для панели вкладок и передадим эту функцию корневому представлению</p>
+                     <p><code>func createTabBarController() -&gt; UITabBarController {</code></p>
+                     <p>Удали сверху и вставь в метод строки кода</p>
+                     <p><code>let tabBarController = UITabBarController()</code></p>
+                     <p>Настроим внешний вид панели вкладок и установим основной цвет синий</p>
+                     <p><code>UITabBar.appearance().backgroundColor = .systemBlue</code></p>
+                     <p>Поменяем наши контроллеры на методы созданные чуть выше</p>
+                     <p><code>tabBarController.viewControllers = [createFeedViewController(), createProfileViewController()]</code></p>
+                     <p>Возвращаем панель вкладок</p>
+                     <p><code>return tabBarController</code></p>
+                     <p><code>}</code></p>
+                     <p>Не забудь поменять <code>tabBarController()</code> созданный метод <code>createTabBarController()</code> в</p>
+                     <p><code>window?.rootViewController = tabBarController</code></p>
+                     <p>Теперь можещь запустить созданный проект и посмотреть на ту красоту, которую мы создали. Благодаря методам мы сделали красивый и хорошо пахнущий код, который не засоряет собою <code>SceneDelegate.swift</code></p>
+                     <p>Давай перейдем ко второму методу.</p>
+                     <h2>Создание собственного UITabBarController.swift и в него инкапсулировать два&nbsp;UINavigationController</h2>
+                     <p>Кому-то может не понравится способ создания кода в <code>SceneDelegate.swift</code> и это тоже хорошо и по-этому мы рассмотрим второй способ.</p>
+                     <p>Во-первых, мы создаем свой <code>TabBarController</code></p>
+                     <p><code>final class TabBarController: UITabBarController {</code></p>
+                     <p>В него мы инкапсулируем <code>FeedViewController</code>, во второй <code>ProfileViewControlle</code>. Мы можен инкапсулировать больше двух контроллеров, то есть сколько айтемов, столько и кейсов. Создаем перечисление <code>TabBarItem</code> с описанием наших контроллеров</p>
+                     <p><code>private enum TabBarItem: Int {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; case feed</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; case profile</code></p>
+                     <p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Добавим заголовки</p>
+                     <p>&nbsp; &nbsp; &nbsp; &nbsp; <code>var title: String {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; switch self {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case .feed:</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return "Лента"</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case .profile:</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return "Профиль"</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</code></p>
+                     <p>&nbsp; &nbsp; &nbsp; &nbsp; <code>}</code></p>
+                     <p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;Добавим иконки</p>
+                     <p>&nbsp; &nbsp; &nbsp; &nbsp; <code>var iconName: String {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; switch self {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case .feed:</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return "house"</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case .profile:</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return "person.crop.circle"</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; }</code></p>
+                     <p><code>&nbsp; &nbsp; }</code></p>
+                     <p>Теперь загрузим это все в <code>TabBarController</code></p>
+                     <p><code>override func viewDidLoad() {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; super.viewDidLoad()</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; self.setupTabBar()</code></p>
+                     <p><code>&nbsp; &nbsp; }</code></p>
+                     <p>В методе мы создадим создадим контроллеры <code>FeedViewController</code> и <code>ProfileViewControlle</code> для <code>TabBarController</code>. Не забудьте как и в первом способе создать сами swift файлы!</p>
+                     <p><code>private func setupTabBar() {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; let dataSource: [TabBarItem] = [.feed, .profile]</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; self.viewControllers = dataSource.map {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; switch $0 {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case .feed:</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let feedViewController = FeedViewController()</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return self.wrappedInNavigationController(with: feedViewController, title: $0.title)</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; case .profile:</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; let profileViewController = ProfileViewController()</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return self.wrappedInNavigationController(with: profileViewController, title: $0.title)</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; }</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; self.viewControllers?.enumerated().forEach {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $1.tabBarItem.title = dataSource[$0].title</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $1.tabBarItem.image = UIImage(systemName: dataSource[$0].iconName)</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; $1.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: .zero, bottom: -5, right: .zero)</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; }</code></p>
+                     <p><code>&nbsp; &nbsp; }</code></p>
+                     <p>Ну и в самом конце методом <code>wrappedInNavigationController(with: profileViewController, title: $0.title)</code> мы обернем переданный контроллер <code>FeedViewController</code> или <code>ProfileViewControlle</code>в <code>NavigationController</code></p>
+                     <p><code>private func wrappedInNavigationController(with: UIViewController, title: Any?) -&gt; UINavigationController {</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; return UINavigationController(rootViewController: with)</code></p>
+                     <p><code>&nbsp; &nbsp; }</code></p>
+                     <p>Второй способ позволит нам оставить чистым <code>SceneDelegate.swift</code></p>
+                     <p>&nbsp; <code>guard let windowScene = (scene as? UIWindowScene) else { return }</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; self.window = UIWindow(windowScene: windowScene)</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; self.window?.makeKeyAndVisible()</code></p>
+                     <p><code>&nbsp; &nbsp; &nbsp; &nbsp; self.window?.rootViewController = TabBarController()</code></p>
+                     <p>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp;</p>
+                     <p>В следующей статье мы рассмотрим оставшиеся пункты, а так же программный способ создания интерфейса.</p>
+                     <p><a href="https://habr.com/ru/post/654839/" rel="noopener noreferrer nofollow">Следующая статья</a> рассматривающая пункты 6 и 7</p>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Buitabbarcontroller%5D" class="tm-tags-list__link">uitabbarcontroller</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Buinavigationcontroller%5D" class="tm-tags-list__link">uinavigationcontroller</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bscenedelegate%5D" class="tm-tags-list__link">scenedelegate</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5BTabBarItem%5D" class="tm-tags-list__link">TabBarItem</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/swift/" class="tm-hubs-list__link"> Swift </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 2: ↑1 и ↓1</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 2: ↑1 и ↓1" class="tm-votes-meter__value tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">0</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">908</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 8 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/MaksMai/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <svg class="tm-svg-img tm-image-placeholder tm-image-placeholder_green">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 3 голоса " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         1 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         -1
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <!----> <a href="/ru/users/MaksMai/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @MaksMai </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Пользователь</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <!----> <!----> <!---->
+                  </div>
+                 </div> <!---->
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner7553" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/652543/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 4 </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> <!----> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner7554" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> 
+            <section data-async-called="true" class="tm-block tm-block_spacing-bottom">
+             <header class="tm-block__header">
+              <h2 class="tm-block__title">Работа</h2> <!---->
+             </header> 
+             <div class="tm-block__body">
+              <div class="tm-vacancies-block__item">
+               <a href="https://career.habr.com/vacancies/ios_razrabotchik" target="_blank" class="tm-vacancies-block__vacancy-title"> iOS разработчик </a> 
+               <div class="tm-vacancies-block__vacancies-count">
+                 98 вакансий 
+               </div>
+              </div>
+              <div class="tm-vacancies-block__item">
+               <a href="https://career.habr.com/vacancies/ios_razrabotchik_swift" target="_blank" class="tm-vacancies-block__vacancy-title"> Swift разработчик </a> 
+               <div class="tm-vacancies-block__vacancies-count">
+                 133 вакансии 
+               </div>
+              </div>
+             </div> 
+             <footer class="tm-block__footer">
+              <a href="https://career.habr.com/catalog" class="tm-block-extralink"> Все вакансии </a>
+             </footer>
+            </section> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom7555" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/652543/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/652543/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"652543":{"id":"652543","timePublished":"2022-02-20T08:46:45+00:00","isCorporative":false,"lang":"ru","titleHtml":"Создание TabBarController и NavigationController программно в UIKit","leadData":{"textHtml":"\u003Cp\u003EВ&nbsp;\u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E&nbsp;добавим&nbsp;\u003Ccode\u003EUITabBarController\u003C\u002Fcode\u003E. Добавим в него два&nbsp;\u003Ccode\u003EUINavigationController\u003C\u002Fcode\u003E. Первый будет показывать ленту пользователя, а второй — профиль. И все программно!\u003C\u002Fp\u003E\u003Cp\u003EИзменим&nbsp;\u003Ccode\u003ETab Bar Item\u003C\u002Fcode\u003E&nbsp;у добавленных контроллеров, добаим заголовок и картинку.\u003C\u002Fp\u003E\u003Cp\u003EСоздадим&nbsp;\u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E&nbsp;и&nbsp;\u003Ccode\u003EProfileViewController\u003C\u002Fcode\u003E&nbsp;и добавим их как root view controller у навигационных контроллеров.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8ca\u002F247\u002Ff27\u002F8ca247f2715d0dd3db381c6f0aaa0b73.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8ca\u002F247\u002Ff27\u002F8ca247f2715d0dd3db381c6f0aaa0b73.png","fit":null,"positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null},{"type":"tutorial","data":null}],"author":{"scoreStats":{"score":1,"votesCount":3},"rating":-1,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"2940253","alias":"MaksMai","fullname":null,"avatarUrl":null,"speciality":null},"statistics":{"commentsCount":4,"favoritesCount":8,"readingCount":908,"score":0,"votesCount":2},"hubs":[{"relatedData":null,"id":"19039","alias":"swift","type":"collective","title":"Swift","titleHtml":"Swift","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Ch2\u003EЗачем UIKit в 2022\u003C\u002Fh2\u003E\u003Cp\u003EВ начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много приложений которые созданы на основе фреймворка UIKit и у нас в России до сих пор на нем создается, то его актуальность еще на довольно солидном уровне.\u003C\u002Fp\u003E\u003Cp\u003EА еще более важным будет знание, как это работает. Сейчас идет постепенный переход от Storyboard к чистому коду в SwiftUI. Переход медленный и это дает нам возможность, еще пока, учится с помощью картинок и кода создавать приложения и одновременно учится создавать приложения с помощью кода.\u003C\u002Fp\u003E\u003Ch2\u003EЗадача\u003C\u002Fh2\u003E\u003Cp\u003EДавайте сразу перейдем к задаче:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EСоздайте новый проект с названием \u003Ccode\u003ENavigation\u003C\u002Fcode\u003E, используя шаблон \u003Ccode\u003ESingle View App\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУдалите из проекта \u003Ccode\u003EMain.storyboard\u003C\u002Fcode\u003E, который создался по умолчанию. Не забудьте изменить конфигурацию в \u003Ccode\u003EInfo.plist\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВ \u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E добавьте \u003Ccode\u003EUITabBarController\u003C\u002Fcode\u003E. Добавьте в него два \u003Ccode\u003EUINavigationController\u003C\u002Fcode\u003E. Первый будет показывать ленту пользователя, а второй — профиль.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EИзмените \u003Ccode\u003ETab Bar Item\u003C\u002Fcode\u003E у добавленных контроллеров, добавьте заголовок и картинку. Картинки можно добавить в \u003Ccode\u003EAssets.xcassets\u003C\u002Fcode\u003E или использовать SF Symbols.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСоздайте \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E и \u003Ccode\u003EProfileViewController\u003C\u002Fcode\u003E и добавьте их как root view controller у навигационных контроллеров.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДобавьте \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E для показа выбранного поста. Поменяйте заголовок у контроллера и цвет главной view. Добавьте кнопку на \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E и сделайте переход на экран поста. Контроллер должен показаться в стеке \u003Ccode\u003EUINavigationController\u003C\u002Fcode\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСоздайте структуру \u003Ccode\u003EPost\u003C\u002Fcode\u003E со свойством \u003Ccode\u003Etitle: String\u003C\u002Fcode\u003E. Создайте объект типа \u003Ccode\u003EPost\u003C\u002Fcode\u003E в \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E и передайте его в \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E. В классе \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E выставьте \u003Ccode\u003Etitle\u003C\u002Fcode\u003E полученного поста в качестве заголовка контроллера.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EНа \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E добавьте \u003Ccode\u003EBar Button Item\u003C\u002Fcode\u003E в навигейшн бар. При нажатии на него должен открываться новый контроллер \u003Ccode\u003EInfoViewController\u003C\u002Fcode\u003E. Контроллер должен показаться модально.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EНа \u003Ccode\u003EInfoViewController\u003C\u002Fcode\u003E создайте кнопку. При нажатии на неё должен показаться \u003Ccode\u003EUIAlertController\u003C\u002Fcode\u003E с заданным \u003Ccode\u003Etitle\u003C\u002Fcode\u003E, \u003Ccode\u003Emessage\u003C\u002Fcode\u003E и двумя \u003Ccode\u003EUIAlertAction\u003C\u002Fcode\u003E. При нажатии на \u003Ccode\u003EUIAlertAction\u003C\u002Fcode\u003E в консоль должно выводиться сообщение.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EВ рамках данной статьи мы не будем рассматривать пункты 1 и 2. Не в смысле их примитивности, а потому-что подобными ответами пестрит интернет. Замечу только, что после удаления не забудьте вернуть в SceneDelegate (если вы еще используете Xcode до 13 версии, то AppDelegate), строку, которая удаляется автоматически с Main.storyboard.\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Evar window: UIWindow\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Ch2\u003EРеализация\u003C\u002Fh2\u003E\u003Cp\u003EВ данной статье мы рассмотрим пункты 3, 4, 5. Остальны в последующих \u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F654839\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eстатьях\u003C\u002Fa\u003E. Приступим!\u003C\u002Fp\u003E\u003Cp\u003EДля реализации пункта 2 существуют 2 способа: \u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EРелизация \u003Ccode\u003EUITabBarController\u003C\u002Fcode\u003E  внутри \u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСоздание собственного \u003Ccode\u003EUITabBarController.swift\u003C\u002Fcode\u003E и в него инкапсулировать два \u003Ccode\u003EUINavigationController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Ch2\u003EРелизация UITabBarController  внутри SceneDelegate.swift\u003C\u002Fh2\u003E\u003Cp\u003EПерейдем в \u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E и первым делом заменим ViewController на TabBarController\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ewindow = UIWindow(frame: windowScene.coordinateSpace.bounds)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ewindow?.windowScene = windowScene\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ewindow?.rootViewController = UITabBarController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ewindow?.makeKeyAndVisible()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EТеперь можно удалить сам контроллер просмотра \u003Ccode\u003EViewController.swift\u003C\u002Fcode\u003E. А сейчас мы пойдем от обратного. Наш TabBarController будет удерживать навигационные контроллеры и для того, чтобы TabBarController что-то отобразил, нам придется сначала создать навигационные контроллеры. Приступим.\u003C\u002Fp\u003E\u003Cp\u003EСоздаем 2 \u003Ccode\u003EViewController\u003C\u002Fcode\u003E (cmd⌘ + N -\u003E Cocoa Touch Class), где Class: у нас будут \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E и \u003Ccode\u003EProfileViewController\u003C\u002Fcode\u003E, а Subclass of: \u003Ccode\u003EUIViewController\u003C\u002Fcode\u003E соответственно. С самого начала контроллеры прозрачные и для того, чтобы мы могли понять, что они у нас есть, мы зададим им фоновый цвет:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eoverride func viewDidLoad() {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        super.viewDidLoad()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        \u002F\u002F Задаем фоновый цвет\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        view.backgroundColor = .lightGray\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E Конечно для фона лучше использовать системные цвета (например: .systemBlue). Apple адаптировала системные цвета к темному и светлому режижам работы в отличии от простых цветов.\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EВ качестве эксперимента давай зададим нашим \u003Ccode\u003EViewController\u003C\u002Fcode\u003E   разные цвета.\u003C\u002Fp\u003E\u003Cp\u003EТеперь давай создадим два навигационных контроллераr и добавим\u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E и \u003Ccode\u003EProfileViewController\u003C\u002Fcode\u003E и как root view controller. В \u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E перед \u003Ccode\u003Ewindow = UIWindow(frame: windowScene.coordinateSpace.bounds\u003C\u002Fcode\u003E  создаем навигационные контроллеры   \u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Elet feedViewController = UINavigationController(rootViewController: FeedViewController()) \u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Elet profileViewController = UINavigationController(rootViewController: profileViewController())\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EТеперь помещаем навигационные контроллеры в панель вкладок пользовательского интерфейса. Создаем панель вкладок: \u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Elet tabBarController = UITabBarController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПомещаем в нее навигационнные контроллеры:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EtabBarController.viewControllers = [feedViewController, profileViewController]\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНе забудь поменять \u003Ccode\u003EUITabBarController()\u003C\u002Fcode\u003E  на пользовательский  \u003Ccode\u003EtabBarController\u003C\u002Fcode\u003E  в\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ewindow?.rootViewController = UITabBarController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EТеперь когда мы запустим наш проект, мы увидим что экран отображает заданный цвет и если пощелкать внизу справа и слева, то даже будут переключаться экраны. Хотя наш TabBar  и не отображает ничего. Это говорит, что у нас все прекрасно работает.\u003C\u002Fp\u003E\u003Cp\u003EДавай теперь настроим наш TabBar, чтобы не играть в игру: Куда я нажимаю?\u003C\u002Fp\u003E\u003Ch2\u003EНастройка TabBar\u003C\u002Fh2\u003E\u003Cp\u003EДавай сделаем наш код красивым и не будем все собирать в кучу, а разделим каждый блок в методы.\u003C\u002Fp\u003E\u003Cp\u003EВ первый метод соберем наш \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E, во второй \u003Ccode\u003EProfileViewController\u003C\u002Fcode\u003E, ну а в третий \u003Ccode\u003ETabBarController\u003C\u002Fcode\u003E. Реализация методов в \u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E станет выполнением пункда 6 нашего задания, мы добавим и иконки и заголовки.\u003C\u002Fp\u003E\u003Cp\u003E Создаем фукцию контроллера поисковой навигации, который возвращает контроллер пользовательского интерфейса:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Efunc createFeedViewController() -\u003E UINavigationController {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E Инициализируем поисковый контроллер, который заменим созданный выше\u003C\u002Fp\u003E\u003Cp\u003El\u003Ccode\u003Eet feedViewController = FeedViewController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДобавляем заголовок, который отобразится вверху нашего экрана\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EfeedViewController.title = \"Лента\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EА теперь настроим и саму кнопку, добавив на нее иконку и название. Создаем элемент панели вкладок пользовательского интерфейса \u003Ccode\u003EUITabBarIt\u003C\u002Fcode\u003E, где  \u003Ccode\u003Etitle:\u003C\u002Fcode\u003E это заголовок, а \u003Ccode\u003Eimage:\u003C\u002Fcode\u003E в нашем случае системная иконка (системные иконки можно найти в программе \"Символы SF\" или в самом Xcode Edit -\u003E Emoji &amp; Symbols) и последнее \u003Ccode\u003Etag:\u003C\u002Fcode\u003Eэто индекс положения, где 0 - положение слева, а 1 справа.     \u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EfeedViewController.tabBarItem = UITabBarItem(title: \"Лента\", image: UIImage(systemName: \"doc.richtext\"), tag: 0)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВозвращаем навигатор пользовательского интерфейса\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ereturn UINavigationController(rootViewController: feedViewController)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДелаем тоже самое для навигационного контроллера  \u003Ccode\u003EProfileViewController\u003C\u002Fcode\u003E    \u003C\u002Fp\u003E\u003Cp\u003E \u003Ccode\u003Efunc createProfileViewController() -\u003E UINavigationController {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Elet profileViewController = ProfileViewController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EprofileViewController.title = \"Профиль\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EprofileViewController.tabBarItem = UITabBarItem(title: \"Профиль\", image: UIImage(systemName: \"person.circle\"), tag: 1)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ereturn UINavigationController(rootViewController: profileViewController)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EТеперь удалим, за ненадобностью вверху: \u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Elet feedViewController = UINavigationController(rootViewController: FeedViewController()) \u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Elet profileViewController = UINavigationController(rootViewController: profileViewController())\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EТеперь давай создадим метод для панели вкладок и передадим эту функцию корневому представлению\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Efunc createTabBarController() -\u003E UITabBarController {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EУдали сверху и вставь в метод строки кода\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Elet tabBarController = UITabBarController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНастроим внешний вид панели вкладок и установим основной цвет синий\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EUITabBar.appearance().backgroundColor = .systemBlue\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПоменяем наши контроллеры на методы созданные чуть выше\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EtabBarController.viewControllers = [createFeedViewController(), createProfileViewController()]\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВозвращаем панель вкладок\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ereturn tabBarController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНе забудь поменять \u003Ccode\u003EtabBarController()\u003C\u002Fcode\u003E  созданный метод  \u003Ccode\u003EcreateTabBarController()\u003C\u002Fcode\u003E  в\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ewindow?.rootViewController = tabBarController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EТеперь можещь запустить созданный проект и посмотреть на ту красоту, которую мы создали. Благодаря методам мы сделали красивый и хорошо пахнущий код, который не засоряет собою \u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДавай перейдем ко второму методу.\u003C\u002Fp\u003E\u003Ch2\u003EСоздание собственного UITabBarController.swift и в него инкапсулировать два UINavigationController\u003C\u002Fh2\u003E\u003Cp\u003EКому-то может не понравится способ создания кода в \u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E  и это тоже хорошо и по-этому мы рассмотрим второй способ.\u003C\u002Fp\u003E\u003Cp\u003EВо-первых, мы создаем свой \u003Ccode\u003ETabBarController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Efinal class TabBarController: UITabBarController {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ него мы инкапсулируем \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E, во второй \u003Ccode\u003EProfileViewControlle\u003C\u002Fcode\u003E.  Мы можен инкапсулировать больше двух контроллеров, то есть сколько айтемов, столько и кейсов. Создаем перечисление \u003Ccode\u003ETabBarItem\u003C\u002Fcode\u003E с описанием наших контроллеров\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eprivate enum TabBarItem: Int {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        case feed\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        case profile\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E        Добавим заголовки\u003C\u002Fp\u003E\u003Cp\u003E        \u003Ccode\u003Evar title: String {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            switch self {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            case .feed:\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E                return \"Лента\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            case .profile:\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E                return \"Профиль\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E        \u003Ccode\u003E}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E        Добавим иконки\u003C\u002Fp\u003E\u003Cp\u003E        \u003Ccode\u003Evar iconName: String {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            switch self {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            case .feed:\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E                return \"house\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            case .profile:\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E                return \"person.crop.circle\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EТеперь загрузим это все в \u003Ccode\u003ETabBarController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eoverride func viewDidLoad() {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        super.viewDidLoad()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.setupTabBar()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ методе    мы создадим создадим контроллеры \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E и \u003Ccode\u003EProfileViewControlle\u003C\u002Fcode\u003E  для \u003Ccode\u003ETabBarController\u003C\u002Fcode\u003E. Не забудьте как и в первом способе создать сами swift файлы!\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eprivate func setupTabBar() {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        let dataSource: [TabBarItem] = [.feed, .profile]\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.viewControllers = dataSource.map {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            switch $0 {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            case .feed:\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E                let feedViewController = FeedViewController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E                return self.wrappedInNavigationController(with: feedViewController, title: $0.title)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            case .profile:\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E                let profileViewController = ProfileViewController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E                return self.wrappedInNavigationController(with: profileViewController, title: $0.title)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.viewControllers?.enumerated().forEach {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            $1.tabBarItem.title = dataSource[$0].title\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            $1.tabBarItem.image = UIImage(systemName: dataSource[$0].iconName)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E            $1.tabBarItem.imageInsets = UIEdgeInsets(top: 5, left: .zero, bottom: -5, right: .zero)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНу и в самом конце методом \u003Ccode\u003EwrappedInNavigationController(with: profileViewController, title: $0.title)\u003C\u002Fcode\u003E  мы обернем переданный контроллер \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E или \u003Ccode\u003EProfileViewControlle\u003C\u002Fcode\u003Eв \u003Ccode\u003ENavigationController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eprivate func wrappedInNavigationController(with: UIViewController, title: Any?) -\u003E UINavigationController {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        return UINavigationController(rootViewController: with)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВторой способ позволит нам оставить чистым \u003Ccode\u003ESceneDelegate.swift\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E  \u003Ccode\u003Eguard let windowScene = (scene as? UIWindowScene) else { return }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.window = UIWindow(windowScene: windowScene)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.window?.makeKeyAndVisible()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.window?.rootViewController = TabBarController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E        \u003C\u002Fp\u003E\u003Cp\u003EВ следующей статье мы рассмотрим оставшиеся пункты, а так же программный способ создания интерфейса.\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F654839\u002F\" rel=\"noopener noreferrer nofollow\"\u003EСледующая статья\u003C\u002Fa\u003E рассматривающая пункты 6 и 7\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"uitabbarcontroller"},{"titleHtml":"uinavigationcontroller"},{"titleHtml":"scenedelegate"},{"titleHtml":"TabBarItem"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8ca\u002F247\u002Ff27\u002F8ca247f2715d0dd3db381c6f0aaa0b73.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8ca\u002F247\u002Ff27\u002F8ca247f2715d0dd3db381c6f0aaa0b73.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F652543\\\u002F\"},\"headline\":\"Создание TabBarController и NavigationController программно в UIKit\",\"datePublished\":\"2022-02-20T11:46:45+03:00\",\"dateModified\":\"2022-03-09T16:37:16+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"MaksMai\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Зачем UIKit в 2022В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много прило...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F652543\\\u002F#post-content-body\",\"about\":[\"h_swift\",\"f_develop\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F652543\\\u002Ff0e8da474a080d89284232e8fe3545ff\\\u002F\"]}","metaDescription":"Зачем UIKit в 2022В начале 2022 года может показаться, что использование UIKit на фоне SwiftUI не актуально или даже старомодно. Но так как еще очень много приложений которые созданы на основе...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrComm

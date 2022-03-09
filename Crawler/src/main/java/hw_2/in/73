@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Кейс интеграции IoT &amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/654837\/"},"headline":"Кейс интеграции IoT &amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео","datePublished":"2022-03-09T16:31:39+03:00","dateModified":"2022-03-09T17:18:54+03:00","author":{"@type":"Person","name":"Maff Media"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтоб...","url":"https:\/\/habr.com\/ru\/post\/654837\/#post-content-body","about":["h_javascript","h_nodejs","h_typescript","h_raspberrypi","f_develop"],"image":["https:\/\/habr.com\/share\/publication\/654837\/36fa7c063a6bbe61541ce6960cce4aef\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a96\/807\/3a5\/a968073a5edbdb195b39cfcd31bb9ce2.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/ac9\/704\/d54\/ac9704d545a949f4acf40186fb16a083.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a6b\/c99\/563\/a6bc995632756014016756e45319728f.jpeg"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Кейс интеграции IoT &amp;amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="Кейс интеграции IoT &amp;amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="Кейс интеграции IoT &amp;amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/627/5a8/d37/6275a8d37b148328a371799039c9108e.jpeg" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/627/5a8/d37/6275a8d37b148328a371799039c9108e.jpeg" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/627/5a8/d37/6275a8d37b148328a371799039c9108e.jpeg" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/627/5a8/d37/6275a8d37b148328a371799039c9108e.jpeg" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/627/5a8/d37/6275a8d37b148328a371799039c9108e.jpeg?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="654837" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2022-03-09T13:31:39.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/654837/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="метавселенная, метавселенные, iot, интернет вещей, raspberry pi, raspberry pi 3, decentraland"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654837/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654837/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habrastorage.org/getpro/habr/upload_files/627/5a8/d37/6275a8d37b148328a371799039c9108e.jpeg" data-vmid="image:href">
+  <link data-vue-meta="ssr" rel="amphtml" href="https://habr.com/ru/amp/post/654837/"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> <!----> <a href="https://effect.habr.com/a/4JLtee36wfGI2ZBFfwhoTjNg3OteBrEi7aJIjnDUSy3XQbL3qrC5AKhbwsDOIzY825-vwowsjlcZYnAOp8K6ByE61iWoTavSumdPlnUVWX_oWQrS" target="_blank" class="tm-top-link" style="color:#99ddff;"> Основы основ финтеха </a> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/MaffMedia/" title="MaffMedia" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/9fc/56e/32c/9fc56e32c62e32675503afabb4e4be45.jpg" width="24" class="tm-entity-image__pic">
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/MaffMedia/" class="tm-user-info__username"> MaffMedia </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T13:31:39.000Z" title="2022-03-09, 16:31">сегодня в 16:31</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>Кейс интеграции IoT &amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/javascript/" class="tm-article-snippet__hubs-item-link"><span>JavaScript</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/nodejs/" class="tm-article-snippet__hubs-item-link"><span>Node.JS</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/typescript/" class="tm-article-snippet__hubs-item-link"><span>TypeScript</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/raspberrypi/" class="tm-article-snippet__hubs-item-link"><span>Разработка на Raspberry Pi</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span>
+                  </div> 
+                  <div class="tm-article-snippet__labels">
+                   <div class="tm-article-snippet__label tm-article-snippet__label_variant-sandbox">
+                    <span> Из песочницы </span>
+                   </div>
+                  </div> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-2">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <p>В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы добавили видео-презентацию, что в итоге получилось.&nbsp;</p>
+                     <h3>Основные положения</h3>
+                     <p>Мы выбирали сами, каким пользоваться софтом и на каком языке писать. Это не означает, что нужен только такой софт — вы можете найти что-то более удобное для себя. Что мы использовали:</p>
+                     <ol>
+                      <li><p>Raspberry pi 3b с самописным вебсокет сервером на борту с подключенной адресной светодиодной лентой ws2812. Эта конструкция выступает за IoT.</p></li>
+                      <li><p>Код написан JavaScript и исполняется в Node.js.</p></li>
+                      <li><p>Код для клиентской части Decentraland написан на TypeScript.</p></li>
+                     </ol>
+                     <p>В коде есть потребность в рефакторинге и оптимизациях. Но так как это MVP версия, то показываем как есть.</p>
+                     <p>В статье показана инструкция по подготовке бэкенда и фронтенда, и видеотрансляции. Она написана скорее для людей, которые разбираются в тонкостях работы с серверной и клиентской частях. Некоторые вещи гуглятся, если прямо совсем не получается. Такая инструкция точно не подойдет человеку, который только начал программировать.</p>
+                     <p>Однако, для всех интересующихся темой мы прикрепили ссылки на материалы, которые будут полезны для изучения и помогут разобраться.</p>
+                     <h3>Список нужных навыков и знаний</h3>
+                     <ol>
+                      <li><p>Умение писать на JS/TS: хотя бы несложные вещи.</p></li>
+                      <li><p>Понадобятся базовые навыки по работе с <a href="https://docs.decentraland.org/development-guide/SDK-101/" rel="noopener noreferrer nofollow"><u>SDK Decentraland.</u></a></p></li>
+                      <li><p>Умение работать с Raspberry pi:</p>
+                       <ol>
+                        <li><p>Создавать образ Raspbian Lite на флешке. Это можно сделать с помощью<a href="https://www.raspberrypi.com/software/" rel="noopener noreferrer nofollow"> <u>Raspberry Pi Imager</u></a>. Скачать образ Raspbian Lite можно тоже с<a href="https://www.raspberrypi.com/software/operating-systems/" rel="noopener noreferrer nofollow"><u> официального сайта</u></a>.</p></li>
+                        <li><p>Управлять по SSH. Для SSH-доступа понадобится создать в разделе флешки boot пустой текстовый файл ssh.txt.</p></li>
+                        <li><p>Для работы понадобится установить Node.js. Как это сделать — <a href="https://www.makersupplies.sg/blogs/tutorials/how-to-install-node-js-and-npm-on-the-raspberry-pi" rel="noopener noreferrer nofollow"><u>рассказано в инструкции</u></a>.</p></li>
+                        <li><p>Уметь использовать<a href="https://apps.apple.com/ru/app/ip-scanner/id404167149?mt=12" rel="noopener noreferrer nofollow"><u> IP Scanner</u></a>. Мы использовали приложение<a href="https://apps.apple.com/ru/app/ip-scanner/id404167149?mt=12" rel="noopener noreferrer nofollow"> <u>IP Scanner</u></a>.</p></li>
+                        <li><p>Уметь подключаться по SFTP. Мы использовали<a href="https://cyberduck.io/" rel="noopener noreferrer nofollow"> <u>CyberDuck</u></a>.</p></li>
+                        <li><p>Уметь работать с вебсокетами. <a href="https://app.localkitchen.ru/admins/3213" rel="noopener noreferrer nofollow"><u>Библиотека для работы с ними</u></a>.</p></li>
+                        <li><p>Уметь работать с адресной светодиодной лентой ws2812. <a href="https://www.npmjs.com/package/rpi-ws281x" rel="noopener noreferrer nofollow"><u>Библиотека по работе</u></a>.</p></li>
+                        <li><p>Уметь подключаться к GPIO и подключать внешнее питание. <a href="https://habrastorage.org/r/w1560/webt/ox/fd/z3/oxfdz3i_gcu-ga22wx6et4lqqya.jpeg" rel="noopener noreferrer nofollow"><u>Схема GPIO</u> </a>— <a href="https://app.localkitchen.ru/admins/17214" rel="noopener noreferrer nofollow"><u>схема подключения внешнего источника питания</u></a> — <a href="https://tutorials-raspberrypi.com/connect-control-raspberry-pi-ws2812-rgb-led-strips/" rel="noopener noreferrer nofollow"><u>статья о питании ws2812 от raspberry pi</u></a>.</p></li>
+                        <li><p>Уметь пользоваться автозагрузкой <a href="https://pm2.keymetrics.io/" rel="noopener noreferrer nofollow"><u>с помощью PM2</u></a>. В статье мы написали нужные команды для работы.</p></li>
+                       </ol></li>
+                      <li><p>Уметь выпускать сертификат TLS для HTTPS/WSS соединения. Мы использовали<a href="https://certbot.eff.org/instructions" rel="noopener noreferrer nofollow"> <u>certbot</u></a>, выпускающий сертификат от Let’s encrypt.</p></li>
+                      <li><p>Уметь пробрасывать нужные порты в маршрутизаторе.</p></li>
+                      <li><p>Уметь привязывать домены или поддомены к IP адресу. Это делается записью A. <a href="https://help.reg.ru/hc/ru/articles/4408047057937-%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B8-DNS" rel="noopener noreferrer nofollow"><u>Статья для ознакомления</u></a>.&nbsp;</p></li>
+                      <li><p>Уметь стримить видео из OBS Studio и пользоваться сервисом для раздачи этого видео. Мы выбрали <a href="https://www.cdnvideo.ru/" rel="noopener noreferrer nofollow"><u>CDNvideo</u></a>. </p></li>
+                     </ol>
+                     <blockquote>
+                      <p><strong>Без этого пункта ничего работать не будет </strong></p>
+                      <p>Помимо навыков и знаний, еще понадобится «белый» IP-адрес, по которому будет доступна Raspberry pi.</p>
+                     </blockquote>
+                     <h3>Готовим серверную часть (Back-end)</h3>
+                     <p><strong>Настройка и развертывание. </strong>Сначала нужно подключиться по SSH и <a href="https://github.com/MaffGroup/xmas-tree-dcl-server" rel="noopener noreferrer nofollow"><u>скачать серверную часть с Github</u></a> на Raspberry pi. Затем поставить все зависимости с помощью Yarn или NPM, установить certbot и выпустить сертификат. В конце скопировать его в папку с проектом.</p>
+                     <p><strong>Проброс портов. </strong>Их нужно пробросить на маршрутизаторе на 3000-ый порт. Обычно на нем стартует сервер по умолчанию. Порт можно поменять, но тогда нужно будет его поменять в клиентской части и в вебсокет-подключении.</p>
+                     <p><strong>Подключение светодиодной ленты. </strong>Нужно подключить к внешнему питанию адресную светодиодную ленту ws2812 и Raspberry pi.</p>
+                     <p>❗️ К питанию Raspberry pi ленту лучше не подключать — есть вероятность сжечь что-нибудь в Raspberry.</p>
+                     <p>Светодиодную ленту нужно подключить к пину <strong>GPIO18</strong>.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/a96/807/3a5/a968073a5edbdb195b39cfcd31bb9ce2.png" alt="Пин GPI018 находится под номером 12" title="Пин GPI018 находится под номером 12" width="1232" height="954" data-src="https://habrastorage.org/getpro/habr/upload_files/a96/807/3a5/a968073a5edbdb195b39cfcd31bb9ce2.png">
+                      <figcaption>
+                       Пин GPI018 находится под номером 12
+                      </figcaption>
+                     </figure>
+                     <p>Схема подключения внешнего питания к ленте и ленты к Raspberry pi выглядит так:</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/ac9/704/d54/ac9704d545a949f4acf40186fb16a083.png" alt="Взято с сайта tutorials-raspberrypi.com" title="Взято с сайта tutorials-raspberrypi.com" width="1126" height="734" data-src="https://habrastorage.org/getpro/habr/upload_files/ac9/704/d54/ac9704d545a949f4acf40186fb16a083.png">
+                      <figcaption>
+                       Взято с сайта tutorials-raspberrypi.com
+                      </figcaption>
+                     </figure>
+                     <p><strong>Автозагрузка с помощью PM2. </strong>Сначала нужно глобально установить PM2. После этого запустить из папки с проектом код:</p>
+                     <pre><code>pi@raspberrypi:~/xmas-tree-dcl-server $ pm2 start npm --name tree_server  -- start
+pi@raspberrypi:~/xmas-tree-dcl-server $ sudo env PATH=$PATH:/usr/local/bin pm2 startup systemd -u pi --hp /home/pi
+pi@raspberrypi:~/xmas-tree-dcl-server $ pm2 save</code></pre>
+                     <p>Он может показаться простым, но вторая строчка очень важна: просто с pm2 startup не сработает.</p>
+                     <h3>Готовим клиентскую часть (Front-end)</h3>
+                     <p><strong>Настройка и развертывание. </strong>Сначала нужно <a href="https://github.com/MaffGroup/xmas-tree-dcl-client" rel="noopener noreferrer nofollow"><u>скачать клиентскую часть с Github</u></a> и поставить зависимости с помощью Yarn или NPM. Затем в файле src/game.ts поменять домен на тот, по которому доступна Raspberry pi (Пример кода: <strong>let ip = 'xmas.maff.io'</strong>). И дальше либо запустить на локальной машине с помощью npx dcl start. Либо задеплоить на сервера Decentraland, если уже есть парсели земли, и указать данные от вашего участка земли в scene.json.</p>
+                     <p><strong>Порт и домен. </strong>По дефолту там стоит порт 3000. Его можно поменять в коде, но тогда и на серверной части поменять на такой же.</p>
+                     <p><strong>Подключение видеострима. </strong>Прописываем код и ссылаемся на .m3u8 плейлист от провайдера стримов:</p>
+                     <pre><code>const videoClip = new VideoClip("https://qlbao8oxmuv.a.trbcdn.net/livemaster/mjv6e_live-5y7frv6x31h.smil/playlist.m3u8")</code></pre>
+                     <h3>Готовим видеотрансляцию</h3>
+                     <p>Нужно настроить в OBS Studio нужные параметры для трансляции, которые дал провайдер. Мы использовали CDNvideo.&nbsp;</p>
+                     <p>Пример для другого провайдера, но по аналогии делается у всех одинаково:</p>
+                     <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/6220c73de635030b64de800e" data-style="" id="6220c73de635030b64de800e" width=""></div>
+                     <h3>Результат</h3>
+                     <p>Отдельные фрагменты светодиодной ленты моментально меняют цвет по взаимодействию в метавселенной с группами цветных шаров на виртуальной елочке. Но на стриме это видно с ощутимой задержкой. Если у вас есть идеи, как ее обойти, напишите пожалуйста в комментариях. </p>
+                     <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/6220ca7ee1af860b1c6b9987" data-style="" id="6220ca7ee1af860b1c6b9987" width=""></div>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/a6b/c99/563/a6bc995632756014016756e45319728f.jpeg" width="2000" height="923" data-src="https://habrastorage.org/getpro/habr/upload_files/a6b/c99/563/a6bc995632756014016756e45319728f.jpeg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Ссылки на ресурсы русскоязычного сообщества</h3>
+                     <ol>
+                      <li><p>Telegram-чат <a href="https://t.me/decentraland_ru" rel="noopener noreferrer nofollow"><u>русскоязычного сообщества</u></a> Decentraland.</p></li>
+                      <li><p>Telegram-чат <a href="https://t.me/metaverse_hackaton" rel="noopener noreferrer nofollow"><u>Creators for Metaverses</u></a><u> </u>от Maff.</p></li>
+                      <li><p>Telegram-чат <a href="https://t.me/developers_metaverse" rel="noopener noreferrer nofollow"><u>по разработке для метавселенных</u></a> от Maff.</p></li>
+                      <li><p>Telegram-канал <a href="https://t.me/maff_io" rel="noopener noreferrer nofollow"><u>про блокчейн и метавселенные</u></a>.</p></li>
+                     </ol>
+                     <p>Если у вас есть аналогичные или похожие проекты, будем рады с вами их обсудить и посотрудничать.</p>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%BC%D0%B5%D1%82%D0%B0%D0%B2%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%5D" class="tm-tags-list__link">метавселенная</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%BC%D0%B5%D1%82%D0%B0%D0%B2%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5%5D" class="tm-tags-list__link">метавселенные</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Biot%5D" class="tm-tags-list__link">iot</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82%20%D0%B2%D0%B5%D1%89%D0%B5%D0%B9%5D" class="tm-tags-list__link">интернет вещей</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Braspberry%20pi%5D" class="tm-tags-list__link">raspberry pi</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Braspberry%20pi%203%5D" class="tm-tags-list__link">raspberry pi 3</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bdecentraland%5D" class="tm-tags-list__link">decentraland</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/javascript/" class="tm-hubs-list__link"> JavaScript </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/nodejs/" class="tm-hubs-list__link"> Node.JS </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/typescript/" class="tm-hubs-list__link"> TypeScript </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/raspberrypi/" class="tm-hubs-list__link"> Разработка на Raspberry Pi </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 1: ↑1 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 1: ↑1 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+1</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">253</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 4 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/MaffMedia/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <img alt="" src="//habrastorage.org/getpro/habr/avatars/9fc/56e/32c/9fc56e32c62e32675503afabb4e4be45.jpg" class="tm-entity-image__pic">
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 4 голоса " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         4 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         1
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <span class="tm-user-card__name tm-user-card__name_variant-article">Maff Media</span> <a href="/ru/users/MaffMedia/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @MaffMedia </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Блокчейне, метавселенные, виртуальная реальность</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <!----> <!----> <!---->
+                  </div>
+                 </div> <!---->
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner24220" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/654837/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментировать </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> 
+              <section class="tm-block tm-block_spacing-around">
+               <header class="tm-block__header">
+                <h2 class="tm-block__title">Минуточку внимания</h2> 
+                <div class="tm-block__header-aside">
+                 <a href="https://tmtm.ru/megapost/" target="_blank" class="tm-block-extralink"> Разместить </a>
+                </div>
+               </header> 
+               <div class="tm-block__body">
+                <div pagination="" slides-per-view="1" class="tm-promo-block__content-wrapper">
+                 <div class="tm-promo-block__item-wrapper">
+                  <a href="https://effect.habr.com/a/oLj5iAqrKjOQe9BhxN6--j1_ErB5RFOkN0KPuf7l8UBPpOS9Ii8zp9JR5Xh2sdnrMMhwTD0QtBzThXXenP74U5p6eEhzdHe9zi5-moIKW010OWtlL4vgPUmup-qEKfU097o1IwYl1w" rel="nofollow " class="tm-promo-block__item tm-article-title__link">
+                   <header class="tm-promo-block__head">
+                    <div class="tm-promo-block__image-wrapper">
+                     <img alt="" src="https://effect.habr.com/a/_ykYx7YG4ocFIuwW4erT8zG1jyOlawXar4kXBg0vzOKOBaMEmCyuE9dh53rLu28vwQCP2Qjjw0n91jhTTBreL3cn1V_tB4j_4Q3ZsxqvTlhUXziidLYe34_XlFrOnSy_Iyf5-fvnMymZuijC6NO-jEMKmXIgy0r_bhFcj2isbLrVVzqcLL7H7aslVeM9bKgYcAdRp6O-nwiO" class="tm-promo-block__image">
+                    </div> 
+                    <div class="tm-promo-block__label">
+                      Интересно <!---->
+                    </div>
+                   </header> 
+                   <div class="tm-promo-block__info">
+                    <h3 class="tm-promo-block__title">Истощающая тревога: что такое стресс и как с ним бороться</h3>
+                   </div></a>
+                 </div>
+                 <div class="tm-promo-block__item-wrapper">
+                  <a href="https://effect.habr.com/a/pmL3g1GjvlLbwQokSZUt2x22hwjcEMtvAfj7KFomb8krW1kc0uDcMddX5FSYL7C2mqbhff-j9l-vyULhVUHZUH3GbGvsFT5kEX6628WOie0jMA" rel="nofollow " class="tm-promo-block__item tm-article-title__link">
+                   <header class="tm-promo-block__head">
+                    <div class="tm-promo-block__image-wrapper">
+                     <img alt="" src="https://effect.habr.com/a/EVac76INU06YcNGFrRM3yN99sfHWEqRP_ZKo8zWaFtw08sZruPAni-qMHHFbeoV75_3JDzDmv-iK9uXU222haSJLEOeK9cd3R6nIpRshCtBp3ZhU8jaIaJRYKfJ0I0iAyGH9s4qn2vBq7hZrCukgw6BnXIJqsmfG8lpEv3tHRWMSxgsyD6pWrUkuOJt2ehUdlaJ911ucybZV_lMKaiMsO3ggCcGj" class="tm-promo-block__image">
+                    </div> 
+                    <div class="tm-promo-block__label">
+                      Событие <!---->
+                    </div>
+                   </header> 
+                   <div class="tm-promo-block__info">
+                    <h3 class="tm-promo-block__title">Конкурс технических статей Технотекст 2021</h3>
+                   </div></a>
+                 </div>
+                 <div class="tm-promo-block__item-wrapper">
+                  <a href="https://effect.habr.com/a/15n_6JvuDlz5LiRUh5m-x8n-hICafMxXgaftFioyj8-erxdbKeOrtm53ZFB57IhgBR2qJSREjPVP-dm3ozdeN51Xl-lroHEqas82dpIXPU0Bbs9ATkxi" rel="nofollow " class="tm-promo-block__item tm-article-title__link">
+                   <header class="tm-promo-block__head">
+                    <div class="tm-promo-block__image-wrapper">
+                     <img alt="" src="https://effect.habr.com/a/l9TgPIL1bsLWwJpAurh_H1TKY_YaM7XU7FfLjzPwC0rjnkOVlWAuLNoWLxMVYhlswEDRbUVNQ0H9uw9CG4JbhpxJPPWi42kcmk3gZC9d3i_JM8eVGY2s2WC5JgmbM8fxCEbduYYinmFcHkGKj5hDfAZBgk7p6aMWLmICQi3eq7oF_2cGghAcUKIIwXNSdNrYnN1VsYhg1JdGOU3__Proj7AbX4Wc" class="tm-promo-block__image">
+                    </div> 
+                    <div class="tm-promo-block__label">
+                      Промо <!---->
+                    </div>
+                   </header> 
+                   <div class="tm-promo-block__info">
+                    <h3 class="tm-promo-block__title">Промокод — твой билет в общество потребления</h3>
+                   </div></a>
+                 </div>
+                </div>
+               </div> <!---->
+              </section> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner24221" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> 
+            <section data-async-called="true" class="tm-block tm-block_spacing-bottom">
+             <header class="tm-block__header">
+              <h2 class="tm-block__title">Работа</h2> <!---->
+             </header> 
+             <div class="tm-block__body">
+              <div class="tm-vacancies-block__item">
+               <a href="https://career.habr.com/vacancies/programmist_javascript" target="_blank" class="tm-vacancies-block__vacancy-title"> JavaScript разработчик </a> 
+               <div class="tm-vacancies-block__vacancies-count">
+                 461 вакансия 
+               </div>
+              </div>
+              <div class="tm-vacancies-block__item">
+               <a href="https://career.habr.com/vacancies/nodejs_razrabotchik" target="_blank" class="tm-vacancies-block__vacancy-title"> Node.js разработчик </a> 
+               <div class="tm-vacancies-block__vacancies-count">
+                 165 вакансий 
+               </div>
+              </div>
+              <div class="tm-vacancies-block__item">
+               <a href="https://career.habr.com/vacancies/react_razrabotchik" target="_blank" class="tm-vacancies-block__vacancy-title"> React разработчик </a> 
+               <div class="tm-vacancies-block__vacancies-count">
+                 226 вакансий 
+               </div>
+              </div>
+             </div> 
+             <footer class="tm-block__footer">
+              <a href="https://career.habr.com/catalog" class="tm-block-extralink"> Все вакансии </a>
+             </footer>
+            </section> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom24222" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654837/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654837/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654837":{"id":"654837","timePublished":"2022-03-09T13:31:39+00:00","isCorporative":false,"lang":"ru","titleHtml":"Кейс интеграции IoT &amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео","leadData":{"textHtml":"\u003Cp\u003EВ этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы добавили видео-презентацию, что в итоге получилось.&nbsp;\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F627\u002F5a8\u002Fd37\u002F6275a8d37b148328a371799039c9108e.jpeg","buttonTextHtml":"Изучить подробнее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F627\u002F5a8\u002Fd37\u002F6275a8d37b148328a371799039c9108e.jpeg","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"scoreStats":{"score":4,"votesCount":4},"rating":1,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"2972819","alias":"MaffMedia","fullname":"Maff Media","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F9fc\u002F56e\u002F32c\u002F9fc56e32c62e32675503afabb4e4be45.jpg","speciality":"Блокчейне, метавселенные, виртуальная реальность"},"statistics":{"commentsCount":0,"favoritesCount":4,"readingCount":253,"score":1,"votesCount":1},"hubs":[{"relatedData":null,"id":"357","alias":"javascript","type":"collective","title":"JavaScript","titleHtml":"JavaScript","isProfiled":true},{"relatedData":null,"id":"17110","alias":"nodejs","type":"collective","title":"Node.JS","titleHtml":"Node.JS","isProfiled":true},{"relatedData":null,"id":"21370","alias":"typescript","type":"collective","title":"TypeScript","titleHtml":"TypeScript","isProfiled":true},{"relatedData":null,"id":"21476","alias":"raspberrypi","type":"collective","title":"Разработка на Raspberry Pi","titleHtml":"Разработка на Raspberry Pi","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EВ этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы добавили видео-презентацию, что в итоге получилось. \u003C\u002Fp\u003E\u003Ch3\u003EОсновные положения\u003C\u002Fh3\u003E\u003Cp\u003EМы выбирали сами, каким пользоваться софтом и на каком языке писать. Это не означает, что нужен только такой софт — вы можете найти что-то более удобное для себя. Что мы использовали:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003ERaspberry pi 3b с самописным вебсокет сервером на борту с подключенной адресной светодиодной лентой ws2812. Эта конструкция выступает за IoT.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКод написан JavaScript и исполняется в Node.js.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКод для клиентской части Decentraland написан на TypeScript.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EВ коде есть потребность в рефакторинге и оптимизациях. Но так как это MVP версия, то показываем как есть.\u003C\u002Fp\u003E\u003Cp\u003EВ статье показана инструкция по подготовке бэкенда и фронтенда, и видеотрансляции. Она написана скорее для людей, которые разбираются в тонкостях работы с серверной и клиентской частях. Некоторые вещи гуглятся, если прямо совсем не получается. Такая инструкция точно не подойдет человеку, который только начал программировать.\u003C\u002Fp\u003E\u003Cp\u003EОднако, для всех интересующихся темой мы прикрепили ссылки на материалы, которые будут полезны для изучения и помогут разобраться.\u003C\u002Fp\u003E\u003Ch3\u003EСписок нужных навыков и знаний\u003C\u002Fh3\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EУмение писать на JS\u002FTS: хотя бы несложные вещи.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПонадобятся базовые навыки по работе с \u003Ca href=\"https:\u002F\u002Fdocs.decentraland.org\u002Fdevelopment-guide\u002FSDK-101\u002F\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003ESDK Decentraland.\u003C\u002Fu\u003E\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУмение работать с Raspberry pi:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EСоздавать образ Raspbian Lite на флешке. Это можно сделать с помощью\u003Ca href=\"https:\u002F\u002Fwww.raspberrypi.com\u002Fsoftware\u002F\" rel=\"noopener noreferrer nofollow\"\u003E \u003Cu\u003ERaspberry Pi Imager\u003C\u002Fu\u003E\u003C\u002Fa\u003E. Скачать образ Raspbian Lite можно тоже с\u003Ca href=\"https:\u002F\u002Fwww.raspberrypi.com\u002Fsoftware\u002Foperating-systems\u002F\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003E официального сайта\u003C\u002Fu\u003E\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУправлять по SSH. Для SSH-доступа понадобится создать в разделе флешки boot пустой текстовый файл ssh.txt.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДля работы понадобится установить Node.js. Как это сделать — \u003Ca href=\"https:\u002F\u002Fwww.makersupplies.sg\u002Fblogs\u002Ftutorials\u002Fhow-to-install-node-js-and-npm-on-the-raspberry-pi\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eрассказано в инструкции\u003C\u002Fu\u003E\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь использовать\u003Ca href=\"https:\u002F\u002Fapps.apple.com\u002Fru\u002Fapp\u002Fip-scanner\u002Fid404167149?mt=12\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003E IP Scanner\u003C\u002Fu\u003E\u003C\u002Fa\u003E. Мы использовали приложение\u003Ca href=\"https:\u002F\u002Fapps.apple.com\u002Fru\u002Fapp\u002Fip-scanner\u002Fid404167149?mt=12\" rel=\"noopener noreferrer nofollow\"\u003E \u003Cu\u003EIP Scanner\u003C\u002Fu\u003E\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь подключаться по SFTP. Мы использовали\u003Ca href=\"https:\u002F\u002Fcyberduck.io\u002F\" rel=\"noopener noreferrer nofollow\"\u003E \u003Cu\u003ECyberDuck\u003C\u002Fu\u003E\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь работать с вебсокетами. \u003Ca href=\"https:\u002F\u002Fapp.localkitchen.ru\u002Fadmins\u002F3213\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003EБиблиотека для работы с ними\u003C\u002Fu\u003E\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь работать с адресной светодиодной лентой ws2812. \u003Ca href=\"https:\u002F\u002Fwww.npmjs.com\u002Fpackage\u002Frpi-ws281x\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003EБиблиотека по работе\u003C\u002Fu\u003E\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь подключаться к GPIO и подключать внешнее питание. \u003Ca href=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fox\u002Ffd\u002Fz3\u002Foxfdz3i_gcu-ga22wx6et4lqqya.jpeg\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003EСхема GPIO\u003C\u002Fu\u003E \u003C\u002Fa\u003E— \u003Ca href=\"https:\u002F\u002Fapp.localkitchen.ru\u002Fadmins\u002F17214\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eсхема подключения внешнего источника питания\u003C\u002Fu\u003E\u003C\u002Fa\u003E — \u003Ca href=\"https:\u002F\u002Ftutorials-raspberrypi.com\u002Fconnect-control-raspberry-pi-ws2812-rgb-led-strips\u002F\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eстатья о питании ws2812 от raspberry pi\u003C\u002Fu\u003E\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь пользоваться автозагрузкой \u003Ca href=\"https:\u002F\u002Fpm2.keymetrics.io\u002F\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eс помощью PM2\u003C\u002Fu\u003E\u003C\u002Fa\u003E. В статье мы написали нужные команды для работы.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь выпускать сертификат TLS для HTTPS\u002FWSS соединения. Мы использовали\u003Ca href=\"https:\u002F\u002Fcertbot.eff.org\u002Finstructions\" rel=\"noopener noreferrer nofollow\"\u003E \u003Cu\u003Ecertbot\u003C\u002Fu\u003E\u003C\u002Fa\u003E, выпускающий сертификат от Let’s encrypt.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь пробрасывать нужные порты в маршрутизаторе.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь привязывать домены или поддомены к IP адресу. Это делается записью A. \u003Ca href=\"https:\u002F\u002Fhelp.reg.ru\u002Fhc\u002Fru\u002Farticles\u002F4408047057937-%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D0%BD%D1%8B%D0%B5-%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B8-DNS\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003EСтатья для ознакомления\u003C\u002Fu\u003E\u003C\u002Fa\u003E. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУметь стримить видео из OBS Studio и пользоваться сервисом для раздачи этого видео. Мы выбрали \u003Ca href=\"https:\u002F\u002Fwww.cdnvideo.ru\u002F\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003ECDNvideo\u003C\u002Fu\u003E\u003C\u002Fa\u003E. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cstrong\u003EБез этого пункта ничего работать не будет \u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EПомимо навыков и знаний, еще понадобится «белый» IP-адрес, по которому будет доступна Raspberry pi.\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Ch3\u003EГотовим серверную часть (Back-end)\u003C\u002Fh3\u003E\u003Cp\u003E\u003Cstrong\u003EНастройка и развертывание. \u003C\u002Fstrong\u003EСначала нужно подключиться по SSH и \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FMaffGroup\u002Fxmas-tree-dcl-server\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eскачать серверную часть с Github\u003C\u002Fu\u003E\u003C\u002Fa\u003E на Raspberry pi. Затем поставить все зависимости с помощью Yarn или NPM, установить certbot и выпустить сертификат. В конце скопировать его в папку с проектом.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПроброс портов. \u003C\u002Fstrong\u003EИх нужно пробросить на маршрутизаторе на 3000-ый порт. Обычно на нем стартует сервер по умолчанию. Порт можно поменять, но тогда нужно будет его поменять в клиентской части и в вебсокет-подключении.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПодключение светодиодной ленты. \u003C\u002Fstrong\u003EНужно подключить к внешнему питанию адресную светодиодную ленту ws2812 и Raspberry pi.\u003C\u002Fp\u003E\u003Cp\u003E❗️ К питанию Raspberry pi ленту лучше не подключать — есть вероятность сжечь что-нибудь в Raspberry.\u003C\u002Fp\u003E\u003Cp\u003EСветодиодную ленту нужно подключить к пину \u003Cstrong\u003EGPIO18\u003C\u002Fstrong\u003E.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa96\u002F807\u002F3a5\u002Fa968073a5edbdb195b39cfcd31bb9ce2.png\" alt=\"Пин GPI018 находится под номером 12\" title=\"Пин GPI018 находится под номером 12\" width=\"1232\" height=\"954\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa96\u002F807\u002F3a5\u002Fa968073a5edbdb195b39cfcd31bb9ce2.png\"\u002F\u003E\u003Cfigcaption\u003EПин GPI018 находится под номером 12\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EСхема подключения внешнего питания к ленте и ленты к Raspberry pi выглядит так:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fac9\u002F704\u002Fd54\u002Fac9704d545a949f4acf40186fb16a083.png\" alt=\"Взято с сайта tutorials-raspberrypi.com\" title=\"Взято с сайта tutorials-raspberrypi.com\" width=\"1126\" height=\"734\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fac9\u002F704\u002Fd54\u002Fac9704d545a949f4acf40186fb16a083.png\"\u002F\u003E\u003Cfigcaption\u003EВзято с сайта tutorials-raspberrypi.com\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EАвтозагрузка с помощью PM2. \u003C\u002Fstrong\u003EСначала нужно глобально установить PM2. После этого запустить из папки с проектом код:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode\u003Epi@raspberrypi:~\u002Fxmas-tree-dcl-server $ pm2 start npm --name tree_server  -- start\npi@raspberrypi:~\u002Fxmas-tree-dcl-server $ sudo env PATH=$PATH:\u002Fusr\u002Flocal\u002Fbin pm2 startup systemd -u pi --hp \u002Fhome\u002Fpi\npi@raspberrypi:~\u002Fxmas-tree-dcl-server $ pm2 save\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cp\u003EОн может показаться простым, но вторая строчка очень важна: просто с pm2 startup не сработает.\u003C\u002Fp\u003E\u003Ch3\u003EГотовим клиентскую часть (Front-end)\u003C\u002Fh3\u003E\u003Cp\u003E\u003Cstrong\u003EНастройка и развертывание. \u003C\u002Fstrong\u003EСначала нужно \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FMaffGroup\u002Fxmas-tree-dcl-client\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eскачать клиентскую часть с Github\u003C\u002Fu\u003E\u003C\u002Fa\u003E и поставить зависимости с помощью Yarn или NPM. Затем в файле src\u002Fgame.ts поменять домен на тот, по которому доступна Raspberry pi (Пример кода: \u003Cstrong\u003Elet ip = 'xmas.maff.io'\u003C\u002Fstrong\u003E). И дальше либо запустить на локальной машине с помощью npx dcl start. Либо задеплоить на сервера Decentraland, если уже есть парсели земли, и указать данные от вашего участка земли в scene.json.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПорт и домен. \u003C\u002Fstrong\u003EПо дефолту там стоит порт 3000. Его можно поменять в коде, но тогда и на серверной части поменять на такой же.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПодключение видеострима. \u003C\u002Fstrong\u003EПрописываем код и ссылаемся на .m3u8 плейлист от провайдера стримов:\u003C\u002Fp\u003E\u003Cpre\u003E\u003Ccode\u003Econst videoClip = new VideoClip(\"https:\u002F\u002Fqlbao8oxmuv.a.trbcdn.net\u002Flivemaster\u002Fmjv6e_live-5y7frv6x31h.smil\u002Fplaylist.m3u8\")\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Ch3\u003EГотовим видеотрансляцию\u003C\u002Fh3\u003E\u003Cp\u003EНужно настроить в OBS Studio нужные параметры для трансляции, которые дал провайдер. Мы использовали CDNvideo. \u003C\u002Fp\u003E\u003Cp\u003EПример для другого провайдера, но по аналогии делается у всех одинаково:\u003C\u002Fp\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F6220c73de635030b64de800e\" data-style=\"\" id=\"6220c73de635030b64de800e\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003Ch3\u003EРезультат\u003C\u002Fh3\u003E\u003Cp\u003EОтдельные фрагменты светодиодной ленты моментально меняют цвет по взаимодействию в метавселенной с группами цветных шаров на виртуальной елочке. Но на стриме это видно с ощутимой задержкой. Если у вас есть идеи, как ее обойти, напишите пожалуйста в комментариях. \u003C\u002Fp\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F6220ca7ee1af860b1c6b9987\" data-style=\"\" id=\"6220ca7ee1af860b1c6b9987\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa6b\u002Fc99\u002F563\u002Fa6bc995632756014016756e45319728f.jpeg\" width=\"2000\" height=\"923\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa6b\u002Fc99\u002F563\u002Fa6bc995632756014016756e45319728f.jpeg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EСсылки на ресурсы русскоязычного сообщества\u003C\u002Fh3\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003ETelegram-чат \u003Ca href=\"https:\u002F\u002Ft.me\u002Fdecentraland_ru\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eрусскоязычного сообщества\u003C\u002Fu\u003E\u003C\u002Fa\u003E Decentraland.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003ETelegram-чат \u003Ca href=\"https:\u002F\u002Ft.me\u002Fmetaverse_hackaton\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003ECreators for Metaverses\u003C\u002Fu\u003E\u003C\u002Fa\u003E\u003Cu\u003E \u003C\u002Fu\u003Eот Maff.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003ETelegram-чат \u003Ca href=\"https:\u002F\u002Ft.me\u002Fdevelopers_metaverse\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eпо разработке для метавселенных\u003C\u002Fu\u003E\u003C\u002Fa\u003E от Maff.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003ETelegram-канал \u003Ca href=\"https:\u002F\u002Ft.me\u002Fmaff_io\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cu\u003Eпро блокчейн и метавселенные\u003C\u002Fu\u003E\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EЕсли у вас есть аналогичные или похожие проекты, будем рады с вами их обсудить и посотрудничать.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"метавселенная"},{"titleHtml":"метавселенные"},{"titleHtml":"iot"},{"titleHtml":"интернет вещей"},{"titleHtml":"raspberry pi"},{"titleHtml":"raspberry pi 3"},{"titleHtml":"decentraland"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F627\u002F5a8\u002Fd37\u002F6275a8d37b148328a371799039c9108e.jpeg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F627\u002F5a8\u002Fd37\u002F6275a8d37b148328a371799039c9108e.jpeg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654837\\\u002F\"},\"headline\":\"Кейс интеграции IoT &amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео\",\"datePublished\":\"2022-03-09T16:31:39+03:00\",\"dateModified\":\"2022-03-09T17:18:54+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Maff Media\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтоб...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654837\\\u002F#post-content-body\",\"about\":[\"h_javascript\",\"h_nodejs\",\"h_typescript\",\"h_raspberrypi\",\"f_develop\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654837\\\u002F36fa7c063a6bbe61541ce6960cce4aef\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa96\\\u002F807\\\u002F3a5\\\u002Fa968073a5edbdb195b39cfcd31bb9ce2.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fac9\\\u002F704\\\u002Fd54\\\u002Fac9704d545a949f4acf40186fb16a083.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa6b\\\u002Fc99\\\u002F563\\\u002Fa6bc995632756014016756e45319728f.jpeg\"]}","metaDescription":"В этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В конце мы...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[{"title":"JavaScript разработчик","vacanciesCount":461,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fprogrammist_javascript","itemHubs":["javascript","reactjs","nodejs","typescript","vuejs","angular","sveltejs"]},{"title":"Node.js разработчик","vacanciesCount":165,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fnodejs_razrabotchik","itemHubs":["nodejs"]},{"title":"React разработчик","vacanciesCount":226,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Freact_razrabotchik","itemHubs":["javascript","reactjs"]}],"hubs":"javascript,nodejs,typescript,raspberrypi"},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{}},"promoData":{"isLoading":false,"hasLoaded":true,"featurer":[],"megaposts":[{"title":"Основы основ финтеха","color":"#99ddff","link":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002F4JLtee36wfGI2ZBFfwhoTjNg3OteBrEi7aJIjnDUSy3XQbL3qrC5AKhbwsDOIzY825-vwowsjlcZYnAOp8K6ByE61iWoTavSumdPlnUVWX_oWQrS"},"events":{"view":"lUAqfLpz3aPeulzRa8lAH_2MKIF21oFPElXdXXkc0N_QeMR5eTx4lDVAehDGY6fVffvvBpDWe9E3Sw"}}],"promoLinks":[{"title":"Разбор ноутбука HONOR MagicBook 16 ","label":"Мегапост","external":false,"link":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002FdEMX2kO6k2GC3TB0u_9ZgnCjRmDuGP2yDA79wH1U266RO7bOyxufIy_pBDX5Tm2W1Mg9c9UWdQpbUhmQnJrDZ48-wQ41hV2Lggz2h3gNSD7yI45_KkHcjrySp8M-xvki"},"events":{"view":"y6qxwS21KW6m6evbOSZrjww6wqzMl77Dw0K7zC4v7v0hO0JDinS9XjsQbx8h-YEg-QelzASkhtj19w"}},{"title":"Делаем торт вместе: собираем темы, которых вам не хватает на Хабре","label":"Опрос","external":false,"link":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002FZ9Gj_piv6NOmSv5NmPbnbtr30vIfPHGePikFj_iN-K1-xyJXZf8rVaFIoJKQvjWyqeEENci_sfY4HVoKYx3GZpU5ZWokuR-M0GUCEczVqTIDpmKcBLPx1j1Tfyrr"},"events":{"view":"RdZ5j2BLnQF6U6XBxFWQcETmbAkPl62Pf6XEZ0hi9YkHrFh9hHlT9oakuxc5bqas1O1dhBArFhgrKQ"}}],"promoPosts":[{"title":"Истощающая тревога: что такое стресс и как с ним бороться","label":"Интересно","external":false,"image":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002F_ykYx7YG4ocFIuwW4erT8zG1jyOlawXar4kXBg0vzOKOBaMEmCyuE9dh53rLu28vwQCP2Qjjw0n91jhTTBreL3cn1V_tB4j_4Q3ZsxqvTlhUXziidLYe34_XlFrOnSy_Iyf5-fvnMymZuijC6NO-jEMKmXIgy0r_bhFcj2isbLrVVzqcLL7H7aslVeM9bKgYcAdRp6O-nwiO"},"link":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002FoLj5iAqrKjOQe9BhxN6--j1_ErB5RFOkN0KPuf7l8UBPpOS9Ii8zp9JR5Xh2sdnrMMhwTD0QtBzThXXenP74U5p6eEhzdHe9zi5-moIKW010OWtlL4vgPUmup-qEKfU097o1IwYl1w"}},{"title":"Конкурс технических статей Технотекст 2021","label":"Событие","external":false,"image":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002FEVac76INU06YcNGFrRM3yN99sfHWEqRP_ZKo8zWaFtw08sZruPAni-qMHHFbeoV75_3JDzDmv-iK9uXU222haSJLEOeK9cd3R6nIpRshCtBp3ZhU8jaIaJRYKfJ0I0iAyGH9s4qn2vBq7hZrCukgw6BnXIJqsmfG8lpEv3tHRWMSxgsyD6pWrUkuOJt2ehUdlaJ911ucybZV_lMKaiMsO3ggCcGj"},"link":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002FpmL3g1GjvlLbwQokSZUt2x22hwjcEMtvAfj7KFomb8krW1kc0uDcMddX5FSYL7C2mqbhff-j9l-vyULhVUHZUH3GbGvsFT5kEX6628WOie0jMA"}},{"title":"Промокод — твой билет в общество потребления","label":"Промо","external":false,"image":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002Fl9TgPIL1bsLWwJpAurh_H1TKY_YaM7XU7FfLjzPwC0rjnkOVlWAuLNoWLxMVYhlswEDRbUVNQ0H9uw9CG4JbhpxJPPWi42kcmk3gZC9d3i_JM8eVGY2s2WC5JgmbM8fxCEbduYYinmFcHkGKj5hDfAZBgk7p6aMWLmICQi3eq7oF_2cGghAcUKIIwXNSdNrYnN1VsYhg1JdGOU3__Proj7AbX4Wc"},"link":{"url":"https:\u002F\u002Feffect.habr.com\u002Fa\u002F15n_6JvuDlz5LiRUh5m-x8n-hICafMxXgaftFioyj8-erxdbKeOrtm53ZFB57IhgBR2qJSREjPVP-dm3ozdeN51Xl-lroHEqas82dpIXPU0Bbs9ATkxi"}}]},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":false,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"technotext":{"nominationsList":[]},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[]

@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Краткий обзор Казахстана и личные воспоминания / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/654831\/"},"headline":"Краткий обзор Казахстана и личные воспоминания","datePublished":"2022-03-09T17:21:06+03:00","dateModified":"2022-03-09T21:18:49+03:00","author":{"@type":"Person","name":"Антон"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее пр...","url":"https:\/\/habr.com\/ru\/post\/654831\/#post-content-body","about":["h_it_immigration","h_career","h_social_networks","f_management","f_popsci"],"image":["https:\/\/habr.com\/share\/publication\/654831\/6973b16b4acd1a1b53e012ebada9dceb\/","https:\/\/habrastorage.org\/webt\/oz\/bg\/bm\/ozbgbmqcixu8fgf94tgzwedymlg.png","https:\/\/habrastorage.org\/webt\/cm\/kw\/ey\/cmkweyem5pyeorcnn-2wwgqq1w0.png","https:\/\/habrastorage.org\/webt\/ty\/8f\/0b\/ty8f0bbvieunho8xbljkbbp0uz4.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/ca9\/7bb\/b27\/ca97bbb277aaddd9575a556ed38870cc.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/705\/8bf\/3d2\/7058bf3d2b5132aa72bcda5b126eceb6.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/14b\/855\/11b\/14b85511b026769d89962e0f9f34c50e.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/db8\/e4c\/b0b\/db8e4cb0bb88f4910477eb1cb279ed86.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/9b9\/d47\/fe9\/9b9d47fe91ebba52883d6e2a5bc22aba.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/b9f\/ada\/42d\/b9fada42d8764a856ce6637914626282.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/2d9\/76a\/038\/2d976a038f30ce23d64b410eb0c36a36.jpg"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Краткий обзор Казахстана и личные воспоминания" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="Краткий обзор Казахстана и личные воспоминания" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="Краткий обзор Казахстана и личные воспоминания" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habrastorage.org/webt/oz/bg/bm/ozbgbmqcixu8fgf94tgzwedymlg.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habrastorage.org/webt/oz/bg/bm/ozbgbmqcixu8fgf94tgzwedymlg.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habrastorage.org/webt/oz/bg/bm/ozbgbmqcixu8fgf94tgzwedymlg.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habrastorage.org/webt/oz/bg/bm/ozbgbmqcixu8fgf94tgzwedymlg.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habrastorage.org/webt/oz/bg/bm/ozbgbmqcixu8fgf94tgzwedymlg.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="654831" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2022-03-09T14:21:06.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/654831/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="эмиграция, Казахстан, Алматы, Астана, Нур-Султан, степь да степь кругом"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654831/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654831/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habrastorage.org/webt/oz/bg/bm/ozbgbmqcixu8fgf94tgzwedymlg.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" rel="amphtml" href="https://habr.com/ru/amp/post/654831/"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/Areso/" title="Areso" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/731/a89/7a8/731a897a82001b59334b08c0164c8180.jpg" width="24" class="tm-entity-image__pic">
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/Areso/" class="tm-user-info__username"> Areso </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T14:21:06.000Z" title="2022-03-09, 17:21">сегодня в 17:21</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>Краткий обзор Казахстана и личные воспоминания</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/it_immigration/" class="tm-article-snippet__hubs-item-link"><span>IT-эмиграция</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/career/" class="tm-article-snippet__hubs-item-link"><span>Карьера в IT-индустрии</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/social_networks/" class="tm-article-snippet__hubs-item-link"><span>Социальные сети и сообщества</span> <!----></a></span>
+                  </div> <!----> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-2">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <p>Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? - я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду субъективным, но что поделать - это не сухой обзор, но еще и личный опыт. Также, что-то могло устареть. А лететь или не лететь - решать вам (наземные погранпереходы закрыты из-за ковида, если у вас нет уважительной причины).</p>
+                     <figure class="">
+                      <img src="https://habrastorage.org/r/w1560/webt/oz/bg/bm/ozbgbmqcixu8fgf94tgzwedymlg.png" alt="Республика Казахстан. Физическая карта." title="Республика Казахстан. Физическая карта." width="auto" height="auto" data-src="https://habrastorage.org/webt/oz/bg/bm/ozbgbmqcixu8fgf94tgzwedymlg.png">
+                      <figcaption>
+                       Республика Казахстан. Физическая карта.
+                      </figcaption>
+                     </figure>
+                     <p>Ремарка: да, эта статья написана под впечатлением от <abbr title="Что следует знать IT-шникам при иммиграции в Казахстан" type="abbr">https://habr.com/ru/post/654579/</abbr> , которая нифига не раскрывает, ни что такое Казахстан, ни как там живётся или работается.</p>
+                     <h3>Давайте начнём с обзора, что вообще такое Казахстан?</h3>
+                     <p>Казахстан (Республика Казахстан, РК) - молодое государство (с 1991 г.), расположенное от долины реки Волга на Западе и до Иртыша на Востоке, 3000 километров. С Севера на Юг - от Западно-Сибирской равнины и до верхнего течения Сырдарьи на границе с Узбекистаном на Юге, 1900 километров. </p>
+                     <p>Несмотря на то, что размер страны не сопоставим с Россией, многообразия климата здесь хватает. Если Север ничем, практически, не отличается от соседних Челябинска и Омска (с Запада на Восток возрастает количество солнечных дней), то Юг - это настоящая Азия, безо всяких скидок - пески, верблюды, и испепеляющая жара не хуже той, что можно ощущать в степях Волгоградской области. За исключением того, что зимы, как таковой, нет :) </p>
+                     <p>На Востоке и Юго-Востоке страну обрамляют горы - Алтай (внезапно, поделен между 4 государствами), и Иртыш течет втекает из Китая между Алтаем и Тарбагатаем. Южнее - Семиреченское Алатау. Между Алатау и Тяньшанем находится Семиречье (Алматинская область), а сам город Алматы стоит у подножья Тянь-Шаня.</p>
+                     <h3>Любая страна - это не только горы и поля, это народ</h3>
+                     <p>Жители Казахстана это казахстанцы. Пожалуйста, запомните - прилагательное от Казахстана - "казахстанский" (в отношении имен существительных). </p>
+                     <p>И казахстанцев без малого 19 миллионов человек. Этнический состав населения Казахстана примерно такой: 69% - казахов, 18% русских, 3% узбеков, 1,5% украинцев, 1% татар, и менее малочисленные национальности, которых в Казахстане много. Очень. Среди моих знакомых и коллег были немцы, татары, корейцы, армяне. Соседка по площадке - полька. </p>
+                     <h3>А меня там поймут? Да :)</h3>
+                     <p>Большинство населения - 95% - может понимать и говорить по-русски. Читать и писать по-русски может 87%. Здесь необходимо сделать оговорку, что опрос имел бинарную природу, поэтому "уровень" владения русского языка между жителем аула в Южно-Казахстанской области и жителем столицы будет отличаться. Иногда - в разы. </p>
+                     <p>Единственный государственный язык - казахский язык. За русским языком зафиксирован статус языка межнационального общения, также, он может применяться в деловой сфере, коммерческой сфере, в государственной сфере - для запросов и ответов на них. Договора обычно дублируют на двух языках.</p>
+                     <p>Казахский язык - довольно простой и довольно логичный, минимальный минимум вы освоите за пару месяцев - устный счёт (бир, еки, уш), вопросы "есть ли?" ($thing бар ма?), ответы да (йа), нет (джок), спасибо (рахмет), привет (салам(ты) или салимет сизбе (Вы))-пока(сау бол (ты), или сау болыныз (Вы)). Это нужно будет нечасто, но иногда попадаются люди, которые русский понимают плохо - в таком случае, минимальный разгорник на 100 слов вас сильно выручит. Вывески, согласно закону, должны дублироваться на оба языка, но это происходит не везде, но если что - магазин это дукен, еда это азык-тулик. Если вы когда-либо учили татарский, башкирский, турецкий, азербайджанский, или хотя бы просто знакомы с этими языками - то вам будет сильно проще. </p>
+                     <p>Казахский алфавит был на базе кириллицы, сейчас идёт планомерный переход на латиницу. Честно говоря, кириллица мне нравилась больше - её банально удобнее было читать, даже с учётом наличия специальных букв. Теперь же есть весьма странные сочетания, которые надо будет запоминать - это головняк. В Казахстане, как правило, нет проблем если вы не понимаете казахский. Наибольшая сложность непонимания казахского была (есть?) у тех казахов, которые свой родной язык не знали или знали плохо. Как мне рассказывали, много лет казахи ставили в укор другим казахам, что те говорят по-русски. Я даже запомнил, как назывался тот лозунг - "Казах казахпен казакша сойлесу керек" - "Казах с казахом должен говорить по-казахски". На русских этот лозунг, понятно, не распространяется. Но бывает, конечно, что кто-то занимается хейтингом и разводом на скандалы в сфере обслуживания, сценарий выглядит следующим образом: человека, работающего в сфере обслуживания, спрашивают что-то на казахском, а тот либо отвечает, что не понял, либо даже если понял, то всё равно отвечает по-русски - ну, потому что так удобнее. После этого начинается скандал, с криками и обвинениями, снятием на камеру и тому подобном. Очень неприятно, но переезжающим айтишникам это не грозит, да и случается такое редко.</p>
+                     <h3>Религия и всё такое</h3>
+                     <p>Несмотря на то, что Казахстан - светское государство, большинство населения - мусульмане. Хоть и очень, так скажем, либеральные. Тем не менее, муэдзин (зазыватель на утреннюю молитву) вполне может стать вашим будильником, если вы поселитесь немного неудачно, и вот этот момент есть смысл проверить заранее. </p>
+                     <p>Любые спиртные напитки продаются в любых магазинах, свинина также продаётся и покупается свободно. Но есть нюанс: нахождение в состоянии алкогольного опьянения даже средней степени на улице несёт угрозу задержания, существенного штрафа, вытрезвителя (их открывали, закрывали, вновь открывали, что сейчас - не знаю). </p>
+                     <p>В разных регионах страны "терпимость" к пьяным отличается - где-то абсолютно спокойно можно быть "на рогах" и идти по синусоиде, а где-то лишь за слабый запах изо рта грозит всё вышеперечисленное. Кстати, о полиции - полиция в Казахстане универсальная - не делится на ГИБДД и "пешую". Любой полицейский может оформить штраф за любое нарушение - независимо от того, есть у него жезл или нет. </p>
+                     <p>Раньше легко было отделаться небольшой взяткой, сейчас это является уголовным преступлением как для взяткодателя, так и для берущего взятку. Крайне не рекомендую. А вот "план" по палкам у них есть. Так что держитесь за свои "права" крепче. Единственное, что допускается - можно так или иначе упросить выписать протокол по более "щадящей" статье. Опять же - никаких взяток. В машинах полиции всё пишется, не вздумайте. Также есть штрафы за мелкое хулиганство, к которому приравнивается выброс мусора в неположенных местах. Бычок или чек мимо урны вполне весомое основание для штрафа в ~4 тысячи рублей (5 минимальных расчетных показателей, МРП). Поэтому на улицах в центре городов, где много камер и полиции, обычно довольно чисто.</p>
+                     <h3>Что такое государство? Государство - это сервисы.</h3>
+                     <p>В Казахстане есть аналог МФЦ - ЦОН (центр обслуживания населения). В них можно решить большинство задач - справки, выписки, регистрационный учёт (для граждан). Также есть и электронные госуслуги - "электронное правительство для граждан". Что "на земле", что "в цифре" - госуслуги доступны на казахском и русском языках. Граждане получают ЭЦП (электронно-цифровую подпись) и с её помощью могут делать большое количество значимых операций с государственными органами. ЭЦП выдаются в ЦОНах, и, внезапно, в налоговой (и это разные ЭЦП). Бесплатно. Программное обеспечение для нормального функционирования этой инфраструктуры так же предоставляется бесплатно. Оно глючное и работало только с WIndows. И да, нужно устанавливать корневой сертификат господина майора (мырза майор).</p>
+                     <h3>Государство - это социальная инфраструктура.</h3>
+                     <p>В Казахстане много русскоязычных или смешанных государственных школ. Есть как общеобразовательные школы, так и школы с уклоном в разные предметы. Есть школы с конкурсным отбором - гимназии (районные), городские (приписанные к городу, а не к конкретному району), областные школы с уклоном в те или иные науки. По умолчанию туда берут детей, у родителей которых есть "ВНЖ", но также могут взять детей временно проживающих в РК, если родитель(или родители) являются трудовыми мигрантами. <a href="https://egov.kz/cms/ru/articles/secondary_school/Admission-to-school" rel="noopener noreferrer nofollow">Подробнее здесь</a> и <a href="https://adilet.zan.kz/rus/docs/V1000006573" rel="noopener noreferrer nofollow">здесь</a>.</p>
+                     <p>В Казахстане есть медицина, но, к сожалению, плохого качества. Граждане и резиденты страны имеют аналог программы ОМС - ОСМС (обязательное социальное медицинское страхование), с очередями к узким специалистам и на обследования. Платно - хоть в тот же день. Детали закона "Об обязательном социальном медицинском страховании" можно <a href="https://adilet.zan.kz/rus/docs/Z1500000405" rel="noopener noreferrer nofollow">прочесть здесь</a>. Иностранцам "по умолчанию" нужен ДМС (и не только он), а общие требования изложены в Законе "О миграции населения"(<a href="https://adilet.zan.kz/rus/docs/Z1100000477" rel="noopener noreferrer nofollow">https://adilet.zan.kz/rus/docs/Z1100000477</a> либо <a href="https://online.zakon.kz/Document/?doc_id=31038298" rel="noopener noreferrer nofollow">https://online.zakon.kz/Document/?doc_id=31038298</a>). </p>
+                     <p>Однако, поскольку Казахстан и Россия являются членам ЕАЭС, то трудовые мигрантам "включаются в систему" ОСМС с момента заключения трудового договора, а право на лечение получают с момента первых платежей в фонд медицинского страхования. Все это происходит в рамках Договора о ЕАЭС, а именно, пунктам 4 и 5 "Протокола об оказании медицинской помощи" (приложение №30 к договору о ЕАЭС). К сожалению, я не был семейным, и потому не могу сказать, оказывается ли помощь бесплатно членам семей. Да, они также включаются в программу, но достаточно платежей работающего члена семьи - мне неизвестно. Если нет, то для оплаты взносов за семью следует исходить из расчёта 1 иждивенец - 1 МРП (минимальный расчётный показатель), на 2022 год его значение равно 3063 тенге, или ~750 рублей в месяц.</p>
+                     <p>За своих граждан Республики, а именно студентов, несовершеннолетних, пенсионеров - платит бюджет, остальные граждане либо платят через работодателя, либо напрямую.</p>
+                     <h3>Города Казахстана</h3>
+                     <p>Давайте погорим о том, где, собственно, жить. Есть два варианта - вариант, в котором вы ищете местную работу, и тогда есть смысл ехать только в Астану (Нур-Султан) и Алматы (так правильно. Нельзя писать в Алмату. Это неграмотно. Алматы - не склоняется. Можно писать на устаревший манер, в Алма-Ату). Оба-два - города миллионники, но Алматы почти в два раза больше. Если сравнивать агломерации -<br> аналогично. Рядом с обоими городами находятся международные аэропорты. Если вы "удаленщик" на казахстанскую или иностранную компанию, то можете выбирать любой облцентр на Севере и Востоке страны: Костанай (рядом с Челябинском), Петропавловск (недалеко от Омска), Кокшетау (между Петропавловском и Астаной), Павлодар (выше Омска по течению Иртыша), Усть-Каменогорск. Павлодар и Усть-Каменогорск лично я не рекомендую по причине неблагоприятной экологии в этих городах. Честно - города-облцентры с населением 300 тысяч человек большинству россиян покажутся скучными, маленькими и неразвитыми в плане сервиса. </p>
+                     <p>Поэтому заострять на них внимание не буду, но если в комментариях попросят рассказать об Усть-Каменогорске - добавлю блок о нём. Кстати, о месте для жизни - здесь очень любят переименовывать всё подряд. Заснёте на одной улице, проснётесь на другой. Причем переименовывают, часто, даже абсолютно нейтральные названия. К примеру, личный случай - улицу Солнечную переименовали в Астана, причем решал это местный актив, а местных жителей, живущих на этой улице никто не спросил. Ну, такое :\</p>
+                     <figure class="">
+                      <img src="https://habrastorage.org/r/w1560/webt/cm/kw/ey/cmkweyem5pyeorcnn-2wwgqq1w0.png" alt="Административное деление страны и крупнейшие города регионов" title="Административное деление страны и крупнейшие города регионов" width="auto" height="auto" data-src="https://habrastorage.org/webt/cm/kw/ey/cmkweyem5pyeorcnn-2wwgqq1w0.png">
+                      <figcaption>
+                       Административное деление страны и крупнейшие города регионов
+                      </figcaption>
+                     </figure>
+                     <h3>Нур-Султан (Астана/Акмола/Акмолинск/Целиноград)</h3>
+                     <p>Столица государства, трижды переименованная только за последние 30 лет. Я уже говорил, что здесь любят менять названия всех топонимов? В последний раз - в честь ныне здравствуюшего первого президента Республики - Нурсултана Абишевича Назарбаева (кстати, первый момент местной жизни - отчества местных иногда сложно выговорить. Но русским либо прощают оговорки, либо разрешают обращаться по имени на Вы. По ситуации).</p>
+                     <p>Текущее переименование пару лет назад, когда после 28 лет нахождения у власти в должности Пожизненного Президента, господин Назарбаев, сказал, что он устал, что он ухожук, и передал власть председателю сената (верхняя палата, аналог Совета Федерации) Касым-Жомарт Токаеву. После этого произошли выборы, на которых он же и победил с 70% голосов.</p>
+                     <p>Город расположен на равнине, в степи. Летом - жарко, зимой люто холодно. Круглый год ветер. Если ветра нет, то в холодное время образуется смог от автомобилей и частного сектора (в Казахстане очень плохо всё с газом, за пределами западных нефтегазоносных областей).</p>
+                     <figure class="">
+                      <img src="https://habrastorage.org/r/w1560/webt/ty/8f/0b/ty8f0bbvieunho8xbljkbbp0uz4.png" alt="И не забудьте про ветер. Даже если вы не интересуетесь ветром, ветер интересуется вами!" title="И не забудьте про ветер. Даже если вы не интересуетесь ветром, ветер интересуется вами!" width="auto" height="auto" data-src="https://habrastorage.org/webt/ty/8f/0b/ty8f0bbvieunho8xbljkbbp0uz4.png">
+                      <figcaption>
+                       И не забудьте про ветер. Даже если вы не интересуетесь ветром, ветер интересуется вами!
+                      </figcaption>
+                     </figure>
+                     <p>Еще город делится на две части - правый и левый берег. Если на правом берегу застройка, в основном, советская, то левый берег - это застройка столицы, с 1998 года и по наши дни. Разнообразные башни, шатры, и прочие архитектурные изыски, сделанные архитекторами разных стран, которые очень красиво смотрятся с обзорной башни (Бай-Терек), но снизу это асфальт и плитка. И очень мало зелени. Качество всего новостроя, к сожалению, оставляет желать лучшего. Из плюсов могу отметить разве что наличие велодорожек. Здесь сосредоточены органы власти и бизнес.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/ca9/7bb/b27/ca97bbb277aaddd9575a556ed38870cc.jpg" alt="Поля плитки. Где-то сзади &quot;Ак Орда&quot; - президентский дворец. Слева от меня здание Парламента, справа - не влезло в кадр - здание Правительства " title="Поля плитки. Где-то сзади &quot;Ак Орда&quot; - президентский дворец. Слева от меня здание Парламента, справа - не влезло в кадр - здание Правительства " width="807" height="605" data-src="https://habrastorage.org/getpro/habr/upload_files/ca9/7bb/b27/ca97bbb277aaddd9575a556ed38870cc.jpg" data-blurred="true">
+                      <figcaption>
+                       Поля плитки. Где-то сзади "Ак Орда" - президентский дворец. Слева от меня здание Парламента, справа - не влезло в кадр - здание Правительства 
+                      </figcaption>
+                     </figure>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/705/8bf/3d2/7058bf3d2b5132aa72bcda5b126eceb6.jpg" alt="Байтерек. Символ космической программы Казахстана. &quot;Богатый тополь&quot;, если дословно." title="Байтерек. Символ космической программы Казахстана. &quot;Богатый тополь&quot;, если дословно." width="1536" height="2048" data-src="https://habrastorage.org/getpro/habr/upload_files/705/8bf/3d2/7058bf3d2b5132aa72bcda5b126eceb6.jpg" data-blurred="true">
+                      <figcaption>
+                       Байтерек. Символ космической программы Казахстана. "Богатый тополь", если дословно.
+                      </figcaption>
+                     </figure>
+                     <p>Относительно недалеко - по казахстанским и вообще сибирским меркам - расположен курорт Боровое - озеро в лесу, с небольшими лесистыми холмами по бокам. Можно доехать с ветерком по платной трассе Астана-Щучинск.</p>
+                     <h3>Алматы</h3>
+                     <p>Красивый город, который был столицей КазССР и Республики Казахстан с 1929 по 1997 год, расположенный у подножья Тянь-Шаня. Если вы достаточно старый, то сможете угадать это здание со всех открыток:</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/14b/855/11b/14b85511b026769d89962e0f9f34c50e.jpg" alt="Да, горизонт завален" title="Да, горизонт завален" width="1073" height="804" data-src="https://habrastorage.org/getpro/habr/upload_files/14b/855/11b/14b85511b026769d89962e0f9f34c50e.jpg" data-blurred="true">
+                      <figcaption>
+                       Да, горизонт завален
+                      </figcaption>
+                     </figure>
+                     <p>Про подножье гор - не шутка, и если вам повезет, то вид из окон у вас на работе или дома будет как у меня:</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/db8/e4c/b0b/db8e4cb0bb88f4910477eb1cb279ed86.jpg" alt="Лучше гор могут быть только горы!" title="Лучше гор могут быть только горы!" width="1326" height="994" data-src="https://habrastorage.org/getpro/habr/upload_files/db8/e4c/b0b/db8e4cb0bb88f4910477eb1cb279ed86.jpg" data-blurred="true">
+                      <figcaption>
+                       Лучше гор могут быть только горы!
+                      </figcaption>
+                     </figure>
+                     <p>Отличается мягкой и короткой зимой, жарким летом. К сожалению, город находится в котловине, и несмотря на то, что тяжелой промышленности в нём практически нет, жители города страдают от регулярного смога. Зимой из-за отопления предместий ситуация резко ухудшается.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/9b9/d47/fe9/9b9d47fe91ebba52883d6e2a5bc22aba.png" alt="это многолетние наблюдения. последние 10 лет стало теплее в Марте (1,0С) и Ноябре (-0,7С)" title="это многолетние наблюдения. последние 10 лет стало теплее в Марте (1,0С) и Ноябре (-0,7С)" width="1109" height="320" data-src="https://habrastorage.org/getpro/habr/upload_files/9b9/d47/fe9/9b9d47fe91ebba52883d6e2a5bc22aba.png">
+                      <figcaption>
+                       это многолетние наблюдения. последние 10 лет стало теплее в Марте (1,0С) и Ноябре (-0,7С)
+                      </figcaption>
+                     </figure>
+                     <p>Если вы любите зимние виды спорта, то вам доступен знаменитый на весь СССР каток Медео (30 минут езды от центра города), а также горнолыжный курорт Шымбулак (60 минут езды от центра города).</p>
+                     <p>Одним из центров досуга граждан является парк "Коктобе" - "Зеленый Холм".</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/b9f/ada/42d/b9fada42d8764a856ce6637914626282.jpg" alt="Вид с Коктобе на Алматы" title="Вид с Коктобе на Алматы" width="1326" height="994" data-src="https://habrastorage.org/getpro/habr/upload_files/b9f/ada/42d/b9fada42d8764a856ce6637914626282.jpg" data-blurred="true">
+                      <figcaption>
+                       Вид с Коктобе на Алматы
+                      </figcaption>
+                     </figure>
+                     <p>Также, приятным местом проведения досуга является Главный ботанический сад г. Алматы. Я очень любил туда ходить, хоть большая часть парка и выглядит несколько заброшенной. Вход платный, но бюджет одинокого молодого человека это не напрягало.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/2d9/76a/038/2d976a038f30ce23d64b410eb0c36a36.jpg" alt="Чем дальше от входа, тем меньше людей." title="Чем дальше от входа, тем меньше людей." width="1326" height="994" data-src="https://habrastorage.org/getpro/habr/upload_files/2d9/76a/038/2d976a038f30ce23d64b410eb0c36a36.jpg" data-blurred="true">
+                      <figcaption>
+                       Чем дальше от входа, тем меньше людей.
+                      </figcaption>
+                     </figure>
+                     <p>В городе есть одна ветка метро. Для оплаты проезда в общественном транспорте лучше пользоваться местной проездной картой - "Онай", разница в цене с наличными платежами - почти в два раза. Недалеко от города есть Капчагайское водохранилище, а для тех, кто готов провести больше времени в дороге есть курорты Иссык-Куля (горного озера на территории Киргизии).</p>
+                     <h2>Такси</h2>
+                     <p> Из привычных агрегаторов есть Yandex, Uber, inDriver. <br><br>В Алматы легко уехать из центра в каком-либо направлении просто "проголосовав" на дороге, и вас подберёт частник. Раньше поймать можно было даже автобус :)<br> <br>Есть и местные таксомоторные парки. Средняя цена за километр (в Алматы) - ~50 рублей.</p>
+                     <h2>О еде. Еда</h2>
+                     <p>Алматы, в плане культурного разнообразия, выглядит гораздо интереснее новой столицы. Особенно я замечал это в гастрономическом плане, а поесть я люблю. В то время как в Астане еда была представлена либо русской либо, реже, казахской кухней, а остальное подавалось как "эксклюзив" с соответствующими ценами, то в Алматы рады всем, а разнообразие шире. Кстати, о казахской кухне. Попрошу не кидаться в меня тяжелыми предметами, но она мне не понравилась. Наиболее часто встречаться вам будут следующие национальные яства:</p>
+                     <ol>
+                      <li><p>напиток, айран - по факту, тот же кефир, но чуточку по-другому приготовленный</p></li>
+                      <li><p>напиток, катык - что-то типа похожее на ряженку, но не сладкая, и на вкус напоминает топленое молоко.</p></li>
+                      <li><p>напиток, кумыс - кобылье молоко, которое забродило. В зависимости от выдержки может быть аналогом кваса (по градусам), так и как пиво - доходит до 5 оборотов.</p></li>
+                      <li><p>напиток, бозо (или бузо, буза) - насколько я понял, встречается только на Юге - ферментированный напиток из злаковых ( пшена, пшеницы, кукурузы, риса) и солода.</p></li>
+                      <li><p>закуска, курт - подсохший скатанный творог с солью. Используется как перекус. Редко предлагается в ресторанах, но часто продается на вынос в разных забегаловках.</p></li>
+                      <li><p>похлёбки, имеют разные названия, но, как правило, со словом коже (похлебка). К примеру, жети коже (похлебка из семи злаков). Очень на любителя. Супы с названием сорпа или шорпа, на мой взгляд, вкуснее</p></li>
+                      <li><p>баурсаки, аналог пончиков - жарятся в масле, но, в отличие от пончиков, имеют форму шара.</p></li>
+                      <li><p>бешбармак - лапша с мясом баранины</p></li>
+                      <li><p>казы - колбаса из конины</p></li>
+                      <li><p>куырдак - жаркое из субпродуктов с картофелем</p></li>
+                     </ol>
+                     <p>Так, в Алматы действует много турецких демократичных забегаловок, где, кстати, действительно обслуживают на турецком, есть уйгурские кафе и пекарни, несколько китайских кафе и ресторанов, два или три корейских заведения (я уже говорил, что в Семиречье компактно проживают корейцы?), узбекские, кавказские и многие другие. Кстати, хычины - кавказские лепешки с начинкой - я впервые попробовал именно в Алматы, а не на Кавказе или в Москве.</p>
+                     <h2>Интересная география</h2>
+                     <p>Одна из вещей, к которым нужно будет привыкнуть в Алматы - то, что город имеет уклон с Юга на Север, и верхней частью города называется южная, а нижней, соответственно, северная. Кстати, все билборды с картами и отметками "вы здесь" по этой же причине рисуются перевёрнутыми. Вот так можно ощутить интересный "экспериенс" с перевёрнутыми картами, не покидая Северного Полушария!</p>
+                     <p>Еще Алматы довольно зеленый город - в нём много деревьев, которые спасают от жары и дают тень. Но вид гор с шапками снега, когда внизу девушки ходят в блузках, а парни в рубашках, и на деревьях все еще (или уже) есть листва - это незабываемо. Что-то подобное можно испытать в Сочи, но там как-то иначе. Надо куда-то ехать, куда-то забираться, куда-то подыматься. А здесь не так.</p>
+                     <h2>О менталитете, местных обычаях и тому подобном.Праздники</h2>
+                     <p>Должен отметить, что Казахстан - довольно интересная страна. Начнём с того, что Новый год здесь празднуют дважды, вполне официально. Первый раз - 31 декабря, по-казахски - Жана Жыл (Новый Год). Приходит под елку Аяз Ата (Дедушка Мороз). Второй раз - Наурыз. Наурыз - древний праздник зороастрийской культуры, отмечается 20-22 марта, в день весеннего равноденствия.<br><br>Кроме двух новых годов(интересно, а так можно склонять?), в стране так же отмечаются православное Рождество и Курбан-Айт. Это выходные дни. 8 Марта также в почёте. Далее, 1 мая - День единства народа Казахстана. Еще праздничными днями являются День Победы 9 мая и День Батыра (местный аналог Дня Защитника Отечества), 7 мая. 6 июля отмечается день столицы (по совместительству - день рождения Первого Президента). 30 августа отмечается день Конституции РК. 1 декабря еще раз отмечается день Первого Президента (да, у него целых два праздника в году). Наконец, 16 декабря - День Независимости.</p>
+                     <p>Как видите - праздников в изобилии!<br><br>Но особенно народ любит все весенние праздники, Новый Год. Потом Курбан-Айт и Рождество. Кто отмечает праздники в честь Президента я не знаю. Разве что в Астане дают по этому поводу красочный салют и проводят шоу.</p>
+                     <h2>Семейные торжества, и вообще о семье...</h2>
+                     <p>Казахи и другие восточные народы Казахстана отмечают их с размахом и большим количеством приглашенных гостей. Свадьба на 50 человек будет считаться неприлично маленькой, а еще она должна пройти в два разных дня дважды - в доме невесты (проводы) и в доме жениха (приём в семью). Из интересных моментов, которые довелось услышать, но сам не видел, так это праздник разрезания пут, когда маленькому ребенку завязывают ноги, а потом режут веревку, чтобы он официально пошёл. Кстати, ребенок-мальчик - "бала", девочка - "кызы", ну а просто уменьшительно-ласкательное со стороны взрослой родни - "айналайын" (жеребеночек).</p>
+                     <p>В Казахстане сильны традиционные ценности, которые, впрочем, потихоньку отступают под натиском современного мира. Но всё еще очень жесткое разделение домашних обязанностей встречается очень часто. Вплоть до того, что мужчины в семье не моют посуду - даже если на улице их жена ходит в брюках или в джинсах. Вот такой вот 21 век.</p>
+                     <h2>О понтах</h2>
+                     <p>Казах без понтов - беспонтовый казах(с). Так говорят сами казахи. Не могу сказать, что этим занимаются все, но многие точно пытаются пустить пыль. В основном, это выражается в покупке старых Land Cruiser, Prado, Pajero. Обязательно черного, или, реже, белого цветов.</p>
+                     <h2>О работе</h2>
+                     <p>Работать в Казахстане принято не очень упорно. Можно сказать, что соблюдается тот самый work-life баланс. Пить чай (шай), разговоры вести. Авторитарный стиль управления преобладает. Есть люди, которые работают много, но их редко повышают и двигают по службе, потому что самое главное основание для получения хорошей должности, увы, кровное родство. То самое кумовство. Только если обычное кумовство ограничено, ну пусть максимум троюродной родней, то у казахов принято считать до 7 колена минимум, до 10-12 колена в нормальной ситуации, ну а "белая кость" считает своё происхождение чуть ли не от Чингизхана. Вторыми в этой очереди идут друзья-приятели (друг - дос), ну, а работящие "лошадки" - в конце очереди. Можете себе представить, каковы шансы получить хорошую работу с улицы или потом продвинуться в компании.</p>
+                     <p>Хорошо, предположим, вы решили, что вам всё это интересно и вы хотите попробовать на вкус жизнь в Казахстане.<br> <br>Где искать работу? <a href="http://hh.kz" rel="noopener noreferrer nofollow">hh.kz</a> , выбираете регион "Казахстан" и LinkedIn.<br> <br>Где искать жильё? <a href="http://krisha.kz" rel="noopener noreferrer nofollow">krisha.kz</a>, <a href="http://olx.kz" rel="noopener noreferrer nofollow">olx.kz</a> (много фейковых объявлений, чем-то похоже на российское Авито). Двушку снять будет стоить, грубо говоря, 180-250 тысяч тенге в месяц - что в Алматы, что в Астане. В Астане, будет немного дешевле (либо лучше квартира за те же деньги).<br> <br>Интернет-барахолка? <a href="http://olx.kz" rel="noopener noreferrer nofollow">olx.kz</a><br> <br>Сколько денег будет уходить на еду? Да примерно столько же, сколько и в России уходило. Что-то будет дешевле, что-то дороже.</p>
+                     <p>Хорошо, вы нашли вакансию, вроде бы нормальные деньги. Первое, что следует уточнить - грязными это или чистыми. Предположим, грязными вам предложили 1 000 000 тенге в месяц (оклад). Из них вычтут:</p>
+                     <ul>
+                      <li><p>10% ИПН (индивидуального подоходного налога, с первого дня)</p></li>
+                      <li><p>10% ОПВ (обязательные пенсионные взносы, для всех резидентов - вы станете им через 183 дня в 12 месячном периоде)</p></li>
+                      <li><p>3,5% СО (соцотчислений, на школы-больницы), за базу принимается ОКЛАД-ОПВ</p></li>
+                      <li><p>2% ООМС (отчисления в фонд обязательного медицинского страхования).</p></li>
+                     </ul>
+                     <p>Итого, грубо, на карточку вы получите 750 тысяч. На самом деле расчёт чуть сложнее, но порядок вы теперь представляете.</p>
+                     <p>Кроме того, ваш работодатель сверху заплатит СН (Соцналог), который считается как (ОКЛАД-ОПВ) х 0,11 - СО. И еще 2% на ВОМС (в фонд обязательного медицинского страхования). Вы этого не увидите, но это также входит в ФОТ (фонд оплаты труда)</p>
+                     <p>Хорошо, предположим вы нашли работу, договорились...<br> <br>По приезду вам нужно будет сделать следующее (для граждан ЕАЭС), чтобы сделать следующее:</p>
+                     <ol>
+                      <li><p>купить местную симку, желательно в офисе оператора (а не на рынках или вокзалах) и зарегистрировать ваш телефон в специальной базе (да, иначе телефон может "окирпичиться" и перестать работать в местных сетях). Впрочем, с регистрацией смартфона вы можете подождать - у вас будет несколько месяцев. Эта норма позаимствована у Турции :)</p></li>
+                      <li><p>получить разрешение на временное проживание (РВП), оно же является регистрацией иностранца. Это делается в органах МВД (возможно, что можно у представителя МВД в ЦОНе), либо через портал электронного правительства. Основанием для его получения будет трудовой договор. На регистрацию гражданам ЕАЭС даётся 30 дней, но я рекомендую не затягивать.</p></li>
+                      <li><p>оформить ИИН (индивидуальный идентификационный номер). Нечто среднее между ИНН и СНИЛСом. Присвается человеку один раз, и не меняется в дальнейшем.</p></li>
+                      <li><p>желательно получить ЭЦП (электронно-цифровую подпись) в ЦОНе.</p></li>
+                      <li><p>с ИИН и РВП вы сможете открыть счёт в местном банке. Банков довольно много. Too big to fail - Народный банк Казахстана (является, по факту, правопреемником Сбербанка в Республике после распада СССР). Удобный - Kaspi bank, но я не уверен, работает ли он с иностранцами. Есть Сбербанк Казахстана (дочка Сбербанка РФ).</p></li>
+                     </ol>
+                     <p>ИП или ТОО (аналог ООО) можно открыть только имея вид на жительство (ВНЖ).</p>
+                     <p>Вот-с. Должен отметить, что штрафы за нарушение миграционного законодательства в Республике велики (как, впрочем, почти все штрафы в стране), а еще можно загреметь на 15 суток ареста - и это вполне реальная возможность. Так что - проконсультируйтесь либо с сотрудником МВД, либо с юристом, либо почитайте сами всё на несколько раз :) Также, можете попробовать найти тематические темы на каком-либо из форумов - к примеру, <a href="http://vse.kz" rel="noopener noreferrer nofollow">vse.kz</a> очень популярен и там можно найти подобные темы.</p>
+                     <p>К сожалению, согласно Казахстанскому законодательству, иностранцы не могут владеть землей и покупка домов поэтому им недоступна; однако иностранцы с ВНЖ могут покупать квартиры. После утраты ВНЖ иностранец (или выбывший из гражданства Республики человек) должен продать квартиру, но, на практике, я не видел санкций за это. Возможно, это поменялось, но в прошлый раз это было так.</p>
+                     <p>Казахстан - интересная страна, в которой сочетается и восточные традиции, и вполне себе европейский подход. Здесь интересно пожить и поработать, люди в этой стране гостеприимные и рады гостям, и хорошо относятся к разным народам. Я рад тому времени, которое провёл в Алматы, и тому, что посетил другие казахстанские города.</p>
+                     <p>Статья, может быть, получилось немного сумбурной, если где-то есть ошибки пишите в ЛС, если есть неточности - пишите в комментариях.</p>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D1%8D%D0%BC%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F%5D" class="tm-tags-list__link">эмиграция</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D1%82%D0%B0%D0%BD%5D" class="tm-tags-list__link">Казахстан</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%90%D0%BB%D0%BC%D0%B0%D1%82%D1%8B%5D" class="tm-tags-list__link">Алматы</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%90%D1%81%D1%82%D0%B0%D0%BD%D0%B0%5D" class="tm-tags-list__link">Астана</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%9D%D1%83%D1%80-%D0%A1%D1%83%D0%BB%D1%82%D0%B0%D0%BD%5D" class="tm-tags-list__link">Нур-Султан</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D1%81%D1%82%D0%B5%D0%BF%D1%8C%20%D0%B4%D0%B0%20%D1%81%D1%82%D0%B5%D0%BF%D1%8C%20%D0%BA%D1%80%D1%83%D0%B3%D0%BE%D0%BC%5D" class="tm-tags-list__link">степь да степь кругом</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/it_immigration/" class="tm-hubs-list__link"> IT-эмиграция </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/career/" class="tm-hubs-list__link"> Карьера в IT-индустрии </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/social_networks/" class="tm-hubs-list__link"> Социальные сети и сообщества </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 13: ↑11 и ↓2</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 13: ↑11 и ↓2" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+9</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">3.7K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 11 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/Areso/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <img alt="" src="//habrastorage.org/getpro/habr/avatars/731/a89/7a8/731a897a82001b59334b08c0164c8180.jpg" class="tm-entity-image__pic">
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 309 голосов " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         65 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         13
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <span class="tm-user-card__name tm-user-card__name_variant-article">Антон</span> <a href="/ru/users/Areso/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @Areso </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Айтишник. Люблю игры и жизнь. Наношу добро.</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <button type="submit" class="tm-user-card__button btn btn_transparent btn_small"> Задонатить </button> <!----> <!---->
+                  </div>
+                 </div> 
+                 <div class="tm-article-author__user-contacts">
+                  <a href="https://www.linkedin.com/in/Areso/" rel="noopener" target="_blank" class="tm-article-author__contact"> Сайт </a><a href="https://github.com/Areso/" rel="noopener" target="_blank" class="tm-article-author__contact"> Github </a><a href="https://telegram.me/Areso2012" rel="noopener" target="_blank" class="tm-article-author__contact"> Telegram </a>
+                 </div>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner7486" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/654831/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 21 </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> <!----> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner7487" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom7488" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654831/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654831/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654831":{"id":"654831","timePublished":"2022-03-09T14:21:06+00:00","isCorporative":false,"lang":"ru","titleHtml":"Краткий обзор Казахстана и личные воспоминания","leadData":{"textHtml":"\u003Cp\u003EПоскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду субъективным, но что поделать - это не сухой пошаговый мануал, это еще и личный опыт. Также, что-то могло устареть. А лететь или не лететь - решать вам (наземные погранпереходы закрыты, если у вас нет уважительной причины, из-за ковида).\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Foz\u002Fbg\u002Fbm\u002Fozbgbmqcixu8fgf94tgzwedymlg.png","buttonTextHtml":"Алга","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Foz\u002Fbg\u002Fbm\u002Fozbgbmqcixu8fgf94tgzwedymlg.png","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":65,"votesCount":309},"rating":13,"relatedData":null,"contacts":[{"title":"Сайт","url":"https:\u002F\u002Fwww.linkedin.com\u002Fin\u002FAreso\u002F","value":"https:\u002F\u002Fwww.linkedin.com\u002Fin\u002FAreso\u002F"},{"title":"Github","url":"https:\u002F\u002Fgithub.com\u002FAreso\u002F","value":"Areso"},{"title":"Telegram","url":"https:\u002F\u002Ftelegram.me\u002FAreso2012","value":"Areso2012"}],"authorContacts":[{"title":"Сайт","url":"https:\u002F\u002Fwww.linkedin.com\u002Fin\u002FAreso\u002F","value":"https:\u002F\u002Fwww.linkedin.com\u002Fin\u002FAreso\u002F"},{"title":"Github","url":"https:\u002F\u002Fgithub.com\u002FAreso\u002F","value":"Areso"},{"title":"Telegram","url":"https:\u002F\u002Ftelegram.me\u002FAreso2012","value":"Areso2012"}],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":"Areso2012","paymentWebmoney":null},"id":"62916","alias":"Areso","fullname":"Антон","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F731\u002Fa89\u002F7a8\u002F731a897a82001b59334b08c0164c8180.jpg","speciality":"Айтишник. Люблю игры и жизнь. Наношу добро."},"statistics":{"commentsCount":21,"favoritesCount":11,"readingCount":3684,"score":9,"votesCount":13},"hubs":[{"relatedData":null,"id":"20734","alias":"it_immigration","type":"collective","title":"IT-эмиграция","titleHtml":"IT-эмиграция","isProfiled":false},{"relatedData":null,"id":"20740","alias":"career","type":"collective","title":"Карьера в IT-индустрии","titleHtml":"Карьера в IT-индустрии","isProfiled":false},{"relatedData":null,"id":"21924","alias":"social_networks","type":"collective","title":"Социальные сети и сообщества","titleHtml":"Социальные сети и сообщества","isProfiled":false}],"flows":[{"id":"3","alias":"management","title":"Менеджмент"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EПоскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду субъективным, но что поделать - это не сухой обзор, но еще и личный опыт. Также, что-то могло устареть. А лететь или не лететь - решать вам (наземные погранпереходы закрыты из-за ковида, если у вас нет уважительной причины).\u003C\u002Fp\u003E\u003Cfigure class=\"\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Foz\u002Fbg\u002Fbm\u002Fozbgbmqcixu8fgf94tgzwedymlg.png\" alt=\"Республика Казахстан. Физическая карта.\" title=\"Республика Казахстан. Физическая карта.\" width=\"auto\" height=\"auto\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Foz\u002Fbg\u002Fbm\u002Fozbgbmqcixu8fgf94tgzwedymlg.png\"\u002F\u003E\u003Cfigcaption\u003EРеспублика Казахстан. Физическая карта.\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EРемарка: да, эта статья написана под впечатлением от \u003Cabbr title=\"Что следует знать IT-шникам при иммиграции в Казахстан\" type=\"abbr\"\u003Ehttps:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F654579\u002F\u003C\u002Fabbr\u003E , которая нифига не раскрывает, ни что такое Казахстан, ни как там живётся или работается.\u003C\u002Fp\u003E\u003Ch3\u003EДавайте начнём с обзора, что вообще такое Казахстан?\u003C\u002Fh3\u003E\u003Cp\u003EКазахстан (Республика Казахстан, РК) - молодое государство (с 1991 г.), расположенное от долины реки Волга на Западе и до Иртыша на Востоке, 3000 километров. С Севера на Юг - от Западно-Сибирской равнины и до верхнего течения Сырдарьи на границе с Узбекистаном на Юге, 1900 километров. \u003C\u002Fp\u003E\u003Cp\u003EНесмотря на то, что размер страны не сопоставим с Россией, многообразия климата здесь хватает. Если Север ничем, практически, не отличается от соседних Челябинска и Омска (с Запада на Восток возрастает количество солнечных дней), то Юг - это настоящая Азия, безо всяких скидок - пески, верблюды, и испепеляющая жара не хуже той, что можно ощущать в степях Волгоградской области. За исключением того, что зимы, как таковой, нет :) \u003C\u002Fp\u003E\u003Cp\u003EНа Востоке и Юго-Востоке страну обрамляют горы - Алтай (внезапно, поделен между 4 государствами), и Иртыш течет втекает из Китая между Алтаем и Тарбагатаем. Южнее - Семиреченское Алатау. Между Алатау и Тяньшанем находится Семиречье (Алматинская область), а сам город Алматы стоит у подножья Тянь-Шаня.\u003C\u002Fp\u003E\u003Ch3\u003EЛюбая страна - это не только горы и поля, это народ\u003C\u002Fh3\u003E\u003Cp\u003EЖители Казахстана это казахстанцы. Пожалуйста, запомните - прилагательное от Казахстана - \"казахстанский\" (в отношении имен существительных). \u003C\u002Fp\u003E\u003Cp\u003EИ казахстанцев без малого 19 миллионов человек. Этнический состав населения Казахстана примерно такой: 69% - казахов, 18% русских, 3% узбеков, 1,5% украинцев, 1% татар, и менее малочисленные национальности, которых в Казахстане много. Очень. Среди моих знакомых и коллег были немцы, татары, корейцы, армяне. Соседка по площадке - полька. \u003C\u002Fp\u003E\u003Ch3\u003EА меня там поймут? Да :)\u003C\u002Fh3\u003E\u003Cp\u003EБольшинство населения - 95% - может понимать и говорить по-русски. Читать и писать по-русски может 87%. Здесь необходимо сделать оговорку, что опрос имел бинарную природу, поэтому \"уровень\" владения русского языка между жителем аула в Южно-Казахстанской области и жителем столицы будет отличаться. Иногда - в разы. \u003C\u002Fp\u003E\u003Cp\u003EЕдинственный государственный язык - казахский язык. За русским языком зафиксирован статус языка межнационального общения, также, он может применяться в деловой сфере, коммерческой сфере, в государственной сфере - для запросов и ответов на них. Договора обычно дублируют на двух языках.\u003C\u002Fp\u003E\u003Cp\u003EКазахский язык - довольно простой и довольно логичный, минимальный минимум вы освоите за пару месяцев - устный счёт (бир, еки, уш), вопросы \"есть ли?\" ($thing бар ма?), ответы да (йа), нет (джок), спасибо (рахмет), привет (салам(ты)  или салимет сизбе (Вы))-пока(сау бол (ты), или сау болыныз (Вы)). Это нужно будет нечасто, но иногда попадаются люди, которые русский понимают плохо - в таком случае, минимальный разгорник на 100 слов вас сильно выручит. Вывески, согласно закону, должны дублироваться на оба языка, но это происходит не везде, но если что - магазин это дукен, еда это азык-тулик. Если вы когда-либо учили татарский, башкирский, турецкий, азербайджанский, или хотя бы просто знакомы с этими языками - то вам будет сильно проще. \u003C\u002Fp\u003E\u003Cp\u003EКазахский алфавит был на базе кириллицы, сейчас идёт планомерный переход на латиницу. Честно говоря, кириллица мне нравилась больше - её банально удобнее было читать, даже с учётом наличия специальных букв. Теперь же есть весьма странные сочетания, которые надо будет запоминать - это головняк. В Казахстане, как правило, нет проблем если вы не понимаете казахский. Наибольшая сложность непонимания казахского была (есть?) у тех казахов, которые свой родной язык не знали или знали плохо. Как мне рассказывали, много лет казахи ставили в укор другим казахам, что те говорят по-русски. Я даже запомнил, как назывался тот лозунг - \"Казах казахпен казакша сойлесу керек\" - \"Казах с казахом должен говорить по-казахски\". На русских этот лозунг, понятно, не распространяется. Но бывает, конечно, что кто-то занимается хейтингом и разводом на скандалы в сфере обслуживания, сценарий выглядит следующим образом: человека, работающего в сфере обслуживания, спрашивают что-то на казахском, а тот либо отвечает, что не понял, либо даже если понял, то всё равно отвечает по-русски - ну, потому что так удобнее. После этого начинается скандал, с криками и обвинениями, снятием на камеру и тому подобном. Очень неприятно, но переезжающим айтишникам это не грозит, да и случается такое редко.\u003C\u002Fp\u003E\u003Ch3\u003EРелигия и всё такое\u003C\u002Fh3\u003E\u003Cp\u003EНесмотря на то, что Казахстан - светское государство, большинство населения - мусульмане. Хоть и очень, так скажем, либеральные. Тем не менее, муэдзин (зазыватель на утреннюю молитву) вполне может стать вашим будильником, если вы поселитесь немного неудачно, и вот этот момент есть смысл проверить заранее. \u003C\u002Fp\u003E\u003Cp\u003EЛюбые спиртные напитки продаются в любых магазинах, свинина также продаётся и покупается свободно. Но есть нюанс: нахождение в состоянии алкогольного опьянения даже средней степени на улице несёт угрозу задержания, существенного штрафа, вытрезвителя (их открывали, закрывали, вновь открывали, что сейчас - не знаю). \u003C\u002Fp\u003E\u003Cp\u003EВ разных регионах страны \"терпимость\" к пьяным отличается - где-то абсолютно спокойно можно быть \"на рогах\" и идти по синусоиде, а где-то лишь за слабый запах изо рта грозит всё вышеперечисленное. Кстати, о полиции - полиция в Казахстане универсальная - не делится на ГИБДД и \"пешую\". Любой полицейский может оформить штраф за любое нарушение - независимо от того, есть у него жезл или нет. \u003C\u002Fp\u003E\u003Cp\u003EРаньше легко было отделаться небольшой взяткой, сейчас это является уголовным преступлением как для взяткодателя, так и для берущего взятку. Крайне не рекомендую. А вот \"план\" по палкам у них есть. Так что держитесь за свои \"права\" крепче. Единственное, что допускается - можно так или иначе упросить выписать протокол по более \"щадящей\" статье. Опять же - никаких взяток. В машинах полиции всё пишется, не вздумайте. Также есть штрафы за мелкое хулиганство, к которому приравнивается выброс мусора в неположенных местах. Бычок или чек мимо урны вполне весомое основание для штрафа в ~4 тысячи рублей (5 минимальных расчетных показателей, МРП). Поэтому на улицах в центре городов, где много камер и полиции, обычно довольно чисто.\u003C\u002Fp\u003E\u003Ch3\u003EЧто такое государство? Государство - это сервисы.\u003C\u002Fh3\u003E\u003Cp\u003EВ Казахстане есть аналог МФЦ - ЦОН (центр обслуживания населения). В них можно решить большинство задач - справки, выписки, регистрационный учёт (для граждан). Также есть и электронные госуслуги - \"электронное правительство для граждан\". Что \"на земле\", что \"в цифре\" - госуслуги доступны на казахском и русском языках. Граждане получают ЭЦП (электронно-цифровую подпись) и с её помощью могут делать большое количество значимых операций с государственными органами. ЭЦП выдаются в ЦОНах, и, внезапно, в налоговой (и это разные ЭЦП). Бесплатно. Программное обеспечение для нормального функционирования этой инфраструктуры так же предоставляется бесплатно. Оно глючное и работало только с WIndows. И да, нужно устанавливать корневой сертификат господина майора (мырза майор).\u003C\u002Fp\u003E\u003Ch3\u003EГосударство - это социальная инфраструктура.\u003C\u002Fh3\u003E\u003Cp\u003EВ Казахстане много русскоязычных или смешанных государственных школ. Есть как общеобразовательные школы, так и школы с уклоном в разные предметы. Есть школы с конкурсным отбором - гимназии (районные), городские (приписанные к городу, а не к конкретному району), областные школы с уклоном в те или иные науки. По умолчанию туда берут детей, у родителей которых есть \"ВНЖ\", но также могут взять детей временно проживающих в РК, если родитель(или родители) являются трудовыми мигрантами. \u003Ca href=\"https:\u002F\u002Fegov.kz\u002Fcms\u002Fru\u002Farticles\u002Fsecondary_school\u002FAdmission-to-school\" rel=\"noopener noreferrer nofollow\"\u003EПодробнее здесь\u003C\u002Fa\u003E и \u003Ca href=\"https:\u002F\u002Fadilet.zan.kz\u002Frus\u002Fdocs\u002FV1000006573\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EВ Казахстане есть медицина, но, к сожалению, плохого качества. Граждане и резиденты страны имеют аналог программы ОМС - ОСМС (обязательное социальное медицинское страхование), с очередями к узким специалистам и на обследования. Платно - хоть в тот же день. Детали закона \"Об обязательном социальном медицинском страховании\" можно \u003Ca href=\"https:\u002F\u002Fadilet.zan.kz\u002Frus\u002Fdocs\u002FZ1500000405\" rel=\"noopener noreferrer nofollow\"\u003Eпрочесть здесь\u003C\u002Fa\u003E.  Иностранцам \"по умолчанию\" нужен ДМС (и не только он), а общие требования изложены в Законе \"О миграции населения\"(\u003Ca href=\"https:\u002F\u002Fadilet.zan.kz\u002Frus\u002Fdocs\u002FZ1100000477\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fadilet.zan.kz\u002Frus\u002Fdocs\u002FZ1100000477\u003C\u002Fa\u003E либо \u003Ca href=\"https:\u002F\u002Fonline.zakon.kz\u002FDocument\u002F?doc_id=31038298\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fonline.zakon.kz\u002FDocument\u002F?doc_id=31038298\u003C\u002Fa\u003E). \u003C\u002Fp\u003E\u003Cp\u003EОднако, поскольку Казахстан и Россия являются членам ЕАЭС, то трудовые мигрантам \"включаются в систему\" ОСМС с момента заключения трудового договора, а право на лечение получают с момента первых платежей в фонд медицинского страхования. Все это происходит в рамках Договора о ЕАЭС, а именно, пунктам 4 и 5 \"Протокола об оказании медицинской помощи\" (приложение №30 к договору о ЕАЭС). К сожалению, я не был семейным, и потому не могу сказать, оказывается ли помощь бесплатно членам семей. Да, они также включаются в программу, но достаточно платежей работающего члена семьи - мне неизвестно. Если нет, то для оплаты взносов за семью следует исходить из расчёта 1 иждивенец - 1 МРП (минимальный расчётный показатель), на 2022 год его значение равно 3063 тенге, или ~750 рублей в месяц.\u003C\u002Fp\u003E\u003Cp\u003EЗа своих граждан Республики, а именно студентов, несовершеннолетних, пенсионеров - платит бюджет, остальные граждане либо платят через работодателя, либо напрямую.\u003C\u002Fp\u003E\u003Ch3\u003EГорода Казахстана\u003C\u002Fh3\u003E\u003Cp\u003EДавайте погорим о том, где, собственно, жить. Есть два варианта - вариант, в котором вы ищете местную работу, и тогда есть смысл ехать только в Астану (Нур-Султан) и Алматы (так правильно. Нельзя писать в Алмату. Это неграмотно. Алматы - не склоняется. Можно писать на устаревший манер, в Алма-Ату). Оба-два - города миллионники, но Алматы  почти в два раза больше. Если сравнивать агломерации -\u003Cbr\u002F\u003E аналогично. Рядом с обоими городами находятся международные аэропорты. Если вы \"удаленщик\" на казахстанскую или иностранную компанию, то можете выбирать любой облцентр на Севере и Востоке страны: Костанай (рядом с Челябинском), Петропавловск (недалеко от Омска), Кокшетау (между Петропавловском и Астаной), Павлодар (выше Омска по течению Иртыша), Усть-Каменогорск. Павлодар и Усть-Каменогорск лично я не рекомендую по причине неблагоприятной экологии в этих городах. Честно - города-облцентры с населением 300 тысяч человек большинству россиян покажутся скучными, маленькими и неразвитыми в плане сервиса. \u003C\u002Fp\u003E\u003Cp\u003EПоэтому заострять на них внимание не буду, но если в комментариях попросят рассказать об Усть-Каменогорске - добавлю блок о нём. Кстати, о месте для жизни - здесь очень любят переименовывать всё подряд. Заснёте на одной улице, проснётесь на другой. Причем переименовывают, часто, даже абсолютно нейтральные названия. К примеру, личный случай - улицу Солнечную переименовали в Астана, причем решал это местный актив, а местных жителей, живущих на этой улице никто не спросил. Ну, такое :\\\u003C\u002Fp\u003E\u003Cfigure class=\"\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fcm\u002Fkw\u002Fey\u002Fcmkweyem5pyeorcnn-2wwgqq1w0.png\" alt=\"Административное деление страны и крупнейшие города регионов\" title=\"Административное деление страны и крупнейшие города регионов\" width=\"auto\" height=\"auto\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Fcm\u002Fkw\u002Fey\u002Fcmkweyem5pyeorcnn-2wwgqq1w0.png\"\u002F\u003E\u003Cfigcaption\u003EАдминистративное деление страны и крупнейшие города регионов\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EНур-Султан (Астана\u002FАкмола\u002FАкмолинск\u002FЦелиноград)\u003C\u002Fh3\u003E\u003Cp\u003EСтолица государства, трижды переименованная только за последние 30 лет. Я уже говорил, что здесь любят менять названия всех топонимов? В последний раз - в честь ныне здравствуюшего первого президента Республики - Нурсултана Абишевича Назарбаева (кстати, первый момент местной жизни - отчества местных иногда сложно выговорить. Но русским либо прощают  оговорки, либо разрешают обращаться по имени на Вы. По ситуации).\u003C\u002Fp\u003E\u003Cp\u003EТекущее переименование пару лет назад, когда после 28 лет нахождения у власти в должности Пожизненного Президента, господин Назарбаев, сказал, что он устал, что он ухожук, и передал власть председателю сената (верхняя палата, аналог Совета Федерации) Касым-Жомарт Токаеву. После этого произошли выборы, на которых он же и победил с 70% голосов.\u003C\u002Fp\u003E\u003Cp\u003EГород расположен на равнине, в степи. Летом - жарко, зимой люто холодно. Круглый год ветер. Если ветра нет, то в холодное время образуется смог от автомобилей и частного сектора (в Казахстане очень плохо всё с газом, за пределами западных нефтегазоносных областей).\u003C\u002Fp\u003E\u003Cfigure class=\"\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fwebt\u002Fty\u002F8f\u002F0b\u002Fty8f0bbvieunho8xbljkbbp0uz4.png\" alt=\"И не забудьте про ветер. Даже если вы не интересуетесь ветром, ветер интересуется вами!\" title=\"И не забудьте про ветер. Даже если вы не интересуетесь ветром, ветер интересуется вами!\" width=\"auto\" height=\"auto\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Fty\u002F8f\u002F0b\u002Fty8f0bbvieunho8xbljkbbp0uz4.png\"\u002F\u003E\u003Cfigcaption\u003EИ не забудьте про ветер. Даже если вы не интересуетесь ветром, ветер интересуется вами!\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЕще город делится на две части - правый и левый берег. Если на правом берегу застройка, в основном, советская, то левый берег - это застройка столицы, с 1998 года и по наши дни. Разнообразные башни, шатры, и прочие архитектурные изыски, сделанные архитекторами разных стран, которые очень красиво смотрятся с обзорной башни (Бай-Терек), но снизу это асфальт и плитка. И очень мало зелени. Качество всего новостроя, к сожалению, оставляет желать лучшего. Из плюсов могу отметить разве что наличие велодорожек. Здесь сосредоточены органы власти и бизнес.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fca9\u002F7bb\u002Fb27\u002Fca97bbb277aaddd9575a556ed38870cc.jpg\" alt=\"Поля плитки. Где-то сзади &quot;Ак Орда&quot; - президентский дворец. Слева от меня здание Парламента, справа - не влезло в кадр - здание Правительства \" title=\"Поля плитки. Где-то сзади &quot;Ак Орда&quot; - президентский дворец. Слева от меня здание Парламента, справа - не влезло в кадр - здание Правительства \" width=\"807\" height=\"605\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fca9\u002F7bb\u002Fb27\u002Fca97bbb277aaddd9575a556ed38870cc.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EПоля плитки. Где-то сзади \"Ак Орда\" - президентский дворец. Слева от меня здание Парламента, справа - не влезло в кадр - здание Правительства \u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F705\u002F8bf\u002F3d2\u002F7058bf3d2b5132aa72bcda5b126eceb6.jpg\" alt=\"Байтерек. Символ космической программы Казахстана. &quot;Богатый тополь&quot;, если дословно.\" title=\"Байтерек. Символ космической программы Казахстана. &quot;Богатый тополь&quot;, если дословно.\" width=\"1536\" height=\"2048\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F705\u002F8bf\u002F3d2\u002F7058bf3d2b5132aa72bcda5b126eceb6.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EБайтерек. Символ космической программы Казахстана. \"Богатый тополь\", если дословно.\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EОтносительно недалеко - по казахстанским и вообще сибирским меркам - расположен курорт Боровое - озеро в лесу, с небольшими лесистыми холмами по бокам. Можно доехать с ветерком по платной трассе Астана-Щучинск.\u003C\u002Fp\u003E\u003Ch3\u003EАлматы\u003C\u002Fh3\u003E\u003Cp\u003EКрасивый город, который был столицей КазССР и Республики Казахстан с 1929 по 1997 год, расположенный у подножья Тянь-Шаня. Если вы достаточно старый, то сможете угадать это здание со всех открыток:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F14b\u002F855\u002F11b\u002F14b85511b026769d89962e0f9f34c50e.jpg\" alt=\"Да, горизонт завален\" title=\"Да, горизонт завален\" width=\"1073\" height=\"804\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F14b\u002F855\u002F11b\u002F14b85511b026769d89962e0f9f34c50e.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EДа, горизонт завален\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПро подножье гор - не шутка, и если вам повезет, то вид из окон у вас на работе или дома будет как у меня:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdb8\u002Fe4c\u002Fb0b\u002Fdb8e4cb0bb88f4910477eb1cb279ed86.jpg\" alt=\"Лучше гор могут быть только горы!\" title=\"Лучше гор могут быть только горы!\" width=\"1326\" height=\"994\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fdb8\u002Fe4c\u002Fb0b\u002Fdb8e4cb0bb88f4910477eb1cb279ed86.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EЛучше гор могут быть только горы!\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EОтличается мягкой и короткой зимой, жарким летом. К сожалению, город находится в котловине, и несмотря на то, что тяжелой промышленности в нём практически нет, жители города страдают от регулярного смога. Зимой из-за отопления предместий ситуация резко ухудшается.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9b9\u002Fd47\u002Ffe9\u002F9b9d47fe91ebba52883d6e2a5bc22aba.png\" alt=\"это многолетние наблюдения. последние 10 лет стало теплее в Марте (1,0С) и Ноябре (-0,7С)\" title=\"это многолетние наблюдения. последние 10 лет стало теплее в Марте (1,0С) и Ноябре (-0,7С)\" width=\"1109\" height=\"320\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9b9\u002Fd47\u002Ffe9\u002F9b9d47fe91ebba52883d6e2a5bc22aba.png\"\u002F\u003E\u003Cfigcaption\u003Eэто многолетние наблюдения. последние 10 лет стало теплее в Марте (1,0С) и Ноябре (-0,7С)\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЕсли вы любите зимние виды спорта, то вам доступен знаменитый на весь СССР каток Медео (30 минут езды от центра города), а также горнолыжный курорт Шымбулак  (60 минут езды от центра города).\u003C\u002Fp\u003E\u003Cp\u003EОдним из центров досуга граждан является парк \"Коктобе\" - \"Зеленый Холм\".\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb9f\u002Fada\u002F42d\u002Fb9fada42d8764a856ce6637914626282.jpg\" alt=\"Вид с Коктобе на Алматы\" title=\"Вид с Коктобе на Алматы\" width=\"1326\" height=\"994\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb9f\u002Fada\u002F42d\u002Fb9fada42d8764a856ce6637914626282.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EВид с Коктобе на Алматы\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EТакже, приятным местом проведения досуга является Главный ботанический сад г. Алматы. Я очень любил туда ходить, хоть большая часть парка и выглядит несколько заброшенной. Вход платный, но бюджет одинокого молодого человека это не напрягало.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2d9\u002F76a\u002F038\u002F2d976a038f30ce23d64b410eb0c36a36.jpg\" alt=\"Чем дальше от входа, тем меньше людей.\" title=\"Чем дальше от входа, тем меньше людей.\" width=\"1326\" height=\"994\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2d9\u002F76a\u002F038\u002F2d976a038f30ce23d64b410eb0c36a36.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EЧем дальше от входа, тем меньше людей.\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ городе есть одна ветка метро. Для оплаты проезда в общественном транспорте лучше пользоваться местной проездной картой - \"Онай\", разница в цене с наличными платежами - почти в два раза.  Недалеко от города есть Капчагайское водохранилище, а для тех, кто готов провести больше времени в дороге есть курорты Иссык-Куля (горного озера на территории Киргизии).\u003C\u002Fp\u003E\u003Ch2\u003EТакси\u003C\u002Fh2\u003E\u003Cp\u003E Из привычных агрегаторов есть Yandex, Uber, inDriver. \u003Cbr\u002F\u003E\u003Cbr\u002F\u003EВ Алматы легко уехать из центра в каком-либо направлении просто \"проголосовав\" на дороге, и вас подберёт частник. Раньше поймать можно было даже автобус :)\u003Cbr\u002F\u003E \u003Cbr\u002F\u003EЕсть и местные таксомоторные парки. Средняя цена за километр (в Алматы) - ~50 рублей.\u003C\u002Fp\u003E\u003Ch2\u003EО еде. Еда\u003C\u002Fh2\u003E\u003Cp\u003EАлматы, в плане культурного разнообразия, выглядит гораздо интереснее новой столицы. Особенно я замечал это в гастрономическом плане, а поесть я люблю. В то время как в Астане еда была представлена либо русской либо, реже, казахской кухней, а остальное подавалось как \"эксклюзив\" с соответствующими ценами, то в Алматы рады всем, а разнообразие шире. Кстати, о казахской кухне. Попрошу не кидаться в меня тяжелыми предметами, но она мне не понравилась. Наиболее часто встречаться вам будут следующие национальные яства:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003Eнапиток, айран - по факту, тот же кефир, но чуточку по-другому приготовленный\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eнапиток, катык - что-то типа похожее на ряженку, но не сладкая, и на вкус напоминает топленое молоко.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eнапиток, кумыс - кобылье молоко, которое забродило. В зависимости от выдержки может быть аналогом кваса (по градусам), так и как пиво - доходит до 5 оборотов.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eнапиток, бозо (или бузо, буза) - насколько я понял, встречается только на Юге - ферментированный напиток из злаковых ( пшена, пшеницы, кукурузы, риса) и солода.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eзакуска, курт - подсохший скатанный творог с солью. Используется как перекус. Редко предлагается в ресторанах, но часто продается на вынос в разных забегаловках.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eпохлёбки, имеют разные названия, но, как правило, со словом коже (похлебка). К примеру, жети коже (похлебка из семи злаков). Очень на любителя. Супы с названием сорпа или шорпа, на мой взгляд, вкуснее\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eбаурсаки, аналог пончиков - жарятся в масле, но, в отличие от пончиков, имеют форму шара.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eбешбармак - лапша с мясом баранины\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eказы - колбаса из конины\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eкуырдак - жаркое  из субпродуктов с картофелем\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EТак, в Алматы действует много турецких демократичных забегаловок, где, кстати, действительно обслуживают на турецком,  есть уйгурские кафе и пекарни, несколько китайских кафе и ресторанов, два или три корейских заведения (я уже говорил, что в Семиречье компактно проживают корейцы?), узбекские, кавказские и многие другие. Кстати, хычины - кавказские лепешки с начинкой - я впервые попробовал именно в Алматы, а не на Кавказе или в Москве.\u003C\u002Fp\u003E\u003Ch2\u003EИнтересная география\u003C\u002Fh2\u003E\u003Cp\u003EОдна из вещей, к которым нужно будет привыкнуть в Алматы - то, что город имеет уклон с Юга на Север, и верхней частью города называется южная, а нижней, соответственно, северная. Кстати, все билборды с картами и отметками \"вы здесь\" по этой же причине рисуются перевёрнутыми. Вот так можно ощутить интересный \"экспериенс\" с перевёрнутыми картами, не покидая Северного Полушария!\u003C\u002Fp\u003E\u003Cp\u003EЕще Алматы довольно зеленый город - в нём много деревьев, которые спасают от жары и дают тень. Но вид гор с шапками снега, когда внизу девушки ходят в блузках, а парни в рубашках, и на деревьях все еще (или уже) есть листва - это незабываемо. Что-то подобное можно испытать в Сочи, но там как-то иначе. Надо куда-то ехать, куда-то забираться, куда-то подыматься. А здесь не так.\u003C\u002Fp\u003E\u003Ch2\u003EО менталитете, местных обычаях и тому подобном.Праздники\u003C\u002Fh2\u003E\u003Cp\u003EДолжен отметить, что Казахстан - довольно интересная страна. Начнём с того, что Новый год здесь празднуют дважды, вполне официально. Первый раз - 31 декабря, по-казахски - Жана Жыл (Новый Год). Приходит под елку Аяз Ата (Дедушка Мороз). Второй раз - Наурыз. Наурыз - древний праздник зороастрийской культуры, отмечается 20-22 марта, в день весеннего равноденствия.\u003Cbr\u002F\u003E\u003Cbr\u002F\u003EКроме двух новых годов(интересно, а так можно склонять?), в стране так же отмечаются православное Рождество и Курбан-Айт. Это выходные дни. 8 Марта также в почёте. Далее, 1 мая - День единства народа Казахстана. Еще праздничными днями являются День Победы 9 мая и День Батыра (местный аналог Дня Защитника Отечества), 7 мая. 6 июля отмечается день столицы (по совместительству - день рождения Первого Президента). 30 августа отмечается день Конституции РК. 1 декабря еще раз отмечается день Первого Президента (да, у него целых два праздника в году). Наконец, 16 декабря - День Независимости.\u003C\u002Fp\u003E\u003Cp\u003EКак видите - праздников в изобилии!\u003Cbr\u002F\u003E\u003Cbr\u002F\u003EНо особенно народ любит все весенние праздники, Новый Год. Потом Курбан-Айт и Рождество. Кто отмечает праздники в честь Президента я не знаю. Разве что в Астане дают по этому поводу красочный салют и проводят шоу.\u003C\u002Fp\u003E\u003Ch2\u003EСемейные торжества, и вообще о семье...\u003C\u002Fh2\u003E\u003Cp\u003EКазахи и другие восточные народы Казахстана отмечают их с размахом и большим количеством приглашенных гостей. Свадьба на 50 человек будет считаться неприлично маленькой, а еще она должна пройти в два разных дня дважды - в доме невесты (проводы) и в доме жениха (приём в семью). Из интересных моментов, которые довелось услышать, но сам не видел, так это праздник разрезания пут, когда маленькому ребенку завязывают ноги, а потом режут веревку, чтобы он официально пошёл. Кстати, ребенок-мальчик - \"бала\", девочка - \"кызы\", ну а просто уменьшительно-ласкательное со стороны взрослой родни - \"айналайын\" (жеребеночек).\u003C\u002Fp\u003E\u003Cp\u003EВ Казахстане сильны традиционные ценности, которые, впрочем, потихоньку отступают под натиском современного мира. Но всё еще очень жесткое разделение домашних обязанностей встречается очень часто. Вплоть до того, что мужчины в семье не моют посуду - даже если на улице их жена ходит в брюках или в джинсах. Вот такой вот 21 век.\u003C\u002Fp\u003E\u003Ch2\u003EО понтах\u003C\u002Fh2\u003E\u003Cp\u003EКазах без понтов - беспонтовый казах(с). Так говорят сами казахи. Не могу сказать, что этим занимаются все, но многие точно пытаются пустить пыль. В основном, это выражается в покупке старых Land Cruiser, Prado, Pajero. Обязательно черного, или, реже, белого цветов.\u003C\u002Fp\u003E\u003Ch2\u003EО работе\u003C\u002Fh2\u003E\u003Cp\u003EРаботать в Казахстане принято не очень упорно. Можно сказать, что соблюдается тот самый work-life баланс. Пить чай (шай), разговоры вести. Авторитарный стиль управления преобладает. Есть люди, которые работают много, но их редко повышают и двигают по службе, потому что самое главное основание для получения хорошей должности, увы, кровное родство. То самое кумовство. Только если обычное кумовство ограничено, ну пусть максимум троюродной родней, то у казахов принято считать до 7 колена минимум, до 10-12 колена в нормальной ситуации, ну а \"белая кость\" считает своё происхождение чуть ли не от Чингизхана. Вторыми в этой очереди идут друзья-приятели (друг - дос), ну, а работящие \"лошадки\" - в конце очереди. Можете себе представить, каковы шансы получить хорошую работу с улицы или потом продвинуться в компании.\u003C\u002Fp\u003E\u003Cp\u003EХорошо, предположим, вы решили, что вам всё это интересно и вы хотите попробовать на вкус жизнь в Казахстане.\u003Cbr\u002F\u003E \u003Cbr\u002F\u003EГде искать работу? \u003Ca href=\"http:\u002F\u002Fhh.kz\" rel=\"noopener noreferrer nofollow\"\u003Ehh.kz\u003C\u002Fa\u003E , выбираете регион \"Казахстан\" и LinkedIn.\u003Cbr\u002F\u003E \u003Cbr\u002F\u003EГде искать жильё? \u003Ca href=\"http:\u002F\u002Fkrisha.kz\" rel=\"noopener noreferrer nofollow\"\u003Ekrisha.kz\u003C\u002Fa\u003E, \u003Ca href=\"http:\u002F\u002Folx.kz\" rel=\"noopener noreferrer nofollow\"\u003Eolx.kz\u003C\u002Fa\u003E (много фейковых объявлений, чем-то похоже на российское Авито). Двушку снять будет стоить, грубо говоря, 180-250 тысяч тенге в месяц - что в Алматы, что в Астане. В Астане, будет немного дешевле (либо лучше квартира за те же деньги).\u003Cbr\u002F\u003E \u003Cbr\u002F\u003EИнтернет-барахолка? \u003Ca href=\"http:\u002F\u002Folx.kz\" rel=\"noopener noreferrer nofollow\"\u003Eolx.kz\u003C\u002Fa\u003E\u003Cbr\u002F\u003E \u003Cbr\u002F\u003EСколько денег будет уходить на еду? Да примерно столько же, сколько и в России уходило. Что-то будет дешевле, что-то дороже.\u003C\u002Fp\u003E\u003Cp\u003EХорошо, вы нашли вакансию, вроде бы нормальные деньги. Первое, что следует уточнить - грязными это или чистыми. Предположим, грязными вам предложили 1 000 000 тенге в месяц (оклад). Из них вычтут:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E10% ИПН (индивидуального подоходного налога, с первого дня)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E10% ОПВ (обязательные пенсионные взносы, для всех резидентов - вы станете им через 183 дня в 12 месячном периоде)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E3,5% СО (соцотчислений, на школы-больницы), за базу принимается ОКЛАД-ОПВ\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E2% ООМС (отчисления в фонд обязательного медицинского страхования).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EИтого, грубо, на карточку вы получите 750 тысяч. На самом деле расчёт чуть сложнее, но порядок вы теперь представляете.\u003C\u002Fp\u003E\u003Cp\u003EКроме того, ваш работодатель сверху заплатит СН (Соцналог), который считается как   (ОКЛАД-ОПВ) х 0,11 - СО. И еще 2% на ВОМС (в фонд обязательного медицинского страхования). Вы этого не увидите, но это также входит в ФОТ (фонд оплаты труда)\u003C\u002Fp\u003E\u003Cp\u003EХорошо, предположим вы нашли работу, договорились...\u003Cbr\u002F\u003E \u003Cbr\u002F\u003EПо приезду вам нужно будет сделать следующее (для граждан ЕАЭС), чтобы сделать следующее:\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003Eкупить местную симку, желательно в офисе оператора (а не на рынках или вокзалах) и зарегистрировать ваш телефон в специальной базе (да, иначе телефон может \"окирпичиться\" и перестать работать в местных сетях). Впрочем, с регистрацией смартфона вы можете подождать - у вас будет несколько месяцев. Эта норма позаимствована у Турции :)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eполучить разрешение на временное проживание (РВП), оно же является регистрацией иностранца. Это делается в органах МВД (возможно, что можно у представителя МВД в ЦОНе), либо через портал электронного правительства. Основанием для его получения будет трудовой договор. На регистрацию гражданам ЕАЭС даётся 30 дней, но я рекомендую не затягивать.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eоформить ИИН (индивидуальный идентификационный номер). Нечто среднее между ИНН и СНИЛСом. Присвается человеку один раз, и не меняется в дальнейшем.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eжелательно получить ЭЦП (электронно-цифровую подпись) в ЦОНе.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eс ИИН и РВП вы сможете открыть счёт в местном банке. Банков довольно много. Too big to fail - Народный банк Казахстана (является, по факту, правопреемником Сбербанка в Республике после распада СССР). Удобный - Kaspi bank, но я не уверен, работает ли он с иностранцами. Есть Сбербанк Казахстана (дочка Сбербанка РФ).\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003EИП или ТОО (аналог ООО) можно открыть только имея вид на жительство (ВНЖ).\u003C\u002Fp\u003E\u003Cp\u003EВот-с. Должен отметить, что штрафы за нарушение миграционного законодательства в Республике велики (как, впрочем, почти все штрафы в стране), а еще можно загреметь на 15 суток ареста - и это вполне реальная возможность. Так что - проконсультируйтесь либо с сотрудником МВД, либо с юристом, либо почитайте сами всё на несколько раз :) Также, можете попробовать найти тематические темы на каком-либо из форумов - к примеру, \u003Ca href=\"http:\u002F\u002Fvse.kz\" rel=\"noopener noreferrer nofollow\"\u003Evse.kz\u003C\u002Fa\u003E очень популярен и там можно найти подобные темы.\u003C\u002Fp\u003E\u003Cp\u003EК сожалению, согласно Казахстанскому законодательству, иностранцы не могут владеть землей и покупка домов поэтому им недоступна; однако иностранцы с ВНЖ могут покупать квартиры. После утраты ВНЖ иностранец (или выбывший из гражданства Республики человек) должен продать квартиру, но, на практике, я не видел санкций за это. Возможно, это поменялось, но в прошлый раз это было так.\u003C\u002Fp\u003E\u003Cp\u003EКазахстан - интересная страна, в которой сочетается и восточные традиции, и вполне себе европейский подход. Здесь интересно пожить и поработать, люди в этой стране гостеприимные и рады гостям, и хорошо относятся к разным народам. Я рад тому времени, которое провёл в Алматы, и тому, что посетил другие казахстанские города.\u003C\u002Fp\u003E\u003Cp\u003EСтатья, может быть, получилось немного сумбурной, если где-то есть ошибки пишите в ЛС, если есть неточности - пишите в комментариях.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"эмиграция"},{"titleHtml":"Казахстан"},{"titleHtml":"Алматы"},{"titleHtml":"Астана"},{"titleHtml":"Нур-Султан"},{"titleHtml":"степь да степь кругом"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Foz\u002Fbg\u002Fbm\u002Fozbgbmqcixu8fgf94tgzwedymlg.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002Foz\u002Fbg\u002Fbm\u002Fozbgbmqcixu8fgf94tgzwedymlg.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654831\\\u002F\"},\"headline\":\"Краткий обзор Казахстана и личные воспоминания\",\"datePublished\":\"2022-03-09T17:21:06+03:00\",\"dateModified\":\"2022-03-09T21:18:49+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Антон\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее пр...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654831\\\u002F#post-content-body\",\"about\":[\"h_it_immigration\",\"h_career\",\"h_social_networks\",\"f_management\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654831\\\u002F6973b16b4acd1a1b53e012ebada9dceb\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Foz\\\u002Fbg\\\u002Fbm\\\u002Fozbgbmqcixu8fgf94tgzwedymlg.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fcm\\\u002Fkw\\\u002Fey\\\u002Fcmkweyem5pyeorcnn-2wwgqq1w0.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fty\\\u002F8f\\\u002F0b\\\u002Fty8f0bbvieunho8xbljkbbp0uz4.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fca9\\\u002F7bb\\\u002Fb27\\\u002Fca97bbb277aaddd9575a556ed38870cc.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F705\\\u002F8bf\\\u002F3d2\\\u002F7058bf3d2b5132aa72bcda5b126eceb6.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F14b\\\u002F855\\\u002F11b\\\u002F14b85511b026769d89962e0f9f34c50e.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fdb8\\\u002Fe4c\\\u002Fb0b\\\u002Fdb8e4cb0bb88f4910477eb1cb279ed86.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F9b9\\\u002Fd47\\\u002Ffe9\\\u002F9b9d47fe91ebba52883d6e2a5bc22aba.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fb9f\\\u002Fada\\\u002F42d\\\u002Fb9fada42d8764a856ce6637914626282.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F2d9\\\u002F76a\\\u002F038\\\u002F2d976a038f30ce23d64b410eb0c36a36.jpg\"]}","metaDescription":"Поскольку сейчас у многих стоит вопрос - а куда бы отправиться? -  я могу немного рассказать о Казахстане, в котором мне довелось пожить и поработать. Заранее прошу простить, если я где-то буду...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":"it_immigration,career,social_networks"},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":false,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"technotext":{"nominationsList":[]},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"items":{},"pagesCache":{},"markedViewedSilently":{},"markedRead":{},"unreadCounters":{"applications":null,"system":null,"mentions":null,"subscribers":null,"posts_and_comments":null},"unviewedCounters":{"applications":null,"system":null,"mentions":null,"subscribers":null,"posts_and_comments":null}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script> 
+  <script src="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" defer></script>
+  <script src="https://assets.habr.com/habr-web/js/app.69ba180e.js" defer></script> 
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    </script> 
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(24049213, "init", {
+      defer:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:false,
+    });
+  </script> 
+  <noscript> 
+   <div> 
+    <img src="https://mc.yandex.ru/watch/24049213" style="position:absolute; left:-9999px;" alt=""> 
+   </div> 
+  </noscript> 
+  <script type="text/javascript">
+      window.addEventListener('load', function () {
+        setTimeout(() => {
+          const img = new Image();
+          img.src = 'https://vk.com/rtrg?p=V

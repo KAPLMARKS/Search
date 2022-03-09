@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Самый сумасшедший ретро стиль + микс игровых механик в игре ASCIILL / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/654841\/"},"headline":"Самый сумасшедший ретро стиль + микс игровых механик в игре ASCIILL","datePublished":"2022-03-09T16:44:44+03:00","dateModified":"2022-03-09T16:44:44+03:00","author":{"@type":"Person","name":"Андрей Фомин"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лабора...","url":"https:\/\/habr.com\/ru\/post\/654841\/#post-content-body","about":["h_i_am_advertising","f_marketing"],"image":["https:\/\/habr.com\/share\/publication\/654841\/87c558c58ff376e2a9b2d4d534688d06\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/566\/946\/5ce\/5669465ce8a8dfc544446aad2fa5105d.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/22d\/fae\/cc2\/22dfaecc2df96fd2593990737492ccb9.gif","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/15f\/1a6\/024\/15f1a6024869d5c2537afdc663de33b3.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/6fc\/84f\/e7e\/6fc84fe7ef4ee25831c2f676bc82f3a6.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/2de\/325\/a5e\/2de325a5ee541c3cc748441acf42692e.jpg"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Самый сумасшедший ретро стиль + микс игровых механик в игре ASCIILL" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="Самый сумасшедший ретро стиль + микс игровых механик в игре ASCIILL" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="Самый сумасшедший ретро стиль + микс игровых механик в игре ASCIILL" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/566/946/5ce/5669465ce8a8dfc544446aad2fa5105d.jpg" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/566/946/5ce/5669465ce8a8dfc544446aad2fa5105d.jpg" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/566/946/5ce/5669465ce8a8dfc544446aad2fa5105d.jpg" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/566/946/5ce/5669465ce8a8dfc544446aad2fa5105d.jpg" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/566/946/5ce/5669465ce8a8dfc544446aad2fa5105d.jpg?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="654841" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2022-03-09T13:44:44.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/654841/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="дизайн игр, ретро-игры, ascii, ascii art"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654841/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654841/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habrastorage.org/getpro/habr/upload_files/566/946/5ce/5669465ce8a8dfc544446aad2fa5105d.jpg" data-vmid="image:href">
+  <link data-vue-meta="ssr" rel="amphtml" href="https://habr.com/ru/amp/post/654841/"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> <!----> <a href="https://effect.habr.com/a/9NCniIO0uFfGfAV9Kz7N-lZlF2BDC1EHjwb3YLqX9oeguRcJTXgGbFQFUQZUppR_TRCPgYmPAZJw2tSrDmxE6-scmZHwp1dHXwBkC3DMtk2a6Ws60DcGeaJNzbFJK8pzBdmAREtTcA" target="_blank" class="tm-top-link" style="color:#99ddff;"> Как COVID отрывается на IT: тренды и новое исследование </a> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/DuhaTheBest/" title="DuhaTheBest" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/323/05f/225/32305f22558cbdaa15f65bd670107004.png" width="24" class="tm-entity-image__pic">
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/DuhaTheBest/" class="tm-user-info__username"> DuhaTheBest </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T13:44:44.000Z" title="2022-03-09, 16:44">сегодня в 16:44</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>Самый сумасшедший ретро стиль + микс игровых механик в игре ASCIILL</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/i_am_advertising/" class="tm-article-snippet__hubs-item-link"><span>Я пиарюсь</span> <!----></a></span>
+                  </div> <!----> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-2">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/566/946/5ce/5669465ce8a8dfc544446aad2fa5105d.jpg" width="640" height="360" data-src="https://habrastorage.org/getpro/habr/upload_files/566/946/5ce/5669465ce8a8dfc544446aad2fa5105d.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался для различных расчетов, но вы дождались, когда все ушли, и запустили игру. Монитор мог отображать лишь символы, однако это не мешало погружению. Полумрак помещения и сиреневый цвет заката за окном шли комплектом к самой игре.</p>
+                     <p>Одна такая игра только что вышла на Стиме. Буду рад показать вам основные ретро компоненты, которые я использовал, а также первую реакцию игроков на них.</p>
+                     <h2>Графика</h2>
+                     <blockquote>
+                      <p><code>«От графики свело олдскулы :)», — из отзыва на Стиме.</code></p>
+                     </blockquote>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/22d/fae/cc2/22dfaecc2df96fd2593990737492ccb9.gif" width="642" height="351" data-src="https://habrastorage.org/getpro/habr/upload_files/22d/fae/cc2/22dfaecc2df96fd2593990737492ccb9.gif">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Со временем воспоминания легко могут исказиться. Кажется, что трава раньше была зеленее, а светящиеся буквы на мониторе красивее и волшебнее. Если сейчас включить древний компьютер, то картинка будет не та. Раньше было круче на этом же мониторе!</p>
+                     <p>Моя задача — попробовать передать в игре то самое волшебное ретро чувство. Я аккуратно добавил красок и плавность перемещения в текстовый режим. Как вам?</p>
+                     <div class="tm-iframe_temp" data-src="https://embedd.srv.habr.com/iframe/6228aa3b5651a61252a00555" data-style="" id="6228aa3b5651a61252a00555" width=""></div>
+                     <h2>Механика</h2>
+                     <blockquote>
+                      <p><code>«Геймплей интересный - такая смесь action и puzzle. Микс побегать и подумать», — из отзыва на Стиме.</code></p>
+                     </blockquote>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/15f/1a6/024/15f1a6024869d5c2537afdc663de33b3.jpg" width="1920" height="1080" data-src="https://habrastorage.org/getpro/habr/upload_files/15f/1a6/024/15f1a6024869d5c2537afdc663de33b3.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Core-механику игры ASCIILL задумывал, как Metal Gear на Roguelike-поле с ловушками из Сапёра. Возможно, такая смесь звучит диковато, но получилось весьма играбельно, судя по отзывам. В основном режиме на разгадывание ловушек по цифрам тратится в среднем 20 % времени. В режиме «Челленж» (ежедневный случайный уровень, один для всех игроков) — до 70 %.</p>
+                     <h2>История</h2>
+                     <blockquote>
+                      <p><code>«Да, тексты огонь! Короткие, ненапряжные, и посмеялась местами от души», — из отзыва на Стиме.</code></p>
+                     </blockquote>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/6fc/84f/e7e/6fc84fe7ef4ee25831c2f676bc82f3a6.jpg" width="1607" height="1080" data-src="https://habrastorage.org/getpro/habr/upload_files/6fc/84f/e7e/6fc84fe7ef4ee25831c2f676bc82f3a6.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Тайный агент Эскилл направляется в инопланетный храм, напичканный ловушками. Сильнейшее электромагнитное излучение препятствует прохождению видеосигнала, поэтому вся информация проходит лишь в виде текстовых символов.</p>
+                     <p>Вот так нарратив объясняет графический стиль. Если бы не это электромагнитное излучение, то игра безусловно была в VR. Но условия, блин, сложные, поэтому пропускной способности канала хватает лишь на передачу картинки в расширенном текстовом режиме.</p>
+                     <p>Задание на каждую миссию выдает Б.О.С.С. Нужно расхищать сокровища, уничтожать инопланетных тварей, нейтрализовывать охранную технику.</p>
+                     <p>С каждым новым уровнем приходит понимание, что Б.О.С.С. не тот, за кого себя выдает, а Земля и агент Эскилл — лишь пешки в игре могущественных сил Вселенной.</p>
+                     <p>Несмотря на пародийный стиль диалогов, решил добавил несколько сюжетных поворотов. Кстати, как бы вы расшифровали аббревиатуру Б.О.С.С.? Расшифровку дает агент Эскилл в финальных титрах.</p>
+                     <h2>Название</h2>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/2de/325/a5e/2de325a5ee541c3cc748441acf42692e.jpg" width="1161" height="303" data-src="https://habrastorage.org/getpro/habr/upload_files/2de/325/a5e/2de325a5ee541c3cc748441acf42692e.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Графика в игре сделана из символов кодировки ASCII, что и определило первые пять букв названия. Как бы вы произнесли ASCIILL? Возможно как «Эсс Килл» или «Ass Kill». В игре действительно нужно надрать (Kill) кое-кому задницу (Ass). Хотя, возможно это лишь случайность, и такой интерпретации нет. Однако финальная схватка с галактическим гадом точно есть.</p>
+                     <p>Буду очень рад, если вы зайдете <a href="https://store.steampowered.com/app/1878770/ASCIILL/" rel="noopener noreferrer nofollow">на страничку игры в Стиме</a>, чтобы посмотреть на графику/фишки и/или добавить в Wishlist на будущее. Спасибо!</p>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%20%D0%B8%D0%B3%D1%80%5D" class="tm-tags-list__link">дизайн игр</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D1%80%D0%B5%D1%82%D1%80%D0%BE-%D0%B8%D0%B3%D1%80%D1%8B%5D" class="tm-tags-list__link">ретро-игры</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bascii%5D" class="tm-tags-list__link">ascii</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bascii%20art%5D" class="tm-tags-list__link">ascii art</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/i_am_advertising/" class="tm-hubs-list__link"> Я пиарюсь </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 8: ↑8 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 8: ↑8 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+8</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">971</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 10 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/DuhaTheBest/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <img alt="" src="//habrastorage.org/getpro/habr/avatars/323/05f/225/32305f22558cbdaa15f65bd670107004.png" class="tm-entity-image__pic">
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 178 голосов " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         146 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         57.1
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <span class="tm-user-card__name tm-user-card__name_variant-article">Андрей Фомин</span> <a href="/ru/users/DuhaTheBest/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @DuhaTheBest </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Разработчик</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <button type="submit" class="tm-user-card__button btn btn_transparent btn_small"> Задонатить </button> <!----> <!---->
+                  </div>
+                 </div> 
+                 <div class="tm-article-author__user-contacts">
+                  <a href="http://asciident.com/" rel="noopener" target="_blank" class="tm-article-author__contact"> Сайт </a><a href="https://facebook.com/fomiand" rel="noopener" target="_blank" class="tm-article-author__contact"> Facebook </a>
+                 </div>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner7756" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/654841/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 4 </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> 
+              <section class="tm-block tm-block_spacing-around">
+               <header class="tm-block__header">
+                <h2 class="tm-block__title">Минуточку внимания</h2> 
+                <div class="tm-block__header-aside">
+                 <a href="https://tmtm.ru/megapost/" target="_blank" class="tm-block-extralink"> Разместить </a>
+                </div>
+               </header> 
+               <div class="tm-block__body">
+                <div pagination="" slides-per-view="1" class="tm-promo-block__content-wrapper">
+                 <div class="tm-promo-block__item-wrapper">
+                  <a href="https://effect.habr.com/a/DahF9COkiWFS2WX_VMQb-Xe2TJ9lj2egARjpy1-oQk3z8OCe19uouahlTsqUEP3MOkoC_EdqXcAaAqHp5Iz4EvgQ9xG7NHo7siP7CB9vOWbbu4SxrEm0vIToI4qr" rel="nofollow " class="tm-promo-block__item tm-article-title__link">
+                   <header class="tm-promo-block__head">
+                    <div class="tm-promo-block__image-wrapper">
+                     <img alt="" src="https://effect.habr.com/a/F1KPwfAv30TaVyl7M7doDZ5_5owLWJ3rfXSmG3eilSDO6lFEw14WYauoXFgXuCDTYUbKo1ZySWL-Ty-SAFG07OK64d_-XZLU0or2ZXtroo1NBtWnxG9zaLx4vAxAc8TfJgW4rjk9yGc-eIeV1Z8CE_JifBiDXSRTlCfOoA6wSwrmhb0fH9oAUg0DUFRJGqyAlKYebsk0t-JXOg" class="tm-promo-block__image">
+                    </div> 
+                    <div class="tm-promo-block__label">
+                      Мегапост <!---->
+                    </div>
+                   </header> 
+                   <div class="tm-promo-block__info">
+                    <h3 class="tm-promo-block__title">Разбор ноутбука HONOR MagicBook 16 </h3>
+                   </div></a>
+                 </div>
+                 <div class="tm-promo-block__item-wrapper">
+                  <a href="https://effect.habr.com/a/O9kns6es-vUVAxr9z1Zur2oR17aQTafUq4JHPkQqpNYG3IRaEl6eS96awhoy9CnT_MFeHmfXMshgBD6rtVYks00G57umBFQ1Q4kjIhec3bvBeM6FtbfUPQdBudxSKt2BWyQKemwLY7fJdL8qKE-mdIfMH-efmSA" rel="nofollow sponsored" class="tm-promo-block__item tm-article-title__link">
+                   <header class="tm-promo-block__head">
+                    <div class="tm-promo-block__image-wrapper">
+                     <img alt="" src="https://effect.habr.com/a/SpmJBmPG7j-jrD95Za_zuSOKqXZVakl3VvsbQiDp7xGcHc6p7Mw0iHaGDPtdliRRch6TI8WSn860911Oj3bQAS2GvdrM5hsUIi8b9vgXhjX-9Y6wmaS-uaKML8tcgnmpjCXsfRnxQ-ObOIPIe1ENn6RjeBj7ciADS6yo0JqE3eMMdM2ND-1vWe8by94Hb-ks0PNfSkGFVUDsFkeC" class="tm-promo-block__image">
+                    </div> 
+                    <div class="tm-promo-block__label">
+                      Промо 
+                     <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 11 11" class="tm-block-promo__external">
+                      <path fill="currentColor" d="M7.5 0a.5.5 0 000 1h1.793L5.146 5.146a.5.5 0 10.708.708L10 1.707V3.5a.5.5 0 001 0v-3a.5.5 0 00-.5-.5h-3zm-7 1a.5.5 0 00-.5.5v9a.5.5 0 00.5.5h9a.5.5 0 00.5-.5V6a.5.5 0 00-1 0v4H1V2h4a.5.5 0 000-1H.5z"></path>
+                     </svg>
+                    </div>
+                   </header> 
+                   <div class="tm-promo-block__info">
+                    <h3 class="tm-promo-block__title">Красивое: смотрим тренды рынка труда в IT вместе с вами</h3>
+                   </div></a>
+                 </div>
+                 <div class="tm-promo-block__item-wrapper">
+                  <a href="https://effect.habr.com/a/hmVW7sAN6wgqEbh_gkhBWcHe4ehyayhTmE5MRvumhrZmF1rnuhgbwkjuwa0Zq376isPgAbDNv6gcE-ppo34W3uUIzbGwBG5khfS4Auj0n3vCPG1M2NXwq4EqWdsFTU1LKk7KPfHVVQ" rel="nofollow " class="tm-promo-block__item tm-article-title__link">
+                   <header class="tm-promo-block__head">
+                    <div class="tm-promo-block__image-wrapper">
+                     <img alt="" src="https://effect.habr.com/a/zwdOyrUKvlhGFpPF6B6jqd2SgGfD8tQCfkAu5SLFAg1KH3RLMmvkjqayzRhZLG2iUuh-iwwfzaUh9bNhForYZrZ0ZYNFgNIqMo4Wz7H4c1VzJ3AEGlTQfrvxAlzDD8vLIyhWeGk9W9dYLoQth4KiNnyqEgh8WF1FL8B-EcUFb6reBD2VDl1vlUAyl3zEImQ8NleeiGNy7oJZ" class="tm-promo-block__image">
+                    </div> 
+                    <div class="tm-promo-block__label">
+                      Интересно <!---->
+                    </div>
+                   </header> 
+                   <div class="tm-promo-block__info">
+                    <h3 class="tm-promo-block__title">Истощающая тревога: что такое стресс и как с ним бороться</h3>
+                   </div></a>
+                 </div>
+                </div>
+               </div> <!---->
+              </section> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner7757" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom7758" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654841/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654841/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654841":{"id":"654841","timePublished":"2022-03-09T13:44:44+00:00","isCorporative":false,"lang":"ru","titleHtml":"Самый сумасшедший ретро стиль + микс игровых механик в игре ASCIILL","leadData":{"textHtml":"\u003Cp\u003EПривет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался для различных расчетов, но вы дождались, когда все ушли, и запустили игру. Монитор мог отображать лишь символы, однако это не мешало погружению. Полумрак помещения и сиреневый цвет заката за окном шли комплектом к самой игре.\u003C\u002Fp\u003E\u003Cp\u003EОдна такая игра только что вышла на Стиме. Буду рад показать вам основные ретро компоненты, которые я использовал, а также первую реакцию игроков на них.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F566\u002F946\u002F5ce\u002F5669465ce8a8dfc544446aad2fa5105d.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F566\u002F946\u002F5ce\u002F5669465ce8a8dfc544446aad2fa5105d.jpg","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":146,"votesCount":178},"rating":57.1,"relatedData":null,"contacts":[{"title":"Сайт","url":"http:\u002F\u002Fasciident.com\u002F","value":"http:\u002F\u002Fasciident.com\u002F"},{"title":"Facebook","url":"https:\u002F\u002Ffacebook.com\u002Ffomiand","value":"fomiand"}],"authorContacts":[{"title":"Сайт","url":"http:\u002F\u002Fasciident.com\u002F","value":"http:\u002F\u002Fasciident.com\u002F"},{"title":"Facebook","url":"https:\u002F\u002Ffacebook.com\u002Ffomiand","value":"fomiand"}],"paymentDetails":{"paymentYandexMoney":"410017677227726","paymentPayPalMe":"asciident","paymentWebmoney":null},"id":"446998","alias":"DuhaTheBest","fullname":"Андрей Фомин","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F323\u002F05f\u002F225\u002F32305f22558cbdaa15f65bd670107004.png","speciality":"Разработчик"},"statistics":{"commentsCount":4,"favoritesCount":10,"readingCount":971,"score":8,"votesCount":8},"hubs":[{"relatedData":null,"id":"465","alias":"i_am_advertising","type":"collective","title":"Я пиарюсь","titleHtml":"Я пиарюсь","isProfiled":false}],"flows":[{"id":"4","alias":"marketing","title":"Маркетинг"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F566\u002F946\u002F5ce\u002F5669465ce8a8dfc544446aad2fa5105d.jpg\" width=\"640\" height=\"360\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F566\u002F946\u002F5ce\u002F5669465ce8a8dfc544446aad2fa5105d.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПривет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался для различных расчетов, но вы дождались, когда все ушли, и запустили игру. Монитор мог отображать лишь символы, однако это не мешало погружению. Полумрак помещения и сиреневый цвет заката за окном шли комплектом к самой игре.\u003C\u002Fp\u003E\u003Cp\u003EОдна такая игра только что вышла на Стиме. Буду рад показать вам основные ретро компоненты, которые я использовал, а также первую реакцию игроков на них.\u003C\u002Fp\u003E\u003Ch2\u003EГрафика\u003C\u002Fh2\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Ccode\u003E«От графики свело олдскулы :)», — из отзыва на Стиме.\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F22d\u002Ffae\u002Fcc2\u002F22dfaecc2df96fd2593990737492ccb9.gif\" width=\"642\" height=\"351\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F22d\u002Ffae\u002Fcc2\u002F22dfaecc2df96fd2593990737492ccb9.gif\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EСо временем воспоминания легко могут исказиться. Кажется, что трава раньше была зеленее, а светящиеся буквы на мониторе красивее и волшебнее. Если сейчас включить древний компьютер, то картинка будет не та. Раньше было круче на этом же мониторе!\u003C\u002Fp\u003E\u003Cp\u003EМоя задача — попробовать передать в игре то самое волшебное ретро чувство. Я аккуратно добавил красок и плавность перемещения в текстовый режим. Как вам?\u003C\u002Fp\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F6228aa3b5651a61252a00555\" data-style=\"\" id=\"6228aa3b5651a61252a00555\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003Ch2\u003EМеханика\u003C\u002Fh2\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Ccode\u003E«Геймплей интересный - такая смесь action и puzzle. Микс побегать и подумать», — из отзыва на Стиме.\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F15f\u002F1a6\u002F024\u002F15f1a6024869d5c2537afdc663de33b3.jpg\" width=\"1920\" height=\"1080\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F15f\u002F1a6\u002F024\u002F15f1a6024869d5c2537afdc663de33b3.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003ECore-механику игры ASCIILL задумывал, как Metal Gear на Roguelike-поле с ловушками из Сапёра. Возможно, такая смесь звучит диковато, но получилось весьма играбельно, судя по отзывам. В основном режиме на разгадывание ловушек по цифрам тратится в среднем 20 % времени. В режиме «Челленж» (ежедневный случайный уровень, один для всех игроков) — до 70 %.\u003C\u002Fp\u003E\u003Ch2\u003EИстория\u003C\u002Fh2\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Ccode\u003E«Да, тексты огонь! Короткие, ненапряжные, и посмеялась местами от души», — из отзыва на Стиме.\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F6fc\u002F84f\u002Fe7e\u002F6fc84fe7ef4ee25831c2f676bc82f3a6.jpg\" width=\"1607\" height=\"1080\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F6fc\u002F84f\u002Fe7e\u002F6fc84fe7ef4ee25831c2f676bc82f3a6.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EТайный агент Эскилл направляется в инопланетный храм, напичканный ловушками. Сильнейшее электромагнитное излучение препятствует прохождению видеосигнала, поэтому вся информация проходит лишь в виде текстовых символов.\u003C\u002Fp\u003E\u003Cp\u003EВот так нарратив объясняет графический стиль. Если бы не это электромагнитное излучение, то игра безусловно была в VR. Но условия, блин, сложные, поэтому пропускной способности канала хватает лишь на передачу картинки в расширенном текстовом режиме.\u003C\u002Fp\u003E\u003Cp\u003EЗадание на каждую миссию выдает Б.О.С.С. Нужно расхищать сокровища, уничтожать инопланетных тварей, нейтрализовывать охранную технику.\u003C\u002Fp\u003E\u003Cp\u003EС каждым новым уровнем приходит понимание, что Б.О.С.С. не тот, за кого себя выдает, а Земля и агент Эскилл — лишь пешки в игре могущественных сил Вселенной.\u003C\u002Fp\u003E\u003Cp\u003EНесмотря на пародийный стиль диалогов, решил добавил несколько сюжетных поворотов. Кстати, как бы вы расшифровали аббревиатуру Б.О.С.С.? Расшифровку дает агент Эскилл в финальных титрах.\u003C\u002Fp\u003E\u003Ch2\u003EНазвание\u003C\u002Fh2\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2de\u002F325\u002Fa5e\u002F2de325a5ee541c3cc748441acf42692e.jpg\" width=\"1161\" height=\"303\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2de\u002F325\u002Fa5e\u002F2de325a5ee541c3cc748441acf42692e.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EГрафика в игре сделана из символов кодировки ASCII, что и определило первые пять букв названия. Как бы вы произнесли ASCIILL? Возможно как «Эсс Килл» или «Ass Kill». В игре действительно нужно надрать (Kill) кое-кому задницу (Ass). Хотя, возможно это лишь случайность, и такой интерпретации нет. Однако финальная схватка с галактическим гадом точно есть.\u003C\u002Fp\u003E\u003Cp\u003EБуду очень рад, если вы зайдете \u003Ca href=\"https:\u002F\u002Fstore.steampowered.com\u002Fapp\u002F1878770\u002FASCIILL\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eна страничку игры в Стиме\u003C\u002Fa\u003E, чтобы посмотреть на графику\u002Fфишки и\u002Fили добавить в Wishlist на будущее. Спасибо!\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"дизайн игр"},{"titleHtml":"ретро-игры"},{"titleHtml":"ascii"},{"titleHtml":"ascii art"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F566\u002F946\u002F5ce\u002F5669465ce8a8dfc544446aad2fa5105d.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F566\u002F946\u002F5ce\u002F5669465ce8a8dfc544446aad2fa5105d.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654841\\\u002F\"},\"headline\":\"Самый сумасшедший ретро стиль + микс игровых механик в игре ASCIILL\",\"datePublished\":\"2022-03-09T16:44:44+03:00\",\"dateModified\":\"2022-03-09T16:44:44+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Андрей Фомин\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лабора...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654841\\\u002F#post-content-body\",\"about\":[\"h_i_am_advertising\",\"f_marketing\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654841\\\u002F87c558c58ff376e2a9b2d4d534688d06\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F566\\\u002F946\\\u002F5ce\\\u002F5669465ce8a8dfc544446aad2fa5105d.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F22d\\\u002Ffae\\\u002Fcc2\\\u002F22dfaecc2df96fd2593990737492ccb9.gif\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F15f\\\u002F1a6\\\u002F024\\\u002F15f1a6024869d5c2537afdc663de33b3.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F6fc\\\u002F84f\\\u002Fe7e\\\u002F6fc84fe7ef4ee25831c2f676bc82f3a6.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F2de\\\u002F325\\\u002Fa5e\\\u002F2de325a5ee541c3cc748441acf42692e.jpg\"]}","metaDescription":"Привет, ребята! Представьте, что несколько десятков лет назад вы включили ЭВМ с алфавитно-цифровым монитором. Может быть, этот компьютер находился в некой лаборатории. В рабочее время он использовался...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":"i_am_advertising"},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{}},"promoData":{"isLoading":false,"hasLoaded":true,"featurer":[],"megaposts":[

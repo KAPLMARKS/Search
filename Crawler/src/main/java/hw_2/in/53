@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Подготовка рабочей среды для создания смарт-контрактов Solidity / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/654835\/"},"headline":"Подготовка рабочей среды для создания смарт-контрактов Solidity","datePublished":"2022-03-09T16:53:30+03:00","dateModified":"2022-03-09T20:52:59+03:00","author":{"@type":"Person","name":"Александр Фролов"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду &mdash; установить операционную систему (ОС) Ubuntu, клиента Geth сети Et...","url":"https:\/\/habr.com\/ru\/post\/654835\/#post-content-body","about":["h_solidity","h_cryptocurrency","f_develop","f_popsci"],"image":["https:\/\/habr.com\/share\/publication\/654835\/b6453fcd03a0aa9c8ad42b45c4176894\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/fa4\/f72\/986\/fa4f72986bcf31002965d8483e595091.png"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Подготовка рабочей среды для создания смарт-контрактов Solidity" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="Подготовка рабочей среды для создания смарт-контрактов Solidity" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="Подготовка рабочей среды для создания смарт-контрактов Solidity" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/ee4/2bb/e45/ee42bbe45a9a7ff0f829d10c3eefcd26.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/ee4/2bb/e45/ee42bbe45a9a7ff0f829d10c3eefcd26.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/ee4/2bb/e45/ee42bbe45a9a7ff0f829d10c3eefcd26.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/ee4/2bb/e45/ee42bbe45a9a7ff0f829d10c3eefcd26.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/ee4/2bb/e45/ee42bbe45a9a7ff0f829d10c3eefcd26.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="654835" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2022-03-09T13:53:30.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/654835/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="solidity, ethereum, смарт-контракт, блокчейн, блокчейн-технологии"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654835/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654835/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habrastorage.org/getpro/habr/upload_files/ee4/2bb/e45/ee42bbe45a9a7ff0f829d10c3eefcd26.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" rel="amphtml" href="https://habr.com/ru/amp/post/654835/"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/AlexandreFrolov/" title="AlexandreFrolov" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/4c0/ff9/e06/4c0ff9e067aa668e1a9cda0c96b55054.jpg" width="24" class="tm-entity-image__pic">
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/AlexandreFrolov/" class="tm-user-info__username"> AlexandreFrolov </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T13:53:30.000Z" title="2022-03-09, 16:53">сегодня в 16:53</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>Подготовка рабочей среды для создания смарт-контрактов Solidity</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/solidity/" class="tm-article-snippet__hubs-item-link"><span>Solidity</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/cryptocurrency/" class="tm-article-snippet__hubs-item-link"><span>Криптовалюты</span> <!----></a></span>
+                  </div> 
+                  <div class="tm-article-snippet__labels">
+                   <div class="tm-article-snippet__label tm-article-snippet__label_variant-tutorial">
+                    <span> Tutorial </span>
+                   </div>
+                  </div> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-2">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/fa4/f72/986/fa4f72986bcf31002965d8483e595091.png" width="779" height="438" data-src="https://habrastorage.org/getpro/habr/upload_files/fa4/f72/986/fa4f72986bcf31002965d8483e595091.png">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое программное обеспечение (ПО).</p>
+                     <p>Мы могли бы приступить к работе сразу в какой-либо интегрированной среде разработки (IDE, Integrated Development Environment), например, Remix. Возможно, это был бы самый быстрый путь к изучению смарт-контрактов Solidity. Однако для того, чтобы глубже разобраться в работе Ethereum, мы начнем с базовых инструментов.</p>
+                     <h3>Установка и обновление операционной системы</h3>
+                     <p>Для изучения Ethereum можно арендовать виртуальный или облачный сервер у одного из провайдеров. Еще вариант — установить Ubuntu на свой настольный компьютер или на виртуальную машину VMware Workstation, либо аналогичную.</p>
+                     <p>Описание процесса установки Ubuntu мы описывать не будем, т.к. в интернете есть немало достаточно подробных руководств. При аренде виртуального или облачного сервера провайдер обязательно поможет установить на него ОС. Учтите, что вам нужна 64-разрядная Ubuntu версии 20.04 или более новой версии.</p>
+                     <p>Для работы потребуется виртуальный или физический сервер в такой конфигурации:</p>
+                     <ul>
+                      <li><p>От 4 ядер процессора (CPU) с тактовой частотой от 2 ГГц;</p></li>
+                      <li><p>Оперативная память от 2 Гбайт;</p></li>
+                      <li><p>Диск SSD объемом от 20 Гбайт.</p></li>
+                     </ul>
+                     <p>Конфигурация сервера влияет на скорость майнинга новых блоков. Чтобы было удобно работать, эта скорость не должна быть слишком низкой. </p>
+                     <p>Сразу после установки Ubuntu обновите пакеты при помощи команды apt:<br><code><br>$ sudo apt update<br>$ sudo apt upgrade</code></p>
+                     <p>&nbsp;Если в Ubuntu Server обновилось ядро, может потребоваться перезагрузка ОС. Сообщение об этом вы увидите при подключении к консоли:</p>
+                     <p><code>*** System restart required ***</code></p>
+                     <p>&nbsp;В этом случае перед продолжением работы выполните перезагрузку:</p>
+                     <p><code>$ sudo shutdown -r now</code></p>
+                     <p>Пакеты Ubuntu можно также обновлять также через менеджер обновлений в графическом интерфейсе.</p>
+                     <p>Обновление пакетов нужно делать с правами пользователя root, используя sudo.</p>
+                     <h3>Установка программы Geth</h3>
+                     <p>Свой первый узел сети Ethereum мы будем делать на базе программы Go Ethereum (<a href="https://geth.ethereum.org" rel="noopener noreferrer nofollow">https://geth.ethereum.org</a>). Эта программа представляет собой официальную реализацию протокола Ethereum. Она написана на Go и доступна в виде программы Geth. С помощью Geth можно сделать полнофункциональный узел сети Ethereum или его упрощенные варианты.</p>
+                     <p>Для работы с узлом Geth можно использовать интерфейс командной строки, а также программный интерфейс (API, Application Programming Interface) JSON-RPC, доступный через протоколы HTTP и WebSocket, а также через механизм коммуникации процессов Unix &nbsp;(IPC, Inter-Process Communication). </p>
+                     <p>Используя этот интерфейс и различные фреймворки, вы сможете создавать программы, работающие с узлами Ethereum, практически на всех современных языках программирования.</p>
+                     <p>Клиент Geth может работать на платформах, где имеется Go. Это, например, Linux, Mac OSX, Windows, Raspberry Pi, Android OS, iOS. <a href="https://geth.ethereum.org/downloads" rel="noopener noreferrer nofollow">На странице загрузки</a> доступны реализации для Linux, macOS и Windows, а также исходные коды Geth.</p>
+                     <p>Итак, перейдем к установке программы Geth.</p>
+                     <p>Чтобы установить эту программу, добавьте персональный пакет архивов PPA (Personal Package Archives) и установите стабильную версию пакета go-ethereum:<br><code><br>$ sudo add-apt-repository -y ppa:ethereum/ethereum<br>$ sudo apt-get update<br>$ sudo apt-get install ethereum</code></p>
+                     <p>После установки проверьте версию Geth:<br><code><br>$ geth version<br>Geth<br>Version: 1.10.13-stable<br>Git Commit: 7a0c19f813e285516f4b525305fd73b625d2dec8<br>Architecture: amd64<br>Go Version: go1.17.2<br>Operating System: linux<br>GOPATH=<br>GOROOT=go</code> </p>
+                     <p>Как видите, установлен Geth стабильной версии 1.10.13, который работает в Go версии 1.17.2.</p>
+                     <h3>Скопируйте файлы из репозитория GitHub</h3>
+                     <p>В процессе подготовки нам будут нужны различные файлы. Чтобы не набирать их содержимое каждый раз вручную, загрузите весь репозиторий из GitHub.</p>
+                     <p>Для этого сначала установите git:</p>
+                     <p><code>$ sudo apt install git</code></p>
+                     <p>Далее &nbsp;скопируйте их из репозитория GitHub с помощью следующей команды:</p>
+                     <p><code>$ git clone https://github.com/AlexandreFrolov/sol01.git</code></p>
+                     <p>&nbsp;Для обновления файлов из репозитория воспользуйтесь командой git pull:</p>
+                     <p><code>$ git pull origin main</code></p>
+                     <p>В вашем домашнем каталоге будет создано дерево каталогов sol01, в котором вы найдете каталоги к урокам. Например, файлы третьего урока находятся в каталоге sol01/les03.</p>
+                     <h3>Создаем приватный блокчейн</h3>
+                     <p>Для того чтобы быстро освоить процесс создания смарт-контрактов, нам нужен блокчейн. Вначале вы создадите приватный блокчейн на вашем сервере, так как с ним проще всего работать. Далее вы будете использовать тестовую сеть Rinkeby, работающую в точности как основная сеть Ethereum и пригодную для отладки «настоящих» контрактов Solidity перед их публикацией в Ethereum.</p>
+                     <h4>Готовим файл genesis.json</h4>
+                     <p>Откройте свой домашний каталог и проверьте, что в каталоге ~/sol01/les03 находится файл genesis.json, загруженный из только что упомянутого репозитория GitHub (листинг 3.1.).</p>
+                     <p><strong>Листинг 3.1. Файл ~/sol01/les03/genesis.json<br></strong><code>{<br>&nbsp; "config": {<br>&nbsp;&nbsp;&nbsp;&nbsp; "chainId": 98760,<br>&nbsp;&nbsp;&nbsp;&nbsp; "homesteadBlock": 0,<br>&nbsp;&nbsp;&nbsp;&nbsp; "eip150Block": 0,<br>&nbsp;&nbsp;&nbsp;&nbsp; "eip155Block": 0,<br>&nbsp;&nbsp;&nbsp;&nbsp; "eip158Block": 0,<br>&nbsp;&nbsp;&nbsp;&nbsp; "byzantiumBlock": 0,<br>&nbsp;&nbsp;&nbsp;&nbsp; "constantinopleBlock": 0,<br> &nbsp; &nbsp;&nbsp;&nbsp;"istanbulBlock": 0,<br>&nbsp;&nbsp;&nbsp;&nbsp; "petersburgBlock": 0<br>&nbsp;&nbsp;},<br>&nbsp; "difficulty": "10",<br>&nbsp; "gasLimit": "5100000",<br>&nbsp; "alloc": {}<br>}</code></p>
+                     <p>Этот файл описывает первичный блок (genesis block) цепочки блоков — самый первый блок блокчейна. Мы создаем наш собственный приватный блокчейн, поэтому о первом блоке должны позаботиться сами.</p>
+                     <p>Блок <strong>config</strong> файла genesis.json содержит переменные конфигурации сети Ethereum.</p>
+                     <p>В поле <strong>chainId</strong> находится идентификатор блокчейна. Он используется для защиты от репликации, т.е. от неавторизованных действий пользователей, пытающихся действовать от имени настоящего отправителя данных.</p>
+                     <p>Если речь идет о главной сети Ethereum, то ее идентификатор равен 1. Идентификатор тестовой сети Rinkeby равен 4. При создании нашей приватной сети мы можем указать любое значение, отличное от известных. Мы выбрали значение 98760.</p>
+                     <p>Значение 0 в поле <strong>homesteadBlock</strong> указывает на то, что мы будем использовать релиз сети Ethereum под названием Homestead. Homestead представляет собой второй релиз сети Ethereum (первый релиз назывался Frontier). Нулевое значение этого параметра используется и в основной сети Ethereum.</p>
+                     <p>Немного о параметрах с префиксом <strong>EIP</strong>. При реализации Homestead был обновлен протокол, причем без обратной совместимости с предыдущим релизом Ethereum. Соответствующие изменения отражены в документах «Предложения по улучшению Ethereum» (Ethereum Improvement Proposals, EIPs), опубликованных на сайте <a href="https://eips.ethereum.org/" rel="noopener noreferrer nofollow">https://eips.ethereum.org/</a>.</p>
+                     <p>Реализация изменений может потребовать выполнения так называемой процедуры хардфорка (hard-forking), или обновления ПО узлов. В результате этой процедуры может меняться структура блока, появляется возможность использовать ранее недоступные блоки и вносить различные изменения в протокол.</p>
+                     <p>Так как мы не будем делать хардфорк, то установим значения соответствующих параметров eip150Block, eip155Block и eip158Block равными нулю.</p>
+                     <p>Аналогично, установим равными нулю значения параметров <strong>byzantiumBlock</strong>, <strong>constantinopleBlock</strong>, &nbsp;<strong>istanbulBlock</strong> и <strong>petersburgBlock</strong>. В основной сети такие параметры задают номера блоков, при достижении которых был изменен протокол.</p>
+                     <p>Параметр <strong>difficulty</strong> важен для нас в практическом смысле. Этот параметр имеет прямое влияние на время генерации новых блоков блокчейна. Для нашего «учебного» блокчейна мы установим очень маленькое значение этого параметра, равное 10, чтобы скорость добавления новых блоков была приемлемой даже на виртуальных серверах небольшой производительности.</p>
+                     <p>С помощью параметра <strong>gasLimit</strong> мы задаем в рамках блокчейна предел расхода так называемого газа (Gas). </p>
+                     <p>Газ Ethereum представляет собой расходный ресурс, который тратится на выполнение таких операций, как отправка транзакций, публикация и выполнение контрактов и т.п. Далее мы расскажем об этом подробнее. В нашей приватной тестовой сети мы устанавливаем достаточно большое значение, чтобы не возникали ограничения при запуске тестовых программ.</p>
+                     <p>Параметр <strong>alloc</strong> позволяет при инициализации блокчейна создать кошельки и заранее наполнить их тестовым эфиром. В наших примерах мы не будем использовать эту возможность.</p>
+                     <h4>Создаем каталог для работы</h4>
+                     <p>Теперь создайте в своем домашнем каталоге подкаталог node1:<br><code><br>$ cd<br>$ mkdir node1</code></p>
+                     <p>В каталоге node1 будут располагаться данные блокчейна.</p>
+                     <h4>Создаем аккаунт</h4>
+                     <p>Теперь перейдем к созданию нашего приватного блокчейна. Прежде всего создайте новый аккаунт:</p>
+                     <p><code>$ geth --datadir ~/node1 account new</code></p>
+                     <p>При создании аккаунта будет запрошен пароль, который нужно сохранить в безопасном месте:</p>
+                     <p><code>$ geth --datadir ~/node1 account new</code></p>
+                     <p><code>INFO [12-08|06:18:33.646] Maximum peer count&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ETH=50 LES=0 total=50</code></p>
+                     <p><code>INFO [12-08|06:18:33.647] Smartcard socket not found, disabling&nbsp;&nbsp;&nbsp; err="stat /run/pcscd/pcscd.comm: no such file or directory"</code></p>
+                     <p><code>Your new account is locked with a password. Please give a password. Do not forget this password.<br>Password:<br>Repeat password:<br>Your new key was generated<br>&nbsp;Public address of the key:&nbsp;&nbsp; 0x2cF942e02baAC0BB883147873943666e397CAe03</code></p>
+                     <p><code>Path of the secret key file: /home/developer/node1/keystore/UTC--2021-12-08T14-18-43.611281385Z--2cf942e02baac0bb883147873943666e397cae03<br>&nbsp;- You can share your public address with anyone. Others need it to interact with you.<br>- You must NEVER share the secret key with anyone! The key controls access to your funds!<br>- You must BACKUP your key file! Without the key, it's impossible to access account funds!<br>- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!</code></p>
+                     <p>Команда account new выведет на консоль параметр Public address of the key — так называемый адрес узла. В нашем случае это адрес 0x2cF942e02baAC0BB883147873943666e397CAe03. Мы будем указывать его в различных командах.</p>
+                     <p>Также обратите внимание на путь к файлу с секретным ключом Path of the secret key file. Этот файл необходим для выполнения транзакций. Его можно скопировать и хранить в безопасном месте.</p>
+                     <p>Параметр datadir команды geth указывает путь к рабочему каталогу. Мы используем каталог node1, расположенный в вашем домашнем каталоге.</p>
+                     <h4>Запускаем инициализацию узла</h4>
+                     <p>После создания аккаунта нам нужно выполнить инициализацию узла:</p>
+                     <p><code>$ geth --datadir ~/node1 init ~/sol01/les03/genesis.json</code></p>
+                     <p>Здесь мы с помощью параметра datadir указали путь к рабочему каталогу. Параметр init задает путь к файлу первичного блока genesis.json.</p>
+                     <p>Команда выполнит инициализацию и выведет на консоль результаты своей работы:</p>
+                     <p><code>INFO [12-08|06:19:56.127] Maximum peer count&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ETH=50 LES=0 total=50</code></p>
+                     <p><code>INFO [12-08|06:19:56.127] Smartcard socket not found, disabling&nbsp;&nbsp;&nbsp; err="stat /run/pcscd/pcscd.comm: no such file or directory"</code></p>
+                     <p><code>INFO [12-08|06:19:56.128] Set global gas cap&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cap=50,000,000</code></p>
+                     <p><code>INFO [12-08|06:19:56.128] Allocated cache and file handles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; database=/home/developer/node1/geth/chaindata cache=16.00MiB handles=16</code></p>
+                     <p><code>INFO [12-08|06:19:56.146] Writing custom genesis block</code></p>
+                     <p><code>INFO [12-08|06:19:56.146] Persisted trie from memory database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nodes=0 size=0.00B time="14.424µs" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B</code></p>
+                     <p><code>INFO [12-08|06:19:56.147] Successfully wrote genesis state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; database=chaindata&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hash=a5e5bc..3f490e</code></p>
+                     <p><code>INFO [12-08|06:19:56.147] Allocated cache and file handles&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; database=/home/developer/node1/geth/lightchaindata cache=16.00MiB handles=16</code></p>
+                     <p><code>INFO [12-08|06:19:56.151] Writing custom genesis block</code></p>
+                     <p><code>INFO [12-08|06:19:56.152] Persisted trie from memory database&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; nodes=0 size=0.00B time="5.185µs"&nbsp; gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B</code></p>
+                     <p><code>INFO [12-08|06:19:56.153] Successfully wrote genesis state&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; database=lightchaindata&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hash=a5e5bc..3f490e</code></p>
+                     <p>Далее для работы с узлом вам нужно будет открыть две консоли.</p>
+                     <p>Чтобы запустить узел, выполните в первой консоли следующую команду:</p>
+                     <p><code>$ geth --datadir ~/node1 --ipcpath "~/node1/geth.ipc" --nodiscover --mine --miner.threads 1 --maxpeers 0 --verbosity 3 --networkid 98760 console</code></p>
+                     <p>Здесь предполагается, что вы подключились к консоли пользователем developer. </p>
+                     <p>На экране появится множество сообщений о ходе инициализации. В ходе этого процесса будет запущена генерация так называемого файла DAG. Он содержит направленный ациклический граф (Directed Acyclic Graph,&nbsp; DAG). </p>
+                     <p>Файл DAG используется для добавления блоков в Ethereum с помощью алгоритма с названием Ethash. Его размер может составлять несколько Гбайт. Размер этого файла увеличивается по мере роста сети Ethereum. </p>
+                     <p>При первом запуске узла нужно дождаться завершения процесса генерации:</p>
+                     <p><code>Welcome to the Geth JavaScript console!</code></p>
+                     <p><code>&nbsp;instance: Geth/v1.10.13-stable-7a0c19f8/linux-amd64/go1.17.2</code></p>
+                     <p><code>coinbase: 0x2cf942e02baac0bb883147873943666e397cae03</code></p>
+                     <p><code>at block: 0 (Wed Dec 31 1969 16:00:00 GMT-0800 (PST))</code></p>
+                     <p><code>&nbsp;datadir: /home/developer/node1</code></p>
+                     <p><code>&nbsp;modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0</code></p>
+                     <p><code>&nbsp;To exit, press ctrl-d or type exit</code></p>
+                     <p><code>&gt; INFO [12-08|06:22:31.712] Generating DAG in progress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; epoch=0 percentage=0 elapsed=1.076s</code></p>
+                     <p><code>INFO [12-08|06:22:32.749] Generating DAG in progress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; epoch=0 percentage=1 elapsed=2.114s</code></p>
+                     <p><code>INFO [12-08|06:22:33.123] Mapped network port&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; proto=tcp extport=30303 intport=30303 interface="UPNP IGDv1-IP1"</code></p>
+                     <p><code>INFO [12-08|06:22:33.793] Generating DAG in progress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; epoch=0 percentage=2 elapsed=3.158s</code></p>
+                     <p><code>INFO [12-08|06:22:34.848] Generating DAG in progress&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; epoch=0 percentage=3 elapsed=4.213s</code></p>
+                     <p><code>…</code></p>
+                     <p><code>INFO [12-08|06:29:35.171] Commit new mining work&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=69 sealhash=5549e6..4d0eba uncles=0 txs=0 gas=0 fees=0 elapsed="150.228µs"</code></p>
+                     <p><code>INFO [12-08|06:29:43.723] Successfully sealed new block&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=69 sealhash=5549e6..4d0eba hash=de53cc..05e38c elapsed=8.551s</code></p>
+                     <p><code>INFO [12-08|06:29:43.723] 🔗 block reached canonical chain&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=62 hash=dd9c17..4f1a18</code></p>
+                     <p><code>INFO [12-08|06:29:43.723] 🔨 mined potential block&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=69 hash=de53cc..05e38c</code></p>
+                     <p>В зависимости от производительности вашего виртуального или физического сервера генерация файла DAG может занять несколько минут или дольше.</p>
+                     <p>Текущий размер блока и прогнозы по его росту можно узнать, например, на сайте <a href="https://minerstat.com/dag-size-calculator?lang=ru" rel="noopener noreferrer nofollow">https://minerstat.com/dag-size-calculator?lang=ru</a>. На момент создания этого урока файл DAG для основной сети Ethereum был размером 4.5 Гбайт.</p>
+                     <p>Чем больше файл DAG, тем труднее выполнить майнинг. </p>
+                     <p>Для ускорения майнинга используются видеокарты. При этом данные DAG должны полностью поместиться в память видеокарты.</p>
+                     <p>Так как запуск узла будет выполняться часто, мы подготовили в репозитории пакетный файл для запуска ~/sol01/les03/start_node.sh (листинг 3.2.).</p>
+                     <p><strong>Листинг 3.2. Файл ~/sol01/les03/start_node.sh<br></strong><code>geth --datadir ~/node1 --ipcpath "~/node1/geth.ipc" --nodiscover --mine --miner.threads 1 --maxpeers 0 --verbosity 3 --networkid 98760 console</code></p>
+                     <p>Запускайте его следующей командой:</p>
+                     <p><code>$ bash ~/sol01/les03/start_node.sh</code></p>
+                     <p>Чтобы завершить работу узла, нажмите в окне консоли комбинацию клавиш Ctrl+D.</p>
+                     <h4>Параметры запуска узла</h4>
+                     <p>Расскажем о параметрах geth, которые мы использовали при запуске узла. Эти параметры были выбраны исходя из назначения нашего узла — мы создаем узел для учебной приватной сети Ethereum. Когда вы будете создавать узел для работы с тестовой сетью Rinkeby или с основной сетью Ethereum, нужно будет указывать другие параметры.</p>
+                     <p>Чтобы получить краткую справку по всем командам и параметрам geth, запустите ее следующим образом:</p>
+                     <p><code>$ geth -h</code></p>
+                     <p>С параметром <strong>datadir</strong>, который указывает путь к каталогу блокчейна, вы уже знакомы. При запуске узла укажите тот же каталог, что мы использовали при инициализации приватного блокчейна.</p>
+                     <p>Для явного указания пути к файлу IPC мы использовали параметр <strong>ipcpath</strong>.</p>
+                     <p>Параметр <strong>nodiscover</strong> отключает поиск других узлов сети. Этот поиск не нужен, так как пока будем работать только с одним узлом блокчейна.</p>
+                     <p>Мы также указали значение параметра <strong>maxpeers</strong>, равное нулю. Таким способом мы фактически отключили обмен по сети между узлами нашего блокчейна.</p>
+                     <p>С помощью параметра <strong>mine</strong> мы запускаем так называемый майнинг — процесс создания новых блоков в нашем блокчейне. Это необходимо, так как без появления новых блоков выполнение транзакций и публикация смарт-контрактов будут невозможны.</p>
+                     <p>Параметр <strong>minerthreads</strong> указывает количество потоков, используемых для майнинга. Если ресурсы вашего сервера позволяют и там установлен многоядерный процессор, то для ускорения майнинга можно увеличить значение этого параметра.</p>
+                     <p>Очень важный параметр — <strong>networkid</strong>. Это идентификатор сети. Здесь мы должны указать уникальный идентификатор 98760 нашего приватного блокчейна.</p>
+                     <p>Параметр <strong>verbosity</strong> задает детализацию журнала: </p>
+                     <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 — не записывать данные в журнал; </p>
+                     <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 — записывать сообщения об ошибках; </p>
+                     <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 — записывать предупреждающие сообщения; </p>
+                     <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3 — записывать информационные сообщения; </p>
+                     <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4 — записывать отладочную информацию; </p>
+                     <p>·&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5 — записывать детальную информацию.</p>
+                     <p>По умолчанию используется значение 3.</p>
+                     <p>При запуске geth мы указываем команду <strong>console</strong>. Эта команда запускает интерактивную консоль JavaScript, где мы сможем выдавать команды.</p>
+                     <h4>Подключаемся к нашему узлу</h4>
+                     <p>Теперь откройте вторую консоль и введите в ней следующую команду:</p>
+                     <p><code>$ geth --datadir ~/node1 --networkid 98760 attach</code></p>
+                     <p>Здесь необходимо указать те же значения параметров datadir и networkid, что и при запуске узла. Команда attach подключается к узлу и запускает интерактивную консоль JavaScript. В параметре datadir нам нужно указать полный путь к рабочему каталогу нашего приватного блокчейна.</p>
+                     <p>Эта команда откроет консоль geth и подключится к вашему приватному узлу. Вы увидите на консоли адрес вашего узла в строке coinbase:</p>
+                     <p><code>Welcome to the Geth JavaScript console!</code></p>
+                     <p><code>&nbsp;instance: Geth/v1.10.12-stable-6c4dc6c3/linux-amd64/go1.17.2</code></p>
+                     <p><code>coinbase: 0xf82e93ef1de726ac0bbbb64f8efa3ffa0d5a393b</code></p>
+                     <p><code>at block: 271 (Mon Nov 29 2021 01:01:06 GMT-0800 (PST))</code></p>
+                     <p><code>&nbsp;datadir: /home/developer/node1</code></p>
+                     <p><code>&nbsp;modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0</code></p>
+                     <p><code>To exit, press ctrl-d or type exit</code></p>
+                     <p>Команду подключения вы найдете в файле репозитория ~/sol01/les03/attach_node.sh (листинг 3.3.).</p>
+                     <p><strong>Листинг 3.3. Файл ~/sol01/les03/attach_node.sh<br></strong><code>geth --datadir ~/node1 --networkid 98760 attach</code></p>
+                     <p>Запустите этот файл, и вы увидите приглашение консоли geth:</p>
+                     <p><code>$ bash ~/sol01/les03/attach_node.sh </code></p>
+                     <p><code>Welcome to the Geth JavaScript console!</code></p>
+                     <p><code>&nbsp;instance: Geth/v1.10.12-stable-6c4dc6c3/linux-amd64/go1.17.2</code></p>
+                     <p><code>coinbase: 0x9eb9b6147be101260597a0e011156355ebff9a81</code></p>
+                     <p><code>at block: 2787 (Tue Nov 30 2021 05:03:19 GMT-0800 (PST))</code></p>
+                     <p><code>&nbsp;datadir: /home/frolov/node1</code></p>
+                     <p><code>&nbsp;modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0</code></p>
+                     <p><code>&nbsp;To exit, press ctrl-d or type exit</code></p>
+                     <p><code>&gt;</code></p>
+                     <p>Чтобы выйти из консоли, можно ввести команду exit или нажать комбинацию клавиш Ctrl+D.</p>
+                     <p>Введите в этом приглашении команду web3.eth.accounts:</p>
+                     <p>&gt; web3.eth.accounts</p>
+                     <p><code>["0xe04b76f2c0bf657ca08b78095050d15aa29fc735", "0xe68afc8c9c3f59066a2a5d999c68000e8748c045"]</code></p>
+                     <p>Вы увидите идентификаторы (адреса) аккаунтов, которые мы создали ранее. У вас эти идентификаторы будет другие.</p>
+                     <p>Попробуйте также ввести команду web3.version. Эта команда позволяет посмотреть версию фреймворка Web3, с помощью которого мы будем работать с контрактами, версию geth, а также номер сети. Мы задали номер нашей приветной сети, равный 98760.</p>
+                     <p>Для стабильного релиза Geth версии 1.10.13 на консоль будет выведено сообщение:</p>
+                     <p><code>&gt; web3.version<br>{<br>&nbsp; api: "0.20.1",<br>&nbsp; ethereum: undefined,<br>&nbsp; network: "98760",<br>&nbsp; node: "Geth/v1.10.15-stable-8be800ff/linux-amd64/go1.17.5",<br>&nbsp; whisper: undefined,<br>&nbsp; getEthereum: function(callback),<br>&nbsp; getNetwork: function(callback),<br>&nbsp; getNode: function(callback),<br>&nbsp; getWhisper: function(callback)<br>}</code></p>
+                     <h4>Управление майнингом и проверка баланса</h4>
+                     <p>При запуске узла мы автоматически запускаем майнинг. Текущий баланс вы можете проверить при помощи следующей команды:</p>
+                     <p><code>&gt; web3.fromWei( eth.getBalance(eth.coinbase) )<br>0</code></p>
+                     <p>Сразу после инициализации сети баланс нашего аккаунта равен нулю. Однако по мере того, как будут «добыты» новые блоки, баланс будет расти:</p>
+                     <p><code>&gt; web3.fromWei( eth.getBalance(eth.coinbase) )<br>15</code></p>
+                     <p>В первой консоли, где мы запустили узел, добавление каждого блока будет отмечено такими сообщениями:</p>
+                     <p><code>INFO [02-13|09:37:10.577] 🔗 block reached canonical chain&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=45 hash=924ce1…d8b5a2</code></p>
+                     <p><code>INFO [02-13|09:37:10.577] 🔨 mined potential block&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;number=52 hash=a80a36…153593</code></p>
+                     <p><code>INFO [02-13|09:37:10.577] Commit new mining work&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=53 sealhash=3acb6c…0ecd19 uncles=0 txs=0 gas=0 fees=0 elapsed=130.557µs</code></p>
+                     <p><code>INFO [02-13|09:37:11.223] Successfully sealed new block&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=53 sealhash=3acb6c…0ecd19 hash=14e0fa…575494 elapsed=645.999ms</code></p>
+                     <p><code>INFO [02-13|09:37:11.223] 🔗 block reached canonical chain&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=46 hash=c5ff7a…da8069</code></p>
+                     <p><code>INFO [02-13|09:37:11.224] 🔨 mined potential block&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=53 hash=14e0fa…575494</code></p>
+                     <p><code>INFO [02-13|09:37:11.224] Commit new mining work&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=54 sealhash=96235b…f3fc50 uncles=0 txs=0 gas=0 fees=0 elapsed=124.053µs</code></p>
+                     <p><code>INFO [02-13|09:37:11.723] Successfully sealed new block&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; number=54 sealhash=96235b…f3fc50 hash=e5438e…2f6f2e elapsed=498.975ms</code></p>
+                     <p>С помощью команд miner.start и miner.stop можно запускать и останавливать майнинг.</p>
+                     <p>При ручном запуске майнинга нужно указать количество потоков для поиска новых блоков:</p>
+                     <p><code>&gt; miner.start(4)</code></p>
+                     <p>Здесь мы запускаем майнинг на четырех ядрах виртуальной машины. Перед запуском проверьте, сколько ядер доступно на вашем сервере.</p>
+                     <p>Заметим, что при отладке смарт-контрактов процесс майнинга останавливать не нужно, иначе ваш узел не сможет обрабатывать транзакции, публиковать контракты и вызывать методы контрактов. Тем не менее, вы всегда сможете остановить майнинг с помощью такой команды:</p>
+                     <p><code>&gt; miner.stop()</code></p>
+                     <p>Если скорость майнинга недостаточна и вам приходится ждать появления новых блоков более 20-30 секунд, попробуйте увеличить размер оперативной памяти и количество процессорных ядер на виртуальной машине. Облачные хостинги, как правило, позволяют сделать это очень просто через Web-интерфейс вашего личного кабинета.</p>
+                     <h4>Завершение работы консоли Geth</h4>
+                     <p>Для завершения работы Geth введите в приглашении команду exit:</p>
+                     <p><code>&gt; exit</code></p>
+                     <h3>Установка Node.js</h3>
+                     <p>Вы скорее всего будете работать с узлами Ethereum с помощью скриптов JavaScript, работающих под управлением Node.js. При этом используется фреймворк Web3, а также узлы Ganache CLI и Geth.</p>
+                     <p>Устанавливать Node.js в ОС Ubuntu нужно с помощью скрипта менеджера управления версиями <a href="https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/#1-downloading-nvm-node-version-manager-script" rel="noopener noreferrer nofollow">NVM (Node Version Manager).</a></p>
+                     <p><a href="https://linuxize.com/post/how-to-install-node-js-on-ubuntu-18.04/#1-downloading-nvm-node-version-manager-script" rel="noopener noreferrer nofollow">&nbsp;Эта процедура описана здесь: </a>&nbsp;<a href="https://github.com/nodesource/distributions/blob/master/README.md" rel="noopener noreferrer nofollow">https://github.com/nodesource/distributions/blob/master/README.md</a>.</p>
+                     <p>Прежде всего установите программу curl и скопируйте скрипт NVM из репозитория Github:</p>
+                     <p><code>sudo apt install curl<br>curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -<br>sudo apt-get install -y nodejs</code></p>
+                     <p>После установки проверьте версии Node.js и npm:</p>
+                     <p><code>$ node -v<br>v16.13.1<br>$ npm -v<br>8.1.2</code></p>
+                     <h3>Установка Truffle</h3>
+                     <p>В нашем курсе мы будем изучать интегрированную среду разработки (Integrated Development Environment, IDE) Truffle, очень популярную среди программистов Solidity. Она проста в установке и удобна на практике.</p>
+                     <p>Вначале установите необходимые пакеты:</p>
+                     <p><code>$ sudo apt install build-essential</code></p>
+                     <p>&nbsp;Для установки Truffle введите команду:</p>
+                     <p><code>$ sudo npm install -g truffle</code></p>
+                     <p>После установки проверьте версию Truffle:</p>
+                     <p><code>$ truffle version<br>Truffle v5.4.32 (core: 5.4.32)<br>Solidity v0.5.16 (solc-js)<br>Node v16.13.2<br>Web3.js v1.5.3</code></p>
+                     <p>На консоли появится версия Truffle, а также версия компилятора Solidity solc-js, версия Node.js и пакета Web3.js.</p>
+                     <p>Подробная информация об установке и использовании Truffle есть на сайте <a href="http://truffleframework.com/" rel="noopener noreferrer nofollow">http://truffleframework.com/</a>. </p>
+                     <h3>Установка и запуск Ganache-cli</h3>
+                     <p>В нашем курсе мы будем использовать не только Geth, но и программу Ganache CLI, очень удобную для создания тестового узла Ethereum.</p>
+                     <p>С помощью Ganache CLI &nbsp;можно очень легко создать персональный блокчейн, удобный для отладки смарт-контрактов, в том числе с помощью такого инструмента, как Truffle.</p>
+                     <p>Установить Ganache CLI очень просто:</p>
+                     <p><code>$ sudo npm install -g ganache-cli</code></p>
+                     <p>После установки запустите Ganache CLI в консольном окне при помощи такой команды:</p>
+                     <p><code>$ ganache-cli</code></p>
+                     <p>Программа создаст при запуске 10 аккаунтов, причем у каждого аккаунта на счету уже будет 100 Ether. Информацию об аккаунтах и вашей приватной сети она выведет на консоль:<br><code><br>Ganache CLI v6.12.2 (ganache-core: 2.13.2)</code></p>
+                     <p><code>Available Accounts</code></p>
+                     <p><code>==================</code></p>
+                     <p><code>(0) 0x7068e1737ACb237361c27CdD2fc07D360c6E7fb1 (100 ETH)</code></p>
+                     <p><code>(1) 0x8208f2E5Ac0C05925Ba0f78B01ED17f0ee766d3D (100 ETH)</code></p>
+                     <p><code>(2) 0x915b48A6DfA293c75D925F6d2A2F2F78c8B392EB (100 ETH)</code></p>
+                     <p><code>(3) 0x7FEFFD1959c47ed2d1b28Cbbabe1a6450029afa8 (100 ETH)</code></p>
+                     <p><code>(4) 0xeD11B63a6E06a8deA81E844FA490eB3af4858506 (100 ETH)</code></p>
+                     <p><code>(5) 0xC04cEf12b37138C6DBfA22B57D15FF91543507A4 (100 ETH)</code></p>
+                     <p><code>(6) 0x0b56E6D8d72300066B4349dcF1b687eBa1B1Ceb5 (100 ETH)</code></p>
+                     <p><code>(7) 0x17EF124e61b2cc14B1c5df9385Cd3c38B66EBA3b (100 ETH)</code></p>
+                     <p><code>(8) 0xCacFcbBC9db0eDB04f2DA4a525D23d7373593a49 (100 ETH)</code></p>
+                     <p><code>(9) 0xF101d652AE265dF03a7fb276da021eCBC22D3408 (100 ETH)</code></p>
+                     <p><code>&nbsp;Private Keys</code></p>
+                     <p><code>==================</code></p>
+                     <p><code>(0) 0x5712b6f3f2cc9a0a65aa4aee6312c03b44d0f79287a285a56e7133ee81afcb75</code></p>
+                     <p><code>(1) 0x31ba88967f3c568e2f800916a1691dd5026eb137f2671ed095de4a6f2d4f5b58</code></p>
+                     <p><code>(2) 0x2b822789e8670fc9302eb4f734c4e1b9ff75039fa14a3cefefa38bc39609084f</code></p>
+                     <p><code>(3) 0x7fca0a698c7a39af2d06a35f7a230403c550f76f352d976a28e8e9f74a1b6c3d</code></p>
+                     <p><code>(4) 0x490f3556f258b1fb2ab86ee249ce31c8cd1108e497b6f192866d78d30d08ca9b</code></p>
+                     <p><code>(5) 0x4cf5a21253198710362a80bf0f43a058075b5a9ec443531023d9531b7f4b1869</code></p>
+                     <p><code>(6) 0x8f5579e651697162856dd08618d7efd152cd5e51715445d558d3e78c9a85afad</code></p>
+                     <p><code>(7) 0x26a9bdea6620c42b405903301624f6ba5eed9878ee7f443cb500ce02b57b0e86</code></p>
+                     <p><code>(8) 0x94ace2c51779e337ddb5411a4b3b6ebbc88d2fd137be419c723f18c9efdc4297</code></p>
+                     <p><code>(9) 0x57212b11f4a3b80206f11f3f4939166765626dafee541b5554b733a09317d327</code></p>
+                     <p><code>&nbsp;HD Wallet</code></p>
+                     <p><code>==================</code></p>
+                     <p><code>Mnemonic:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; enough like enjoy where such they sword matrix birth water orange amateur</code></p>
+                     <p><code>Base HD Path:&nbsp; m/44'/60'/0'/0/{account_index}</code></p>
+                     <p><code>&nbsp;Gas Price</code></p>
+                     <p><code>==================</code></p>
+                     <p><code>20000000000</code></p>
+                     <p><code>Gas Limit</code></p>
+                     <p><code>==================</code></p>
+                     <p><code>6721975</code></p>
+                     <p><code>&nbsp;Call Gas Limit</code></p>
+                     <p><code>==================</code></p>
+                     <p><code>9007199254740991</code></p>
+                     <p><code>Listening on 127.0.0.1:8545</code></p>
+                     <p>Нам будут интересны адреса созданных аккаунтов, а также тот факт, что вы можете создать соединение с вашим локальным узлом на порту 8545, как и в случае использования Geth.</p>
+                     <p>Для подключения к узлу Ganache CLI запустите в отдельном консольном окне команду:<br><code>$ geth attach http://127.0.0.1:8545</code></p>
+                     <p>После этого посмотрите список аккаунтов:</p>
+                     <p><code>&gt; web3.eth.accounts</code></p>
+                     <p><code>["0x634cdd00a95cb83d594e9401bfbe66d3fc02e930", "0x3b9067d86ee5bd2a8ea814ea337fe8c68589b819", "0x77453108040c2aeac8d48ba01b59c12a7070b4b7", "0x093cca41ff8a49483204dc5e925ffffa7463de63", "0x2baee1b78787ae63024ef0aefa3c2c67d541b003", "0x29796fb84ff016e926190caa26a5ee263890292f", "0x6de6013c3554c3ef9f3be1095c38accdab89aebe", "0xe8318637a3a459f6af01f27b833ccd13405452ec", "0x2cb59fab5d614355090f56a6d36e1e8d7e5385c0", "0x80370337b1a46888003677655d9bbbfbf5d0470c"]</code></p>
+                     <p><code>&gt;</code></p>
+                     <p>Как видите, уже есть 10 аккаунтов, готовых для работы. Вы можете убедиться, что на этих аккаунтах уже есть средства в размене 100 Ether:<br></p>
+                     <p><code>&gt; web3.fromWei( eth.getBalance("0x3b9067d86ee5bd2a8ea814ea337fe8c68589b819") )<br>100</code></p>
+                     <h3>Установка Web3</h3>
+                     <p>Запустите в первом консольном окне узел Geth:<br><code>$ bash ~/sol01/les03/start_node.sh</code></p>
+                     <p>Далее для установки пакета web3.js, представляющего собой API Ethereum для JavaScript, используйте команду:</p>
+                     <p><code>npm install web3</code></p>
+                     <p>Для проверки результатов установки запустите консоль Node.js командой node:</p>
+                     <p><code>$ node<br>&gt;</code></p>
+                     <p>Убедитесь, что у вас запущен узел вашей локальной сети Ethereum на базе Ether или Ganache CLI. Далее в консольном приглашении Node.js введите следующие команды:</p>
+                     <p><code>&gt; var Web3 = require('web3')<br>undefined<br>&nbsp;&gt; Web3.version<br>'1.7.0'</code></p>
+                     <p>Далее нужно подключиться к узлу Ethereum нашей приватной сети. Это можно сделать с помощью одного из так называемых провайдеров.</p>
+                     <p>Узел на базе Geth доступен с применением протокола IPC. Здесь нам потребуется провайдер Web3.providers.IpcProvider.</p>
+                     <p>Введите в приглашении node следующие команды:<br><br><code>&gt; const net = require('net');<br>undefined<br>&gt; const Web3 = require('web3');<br>undefined<br>&gt; const web3 = new Web3(new Web3.providers.IpcProvider("/home/developer/node1/geth.ipc", net));<br>undefined</code></p>
+                     <p><code>&gt; await web3.eth.getAccounts();<br>[<br>&nbsp; '0x9EB9b6147BE101260597a0E011156355ebfF9A81',<br>&nbsp; '0x651895A7f98F34bFe3FC544C001e0373EadfF136'<br>]<br>&gt;</code></p>
+                     <p>В результате на консоли появится список аккаунтов, созданных при помощи Geth.</p>
+                     <p>Для получения списка аккаунтов, созданных при запуске Ganache CLI, потребуется провайдер Web3.providers.HttpProvider (с использованием протокола HTTP).</p>
+                     <p>Введите в приглашении node такие команды:</p>
+                     <p><code>&gt;&nbsp; var Web3 = require('web3')</code></p>
+                     <p><code>undefined</code></p>
+                     <p><code>&gt; var web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));</code></p>
+                     <p><code>undefined</code></p>
+                     <p><code>&gt; await web3.eth.getAccounts();</code></p>
+                     <p><code>[</code></p>
+                     <p><code>&nbsp; '0xC45cb6355FE0AcdA9d0b6b6750e689b082f3743f',</code></p>
+                     <p><code>&nbsp; '0xd56B6c181Dad6ea9a455813065bf56EaFb12D582',</code></p>
+                     <p><code>&nbsp; '0x9D6351707Ef4910214605d331b2ecA9764f82542',</code></p>
+                     <p><code>&nbsp; '0xF8DAC793B4aFF4F7c82F81Ea4E3EF51b6422CB50',</code></p>
+                     <p><code>&nbsp; '0xC5A7aeD0b0Dcc460F2267F4248C055aB70c0035b',</code></p>
+                     <p><code>&nbsp; '0xFf7bfa85784820E574b77dbE401056784b92D4fb',</code></p>
+                     <p><code>&nbsp; '0x20D365eA672c9BFfE4baaA800D3c6C56B23C063F',</code></p>
+                     <p><code>&nbsp; '0xE0840AD4d6733D986083c3b64dDDBe5A30E5db8E',</code></p>
+                     <p><code>&nbsp; '0x2132417287567e5D7D5DC2194f96bb6Aca808a9D',</code></p>
+                     <p><code>&nbsp; '0x9E994E8616c2765524f6bb859C860c0D53Fe12d7'</code></p>
+                     <p><code>]</code></p>
+                     <p>Если в консоли Node.js появился список аккаунтов, значит, все было установлено правильно.</p>
+                     <p>С помощью следующей команды можно посмотреть баланс заданного аккаунта в единицах wei и Ether:<br><br><code>&gt; await web3.eth.getBalance("0xEa0C5394d72be6623d0ee8bAFfBdd332C70955ac").then(function (balance) { console.log('balance: ', balance, 'wei, ', web3.utils.fromWei(balance, 'ether'), 'ether'); })</code></p>
+                     <p><code>balance:&nbsp; 100000000000000000000 wei,&nbsp; 100 ether</code></p>
+                     <h3>Установка пакетного компилятора solc</h3>
+                     <p>Для того чтобы компилировать контракты Solidity в командной строке или из ваших скриптов, можно использовать пакетный компилятор solc. </p>
+                     <p>Для установки solc в Ubuntu введите следующие команды:</p>
+                     <p><code>sudo add-apt-repository ppa:ethereum/ethereum<br>sudo apt-get update<br>sudo apt-get install solc</code></p>
+                     <p>Затем проверьте версию установленного к<code>омпилятора solc:</code></p>
+                     <p><code>$ solc --version<br> solc, the solidity compiler commandline interface<br> Version: 0.8.10+commit.fc410830.Linux.g++</code></p>
+                     <p><a href="http://solidity.readthedocs.io/en/develop/using-the-compiler.html" rel="noopener noreferrer nofollow">Документация по компилятору solc находится здесь</a>.</p>
+                     <h3>Полезные ссылки</h3>
+                     <p><a href="https://geth.ethereum.org/downloads" rel="noopener noreferrer nofollow">Страница загрузки программы Geth и ее исходных кодов</a></p>
+                     <p><a href="https://eips.ethereum.org/" rel="noopener noreferrer nofollow">Предложения по улучшению Ethereum</a></p>
+                     <p><a href="https://minerstat.com/dag-size-calculator?lang=ru" rel="noopener noreferrer nofollow">Текущий размер файла DAG</a></p>
+                     <p><a href="https://github.com/nodesource/distributions/blob/master/README.md" rel="noopener noreferrer nofollow">Описание процедуры установки Node.js</a></p>
+                     <p><a href="http://truffleframework.com/" rel="noopener noreferrer nofollow">Работа с Truffle</a></p>
+                     <p><a href="https://github.com/trufflesuite/ganache" rel="noopener noreferrer nofollow">Репозиторий Ganache</a></p>
+                     <p><a href="http://solidity.readthedocs.io/en/develop/using-the-compiler.html" rel="noopener noreferrer nofollow">Документация по компилятору solc</a></p>
+                     <p><a href="https://github.com/AlexandreFrolov/sol01" rel="noopener noreferrer nofollow">Репозиторий моих исходников на Github</a></p>
+                     <h3>Итоги</h3>
+                     <p>Вы подготовили рабочую среду, необходимую для дальнейшего изучения Ethereum и смарт-контрактов Solidity. Вы создали сервер с ОС Ubuntu, установили программы Geth, Node.js, Truffle, Ganache-cli, пакет Web3, а также компилятор solc.</p>
+                     <p>Вы также загрузили из репозитория GitHub исходные файлы, необходимые для работы с нашим курсом.</p>
+                     <p>Далее вы создали приватный блокчейн, состоящий из одного узла, выполнили инициализацию этого узла и убедились, что в вашем блокчейне работает майнинг. Вы научились запускать свой узел Ethereum на базе Geth и Ganache, а также подключаться к ним в консоли JavaScript.</p>
+                     <p>Вы также научились выдавать простейшие консольные команды и теперь готовы для первых экспериментов с вашим приватным блокчейном.</p>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bsolidity%5D" class="tm-tags-list__link">solidity</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bethereum%5D" class="tm-tags-list__link">ethereum</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D1%81%D0%BC%D0%B0%D1%80%D1%82-%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%B0%D0%BA%D1%82%5D" class="tm-tags-list__link">смарт-контракт</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B1%D0%BB%D0%BE%D0%BA%D1%87%D0%B5%D0%B9%D0%BD%5D" class="tm-tags-list__link">блокчейн</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B1%D0%BB%D0%BE%D0%BA%D1%87%D0%B5%D0%B9%D0%BD-%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8%5D" class="tm-tags-list__link">блокчейн-технологии</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/solidity/" class="tm-hubs-list__link"> Solidity </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/cryptocurrency/" class="tm-hubs-list__link"> Криптовалюты </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 3: ↑1 и ↓2</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 3: ↑1 и ↓2" class="tm-votes-meter__value tm-votes-meter__value_negative tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">-1</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">494</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 9 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/AlexandreFrolov/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <img alt="" src="//habrastorage.org/getpro/habr/avatars/4c0/ff9/e06/4c0ff9e067aa668e1a9cda0c96b55054.jpg" class="tm-entity-image__pic">
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 64 голоса " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         48 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         -1
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <span class="tm-user-card__name tm-user-card__name_variant-article">Александр Фролов</span> <a href="/ru/users/AlexandreFrolov/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @AlexandreFrolov </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Управляющий директор</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <button type="submit" class="tm-user-card__button btn btn_transparent btn_small"> Задонатить </button> <!----> <!---->
+                  </div>
+                 </div> <!---->
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner5454" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/654835/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментировать </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> <!----> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner5455" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> 
+            <section data-async-called="true" class="tm-block tm-block_spacing-bottom">
+             <header class="tm-block__header">
+              <h2 class="tm-block__title">Работа</h2> <!---->
+             </header> 
+             <div class="tm-block__body">
+              <div class="tm-vacancies-block__item">
+               <a href="https://career.habr.com/vacancies/blockchain_developer" target="_blank" class="tm-vacancies-block__vacancy-title"> Blockchain разработчик </a> 
+               <div class="tm-vacancies-block__vacancies-count">
+                 17 вакансий 
+               </div>
+              </div>
+             </div> 
+             <footer class="tm-block__footer">
+              <a href="https://career.habr.com/catalog" class="tm-block-extralink"> Все вакансии </a>
+             </footer>
+            </section> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom5456" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654835/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654835/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654835":{"id":"654835","timePublished":"2022-03-09T13:53:30+00:00","isCorporative":false,"lang":"ru","titleHtml":"Подготовка рабочей среды для создания смарт-контрактов Solidity","leadData":{"textHtml":"\u003Cp\u003EПрежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое программное обеспечение (ПО).\u003C\u002Fp\u003E\u003Cp\u003EМы могли бы приступить к работе сразу в какой-либо интегрированной среде разработки (IDE, Integrated Development Environment), например, Remix. Возможно, это был бы самый быстрый путь к изучению смарт-контрактов Solidity. Однако для того, чтобы глубже разобраться в работе Ethereum, мы начнем с базовых инструментов.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fee4\u002F2bb\u002Fe45\u002Fee42bbe45a9a7ff0f829d10c3eefcd26.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fee4\u002F2bb\u002Fe45\u002Fee42bbe45a9a7ff0f829d10c3eefcd26.png","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[{"type":"tutorial","data":null}],"author":{"scoreStats":{"score":48,"votesCount":64},"rating":-1,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":"410018859029739","paymentPayPalMe":null,"paymentWebmoney":null},"id":"86314","alias":"AlexandreFrolov","fullname":"Александр Фролов","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F4c0\u002Fff9\u002Fe06\u002F4c0ff9e067aa668e1a9cda0c96b55054.jpg","speciality":"Управляющий директор"},"statistics":{"commentsCount":0,"favoritesCount":9,"readingCount":494,"score":-1,"votesCount":3},"hubs":[{"relatedData":null,"id":"21234","alias":"solidity","type":"collective","title":"Solidity","titleHtml":"Solidity","isProfiled":true},{"relatedData":null,"id":"21986","alias":"cryptocurrency","type":"collective","title":"Криптовалюты","titleHtml":"Криптовалюты","isProfiled":false}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ffa4\u002Ff72\u002F986\u002Ffa4f72986bcf31002965d8483e595091.png\" width=\"779\" height=\"438\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Ffa4\u002Ff72\u002F986\u002Ffa4f72986bcf31002965d8483e595091.png\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПрежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое программное обеспечение (ПО).\u003C\u002Fp\u003E\u003Cp\u003EМы могли бы приступить к работе сразу в какой-либо интегрированной среде разработки (IDE, Integrated Development Environment), например, Remix. Возможно, это был бы самый быстрый путь к изучению смарт-контрактов Solidity. Однако для того, чтобы глубже разобраться в работе Ethereum, мы начнем с базовых инструментов.\u003C\u002Fp\u003E\u003Ch3\u003EУстановка и обновление операционной системы\u003C\u002Fh3\u003E\u003Cp\u003EДля изучения Ethereum можно арендовать виртуальный или облачный сервер у одного из провайдеров. Еще вариант — установить Ubuntu на свой настольный компьютер или на виртуальную машину VMware Workstation, либо аналогичную.\u003C\u002Fp\u003E\u003Cp\u003EОписание процесса установки Ubuntu мы описывать не будем, т.к. в интернете есть немало достаточно подробных руководств. При аренде виртуального или облачного сервера провайдер обязательно поможет установить на него ОС. Учтите, что вам нужна 64-разрядная Ubuntu версии 20.04 или более новой версии.\u003C\u002Fp\u003E\u003Cp\u003EДля работы потребуется виртуальный или физический сервер в такой конфигурации:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EОт 4 ядер процессора (CPU) с тактовой частотой от 2 ГГц;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EОперативная память от 2 Гбайт;\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДиск SSD объемом от 20 Гбайт.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EКонфигурация сервера влияет на скорость майнинга новых блоков. Чтобы было удобно работать, эта скорость не должна быть слишком низкой. \u003C\u002Fp\u003E\u003Cp\u003EСразу после установки Ubuntu обновите пакеты при помощи команды apt:\u003Cbr\u002F\u003E\u003Ccode\u003E\u003Cbr\u002F\u003E$ sudo apt update\u003Cbr\u002F\u003E$ sudo apt upgrade\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E Если в Ubuntu Server обновилось ядро, может потребоваться перезагрузка ОС. Сообщение об этом вы увидите при подключении к консоли:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E*** System restart required ***\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E В этом случае перед продолжением работы выполните перезагрузку:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ sudo shutdown -r now\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПакеты Ubuntu можно также обновлять также через менеджер обновлений в графическом интерфейсе.\u003C\u002Fp\u003E\u003Cp\u003EОбновление пакетов нужно делать с правами пользователя root, используя sudo.\u003C\u002Fp\u003E\u003Ch3\u003EУстановка программы Geth\u003C\u002Fh3\u003E\u003Cp\u003EСвой первый узел сети Ethereum мы будем делать на базе программы Go Ethereum (\u003Ca href=\"https:\u002F\u002Fgeth.ethereum.org\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fgeth.ethereum.org\u003C\u002Fa\u003E). Эта программа представляет собой официальную реализацию протокола Ethereum. Она написана на Go и доступна в виде программы Geth. С помощью Geth можно сделать полнофункциональный узел сети Ethereum или его упрощенные варианты.\u003C\u002Fp\u003E\u003Cp\u003EДля работы с узлом Geth можно использовать интерфейс командной строки, а также программный интерфейс (API, Application Programming Interface) JSON-RPC, доступный через протоколы HTTP и WebSocket, а также через механизм коммуникации процессов Unix  (IPC, Inter-Process Communication). \u003C\u002Fp\u003E\u003Cp\u003EИспользуя этот интерфейс и различные фреймворки, вы сможете создавать программы, работающие с узлами Ethereum, практически на всех современных языках программирования.\u003C\u002Fp\u003E\u003Cp\u003EКлиент Geth может работать на платформах, где имеется Go. Это, например, Linux, Mac OSX, Windows, Raspberry Pi, Android OS, iOS. \u003Ca href=\"https:\u002F\u002Fgeth.ethereum.org\u002Fdownloads\" rel=\"noopener noreferrer nofollow\"\u003EНа странице загрузки\u003C\u002Fa\u003E доступны реализации для Linux, macOS и Windows, а также исходные коды Geth.\u003C\u002Fp\u003E\u003Cp\u003EИтак, перейдем к установке программы Geth.\u003C\u002Fp\u003E\u003Cp\u003EЧтобы установить эту программу, добавьте персональный пакет архивов PPA (Personal Package Archives) и установите стабильную версию пакета go-ethereum:\u003Cbr\u002F\u003E\u003Ccode\u003E\u003Cbr\u002F\u003E$ sudo add-apt-repository -y ppa:ethereum\u002Fethereum\u003Cbr\u002F\u003E$ sudo apt-get update\u003Cbr\u002F\u003E$ sudo apt-get install ethereum\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПосле установки проверьте версию Geth:\u003Cbr\u002F\u003E\u003Ccode\u003E\u003Cbr\u002F\u003E$ geth version\u003Cbr\u002F\u003EGeth\u003Cbr\u002F\u003EVersion: 1.10.13-stable\u003Cbr\u002F\u003EGit Commit: 7a0c19f813e285516f4b525305fd73b625d2dec8\u003Cbr\u002F\u003EArchitecture: amd64\u003Cbr\u002F\u003EGo Version: go1.17.2\u003Cbr\u002F\u003EOperating System: linux\u003Cbr\u002F\u003EGOPATH=\u003Cbr\u002F\u003EGOROOT=go\u003C\u002Fcode\u003E  \u003C\u002Fp\u003E\u003Cp\u003EКак видите, установлен Geth стабильной версии 1.10.13, который работает в Go версии 1.17.2.\u003C\u002Fp\u003E\u003Ch3\u003EСкопируйте файлы из репозитория GitHub\u003C\u002Fh3\u003E\u003Cp\u003EВ процессе подготовки нам будут нужны различные файлы. Чтобы не набирать их содержимое каждый раз вручную, загрузите весь репозиторий из GitHub.\u003C\u002Fp\u003E\u003Cp\u003EДля этого сначала установите git:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ sudo apt install git\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДалее  скопируйте их из репозитория GitHub с помощью следующей команды:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ git clone https:\u002F\u002Fgithub.com\u002FAlexandreFrolov\u002Fsol01.git\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E Для обновления файлов из репозитория воспользуйтесь командой git pull:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ git pull origin main\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ вашем домашнем каталоге будет создано дерево каталогов sol01, в котором вы найдете каталоги к урокам. Например, файлы третьего урока находятся в каталоге sol01\u002Fles03.\u003C\u002Fp\u003E\u003Ch3\u003EСоздаем приватный блокчейн\u003C\u002Fh3\u003E\u003Cp\u003EДля того чтобы быстро освоить процесс создания смарт-контрактов, нам нужен блокчейн. Вначале вы создадите приватный блокчейн на вашем сервере, так как с ним проще всего работать. Далее вы будете использовать тестовую сеть Rinkeby, работающую в точности как основная сеть Ethereum и пригодную для отладки «настоящих» контрактов Solidity перед их публикацией в Ethereum.\u003C\u002Fp\u003E\u003Ch4\u003EГотовим файл genesis.json\u003C\u002Fh4\u003E\u003Cp\u003EОткройте свой домашний каталог и проверьте, что в каталоге ~\u002Fsol01\u002Fles03 находится файл genesis.json, загруженный из только что упомянутого репозитория GitHub (листинг 3.1.).\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЛистинг 3.1. Файл ~\u002Fsol01\u002Fles03\u002Fgenesis.json\u003Cbr\u002F\u003E\u003C\u002Fstrong\u003E\u003Ccode\u003E{\u003Cbr\u002F\u003E  \"config\": {\u003Cbr\u002F\u003E     \"chainId\": 98760,\u003Cbr\u002F\u003E     \"homesteadBlock\": 0,\u003Cbr\u002F\u003E     \"eip150Block\": 0,\u003Cbr\u002F\u003E     \"eip155Block\": 0,\u003Cbr\u002F\u003E     \"eip158Block\": 0,\u003Cbr\u002F\u003E     \"byzantiumBlock\": 0,\u003Cbr\u002F\u003E     \"constantinopleBlock\": 0,\u003Cbr\u002F\u003E      \"istanbulBlock\": 0,\u003Cbr\u002F\u003E     \"petersburgBlock\": 0\u003Cbr\u002F\u003E  },\u003Cbr\u002F\u003E  \"difficulty\": \"10\",\u003Cbr\u002F\u003E  \"gasLimit\": \"5100000\",\u003Cbr\u002F\u003E  \"alloc\": {}\u003Cbr\u002F\u003E}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЭтот файл описывает первичный блок (genesis block) цепочки блоков — самый первый блок блокчейна. Мы создаем наш собственный приватный блокчейн, поэтому о первом блоке должны позаботиться сами.\u003C\u002Fp\u003E\u003Cp\u003EБлок \u003Cstrong\u003Econfig\u003C\u002Fstrong\u003E файла genesis.json содержит переменные конфигурации сети Ethereum.\u003C\u002Fp\u003E\u003Cp\u003EВ поле \u003Cstrong\u003EchainId\u003C\u002Fstrong\u003E находится идентификатор блокчейна. Он используется для защиты от репликации, т.е. от неавторизованных действий пользователей, пытающихся действовать от имени настоящего отправителя данных.\u003C\u002Fp\u003E\u003Cp\u003EЕсли речь идет о главной сети Ethereum, то ее идентификатор равен 1. Идентификатор тестовой сети Rinkeby равен 4. При создании нашей приватной сети мы можем указать любое значение, отличное от известных. Мы выбрали значение 98760.\u003C\u002Fp\u003E\u003Cp\u003EЗначение 0 в поле \u003Cstrong\u003EhomesteadBlock\u003C\u002Fstrong\u003E указывает на то, что мы будем использовать релиз сети Ethereum под названием Homestead. Homestead представляет собой второй релиз сети Ethereum (первый релиз назывался Frontier). Нулевое значение этого параметра используется и в основной сети Ethereum.\u003C\u002Fp\u003E\u003Cp\u003EНемного о параметрах с префиксом \u003Cstrong\u003EEIP\u003C\u002Fstrong\u003E. При реализации Homestead был обновлен протокол, причем без обратной совместимости с предыдущим релизом Ethereum. Соответствующие изменения отражены в документах «Предложения по улучшению Ethereum» (Ethereum Improvement Proposals, EIPs), опубликованных на сайте \u003Ca href=\"https:\u002F\u002Feips.ethereum.org\u002F\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Feips.ethereum.org\u002F\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EРеализация изменений может потребовать выполнения так называемой процедуры хардфорка (hard-forking), или обновления ПО узлов. В результате этой процедуры может меняться структура блока, появляется возможность использовать ранее недоступные блоки и вносить различные изменения в протокол.\u003C\u002Fp\u003E\u003Cp\u003EТак как мы не будем делать хардфорк, то установим значения соответствующих параметров eip150Block, eip155Block и eip158Block равными нулю.\u003C\u002Fp\u003E\u003Cp\u003EАналогично, установим равными нулю значения параметров \u003Cstrong\u003EbyzantiumBlock\u003C\u002Fstrong\u003E, \u003Cstrong\u003EconstantinopleBlock\u003C\u002Fstrong\u003E,  \u003Cstrong\u003EistanbulBlock\u003C\u002Fstrong\u003E и \u003Cstrong\u003EpetersburgBlock\u003C\u002Fstrong\u003E. В основной сети такие параметры задают номера блоков, при достижении которых был изменен протокол.\u003C\u002Fp\u003E\u003Cp\u003EПараметр \u003Cstrong\u003Edifficulty\u003C\u002Fstrong\u003E важен для нас в практическом смысле. Этот параметр имеет прямое влияние на время генерации новых блоков блокчейна. Для нашего «учебного» блокчейна мы установим очень маленькое значение этого параметра, равное 10, чтобы скорость добавления новых блоков была приемлемой даже на виртуальных серверах небольшой производительности.\u003C\u002Fp\u003E\u003Cp\u003EС помощью параметра \u003Cstrong\u003EgasLimit\u003C\u002Fstrong\u003E мы задаем в рамках блокчейна предел расхода так называемого газа (Gas). \u003C\u002Fp\u003E\u003Cp\u003EГаз Ethereum представляет собой расходный ресурс, который тратится на выполнение таких операций, как отправка транзакций, публикация и выполнение контрактов и т.п. Далее мы расскажем об этом подробнее. В нашей приватной тестовой сети мы устанавливаем достаточно большое значение, чтобы не возникали ограничения при запуске тестовых программ.\u003C\u002Fp\u003E\u003Cp\u003EПараметр \u003Cstrong\u003Ealloc\u003C\u002Fstrong\u003E позволяет при инициализации блокчейна создать кошельки и заранее наполнить их тестовым эфиром. В наших примерах мы не будем использовать эту возможность.\u003C\u002Fp\u003E\u003Ch4\u003EСоздаем каталог для работы\u003C\u002Fh4\u003E\u003Cp\u003EТеперь создайте в своем домашнем каталоге подкаталог node1:\u003Cbr\u002F\u003E\u003Ccode\u003E\u003Cbr\u002F\u003E$ cd\u003Cbr\u002F\u003E$ mkdir node1\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ каталоге node1 будут располагаться данные блокчейна.\u003C\u002Fp\u003E\u003Ch4\u003EСоздаем аккаунт\u003C\u002Fh4\u003E\u003Cp\u003EТеперь перейдем к созданию нашего приватного блокчейна. Прежде всего создайте новый аккаунт:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ geth --datadir ~\u002Fnode1 account new\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПри создании аккаунта будет запрошен пароль, который нужно сохранить в безопасном месте:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ geth --datadir ~\u002Fnode1 account new\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:18:33.646] Maximum peer count                       ETH=50 LES=0 total=50\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:18:33.647] Smartcard socket not found, disabling    err=\"stat \u002Frun\u002Fpcscd\u002Fpcscd.comm: no such file or directory\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EYour new account is locked with a password. Please give a password. Do not forget this password.\u003Cbr\u002F\u003EPassword:\u003Cbr\u002F\u003ERepeat password:\u003Cbr\u002F\u003EYour new key was generated\u003Cbr\u002F\u003E Public address of the key:   0x2cF942e02baAC0BB883147873943666e397CAe03\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EPath of the secret key file: \u002Fhome\u002Fdeveloper\u002Fnode1\u002Fkeystore\u002FUTC--2021-12-08T14-18-43.611281385Z--2cf942e02baac0bb883147873943666e397cae03\u003Cbr\u002F\u003E - You can share your public address with anyone. Others need it to interact with you.\u003Cbr\u002F\u003E- You must NEVER share the secret key with anyone! The key controls access to your funds!\u003Cbr\u002F\u003E- You must BACKUP your key file! Without the key, it's impossible to access account funds!\u003Cbr\u002F\u003E- You must REMEMBER your password! Without the password, it's impossible to decrypt the key!\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EКоманда account new выведет на консоль параметр Public address of the key — так называемый адрес узла. В нашем случае это адрес 0x2cF942e02baAC0BB883147873943666e397CAe03. Мы будем указывать его в различных командах.\u003C\u002Fp\u003E\u003Cp\u003EТакже обратите внимание на путь к файлу с секретным ключом Path of the secret key file. Этот файл необходим для выполнения транзакций. Его можно скопировать и хранить в безопасном месте.\u003C\u002Fp\u003E\u003Cp\u003EПараметр datadir команды geth указывает путь к рабочему каталогу. Мы используем каталог node1, расположенный в вашем домашнем каталоге.\u003C\u002Fp\u003E\u003Ch4\u003EЗапускаем инициализацию узла\u003C\u002Fh4\u003E\u003Cp\u003EПосле создания аккаунта нам нужно выполнить инициализацию узла:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ geth --datadir ~\u002Fnode1 init ~\u002Fsol01\u002Fles03\u002Fgenesis.json\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЗдесь мы с помощью параметра datadir указали путь к рабочему каталогу. Параметр init задает путь к файлу первичного блока genesis.json.\u003C\u002Fp\u003E\u003Cp\u003EКоманда выполнит инициализацию и выведет на консоль результаты своей работы:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.127] Maximum peer count                       ETH=50 LES=0 total=50\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.127] Smartcard socket not found, disabling    err=\"stat \u002Frun\u002Fpcscd\u002Fpcscd.comm: no such file or directory\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.128] Set global gas cap                       cap=50,000,000\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.128] Allocated cache and file handles         database=\u002Fhome\u002Fdeveloper\u002Fnode1\u002Fgeth\u002Fchaindata cache=16.00MiB handles=16\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.146] Writing custom genesis block\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.146] Persisted trie from memory database      nodes=0 size=0.00B time=\"14.424µs\" gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.147] Successfully wrote genesis state         database=chaindata                            hash=a5e5bc..3f490e\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.147] Allocated cache and file handles         database=\u002Fhome\u002Fdeveloper\u002Fnode1\u002Fgeth\u002Flightchaindata cache=16.00MiB handles=16\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.151] Writing custom genesis block\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.152] Persisted trie from memory database      nodes=0 size=0.00B time=\"5.185µs\"  gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:19:56.153] Successfully wrote genesis state         database=lightchaindata                       hash=a5e5bc..3f490e\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДалее для работы с узлом вам нужно будет открыть две консоли.\u003C\u002Fp\u003E\u003Cp\u003EЧтобы запустить узел, выполните в первой консоли следующую команду:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ geth --datadir ~\u002Fnode1 --ipcpath \"~\u002Fnode1\u002Fgeth.ipc\" --nodiscover --mine --miner.threads 1 --maxpeers 0 --verbosity 3 --networkid 98760 console\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЗдесь предполагается, что вы подключились к консоли пользователем developer. \u003C\u002Fp\u003E\u003Cp\u003EНа экране появится множество сообщений о ходе инициализации. В ходе этого процесса будет запущена генерация так называемого файла DAG. Он содержит направленный ациклический граф (Directed Acyclic Graph,  DAG). \u003C\u002Fp\u003E\u003Cp\u003EФайл DAG используется для добавления блоков в Ethereum с помощью алгоритма с названием Ethash. Его размер может составлять несколько Гбайт. Размер этого файла увеличивается по мере роста сети Ethereum. \u003C\u002Fp\u003E\u003Cp\u003EПри первом запуске узла нужно дождаться завершения процесса генерации:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EWelcome to the Geth JavaScript console!\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E instance: Geth\u002Fv1.10.13-stable-7a0c19f8\u002Flinux-amd64\u002Fgo1.17.2\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ecoinbase: 0x2cf942e02baac0bb883147873943666e397cae03\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eat block: 0 (Wed Dec 31 1969 16:00:00 GMT-0800 (PST))\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E datadir: \u002Fhome\u002Fdeveloper\u002Fnode1\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E To exit, press ctrl-d or type exit\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E INFO [12-08|06:22:31.712] Generating DAG in progress               epoch=0 percentage=0 elapsed=1.076s\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:22:32.749] Generating DAG in progress               epoch=0 percentage=1 elapsed=2.114s\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:22:33.123] Mapped network port                      proto=tcp extport=30303 intport=30303 interface=\"UPNP IGDv1-IP1\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:22:33.793] Generating DAG in progress               epoch=0 percentage=2 elapsed=3.158s\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:22:34.848] Generating DAG in progress               epoch=0 percentage=3 elapsed=4.213s\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E…\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:29:35.171] Commit new mining work                   number=69 sealhash=5549e6..4d0eba uncles=0 txs=0 gas=0 fees=0 elapsed=\"150.228µs\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:29:43.723] Successfully sealed new block            number=69 sealhash=5549e6..4d0eba hash=de53cc..05e38c elapsed=8.551s\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:29:43.723] 🔗 block reached canonical chain          number=62 hash=dd9c17..4f1a18\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [12-08|06:29:43.723] 🔨 mined potential block                  number=69 hash=de53cc..05e38c\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ зависимости от производительности вашего виртуального или физического сервера генерация файла DAG может занять несколько минут или дольше.\u003C\u002Fp\u003E\u003Cp\u003EТекущий размер блока и прогнозы по его росту можно узнать, например, на сайте \u003Ca href=\"https:\u002F\u002Fminerstat.com\u002Fdag-size-calculator?lang=ru\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fminerstat.com\u002Fdag-size-calculator?lang=ru\u003C\u002Fa\u003E. На момент создания этого урока файл DAG для основной сети Ethereum был размером 4.5 Гбайт.\u003C\u002Fp\u003E\u003Cp\u003EЧем больше файл DAG, тем труднее выполнить майнинг. \u003C\u002Fp\u003E\u003Cp\u003EДля ускорения майнинга используются видеокарты. При этом данные DAG должны полностью поместиться в память видеокарты.\u003C\u002Fp\u003E\u003Cp\u003EТак как запуск узла будет выполняться часто, мы подготовили в репозитории пакетный файл для запуска ~\u002Fsol01\u002Fles03\u002Fstart_node.sh (листинг 3.2.).\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЛистинг 3.2. Файл ~\u002Fsol01\u002Fles03\u002Fstart_node.sh\u003Cbr\u002F\u003E\u003C\u002Fstrong\u003E\u003Ccode\u003Egeth --datadir ~\u002Fnode1 --ipcpath \"~\u002Fnode1\u002Fgeth.ipc\" --nodiscover --mine --miner.threads 1 --maxpeers 0 --verbosity 3 --networkid 98760 console\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЗапускайте его следующей командой:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ bash ~\u002Fsol01\u002Fles03\u002Fstart_node.sh\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЧтобы завершить работу узла, нажмите в окне консоли комбинацию клавиш Ctrl+D.\u003C\u002Fp\u003E\u003Ch4\u003EПараметры запуска узла\u003C\u002Fh4\u003E\u003Cp\u003EРасскажем о параметрах geth, которые мы использовали при запуске узла. Эти параметры были выбраны исходя из назначения нашего узла — мы создаем узел для учебной приватной сети Ethereum. Когда вы будете создавать узел для работы с тестовой сетью Rinkeby или с основной сетью Ethereum, нужно будет указывать другие параметры.\u003C\u002Fp\u003E\u003Cp\u003EЧтобы получить краткую справку по всем командам и параметрам geth, запустите ее следующим образом:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ geth -h\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EС параметром \u003Cstrong\u003Edatadir\u003C\u002Fstrong\u003E, который указывает путь к каталогу блокчейна, вы уже знакомы. При запуске узла укажите тот же каталог, что мы использовали при инициализации приватного блокчейна.\u003C\u002Fp\u003E\u003Cp\u003EДля явного указания пути к файлу IPC мы использовали параметр \u003Cstrong\u003Eipcpath\u003C\u002Fstrong\u003E.\u003C\u002Fp\u003E\u003Cp\u003EПараметр \u003Cstrong\u003Enodiscover\u003C\u002Fstrong\u003E отключает поиск других узлов сети. Этот поиск не нужен, так как пока будем работать только с одним узлом блокчейна.\u003C\u002Fp\u003E\u003Cp\u003EМы также указали значение параметра \u003Cstrong\u003Emaxpeers\u003C\u002Fstrong\u003E, равное нулю. Таким способом мы фактически отключили обмен по сети между узлами нашего блокчейна.\u003C\u002Fp\u003E\u003Cp\u003EС помощью параметра \u003Cstrong\u003Emine\u003C\u002Fstrong\u003E мы запускаем так называемый майнинг — процесс создания новых блоков в нашем блокчейне. Это необходимо, так как без появления новых блоков выполнение транзакций и публикация смарт-контрактов будут невозможны.\u003C\u002Fp\u003E\u003Cp\u003EПараметр \u003Cstrong\u003Eminerthreads\u003C\u002Fstrong\u003E указывает количество потоков, используемых для майнинга. Если ресурсы вашего сервера позволяют и там установлен многоядерный процессор, то для ускорения майнинга можно увеличить значение этого параметра.\u003C\u002Fp\u003E\u003Cp\u003EОчень важный параметр — \u003Cstrong\u003Enetworkid\u003C\u002Fstrong\u003E. Это идентификатор сети. Здесь мы должны указать уникальный идентификатор 98760 нашего приватного блокчейна.\u003C\u002Fp\u003E\u003Cp\u003EПараметр \u003Cstrong\u003Everbosity\u003C\u002Fstrong\u003E задает детализацию журнала: \u003C\u002Fp\u003E\u003Cp\u003E·         0 — не записывать данные в журнал; \u003C\u002Fp\u003E\u003Cp\u003E·         1 — записывать сообщения об ошибках; \u003C\u002Fp\u003E\u003Cp\u003E·         2 — записывать предупреждающие сообщения; \u003C\u002Fp\u003E\u003Cp\u003E·         3 — записывать информационные сообщения; \u003C\u002Fp\u003E\u003Cp\u003E·         4 — записывать отладочную информацию; \u003C\u002Fp\u003E\u003Cp\u003E·         5 — записывать детальную информацию.\u003C\u002Fp\u003E\u003Cp\u003EПо умолчанию используется значение 3.\u003C\u002Fp\u003E\u003Cp\u003EПри запуске geth мы указываем команду \u003Cstrong\u003Econsole\u003C\u002Fstrong\u003E. Эта команда запускает интерактивную консоль JavaScript, где мы сможем выдавать команды.\u003C\u002Fp\u003E\u003Ch4\u003EПодключаемся к нашему узлу\u003C\u002Fh4\u003E\u003Cp\u003EТеперь откройте вторую консоль и введите в ней следующую команду:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ geth --datadir ~\u002Fnode1 --networkid 98760 attach\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЗдесь необходимо указать те же значения параметров datadir и networkid, что и при запуске узла. Команда attach подключается к узлу и запускает интерактивную консоль JavaScript. В параметре datadir нам нужно указать полный путь к рабочему каталогу нашего приватного блокчейна.\u003C\u002Fp\u003E\u003Cp\u003EЭта команда откроет консоль geth и подключится к вашему приватному узлу. Вы увидите на консоли адрес вашего узла в строке coinbase:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EWelcome to the Geth JavaScript console!\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E instance: Geth\u002Fv1.10.12-stable-6c4dc6c3\u002Flinux-amd64\u002Fgo1.17.2\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ecoinbase: 0xf82e93ef1de726ac0bbbb64f8efa3ffa0d5a393b\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eat block: 271 (Mon Nov 29 2021 01:01:06 GMT-0800 (PST))\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E datadir: \u002Fhome\u002Fdeveloper\u002Fnode1\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003ETo exit, press ctrl-d or type exit\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EКоманду подключения вы найдете в файле репозитория ~\u002Fsol01\u002Fles03\u002Fattach_node.sh (листинг 3.3.).\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЛистинг 3.3. Файл ~\u002Fsol01\u002Fles03\u002Fattach_node.sh\u003Cbr\u002F\u003E\u003C\u002Fstrong\u003E\u003Ccode\u003Egeth --datadir ~\u002Fnode1 --networkid 98760 attach\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЗапустите этот файл, и вы увидите приглашение консоли geth:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ bash ~\u002Fsol01\u002Fles03\u002Fattach_node.sh \u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EWelcome to the Geth JavaScript console!\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E instance: Geth\u002Fv1.10.12-stable-6c4dc6c3\u002Flinux-amd64\u002Fgo1.17.2\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ecoinbase: 0x9eb9b6147be101260597a0e011156355ebff9a81\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eat block: 2787 (Tue Nov 30 2021 05:03:19 GMT-0800 (PST))\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E datadir: \u002Fhome\u002Ffrolov\u002Fnode1\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E modules: admin:1.0 debug:1.0 eth:1.0 ethash:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E To exit, press ctrl-d or type exit\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЧтобы выйти из консоли, можно ввести команду exit или нажать комбинацию клавиш Ctrl+D.\u003C\u002Fp\u003E\u003Cp\u003EВведите в этом приглашении команду web3.eth.accounts:\u003C\u002Fp\u003E\u003Cp\u003E\u003E web3.eth.accounts\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E[\"0xe04b76f2c0bf657ca08b78095050d15aa29fc735\", \"0xe68afc8c9c3f59066a2a5d999c68000e8748c045\"]\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВы увидите идентификаторы (адреса) аккаунтов, которые мы создали ранее. У вас эти идентификаторы будет другие.\u003C\u002Fp\u003E\u003Cp\u003EПопробуйте также ввести команду web3.version. Эта команда позволяет посмотреть версию фреймворка Web3, с помощью которого мы будем работать с контрактами, версию geth, а также номер сети. Мы задали номер нашей приветной сети, равный 98760.\u003C\u002Fp\u003E\u003Cp\u003EДля стабильного релиза Geth версии 1.10.13 на консоль будет выведено сообщение:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E web3.version\u003Cbr\u002F\u003E{\u003Cbr\u002F\u003E  api: \"0.20.1\",\u003Cbr\u002F\u003E  ethereum: undefined,\u003Cbr\u002F\u003E  network: \"98760\",\u003Cbr\u002F\u003E  node: \"Geth\u002Fv1.10.15-stable-8be800ff\u002Flinux-amd64\u002Fgo1.17.5\",\u003Cbr\u002F\u003E  whisper: undefined,\u003Cbr\u002F\u003E  getEthereum: function(callback),\u003Cbr\u002F\u003E  getNetwork: function(callback),\u003Cbr\u002F\u003E  getNode: function(callback),\u003Cbr\u002F\u003E  getWhisper: function(callback)\u003Cbr\u002F\u003E}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Ch4\u003EУправление майнингом и проверка баланса\u003C\u002Fh4\u003E\u003Cp\u003EПри запуске узла мы автоматически запускаем майнинг. Текущий баланс вы можете проверить при помощи следующей команды:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E web3.fromWei( eth.getBalance(eth.coinbase) )\u003Cbr\u002F\u003E0\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EСразу после инициализации сети баланс нашего аккаунта равен нулю. Однако по мере того, как будут «добыты» новые блоки, баланс будет расти:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E web3.fromWei( eth.getBalance(eth.coinbase) )\u003Cbr\u002F\u003E15\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ первой консоли, где мы запустили узел, добавление каждого блока будет отмечено такими сообщениями:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [02-13|09:37:10.577] 🔗 block reached canonical chain          number=45 hash=924ce1…d8b5a2\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [02-13|09:37:10.577] 🔨 mined potential block                  number=52 hash=a80a36…153593\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [02-13|09:37:10.577] Commit new mining work                   number=53 sealhash=3acb6c…0ecd19 uncles=0 txs=0 gas=0 fees=0 elapsed=130.557µs\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [02-13|09:37:11.223] Successfully sealed new block            number=53 sealhash=3acb6c…0ecd19 hash=14e0fa…575494 elapsed=645.999ms\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [02-13|09:37:11.223] 🔗 block reached canonical chain          number=46 hash=c5ff7a…da8069\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [02-13|09:37:11.224] 🔨 mined potential block                  number=53 hash=14e0fa…575494\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [02-13|09:37:11.224] Commit new mining work                   number=54 sealhash=96235b…f3fc50 uncles=0 txs=0 gas=0 fees=0 elapsed=124.053µs\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EINFO [02-13|09:37:11.723] Successfully sealed new block            number=54 sealhash=96235b…f3fc50 hash=e5438e…2f6f2e elapsed=498.975ms\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EС помощью команд miner.start и miner.stop можно запускать и останавливать майнинг.\u003C\u002Fp\u003E\u003Cp\u003EПри ручном запуске майнинга нужно указать количество потоков для поиска новых блоков:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E miner.start(4)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЗдесь мы запускаем майнинг на четырех ядрах виртуальной машины. Перед запуском проверьте, сколько ядер доступно на вашем сервере.\u003C\u002Fp\u003E\u003Cp\u003EЗаметим, что при отладке смарт-контрактов процесс майнинга останавливать не нужно, иначе ваш узел не сможет обрабатывать транзакции, публиковать контракты и вызывать методы контрактов. Тем не менее, вы всегда сможете остановить майнинг с помощью такой команды:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E miner.stop()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЕсли скорость майнинга недостаточна и вам приходится ждать появления новых блоков более 20-30 секунд, попробуйте увеличить размер оперативной памяти и количество процессорных ядер на виртуальной машине. Облачные хостинги, как правило, позволяют сделать это очень просто через Web-интерфейс вашего личного кабинета.\u003C\u002Fp\u003E\u003Ch4\u003EЗавершение работы консоли Geth\u003C\u002Fh4\u003E\u003Cp\u003EДля завершения работы Geth введите в приглашении команду exit:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E exit\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Ch3\u003EУстановка Node.js\u003C\u002Fh3\u003E\u003Cp\u003EВы скорее всего будете работать с узлами Ethereum с помощью скриптов JavaScript, работающих под управлением Node.js. При этом используется фреймворк Web3, а также узлы Ganache CLI и Geth.\u003C\u002Fp\u003E\u003Cp\u003EУстанавливать Node.js в ОС Ubuntu нужно с помощью скрипта менеджера управления версиями \u003Ca href=\"https:\u002F\u002Flinuxize.com\u002Fpost\u002Fhow-to-install-node-js-on-ubuntu-18.04\u002F#1-downloading-nvm-node-version-manager-script\" rel=\"noopener noreferrer nofollow\"\u003ENVM (Node Version Manager).\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Flinuxize.com\u002Fpost\u002Fhow-to-install-node-js-on-ubuntu-18.04\u002F#1-downloading-nvm-node-version-manager-script\" rel=\"noopener noreferrer nofollow\"\u003E Эта процедура описана здесь: \u003C\u002Fa\u003E \u003Ca href=\"https:\u002F\u002Fgithub.com\u002Fnodesource\u002Fdistributions\u002Fblob\u002Fmaster\u002FREADME.md\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fgithub.com\u002Fnodesource\u002Fdistributions\u002Fblob\u002Fmaster\u002FREADME.md\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EПрежде всего установите программу curl и скопируйте скрипт NVM из репозитория Github:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Esudo apt install curl\u003Cbr\u002F\u003Ecurl -fsSL https:\u002F\u002Fdeb.nodesource.com\u002Fsetup_16.x | sudo -E bash -\u003Cbr\u002F\u003Esudo apt-get install -y nodejs\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПосле установки проверьте версии Node.js и npm:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ node -v\u003Cbr\u002F\u003Ev16.13.1\u003Cbr\u002F\u003E$ npm -v\u003Cbr\u002F\u003E8.1.2\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Ch3\u003EУстановка Truffle\u003C\u002Fh3\u003E\u003Cp\u003EВ нашем курсе мы будем изучать интегрированную среду разработки (Integrated Development Environment, IDE) Truffle, очень популярную среди программистов Solidity. Она проста в установке и удобна на практике.\u003C\u002Fp\u003E\u003Cp\u003EВначале установите необходимые пакеты:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ sudo apt install build-essential\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E Для установки Truffle введите команду:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ sudo npm install -g truffle\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПосле установки проверьте версию Truffle:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ truffle version\u003Cbr\u002F\u003ETruffle v5.4.32 (core: 5.4.32)\u003Cbr\u002F\u003ESolidity v0.5.16 (solc-js)\u003Cbr\u002F\u003ENode v16.13.2\u003Cbr\u002F\u003EWeb3.js v1.5.3\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНа консоли появится версия Truffle, а также версия компилятора Solidity solc-js, версия Node.js и пакета Web3.js.\u003C\u002Fp\u003E\u003Cp\u003EПодробная информация об установке и использовании Truffle есть на сайте \u003Ca href=\"http:\u002F\u002Ftruffleframework.com\u002F\" rel=\"noopener noreferrer nofollow\"\u003Ehttp:\u002F\u002Ftruffleframework.com\u002F\u003C\u002Fa\u003E. \u003C\u002Fp\u003E\u003Ch3\u003EУстановка и запуск Ganache-cli\u003C\u002Fh3\u003E\u003Cp\u003EВ нашем курсе мы будем использовать не только Geth, но и программу Ganache CLI, очень удобную для создания тестового узла Ethereum.\u003C\u002Fp\u003E\u003Cp\u003EС помощью Ganache CLI  можно очень легко создать персональный блокчейн, удобный для отладки смарт-контрактов, в том числе с помощью такого инструмента, как Truffle.\u003C\u002Fp\u003E\u003Cp\u003EУстановить Ganache CLI очень просто:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ sudo npm install -g ganache-cli\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПосле установки запустите Ganache CLI в консольном окне при помощи такой команды:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ ganache-cli\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПрограмма создаст при запуске 10 аккаунтов, причем у каждого аккаунта на счету уже будет 100 Ether. Информацию об аккаунтах и вашей приватной сети она выведет на консоль:\u003Cbr\u002F\u003E\u003Ccode\u003E\u003Cbr\u002F\u003EGanache CLI v6.12.2 (ganache-core: 2.13.2)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EAvailable Accounts\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E==================\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(0) 0x7068e1737ACb237361c27CdD2fc07D360c6E7fb1 (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(1) 0x8208f2E5Ac0C05925Ba0f78B01ED17f0ee766d3D (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(2) 0x915b48A6DfA293c75D925F6d2A2F2F78c8B392EB (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(3) 0x7FEFFD1959c47ed2d1b28Cbbabe1a6450029afa8 (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(4) 0xeD11B63a6E06a8deA81E844FA490eB3af4858506 (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(5) 0xC04cEf12b37138C6DBfA22B57D15FF91543507A4 (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(6) 0x0b56E6D8d72300066B4349dcF1b687eBa1B1Ceb5 (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(7) 0x17EF124e61b2cc14B1c5df9385Cd3c38B66EBA3b (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(8) 0xCacFcbBC9db0eDB04f2DA4a525D23d7373593a49 (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(9) 0xF101d652AE265dF03a7fb276da021eCBC22D3408 (100 ETH)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E Private Keys\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E==================\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(0) 0x5712b6f3f2cc9a0a65aa4aee6312c03b44d0f79287a285a56e7133ee81afcb75\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(1) 0x31ba88967f3c568e2f800916a1691dd5026eb137f2671ed095de4a6f2d4f5b58\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(2) 0x2b822789e8670fc9302eb4f734c4e1b9ff75039fa14a3cefefa38bc39609084f\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(3) 0x7fca0a698c7a39af2d06a35f7a230403c550f76f352d976a28e8e9f74a1b6c3d\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(4) 0x490f3556f258b1fb2ab86ee249ce31c8cd1108e497b6f192866d78d30d08ca9b\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(5) 0x4cf5a21253198710362a80bf0f43a058075b5a9ec443531023d9531b7f4b1869\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(6) 0x8f5579e651697162856dd08618d7efd152cd5e51715445d558d3e78c9a85afad\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(7) 0x26a9bdea6620c42b405903301624f6ba5eed9878ee7f443cb500ce02b57b0e86\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(8) 0x94ace2c51779e337ddb5411a4b3b6ebbc88d2fd137be419c723f18c9efdc4297\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E(9) 0x57212b11f4a3b80206f11f3f4939166765626dafee541b5554b733a09317d327\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E HD Wallet\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E==================\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EMnemonic:      enough like enjoy where such they sword matrix birth water orange amateur\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EBase HD Path:  m\u002F44'\u002F60'\u002F0'\u002F0\u002F{account_index}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E Gas Price\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E==================\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E20000000000\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EGas Limit\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E==================\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E6721975\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E Call Gas Limit\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E==================\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E9007199254740991\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003EListening on 127.0.0.1:8545\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНам будут интересны адреса созданных аккаунтов, а также тот факт, что вы можете создать соединение с вашим локальным узлом на порту 8545, как и в случае использования Geth.\u003C\u002Fp\u003E\u003Cp\u003EДля подключения к узлу Ganache CLI запустите в отдельном консольном окне команду:\u003Cbr\u002F\u003E\u003Ccode\u003E$ geth attach http:\u002F\u002F127.0.0.1:8545\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПосле этого посмотрите список аккаунтов:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E web3.eth.accounts\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E[\"0x634cdd00a95cb83d594e9401bfbe66d3fc02e930\", \"0x3b9067d86ee5bd2a8ea814ea337fe8c68589b819\", \"0x77453108040c2aeac8d48ba01b59c12a7070b4b7\", \"0x093cca41ff8a49483204dc5e925ffffa7463de63\", \"0x2baee1b78787ae63024ef0aefa3c2c67d541b003\", \"0x29796fb84ff016e926190caa26a5ee263890292f\", \"0x6de6013c3554c3ef9f3be1095c38accdab89aebe\", \"0xe8318637a3a459f6af01f27b833ccd13405452ec\", \"0x2cb59fab5d614355090f56a6d36e1e8d7e5385c0\", \"0x80370337b1a46888003677655d9bbbfbf5d0470c\"]\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EКак видите, уже есть 10 аккаунтов, готовых для работы. Вы можете убедиться, что на этих аккаунтах уже есть средства в размене 100 Ether:\u003Cbr\u002F\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E web3.fromWei( eth.getBalance(\"0x3b9067d86ee5bd2a8ea814ea337fe8c68589b819\") )\u003Cbr\u002F\u003E100\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Ch3\u003EУстановка Web3\u003C\u002Fh3\u003E\u003Cp\u003EЗапустите в первом консольном окне узел Geth:\u003Cbr\u002F\u003E\u003Ccode\u003E$ bash ~\u002Fsol01\u002Fles03\u002Fstart_node.sh\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДалее для установки пакета web3.js, представляющего собой API Ethereum для JavaScript, используйте команду:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Enpm install web3\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДля проверки результатов установки запустите консоль Node.js командой node:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ node\u003Cbr\u002F\u003E\u003E\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EУбедитесь, что у вас запущен узел вашей локальной сети Ethereum на базе Ether или Ganache CLI. Далее в консольном приглашении Node.js введите следующие команды:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E var Web3 = require('web3')\u003Cbr\u002F\u003Eundefined\u003Cbr\u002F\u003E \u003E Web3.version\u003Cbr\u002F\u003E'1.7.0'\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДалее нужно подключиться к узлу Ethereum нашей приватной сети. Это можно сделать с помощью одного из так называемых провайдеров.\u003C\u002Fp\u003E\u003Cp\u003EУзел на базе Geth доступен с применением протокола IPC. Здесь нам потребуется провайдер Web3.providers.IpcProvider.\u003C\u002Fp\u003E\u003Cp\u003EВведите в приглашении node следующие команды:\u003Cbr\u002F\u003E\u003Cbr\u002F\u003E\u003Ccode\u003E\u003E const net = require('net');\u003Cbr\u002F\u003Eundefined\u003Cbr\u002F\u003E\u003E const Web3 = require('web3');\u003Cbr\u002F\u003Eundefined\u003Cbr\u002F\u003E\u003E const web3 = new Web3(new Web3.providers.IpcProvider(\"\u002Fhome\u002Fdeveloper\u002Fnode1\u002Fgeth.ipc\", net));\u003Cbr\u002F\u003Eundefined\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E await web3.eth.getAccounts();\u003Cbr\u002F\u003E[\u003Cbr\u002F\u003E  '0x9EB9b6147BE101260597a0E011156355ebfF9A81',\u003Cbr\u002F\u003E  '0x651895A7f98F34bFe3FC544C001e0373EadfF136'\u003Cbr\u002F\u003E]\u003Cbr\u002F\u003E\u003E\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ результате на консоли появится список аккаунтов, созданных при помощи Geth.\u003C\u002Fp\u003E\u003Cp\u003EДля получения списка аккаунтов, созданных при запуске Ganache CLI, потребуется провайдер Web3.providers.HttpProvider (с использованием протокола HTTP).\u003C\u002Fp\u003E\u003Cp\u003EВведите в приглашении node такие команды:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E  var Web3 = require('web3')\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eundefined\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E var web3 = new Web3(new Web3.providers.HttpProvider(\"http:\u002F\u002Flocalhost:8545\"));\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eundefined\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E\u003E await web3.eth.getAccounts();\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E[\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0xC45cb6355FE0AcdA9d0b6b6750e689b082f3743f',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0xd56B6c181Dad6ea9a455813065bf56EaFb12D582',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0x9D6351707Ef4910214605d331b2ecA9764f82542',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0xF8DAC793B4aFF4F7c82F81Ea4E3EF51b6422CB50',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0xC5A7aeD0b0Dcc460F2267F4248C055aB70c0035b',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0xFf7bfa85784820E574b77dbE401056784b92D4fb',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0x20D365eA672c9BFfE4baaA800D3c6C56B23C063F',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0xE0840AD4d6733D986083c3b64dDDBe5A30E5db8E',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0x2132417287567e5D7D5DC2194f96bb6Aca808a9D',\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E  '0x9E994E8616c2765524f6bb859C860c0D53Fe12d7'\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E]\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЕсли в консоли Node.js появился список аккаунтов, значит, все было установлено правильно.\u003C\u002Fp\u003E\u003Cp\u003EС помощью следующей команды можно посмотреть баланс заданного аккаунта в единицах wei и Ether:\u003Cbr\u002F\u003E\u003Cbr\u002F\u003E\u003Ccode\u003E\u003E await web3.eth.getBalance(\"0xEa0C5394d72be6623d0ee8bAFfBdd332C70955ac\").then(function (balance) { console.log('balance: ', balance, 'wei, ', web3.utils.fromWei(balance, 'ether'), 'ether'); })\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Ebalance:  100000000000000000000 wei,  100 ether\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Ch3\u003EУстановка пакетного компилятора solc\u003C\u002Fh3\u003E\u003Cp\u003EДля того чтобы компилировать контракты Solidity в командной строке или из ваших скриптов, можно использовать пакетный компилятор solc. \u003C\u002Fp\u003E\u003Cp\u003EДля установки solc в Ubuntu введите следующие команды:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Esudo add-apt-repository ppa:ethereum\u002Fethereum\u003Cbr\u002F\u003Esudo apt-get update\u003Cbr\u002F\u003Esudo apt-get install solc\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EЗатем проверьте версию установленного к\u003Ccode\u003Eомпилятора solc:\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E$ solc --version\u003Cbr\u002F\u003E solc, the solidity compiler commandline interface\u003Cbr\u002F\u003E Version: 0.8.10+commit.fc410830.Linux.g++\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"http:\u002F\u002Fsolidity.readthedocs.io\u002Fen\u002Fdevelop\u002Fusing-the-compiler.html\" rel=\"noopener noreferrer nofollow\"\u003EДокументация по компилятору solc находится здесь\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Ch3\u003EПолезные ссылки\u003C\u002Fh3\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fgeth.ethereum.org\u002Fdownloads\" rel=\"noopener noreferrer nofollow\"\u003EСтраница загрузки программы Geth и ее исходных кодов\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Feips.ethereum.org\u002F\" rel=\"noopener noreferrer nofollow\"\u003EПредложения по улучшению Ethereum\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fminerstat.com\u002Fdag-size-calculator?lang=ru\" rel=\"noopener noreferrer nofollow\"\u003EТекущий размер файла DAG\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fgithub.com\u002Fnodesource\u002Fdistributions\u002Fblob\u002Fmaster\u002FREADME.md\" rel=\"noopener noreferrer nofollow\"\u003EОписание процедуры установки Node.js\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"http:\u002F\u002Ftruffleframework.com\u002F\" rel=\"noopener noreferrer nofollow\"\u003EРабота с Truffle\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fgithub.com\u002Ftrufflesuite\u002Fganache\" rel=\"noopener noreferrer nofollow\"\u003EРепозиторий Ganache\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"http:\u002F\u002Fsolidity.readthedocs.io\u002Fen\u002Fdevelop\u002Fusing-the-compiler.html\" rel=\"noopener noreferrer nofollow\"\u003EДокументация по компилятору solc\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fgithub.com\u002FAlexandreFrolov\u002Fsol01\" rel=\"noopener noreferrer nofollow\"\u003EРепозиторий моих исходников на Github\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Ch3\u003EИтоги\u003C\u002Fh3\u003E\u003Cp\u003EВы подготовили рабочую среду, необходимую для дальнейшего изучения Ethereum и смарт-контрактов Solidity. Вы создали сервер с ОС Ubuntu, установили программы Geth, Node.js, Truffle, Ganache-cli, пакет Web3, а также компилятор solc.\u003C\u002Fp\u003E\u003Cp\u003EВы также загрузили из репозитория GitHub исходные файлы, необходимые для работы с нашим курсом.\u003C\u002Fp\u003E\u003Cp\u003EДалее вы создали приватный блокчейн, состоящий из одного узла, выполнили инициализацию этого узла и убедились, что в вашем блокчейне работает майнинг. Вы научились запускать свой узел Ethereum на базе Geth и Ganache, а также подключаться к ним в консоли JavaScript.\u003C\u002Fp\u003E\u003Cp\u003EВы также научились выдавать простейшие консольные команды и теперь готовы для первых экспериментов с вашим приватным блокчейном.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"solidity"},{"titleHtml":"ethereum"},{"titleHtml":"смарт-контракт"},{"titleHtml":"блокчейн"},{"titleHtml":"блокчейн-технологии"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fee4\u002F2bb\u002Fe45\u002Fee42bbe45a9a7ff0f829d10c3eefcd26.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fee4\u002F2bb\u002Fe45\u002Fee42bbe45a9a7ff0f829d10c3eefcd26.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654835\\\u002F\"},\"headline\":\"Подготовка рабочей среды для создания смарт-контрактов Solidity\",\"datePublished\":\"2022-03-09T16:53:30+03:00\",\"dateModified\":\"2022-03-09T20:52:59+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Александр Фролов\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду &mdash; установить операционную систему (ОС) Ubuntu, клиента Geth сети Et...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654835\\\u002F#post-content-body\",\"about\":[\"h_solidity\",\"h_cryptocurrency\",\"f_develop\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654835\\\u002Fb6453fcd03a0aa9c8ad42b45c4176894\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Ffa4\\\u002Ff72\\\u002F986\\\u002Ffa4f72986bcf31002965d8483e595091.png\"]}","metaDescription":"Прежде чем заняться изучением смарт-контрактов Ethereum, необходимо подготовить рабочую среду — установить операционную систему (ОС) Ubuntu, клиента Geth сети Ethereum, а также другое необходимое...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[{"title":"Blockchain разработчик","vacanciesCount":17,"itemUrl":"https:\u002F\u002Fcareer.habr.com\u002Fvacancies\u002Fblockchain_developer","itemHubs":["distributed_systems","cryptocurrency","solidity"]}],"hubs":"solidity,cryptocurrency"},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name"

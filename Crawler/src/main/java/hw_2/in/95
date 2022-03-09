@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>О мере успеха. Градусные экспедиции: завершение / Комментарии / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/page-article-comments.5497aa9d.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/page-article-comments.97bb766a.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/page-article-comments.5497aa9d.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" itemprop="image" content="/img/habr_ru.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="/img/habr_ru.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="/img/habr_ru.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="/img/habr_ru.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="/img/habr_ru.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" property="og:type" content="website" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Хабр" data-vmid="og:title">
+  <meta data-vue-meta="ssr" property="og:url" content="https://habr.com/ru/post/654811/comments/" data-vmid="og:url"> 
+  <link data-vue-meta="ssr" image_src="image" href="/img/habr_ru.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654811/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654811/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <article class="tm-article-comments__article-body">
+            <div class="tm-article-comments__article-snippet">
+             <div class="tm-article-snippet">
+              <div class="tm-article-snippet__meta-container">
+               <div class="tm-article-snippet__meta">
+                <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/Sovenka/" title="Sovenka" class="tm-user-info__userpic">
+                  <div class="tm-entity-image">
+                   <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/f7c/397/f43/f7c397f437fd059f9019dd60474f6034.jpg" width="24" class="tm-entity-image__pic">
+                  </div></a> <span class="tm-user-info__user"><a href="/ru/users/Sovenka/" class="tm-user-info__username"> Sovenka </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T11:45:42.000Z" title="2022-03-09, 14:45">сегодня в 14:45</time></span>
+               </div> <!---->
+              </div> 
+              <h1 class="tm-article-snippet__title tm-article-snippet__title_h1"><a href="/ru/post/654811/" data-article-link="" class="tm-article-snippet__title-link router-link-active"><span>О мере успеха. Градусные экспедиции: завершение</span></a></h1> 
+              <div class="tm-article-snippet__hubs">
+               <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/popular_science/" class="tm-article-snippet__hubs-item-link"><span>Научно-популярное</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/astronomy/" class="tm-article-snippet__hubs-item-link"><span>Астрономия</span> <!----></a></span>
+              </div> <!----> <!----> <!---->
+             </div> 
+             <div class="tm-data-icons">
+              <!----> 
+              <div class="tm-votes-meter tm-data-icons__item">
+               <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                <title>Всего голосов 25: ↑24 и ↓1</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+               </svg> <span title="Всего голосов 25: ↑24 и ↓1" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+23</span>
+              </div> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+               <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+               </svg> <span class="tm-icon-counter__value">1.1K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                 <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 4 </span></button> 
+              <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+               <a href="/ru/post/654811/comments/" aria-current="page" class="tm-article-comments-counter-link__link">
+                <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                 <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                </svg> <span class="tm-article-comments-counter-link__value"> 4 </span></a> <!---->
+              </div> <!----> 
+              <div class="v-portal" style="display:none;"></div>
+             </div>
+            </div>
+           </article> 
+           <div class="tm-ad-banner__container tm-article-comments__top-banner">
+            <!----> 
+            <div id="commentsBanner5516" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+           </div> 
+           <div data-async-called="true" class="tm-article-comments-offloaded">
+            <div class="tm-article-comments">
+             <div class="tm-comments-wrapper">
+              <div class="tm-comments-wrapper__wrapper">
+               <header class="tm-comments-wrapper__header">
+                <h2 class="tm-comments-wrapper__title"> Комментарии <span class="tm-comments-wrapper__comments-count"> 4 </span></h2> 
+                <div class="tm-comments-wrapper__header-aside">
+                 <!----> <button class="tm-rss-button tm-rss-button_comments-header"><span class="tm-svg-icon__wrapper tm-rss-button__icon">
+                   <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+                    <title>Скопировать ссылку на RSS</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#rss"></use>
+                   </svg></span></button> <!---->
+                </div>
+               </header> 
+               <div class="tm-comments-wrapper__inner"> 
+                <div class="tm-comments__tree">
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24149537" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24149537" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/Astroscope/" title="Astroscope" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/9f5/cbe/899/9f5cbe899c7449b201aad698bcdfce62.jpg" width="24" class="tm-entity-image__pic">
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/Astroscope/" class="tm-user-info__username"> Astroscope </a> <a href="#comment_24149537" class="tm-comment-thread__comment-link"> 09.03.2022 в 20:04 <!----></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content tm-comment__body-content_v2">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <p>Даже жаль, что серия статей закончилась. :)</p>
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Всего голосов 1: ↑1 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Всего голосов 1: ↑1 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">+1</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24149537" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> 
+                  <div class="tm-comment-thread__children" style="display:;">
+                   <section class="tm-comment-thread">
+                    <!----> 
+                    <article class="tm-comment-thread__comment">
+                     <a name="comment_24149797" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-1">
+                      <div class="tm-comment-thread__circle"></div></button> <!----> 
+                     <div data-comment-body="24149797" class="tm-comment-thread__indent_l-1">
+                      <div data-gallery-root="" class="tm-comment">
+                       <header data-comment-header tabindex="-1" class="tm-comment__header">
+                        <div class="tm-comment__header-inner">
+                         <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/Sovenka/" title="Sovenka" class="tm-user-info__userpic">
+                           <div class="tm-entity-image">
+                            <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/f7c/397/f43/f7c397f437fd059f9019dd60474f6034.jpg" width="24" class="tm-entity-image__pic">
+                           </div></a> <span class="tm-user-info__user"><a href="/ru/users/Sovenka/" class="tm-user-info__username"> Sovenka </a> <a href="#comment_24149797" class="tm-comment-thread__comment-link"> 09.03.2022 в 22:20 <!----></a></span></span>
+                        </div> 
+                        <div class="tm-comment__buttons">
+                         <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                          <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                           <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                          </svg></button> <!---->
+                        </div>
+                       </header> 
+                       <div class="tm-comment__body-content tm-comment__body-content_v2">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                         <p>Спасибо, что читали. Это значит, все не зря. Я уползаю теперь искать новые истории. Пока мечу на Деламбра и Мешена. </p>
+                        </div>
+                       </div> <!----> <!---->
+                      </div> 
+                      <div class="tm-comment-footer">
+                       <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                        <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                         <title>Всего голосов 1: ↑1 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                        </svg> <span title="Всего голосов 1: ↑1 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">+1</span>
+                       </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                         <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                          <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                         </svg></span> <!----></button> <button data-comment-popup="24149797" class="tm-comment__button tm-comment__button_with-icon">
+                        <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                         <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                        </svg></button> <!---->
+                      </div>
+                     </div>
+                    </article> <!----> <!---->
+                   </section>
+                  </div> <!---->
+                 </section>
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24149681" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24149681" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/VT100/" title="VT100" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_green">
+                           <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                          </svg>
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/VT100/" class="tm-user-info__username"> VT100 </a> <a href="#comment_24149681" class="tm-comment-thread__comment-link"> 09.03.2022 в 21:12 
+                          <svg height="16" width="16" class="tm-svg-img tm-comment-thread__icon-pencil">
+                           <title>Комментарий был изменен</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pencil-small"></use>
+                          </svg></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <p>Класс. Если есть — расскажите что-нибудь ещё.<br> Не было ли в гравиметрических измерениях (в душных и ненадёжных подводных жестянках) чего-то столь же занимательного? Или 19-20 века уже не требовали такой самоотверженности и не так привлекали внимание публики?</p>
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24149681" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> 
+                  <div class="tm-comment-thread__children" style="display:;">
+                   <section class="tm-comment-thread">
+                    <!----> 
+                    <article class="tm-comment-thread__comment">
+                     <a name="comment_24149803" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-1">
+                      <div class="tm-comment-thread__circle"></div></button> <!----> 
+                     <div data-comment-body="24149803" class="tm-comment-thread__indent_l-1">
+                      <div data-gallery-root="" class="tm-comment">
+                       <header data-comment-header tabindex="-1" class="tm-comment__header">
+                        <div class="tm-comment__header-inner">
+                         <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/Sovenka/" title="Sovenka" class="tm-user-info__userpic">
+                           <div class="tm-entity-image">
+                            <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/f7c/397/f43/f7c397f437fd059f9019dd60474f6034.jpg" width="24" class="tm-entity-image__pic">
+                           </div></a> <span class="tm-user-info__user"><a href="/ru/users/Sovenka/" class="tm-user-info__username"> Sovenka </a> <a href="#comment_24149803" class="tm-comment-thread__comment-link"> 09.03.2022 в 22:22 <!----></a></span></span>
+                        </div> 
+                        <div class="tm-comment__buttons">
+                         <button type="button" class="tm-comment__button tm-comment__button_with-icon">
+                          <svg height="16" width="16" class="tm-svg-img tm-comment__icon">
+                           <title>Показать предыдущий комментарий</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#small-arrow"></use>
+                          </svg></button> <!---->
+                        </div>
+                       </header> 
+                       <div class="tm-comment__body-content tm-comment__body-content_v2">
+                        <div xmlns="http://www.w3.org/1999/xhtml">
+                         <p>Скорее, не было времени это воспеть: ещё живы исполнители. Но мне попадались в руки книги вспоминаний изыскателей АГП, там самые драматичные истории 50х годов. Копну и туда. </p>
+                        </div>
+                       </div> <!----> <!---->
+                      </div> 
+                      <div class="tm-comment-footer">
+                       <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                        <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                         <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                        </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                       </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                         <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                          <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                         </svg></span> <!----></button> <button data-comment-popup="24149803" class="tm-comment__button tm-comment__button_with-icon">
+                        <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                         <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                        </svg></button> <!---->
+                      </div>
+                     </div>
+                    </article> <!----> <!---->
+                   </section>
+                  </div> <!---->
+                 </section>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div>
+              </div> 
+              <div class="tm-notice tm-comments__comment-notice tm-notice_positive">
+               <!----> 
+               <div class="tm-notice__inner">
+                <!----> 
+                <div class="tm-notice__content">
+                 <span>Только полноправные пользователи могут оставлять комментарии. <a rel="nofollow" href="/kek/v1/auth/habrahabr/?back=/ru/post/654811/comments/&amp;hl=ru">Войдите</a>, пожалуйста.</span>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div> <!----> <!---->
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div hl="ru" id="654811" class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner5517" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom5518" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654811/comments/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654811/comments/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654811":{"id":"654811","timePublished":"2022-03-09T11:45:42+00:00","isCorporative":false,"lang":"ru","titleHtml":"О мере успеха. Градусные экспедиции: завершение","leadData":{"textHtml":"\u003Cp\u003E\u003Cem\u003EЭто завершение рассказа о Великих градусных экспедициях XVIII века, которые должны были определить, сплюснутая Земля или вытянутая. \u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПубликация работ\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EУже в августе 1737 года Лапландская экспедиция возвращается в Париж. И Мопертюи тут же начинает давать концерты, то есть, популярные лекции о своем путешествии. Он спешит взять публику, пока горячо. Вольтер устраивает своему другу целую медиа-кампанию. Пишет фантастическую работу “Микромегас”, где великана измеряют геометры, подозрительно похожие на наших лапландских астрономов. Есть там, к примеру, такой пассаж:\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8a9\u002F92b\u002F4b6\u002F8a992b4b6d5e823bccdb08e7b3c14030.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8a9\u002F92b\u002F4b6\u002F8a992b4b6d5e823bccdb08e7b3c14030.jpg","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":75,"votesCount":81},"rating":108.1,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"2850745","alias":"Sovenka","fullname":"Елена Журавлева","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Ff7c\u002F397\u002Ff43\u002Ff7c397f437fd059f9019dd60474f6034.jpg","speciality":"история геодезии как хобби"},"statistics":{"commentsCount":4,"favoritesCount":4,"readingCount":1103,"score":23,"votesCount":25},"hubs":[{"relatedData":null,"id":"21910","alias":"popular_science","type":"collective","title":"Научно-популярное","titleHtml":"Научно-популярное","isProfiled":false},{"relatedData":null,"id":"22022","alias":"astronomy","type":"collective","title":"Астрономия","titleHtml":"Астрономия","isProfiled":false}],"flows":[{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003E\u003Cem\u003EЭто завершение рассказа о Великих градусных экспедициях XVIII века, которые должны были определить, сплюснутая Земля или вытянутая. \u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПубликация работ\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EУже в августе 1737 года Лапландская экспедиция возвращается в Париж. И Мопертюи тут же начинает давать концерты, то есть, популярные лекции о своем путешествии. Он спешит взять публику, пока горячо. Вольтер устраивает своему другу целую медиа-кампанию. Пишет фантастическую работу “Микромегас”, где великана измеряют геометры, подозрительно похожие на наших лапландских астрономов. Есть там, к примеру, такой пассаж:\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E“геометры забрали свои секстанты, квадранты и лапландских девиц и спустились на пальцы великана”.\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EКстати, про лапландских девиц - запомните. Они сегодня еще прозвучат.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8a9\u002F92b\u002F4b6\u002F8a992b4b6d5e823bccdb08e7b3c14030.jpg\" width=\"1080\" height=\"1080\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8a9\u002F92b\u002F4b6\u002F8a992b4b6d5e823bccdb08e7b3c14030.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ начале следующего, 1738 года, выходит книга Мопертюи “Фигура Земли”, где он рассказывает о своем путешествии, измерениях и результатах. Газеты публикуют многочисленные тизеры, тираж расходится, как горячие пирожки. Чтобы увеличить охват аудитории, книга публикуется сразу во французской, английской и немецкой версиях.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9e8\u002F6bc\u002F8a6\u002F9e86bc8a6d8e8b47034f2de33ee2e1da.jpg\" width=\"1080\" height=\"1080\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F9e8\u002F6bc\u002F8a6\u002F9e86bc8a6d8e8b47034f2de33ee2e1da.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E Не обойдется без отзыва от Вольтера. Знаете, как бывает, когда на обложке печатают лестные отзывы именитых критиков? Вот он:\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\"Я прочитал историю о физике, куда более увлекательную, чем любую художественную повесть. Ваше предисловие заставляет в нетерпении ожидать путешествия в Лапландию. Как только читатель оказывается там с вами - он с вами в зачарованной стране, где философы и являются феями. В возбуждении и страхе, я иду за вами по порогам и водоворотами, карабкаюсь на обледеневшие горы. Если ваши работы стоят Архимеда, Ваша отвага - Колумба, то способность описывать снега - кисти Микеланджело\".\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EКстати, если Вольтер преувеличивает, то не сильно. Книга, в духе времени, была наполнена саспенсом полярных ночей. Вот пример:\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\"когда открываешь дверь из дома, воздух на улице наполняется клубящимся паром. Выходишь на улицу, и холод рвет легкие. Об усилении морозов нас предупреждал скрип бревен, из которых были построены наши дома. Холод настолько суров, что некоторые местные жители время от времени теряют обмороженными руку или ногу”.\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EВ этом увлекательном чтиве, как водится, была и слабая, тщательно замаскированная сторона. \u003Cem\u003EКстати, если вам любопытно заглянуть в первоисточник: на Google книгах \u003C\u002Fem\u003E\u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=gb1aAAAAcAAJ&amp;pg=PR10&amp;dq=maupertuis+terre&amp;hl=ru&amp;sa=X&amp;ved=0ahUKEwifweLBsNzjAhXRw8QBHenNB3wQ6AEIKTAA#v=onepage&amp;q=maupertuis%20terre&amp;f=false\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cem\u003EФигура Земли\u003C\u002Fem\u003E\u003C\u002Fa\u003E\u003Cem\u003E Мопертюи выложена в общий доступ, по крайней мере, во французской и английской версиях. От себя советую обратить внимание на текстовое вступление: о героическом преодолении.\u003C\u002Fem\u003E А вот с подробным и точным описанием измерений и их методики, все было не так хорошо.\u003C\u002Fp\u003E\u003Cp\u003EНапример, мне не удалось найти удовлетворительного описания процесса базисных измерений (когда меряют расстояние). Автор упоминает укладывание восьми 30-футовых вех на лед. Но расчищали снег или нет, на штативы клали вехи или нет - не написано. Да и вообще, 30-футовая веха - это 9-метровая балка. Как ее перевозить, изготавливать и укладывать на снег - не очень понятно. Для сравнения - Годен и Буге на экваторе пользовались 2-футовыми (примерно 60 см) вехами и довольно подробно описывают, как их стыковали и укладывали на штативы или колышки.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cem\u003EСпойлер: это все описано у \u003C\u002Fem\u003E\u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=P5B6G8IIWdAC&amp;num=15&amp;redir_esc=y\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cem\u003Eаббата Утье\u003C\u002Fem\u003E\u003C\u002Fa\u003E\u003Cem\u003E, но его отчеты выйдут десять лет спустя.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cdiv class=\"tm-iframe_temp\" data-src=\"https:\u002F\u002Fembedd.srv.habr.com\u002Fiframe\u002F62288ebd036a421272cd562c\" data-style=\"\" id=\"62288ebd036a421272cd562c\" width=\"\"\u003E\u003C\u002Fdiv\u003E\u003Cp\u003E\u003Cem\u003EУборка снега так, как это делала Арктическая экспедиция.\u003C\u002Fem\u003E \u003C\u002Fp\u003E\u003Cp\u003EИ, если вопросы возникают у меня, копающей эту историю именно ради геройства и скандалов, то астрономическое сообщество Парижа просто не могло пройти мимо опущенных деталей. Тем более, что Кассини II и его ученики считали Мопертюи выскочкой без какого-либо опыта. И вот тут этот выскочка придумал очень ловкий ход: он вообще мало приводит обработки измерений. В первых редакциях его книги имелась оговорка о том, что пытливый читатель может сам проверить результаты, повторив вычисления самостоятельно. А сами измерения углов и широт: вот они, на страницах ниже. Для удобства приведены самые “согласующиеся”, чтобы не перегружать читателя лишними цифрами,\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EВозражения Кассини\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EДля династии Кассини вся шумиха вокруг “Фигуры Земли” была крайне неприятна. Семья (если считать совместную с Пикаром работу) почти сто лет мерила Парижский меридиан. Посвятила себя и своих сыновей геодезии. Положила жизнь на алтарь науки. А тут пришел новичок-математик, за месяц ознакомился с приборами и уехал на север, где, как он утверждает, взял точнейшие наблюдения, да еще и упрекает их, Кассини, колоссальные наработки в погрешностях. Это, может быть, отчасти справедливо. Потому что сто лет назад приборы и были не те и точности тоже. Но мсье Мопертюи строит свою риторику так агрессивно, что согласиться с ним в одном - значит уничтожить свою репутацию полностью. Заметим, в 18 веке приличные люди не опускались до прямых нападок, и самые жаркие споры приобретали вид пространных рассуждений.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fee3\u002Fb4f\u002F420\u002Fee3b4f420f0a9448e4b18991c60d195a.jpg\" alt=\"Парижский меридиан, которым занимались Кассини\" title=\"Парижский меридиан, которым занимались Кассини\" width=\"800\" height=\"748\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fee3\u002Fb4f\u002F420\u002Fee3b4f420f0a9448e4b18991c60d195a.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EПарижский меридиан, которым занимались Кассини\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВот и Жак Кассини (он же Кассини II, пятидесятилетний директор Парижской обсерватории) выпускает работу, где рассуждает о том, что измерения - это то, что мы видим, а не то, что мы хотим наблюдать согласно нашим аналитическим выкладкам. Также автор сомневается в корректности результатов измерения широты зенитным сектором (а этот новомодный прибор Грэхема был главным козырем Мопертюи), поскольку с ним не было выполнено двух приемов измерений: прямого и с поворотом сектора на 180 градусов (\u003Cem\u003Eв современной геодезии ближайший аналог - это измерение угла при круге право и круге лево тахеометра)\u003C\u002Fem\u003E. Вдобавок Мопертюи, к сожалению, не приводит удовлетворительного описания поверок инструмента, принятых в астрономической практике. Иными словами, трудно поверить, что математики впервые использовали новейший астрономический прибор по собственной методике и сразу получили желаемый и точный результат. Мопертюи и Клеро защищаются (это уже цитата из личной переписки):\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\"трудно поверить, что шесть астрономов и математиков не могли бы выполнить такую простую операцию, как измерение широты”.\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EБорьба крепчает, переходит в партер (точнее, в газеты и салоны) и начинает отдавать душком неприкрытой вражды. К лету 1738 года книга Мопертюи, вроде бы, и стала бестселлером, вроде бы, король доволен результатом экспедиции, а публика считает Мопертюи “попрателем миров и Кассини” с легкой руки Вольтера, но эта победа кажется зыбкой. Астрономическое сообщество находит в его работе слишком много спорных моментов и недочетов. Сам ученый жалуется на ситуацию: \u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\"я лишен того превосходства, на которое рассчитывал, мои результаты не будут приняты без результатов Перуанской миссии, которая, быть может, никогда не вернется\".\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EПочему тут он вообще помянул Перуанскую миссию? Почему судьба Мопертюи, Цельсия и Клеро должна зависеть от этих, затерявшихся в джунглях астрономов (\u003Cem\u003Eнапомню, что в 1738 году они только мерили свои 33 треугольника в высокогорье и сражались с высотной болезнью, холодом и лихорадкой\u003C\u002Fem\u003E)?\u003C\u002Fp\u003E\u003Cp\u003EДело в том, что экспедиция Мопертюи однозначно доказала \"сплюснутость\" планеты. Однако с тем, какова величина этой сплюснутости, была проблема. Экспедицию корона оплачивала не для удовлетворения абстрактного любопытства, а с целью уточнения размеров и формы Земли. Как мы помним, бюджет на обе градусные экспедиции выделял морской министр Морепа и ему было крайне важно, чтобы французские штурманы хорошо вычисляли расстояния (для чего, собственно, размеры и сжатие Земли было важно).\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EСравнение Арктической миссии с Парижскими измерениями Кассини дало сжатие Земли в \u003Cstrong\u003E1\u002F178.\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМежду тем как число, которое предсказывал Ньютон, было: \u003Cstrong\u003E1\u002F230.\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EАлексис Клеро (который очень активно взялся за геометрию Земли) предположит величину сжатия между \u003Cstrong\u003E1\u002F230 и 1\u002F500\u003C\u002Fstrong\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EКак бы то ни было, сжатие, полученное по результатам Арктической миссии и Парижа, не бьется ни с одним из ожидаемых чисел. Стало быть, понять ошибался ли Мопертюи, можно будет только тогда, когда вернется Перуанская Миссия. А пока - выводы делать рано.\u003C\u002Fp\u003E\u003Cp\u003EКак бы ни было ожидание 1738-1739 года мучительно для Мопертюи, публику он развлекал исправно, подкидывая разнообразные инфоповоды вспомнить о своем путешествии на Север. В начале 1739 года в Париже появляются лапландские девицы и сразу привносят в светскую жизнь приятное возбуждение. \u003C\u002Fp\u003E\u003Cp\u003EПричем слухи ползут из замка Сире, где у Вольтера и Эмили дю Шатле гостят, собственно, Мопертюи и еще одна известная дама: Франсуаза де Граффиньи (писательница, сплетница и держательница салонов). Граффиньи пишет:\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E“Секретарь мсье Клеро, один из северных путешественников, полюбил лапландку, обещал на ней жениться, и уехал, не сдержав обещания. Девушка приехала в Париж с сестрой - искать своего возлюбленного. Они остановились дома у мсье Клеро, который укрывает их, не смотря на то что он сам весьма небогат. Жених отказывается жениться, а девушка - возвращаться. Весь Париж ходит к Клеро посмотреть на Лапландок”.\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EСам Мопертюи в личной переписке придерживается другой версии:\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E\"Наш художник поклялся девушке, что женится на ней и что он очень богат и сделает ее знатной дамой. И вот, эта несчастная приехала за ним, а с ней ее сестра, обе рассчитывали на его вымышленные богатства. А художник не только беден, как церковная мышь, но и женат на другой. Бедная девочка была так ранена этим, что опасно заболела. Мы все очень тронуты ее несчастьем и надеемся, что двор может позаботиться о ней, если она отречется от лютеранской веры. Тем временем, вся компания, ездившая в Арктику, старается финансово поддержать бедняжек. Пока что мы поместили девушек в монастырь, чтобы те вкусили прелести святой веры. Я же все еще нахожусь под впечатлением от того, как смело девушка пустилась в путешествие с целью выйти замуж за художника, хотя ничего о нем не знала, кроме того, что он ей наобещал. Нам крайне неловко из-за всего этого\".\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EКак видите, желание любой ценой попасть в Париж не вчера придумали. И даже не позавчера. Впрочем, для смелых девиц эта история закончилась не очень-то славно. За переход в католицизм им выхлопотали небольшое содержание (о чем Мопертюи просит выше). Одна из девушек, говорят, повредилась умом и отправилась в монастырь, а другая - в компаньонки к графине д’Агильон (не той, которая варила бульон, правда), писательнице и подруге Мопертюи. Потом она вышла замуж за мушкетера, но неудачно. Муж бил ее и заточил в монастырь, остаток жизни женщина провела, пытаясь развестись с супругом. Вот такая вот бытовуха для романтических лапландок.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe0d\u002F4d3\u002F3b6\u002Fe0d4d33b6520084f53200680a14126f5.jpg\" alt=\"Аббатство, в которое удалилась Кристина Планстрем. Википедия.\" title=\"Аббатство, в которое удалилась Кристина Планстрем. Википедия.\" width=\"1280\" height=\"834\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe0d\u002F4d3\u002F3b6\u002Fe0d4d33b6520084f53200680a14126f5.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EАббатство, в которое удалилась Кристина Планстрем. Википедия.\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EЛетом 1739 года Мопертюи предпринимает попытку на деле доказать верность своей методики измерений и, вместе с Кассини-Тюри, отравляется на измерения парижского меридиана. Ранее в Академию Наук поступило письмо от Джорджа Грэхема, где тот признает, что для точного определения широты его сектором два приема совсем необязательно. Однако какая-то бумажка из-за Ла-Манша Академию не убедила. В результате летних упражнений, Кассини-Тюри (это Кассини III, еще молодой астроном, дружески к математику расположенный) признает, что результаты Мопертюи вполне релевантны, а измерения Парижского меридиана требуют введения поправок. Казалось бы, это победа. Но не полная.\u003C\u002Fp\u003E\u003Cp\u003EМопертюи проводит время в Фонтебло, каждый день общается с министром Морепа, покоряет знатных дам и развлекает вельмож. Графиня Сен Пьер пишет: \u003Cem\u003E\"Вы невероятно в моде при дворе, какая удивительная победа для математика\"\u003C\u002Fem\u003E. Морепа организует для него специальную почетную должность, позволяющую получать доход в 3000 ливров. Казалось бы - больше нечего желать. Но… и тут я процитирую всю ту же сплетницу - мадам Граффиньи:\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E“Он утверждает, что желал почета, славы и денег. У него все это есть. Теперь он обедает в Фонтебло с королем. Нам остается надеяться, что он удовлетворится этим, хотя я полагаю, что это невозможно. Есть люди, которые постоянно твердят себе, что они несчастны и изводят себя.\" \u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe47\u002Fb67\u002Fc92\u002Fe47b67c926e84c03ed04c6fe4aa8a3ee.jpg\" alt=\"Jean-François DE TROY, Un déjeuner de chasse, 1737 © 2005 RMN \u002F Hervé Lewandowski\" title=\"Jean-François DE TROY, Un déjeuner de chasse, 1737 © 2005 RMN \u002F Hervé Lewandowski\" width=\"547\" height=\"768\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe47\u002Fb67\u002Fc92\u002Fe47b67c926e84c03ed04c6fe4aa8a3ee.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EJean-François DE TROY, Un déjeuner de chasse, 1737 © 2005 RMN \u002F Hervé Lewandowski\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E Мопертюи действительно недоволен. Он оскорблен смехотворно низкой пенсией в 1200 ливров, которую ему выделяет Академия Наук за проделанную работу. Вопрос с величиной “сжатия” Земли подвис: на дворе 1740-й год, а от Перуанской экспедиции нет новостей. Клеро пишет свою основную работу: “Теория Фигуры Земли, основанная на началах гидростатики\". Но до публикации этой работы еще три года.\u003C\u002Fp\u003E\u003Cp\u003EА Мопертюи, чтобы развлечь скучающую публику, придумывает мистификацию.\u003C\u002Fp\u003E\u003Cp\u003E“Независимое исследование работ по теме Фигуры Земли” было опубликовано анонимно в несуществующем городе Ольденбурге в, якобы, 1738 году (на самом деле в 1740). В те времена подобные игры были в порядке вещей. Та же мадам де Граффиньи издавала свои романы “В Нужде” (а не в Париже). И тут же, на эту новую книжку неизвестного автора сыплются хвалебные отзывы.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Facd\u002Fcc6\u002Fae1\u002Facdcc6ae1088ddc6a5fd1ee050841ede.jpg\" width=\"1080\" height=\"1080\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Facd\u002Fcc6\u002Fae1\u002Facdcc6ae1088ddc6a5fd1ee050841ede.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cem\u003EМонтескье: “Интересная книжка у нас тут вышла. Ее автор кажется сдержанным и разумным человеком, не позволяющем себе глупостей”.\u003C\u002Fem\u003E Работа наделала шума в Париже. Дамы, едва умывшись, не только гадают, кто же автор, но и желают узнать, какой же формы Земля, которую топчут их ножки. Сам Мопертюи, поддерживая тайну, в письме к Бернулли-младшему говорит о том, что “эту книгу приписывают то Кассини, то мне, то Фонтенелю, то Мерану. И, главное, никто так не может понять, она написана против Кассини или в их поддержку”.\u003C\u002Fp\u003E\u003Cp\u003EВ общем, типичные медиа-технологии XVIII века. В книге пять страниц посвящено экспедиции в Лапландию и более тридцати - работе Пикара и Кассини. Обычные читатели не вполне понимают, что же имел в виду очень умный и рассудительный автор, в прессе появляются фейковые письма от (якобы) разных ученых в духе: “Фу, какая дурная книжка, она порочит честных Кассини!”. И тут же находятся те, кто им возражает.\u003C\u002Fp\u003E\u003Cp\u003EТолько Вольтер раскусил автора. Он пишет:\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E“В этой книге столько всего, что оправдывает Кассини, но ничего, что указывает на их правоту. Такое могли написать только Вы”.\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EКогда инкогнито раскрывается, Мопертюи уже открыто, публично и очень жестоко поднимает Жака Кассини на смех. В ход идут явно враждебные высказывания: “Чтобы сделать вывод о том, что Земля вытянутая, Кассини должен был насажать простейших арифметических ошибок вроде два плюс два - равно пять”. Это уже некрасиво. И Кассини-Тюри, который раньше выступал в дружелюбном тоне, и научное сообщество, отворачиваются от зарвавшегося ученого. Но Мопертюи уже не остановить, не зря Лакондамин упрекал его в высокомерии: он позирует для портрета, на котором в шапке и шубе, среди оленей попирает земной глобус, а потом бросает все и уезжает в Берлин. Там его любят и ценят. Там восхищающийся им прусский король Фридрих 2й, который возьмет его с собой на войну, да так неудачно, что ученый попадет в австрийский плен (правда, ненадолго). C этого момента история борьбы Мопертюи за сплюснутую Землю заканчивается. С 1740-го года он наведывается в Париж только по случаю.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЧто же происходит с результатами Градусных экспедиций?\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EВ 1744 году в Париж возвращаются Пьер Буге и Лакондамин, которые по отдельности привозят результаты экваториальной миссии. Сравнение Градусных измерений на экваторе с арктическими даст предсказанную Ньютоном величину сжатия в 1\u002F230. Сравнение экватора с французскими результатами - 1\u002F300.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cem\u003EСпойлер: она-то на самом деле близка к той, которой мы оперируем сейчас.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fff1\u002Fb36\u002F9c3\u002Fff1b369c352c20927310fe550f191556.jpg\" width=\"913\" height=\"547\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fff1\u002Fb36\u002F9c3\u002Fff1b369c352c20927310fe550f191556.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EНо для современников Лапландская и Арктическая миссия однозначно подтвердили результаты друг друга и предположения Ньютона. А вот Парижский меридиан себя немного дискредитировал. Стало ясно, что нужно не сводить воедино триангуляцию, которая выполнялась на разных широтах на протяжении последних ста лет, а единым блоком измерить все заново. Чем и занялись сначала Кассини-Тюри, а потом его сын - граф Кассини, а после - Мешен с Лежандром (привет, еще одно имя из учебника математики). Кстати, граф Кассини (Кассини IV) предложил объединить измерения Парижского меридиана с Гринвичским: а это огромный проект, занявший несколько десятилетий.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F26d\u002F274\u002F602\u002F26d2746021d057e5df9739f3e97e80f1.jpg\" width=\"1080\" height=\"1080\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F26d\u002F274\u002F602\u002F26d2746021d057e5df9739f3e97e80f1.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EНо это будет после - во второй половине XVIII века. А сейчас: повторение и уточнение французских измерений, наравне с доказательством того, что в споре декартистов и ньютонианцев правы последние - вот результаты двух Великих Градусных экспедиций. Первых международных.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЧто же случится с их участниками дальше?\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EМы уже говорили, что Лакондамин и Буге будут трудиться порознь. Один - на ниве популяризации науки, а другой - на ниве гидрографии. Положение Буге сильно ухудшится с 1749 года, когда граф Морепа проиграет войну влияние на Людовика XV одной из его фавориток. И будет выслан из Парижа.\u003C\u002Fp\u003E\u003Cp\u003EМопертюи в 1744-м году (как раз в год возвращения Лакондамина и Буге) представит во Французской Академии свой труд, в котором будет формулировать принцип наименьшего действия:\u003C\u002Fp\u003E\u003Cblockquote\u003E\u003Cp\u003E«Когда в природе происходит некоторое изменение, Количество Действия, необходимое для этого изменения, является наименьшим возможным».\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003EМатематик уйдет от геодезии, в которой ему не удалось добиться быстрого и активного успеха, в сторону физики и философии. Через год будет рассуждать о природе людей и животных: это философские рассуждения о чем-то, похожем на эволюционную теорию. А в 1746-м и дальше - снова вернется к рассуждению о количестве действия и того, как стройно устроен мир. Наверняка вам встречалось такое мнение: “Посмотрите, как стройно и славно устроен наш мир? Никакая природа и случайность не могли привести к этому. Только высшее существо могло такое сотворить”. Похоже, Мопертюи был первым пророком этой идеи. Разумеется, против него тут же ополчились противники религии во главе с Вольтером.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F743\u002Ffc9\u002Fe6f\u002F743fc9e6f898e2903f53f4c2bbd2274a.jpg\" width=\"1080\" height=\"1080\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F743\u002Ffc9\u002Fe6f\u002F743fc9e6f898e2903f53f4c2bbd2274a.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EПоследний напишет «Диатрибу доктора Акакия» (Мопюртезиану), еще один свой бестселлер, где будет едко троллить бывшего друга, замечая, что целесообразность устройства мира особенно проявилась в том, что Бог послал Мопертюи Эйлера, который и дал принципу наименьшего действия осмысленное математическое выражение, в то время как сам Мопертюи «ничего не смог понять». Увы, Вольтер Мопертюи затроллил. Звезда математика, после разгромной “диатрибы”, начнет клониться к закату. Он умрет в Базеле, в присутствии двух монахов в возрасте 61 года.\u003C\u002Fp\u003E\u003Cp\u003EЛюбопытный факт: Фридрих Великий, большой почитатель математика, посвятит два ему стихотворения, которые у нас известны в переводе Державина. Из-за трудностей перевода с французского, математик-Мопертюи превратится в «Мовтерпия».\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЧто же касается остальных:\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EАлексис Клеро станет астрономом-теоретиком и механиком. Он аналитически определит соотношение между силой тяжести и размерами Земли, что заложит основы гравиметрии, внесет огромный вклад в теорию движения небесных тел, и, чуть старше пятидесяти, закончит свои дни во Франции в окружении товарищей, учеников и хорошеньких женщин.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F80e\u002F349\u002F5cf\u002F80e3495cfe6e8a9aba74a06d244c45d9.jpeg\" alt=\"Перевод Клеро на русский, сделанный только в середине 20 века.\" title=\"Перевод Клеро на русский, сделанный только в середине 20 века.\" width=\"4000\" height=\"5200\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F80e\u002F349\u002F5cf\u002F80e3495cfe6e8a9aba74a06d244c45d9.jpeg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003EПеревод Клеро на русский, сделанный только в середине 20 века.\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EАндреас Цельсий недолго будет работать в Уппсальской обсерватории. В 1744 году (тогда Перуанская экспедиция вернется в Париж) он умрет от туберкулеза. Наверное, именно поэтому мы не знаем его как астронома, хотя небо и измерения интересовали его куда больше, чем температура.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЗаключение\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EВеликие градусные экспедиции: Экваториальная и Арктическая, стали первыми в своем роде, но потянули за собой целую цепочку измерений длины дуги меридиана: Парижского, Гринвичского. В XIX веке к ним присоединятся дуга Струве (самая длинная из градусных измерений) и дуга полковника Эвереста (того самого, чьим именем названа гора).\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F56d\u002F9c3\u002F3d3\u002F56d9c33d33f8f980625459d7029f3005.jpg\" width=\"1080\" height=\"1080\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F56d\u002F9c3\u002F3d3\u002F56d9c33d33f8f980625459d7029f3005.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003E\u003Cstrong\u003EИсточники к этому циклу:\u003C\u002Fstrong\u003E \u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЭкваториальная экспедиция:\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003E1. \u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=p1IVAAAAQAAJ&amp;hl=ru&amp;num=26&amp;redir_esc=y\" rel=\"noopener noreferrer nofollow\"\u003ELa figure de la terre, déterminée par les observations de messieurs Bouguer &amp; de La Condamine, P.Bouger, 1749\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003E2.\u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=oyqgAAAAMAAJ&amp;hl=ru&amp;num=26&amp;redir_esc=y\" rel=\"noopener noreferrer nofollow\"\u003EMesure des trois premiers degrés du méridien dans l'hémisphere austral, Ch.M. de la Condamine\u003C\u002Fa\u003E   \u003C\u002Fp\u003E\u003Cp\u003E3\u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=CYblM0yfJoAC&amp;hl=ru&amp;num=26&amp;redir_esc=y\" rel=\"noopener noreferrer nofollow\"\u003E. Observaciones astronomicas y phisicas hechas de orden de S. M. en los Reynos del Peru, J. Juan, A. de Ulloa, 1773\u003C\u002Fa\u003E \u003C\u002Fp\u003E\u003Cp\u003E4. \u003Ca href=\"http:\u002F\u002Fwww.cervantesvirtual.com\u002Fobra\u002Frelacion-historica-del-viage-a-la-america-meridional-hecho-de-orden-de-s-mag-para-medir-algunos-grados-de-meridiano-terrestre-y-venir-por-ellos-en-conocimiento-de-la-verdadera-figura-y-magnitud-de-la-tierra-con-otras-observaciones-astronomicas-y-phisica-5\" rel=\"noopener noreferrer nofollow\"\u003ERelacion historica del viaje a la America Meridional hecho de orden de S. Mag. para medir algunos grados de meridiano terrestre y venir por ellos en conocimiento de la verdadera figura y magnitud de la tierra, con otras observaciones astronomicas y phisicas \u002F por D. Jorge Juan y D. Antonio de Ulloa, 1743, в 2 томах.\u003C\u002Fa\u003E  \u003C\u002Fp\u003E\u003Cp\u003E5. \u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=CdBQAAAAcAAJ&amp;hl=ru&amp;num=26&amp;redir_esc=y\" rel=\"noopener noreferrer nofollow\"\u003ENoticias secretas de América,J.Juan y A. de Ulloa, 1735-1826.\u003C\u002Fa\u003E  \u003C\u002Fp\u003E\u003Cp\u003E6. \u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=J7wWAAAAQAAJ&amp;hl=ru&amp;num=26&amp;redir_esc=y\" rel=\"noopener noreferrer nofollow\"\u003EJournal du voyage fait par ordre du roi, a l'Équateur, servant d'introduction historique a la Mesure des trois premiers degrés du méridien, Ch.M. de la Condamine, 1751\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EАрктическая экспедиция:\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=gb1aAAAAcAAJ&amp;pg=PR10&amp;dq=maupertuis+terre&amp;hl=ru&amp;sa=X&amp;ved=0ahUKEwifweLBsNzjAhXRw8QBHenNB3wQ6AEIKTAA#v=onepage&amp;q=maupertuis%20terre&amp;f=false\" rel=\"noopener noreferrer nofollow\"\u003ELa figure de la terre déterminée par les observations de Maupertuis, Clairaut e t.c., P.M.de Maupertuis, 1738\u003C\u002Fa\u003E. Та же книга в англоязычном издании: \u003Ca href=\"https:\u002F\u002Farchive.org\u002Fdetails\u002Fb30537782_0001\u002Fmode\u002F1up\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Farchive.org\u002Fdetails\u002Fb30537782_0001\u002Fmode\u002F1up\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fbooks.google.ru\u002Fbooks?id=P5B6G8IIWdAC&amp;num=15&amp;redir_esc=y\" rel=\"noopener noreferrer nofollow\"\u003EJournal d'un voyage au nord, en 1736-1737, Reginald Outhier, 1754\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003E\u003Cstrong\u003EКниги и исследования:\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EЭкваториальная экспедиция\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EMeasure of the Earth, Larrie D. Ferreiro, 2011. \u003Cem\u003EЭто самая основательная и интересная из работ, что мне встречались по перуанской экспедиции. На английском языке, доступна в Google книгах и на Амазоне. Автор - историк, инженер-судостроитель, за другую свою работу по истории навигации номинирован на Пульцеровскую премию. Очень подробно, со ссылками на первоисточниками, по которым потом можно пройтись.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EThe Quest for the True Figure of the Earth: Ideas and Expeditions in Four Centuries of Geodesy Science, Technology and Culture, 1700-1945, Michael Rand Hoare, Routledge, 2017. \u003Cem\u003EКороче, более сжато, больше времени уделяется обеим экспедициям сразу, но там есть некоторые неизвестные мне ранее подробности о жизни криольцев в Перу.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"http:\u002F\u002Fwww.cervantesvirtual.com\u002Fobra\u002Fla-geometrizacion-de-la-tierra-observaciones-y-resultados-de-la-expedicion-geodesica-hispano-francesa-al-virreinato-del-peru-1735-1744\u002F\" rel=\"noopener noreferrer nofollow\"\u003ELa geometrización de la tierra (1735-1744), Antonio Lafuente, A.J. Delgado, 1984.\u003C\u002Fa\u003E  \u003Cem\u003EОсновательная работы испанских ученых 1980-х, которые проанализировали измерения и результаты перуанской экспедиции.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E“Bouguer Redeemed: The Successful 1737–1740  Gravity Experiments on Pichincha and Chimborazo,”John R. Smallwood, Earth Sciences History 29, no. 1 (2010): 1–25. \u003Cem\u003EСтатья-исследование про повторение эксперимента Буге и обсуждение результатов.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003E\u003Cstrong\u003EАрктическая экспедиция\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003EThe Man Who Flattened the Earth. Mary Terrall, 2006. \u003Cem\u003EИмеется на Google книгах. Книга посвящена Мопертюи, имеются чудесные цитаты из его переписки с Клеро, дю Шатле, Вольтером. Неиссякаемый источник вдохновения\u003C\u002Fem\u003E.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EOlivier Courcelle: исследователь жизни Клеро. На его сайте приведена жизнь Клеро изо дня в день. \u003Ca href=\"http:\u002F\u002Fwww.clairaut.com\u002F\" rel=\"noopener noreferrer nofollow\"\u003Ehttp:\u002F\u002Fwww.clairaut.com\u002F\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EOsmo Pekonen: финский математик, посвятивший жизнь исследованию и увековечению Арктической экспедиции. Кроме книг, у него чудесный информативный сайт: \u003Ca href=\"https:\u002F\u002Fmaupertuis.fi\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fmaupertuis.fi\u003C\u002Fa\u003E \u002F\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003Cp\u003E\u003Cstrong\u003EПредыдущие части цикла можно найти тут:\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Col\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F595445\u002F\" rel=\"noopener noreferrer nofollow\"\u003EО форме Земли: тыква или дыня?\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F595985\u002F\" rel=\"noopener noreferrer nofollow\"\u003EКак набрать команду к экватору?\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F597175\u002F\" rel=\"noopener noreferrer nofollow\"\u003EПланирование экспедиции.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F599955\u002F\" rel=\"noopener noreferrer nofollow\"\u003EПриборы и инструменты.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F646101\u002F\" rel=\"noopener noreferrer nofollow\"\u003EДорога на Запад.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F647749\u002F\" rel=\"noopener noreferrer nofollow\"\u003EБазисные измерения и политика.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F648899\u002F\" rel=\"noopener noreferrer nofollow\"\u003EТриангуляция и коррида.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F650365\u002F\" rel=\"noopener noreferrer nofollow\"\u003EО звездном непостоянстве.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F651417\u002F\" rel=\"noopener noreferrer nofollow\"\u003EНельзя просто так взять и вернуться из экспедиции.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F653019\u002F\" rel=\"noopener noreferrer nofollow\"\u003EАрктическая градусная экспедиция. Начало.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F654043\u002F\" rel=\"noopener noreferrer nofollow\"\u003EАрктическая экспедиция: на Севере диком.\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EО мере успеха. Градусные экспедиции: завершение. \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Fol\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"геодезия"},{"titleHtml":"геодезия и отвага"},{"titleHtml":"история науки"},{"titleHtml":"история астрономии"},{"titleHtml":"история геодезии"},{"titleHtml":"градусные измерения"},{"titleHtml":"18 век"},{"titleHtml":"франция"},{"titleHtml":"астрономия"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8a9\u002F92b\u002F4b6\u002F8a992b4b6d5e823bccdb08e7b3c14030.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8a9\u002F92b\u002F4b6\u002F8a992b4b6d5e823bccdb08e7b3c14030.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654811\\\u002F\"},\"headline\":\"О мере успеха. Градусные экспедиции: завершение\",\"datePublished\":\"2022-03-09T14:45:42+03:00\",\"dateModified\":\"2022-03-09T14:45:42+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Елена Журавлева\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Это завершение рассказа о Великих градусных экспедициях XVIII века, которые должны были определить, сплюснутая Земля или вытянутая. Публикация работУже в августе...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654811\\\u002F#post-content-body\",\"about\":[\"h_popular_science\",\"h_astronomy\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654811\\\u002Fee4fab8fb212e47f05833691da3e7439\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F8a9\\\u002F92b\\\u002F4b6\\\u002F8a992b4b6d5e823bccdb08e7b3c14030.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F9e8\\\u002F6bc\\\u002F8a6\\\u002F9e86bc8a6d8e8b47034f2de33ee2e1da.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fee3\\\u002Fb4f\\\u002F420\\\u002Fee3b4f420f0a9448e4b18991c60d195a.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fe0d\\\u002F4d3\\\u002F3b6\\\u002Fe0d4d33b6520084f53200680a14126f5.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fe47\\\u002Fb67\\\u002Fc92\\\u002Fe47b67c926e84c03ed04c6fe4aa8a3ee.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Facd\\\u002Fcc6\\\u002Fae1\\\u002Facdcc6ae1088ddc6a5fd1ee050841ede.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fff1\\\u002Fb36\\\u002F9c3\\\u002Fff1b369c352c20927310fe550f191556.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F26d\\\u002F274\\\u002F602\\\u002F26d2746021d057e5df9739f3e97e80f1.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F743\\\u002Ffc9\\\u002Fe6f\\\u002F743fc9e6f898e2903f53f4c2bbd2274a.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F80e\\\u002F349\\\u002F5cf\\\u002F80e3495cfe6e8a9aba74a06d244c45d9.jpeg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F56d\\\u002F9c3\\\u002F3d3\\\u002F56d9c33d33f8f980625459d7029f3005.jpg\"]}","metaDescription":"Это завершение рассказа о Великих градусных экспедициях XVIII века, которые должны были определить, сплюснутая Земля или вытянутая. Публикация работУже в августе 1737 года Лапландская экспедиция...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{"654811":{"refs":{"24149537":{"id":"24149537","parentId":null,"level":0,"timePublished":"2022-03-09T17:04:21+00:00","timeChanged":null,"isSuspended":false,"score":1,"votesCount":1,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EДаже жаль, что серия статей закончилась. :)\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"1662955","alias":"Astroscope","fullname":null,"avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F9f5\u002Fcbe\u002F899\u002F9f5cbe899c7449b201aad698bcdfce62.jpg","speciality":"Радиолюбитель"},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":["24149797"],"vote":{"value":null,"isCanVote":false}},"24149681":{"id":"24149681","parentId":null,"level":0,"timePublished":"2022-03-09T18:12:31+00:00","timeChanged":"2022-03-09T18:12:55+00:00","isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EКласс. Если есть — расскажите что-нибудь ещё.\u003Cbr\u002F\u003E\r\nНе было ли в гравиметрических измерениях (в душных и ненадёжных подводных жестянках) чего-то столь же занимательного? Или 19-20 века уже не требовали такой самоотверженности и не так привлекали внимание публики?\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":1,"author":{"id":"269411","alias":"VT100","fullname":null,"avatarUrl":null,"speciality":"Пользователь"},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":["24149803"],"vote":{"value":null,"isCanVote":false}},"24149797":{"id":"24149797","parentId":"24149537","level":1,"timePublished":"2022-03-09T19:20:42+00:00","timeChanged":null,"isSuspended":false,"score":1,"votesCount":1,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EСпасибо, что читали. Это значит, все не зря.  Я уползаю теперь искать новые истории. Пока ме

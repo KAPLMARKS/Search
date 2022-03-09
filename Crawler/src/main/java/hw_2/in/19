@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Как айтишнику получить визу зарубеж на основании удаленной работы в 2022 году / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/654877\/"},"headline":"Как айтишнику получить визу зарубеж на основании удаленной работы в 2022 году","datePublished":"2022-03-09T21:09:13+03:00","dateModified":"2022-03-09T21:28:01+03:00","author":{"@type":"Person","name":"Artem G"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах поя...","url":"https:\/\/habr.com\/ru\/post\/654877\/#post-content-body","about":["h_freelance","h_it_immigration","h_remote","f_management"],"image":["https:\/\/habr.com\/share\/publication\/654877\/b3de007e58596208bcb7da56f3e7ee55\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/bce\/d97\/13d\/bced9713da14a8e1f93c252df649d735.png","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/2b8\/0dc\/161\/2b80dc1613fdfda543a050fb43b1d3f5.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/47c\/b51\/b2a\/47cb51b2a351313e7d0206ed6fcd86f0.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/b1c\/a12\/221\/b1ca122218bb6c78db8e955035b0e910.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/8b1\/faa\/a86\/8b1faaa86fb5e00de4065952f6a653f1.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/370\/02a\/932\/37002a932fc05cd1fd05fe941a6056cc.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/265\/8bf\/68b\/2658bf68b1dbeb5bdb87f60a4bcd15e9.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/a74\/af2\/5bb\/a74af25bb5183514f142e29a205f3c07.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/0eb\/2d6\/cc5\/0eb2d6cc5329db12d697d171489b88c2.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/b94\/f09\/523\/b94f0952353043328ec9e5ddf4cceecb.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/968\/dc2\/c96\/968dc2c96c51b788fbc489f7694df7a2.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/7f6\/63d\/436\/7f663d436bb0a6020838526bf15a52cf.webp","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/854\/9ce\/8d5\/8549ce8d561222333e38e89f2ae28c2b.webp"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Как айтишнику получить визу зарубеж на основании удаленной работы в 2022 году" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="Как айтишнику получить визу зарубеж на основании удаленной работы в 2022 году" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="Как айтишнику получить визу зарубеж на основании удаленной работы в 2022 году" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/bce/d97/13d/bced9713da14a8e1f93c252df649d735.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/bce/d97/13d/bced9713da14a8e1f93c252df649d735.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/bce/d97/13d/bced9713da14a8e1f93c252df649d735.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/bce/d97/13d/bced9713da14a8e1f93c252df649d735.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/bce/d97/13d/bced9713da14a8e1f93c252df649d735.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="654877" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2022-03-09T18:09:13.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/654877/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="эмиграция, жизнь за рубежом, it-миграция, удаленка, визы, мигранты"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654877/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654877/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habrastorage.org/getpro/habr/upload_files/bce/d97/13d/bced9713da14a8e1f93c252df649d735.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" rel="amphtml" href="https://habr.com/ru/amp/post/654877/"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/f1ashag/" title="f1ashag" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <img alt="" height="24" src="//habrastorage.org/r/w32/getpro/habr/avatars/862/3a7/4e4/8623a74e45f1c61974d8ded49256fb67.png" width="24" class="tm-entity-image__pic">
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/f1ashag/" class="tm-user-info__username"> f1ashag </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T18:09:13.000Z" title="2022-03-09, 21:09">сегодня в 21:09</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>Как айтишнику получить визу зарубеж на основании удаленной работы в 2022 году</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/freelance/" class="tm-article-snippet__hubs-item-link"><span>Фриланс</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/it_immigration/" class="tm-article-snippet__hubs-item-link"><span>IT-эмиграция</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/remote/" class="tm-article-snippet__hubs-item-link"><span>Удалённая работа</span> <!----></a></span>
+                  </div> <!----> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-2">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/bce/d97/13d/bced9713da14a8e1f93c252df649d735.png" width="1595" height="818" data-src="https://habrastorage.org/getpro/habr/upload_files/bce/d97/13d/bced9713da14a8e1f93c252df649d735.png">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось на&nbsp;<em>всякий случай</em>&nbsp;иметь интересные варианты под рукой, поэтому я сохранял наиболее привлекательные программы в отдельный список вместе со всеми требованиями. Кажется сейчас самый подходящий момент, чтобы поделиться этой подборкой. Ниже представлены требования к оформлению виз для цифровых кочевников в разных странах и ссылками на подачу заявлений.</p>
+                     <h3>Эстония</h3>
+                     <p>Почему Эстония вообще может быть интересна? Вроде бы и Европа, а вроде бы и ничего особенного в плане туризма. Например, первый же загугленный список # вещей, которые нужно сделать в Эстонии, выглядит уж очень притянутым за уши.</p>
+                     <p>Тем не менее Эстония одна из передовых стран в ЕС в плане цифровизации общества. У них уже давно все бюрократические вопросы решаются онлайн, а проголосовать за президента можно, не выходя из дома.</p>
+                     <p>И тут для номада Эстония предоставляет две опции:</p>
+                     <p>1. Если хочешь пожить в Эстонии, потусить там годик-два, потратить свои кровные — велком в программу&nbsp;<a href="https://e-resident.gov.ee/nomadvisa/" rel="noopener noreferrer nofollow">Digital Nomad Visa</a>.</p>
+                     <p>По требованиям нужно лишь иметь работу вне Эстонии, правда заработок должен быть около&nbsp;3500€&nbsp;до вычета налогов. Также оплатить сборы 80-100€, пройти интервью и в течение 30 дней получить ответ.</p>
+                     <p>Надо понимать, что эта виза не вид на жительство, а лишь право на временное (продолжительное) пребывание в Эстонии — то есть по ЕС не поездить.</p>
+                     <p>2. Если в целом Эстония тебе не сдалась, но тебя привлекает открытие бизнеса в ЕС онлайн, без всякой бумажной волокиты, то тебе нужна&nbsp;<a href="https://e-resident.gov.ee/become-an-e-resident/" rel="noopener noreferrer nofollow">E-Residency</a>.</p>
+                     <p>Став е-резидентом Эстонии, ты как бы становишься резидентом их онлайн пространства. Ты можешь открыть компанию, банковский счет, проводить платежи, декларировать налоги и пр., не находясь физически в Эстонии.</p>
+                     <p>Чтобы податься на E-residency нужны</p>
+                     <ul>
+                      <li><p>Паспорт</p></li>
+                      <li><p>Мотивационное письмо</p></li>
+                      <li><p>Пара фоток</p></li>
+                      <li><p>Карта Visa или Mastercard</p></li>
+                      <li><p>Оплата взноса в размере 100-120€.</p></li>
+                     </ul>
+                     <p>Это всё конечно круто, но в плане перемещений этот статус не добавляет никаких бонусов — ты даже не можешь заехать в Эстонию с этой карточкой. Но открыть компанию в ЕС, сидя на горшке, звучит заманчиво! Дальше только остается понять — зачем.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/2b8/0dc/161/2b80dc1613fdfda543a050fb43b1d3f5.webp" alt="" title="" width="1999" height="1220">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Мексика</h3>
+                     <p>Итак, Мексика и диджитал номады. Мексике ведь тоже нужно как-то привлекать деньги в страну, тем более оттуда все уезжают на заработки в Америку.</p>
+                     <p>Но если вы работаете удаленно, зарабатываете не менее&nbsp;1700$&nbsp;или имеете на счету больше 27000$, то вам открывается возможность получить&nbsp;<a href="https://consulmex.sre.gob.mx/leamington/index.php/non-mexicans/visas/115-temporary-resident-visa" rel="noopener noreferrer nofollow">Temporary Resident Visa</a>&nbsp;и ловить латинский вайб&nbsp;4 года&nbsp;подряд!</p>
+                     <p>Да, россияне могут приезжать в Мексику по турвизе (или оформив электронное разрешение) на полгода и продлевать пребывание, делая визаран. И это логично: сначала приехать на разведку, сильно не заморачиваясь с документами, осмотреться и принять решение.</p>
+                     <p>А вот когда у вас появится желание обосноваться в Мексике надолго (например, чтобы сделать её своей базой и постепенно исследовать всю Латинскую Америку), то скорее всего вам захочется открыть счет в местном банке и купить машину. И вот здесь вам понадобится&nbsp;<a href="https://consulmex.sre.gob.mx/leamington/index.php/non-mexicans/visas/115-temporary-resident-visa" rel="noopener noreferrer nofollow">Temporary Resident Visa</a>, которая открывает эти возможности и дает право жить в Мексике до 4х лет.</p>
+                     <p>Для начала записываетесь на интервью в посольство Мексики, например, в Москве и приносите документы:</p>
+                     <ul>
+                      <li><p>Заполненную форму</p></li>
+                      <li><p>Паспорт</p></li>
+                      <li><p>Фото</p></li>
+                      <li><p>Страховка</p></li>
+                      <li><p>Доказательство наличия средств к существованию</p></li>
+                     </ul>
+                     <p>Затем платите сбор в размере 44$ и вам ставят визу в паспорт.</p>
+                     <p>И это еще не всё. Эта виза даёт только право один раз въехать в Мексику. После въезда вам нужно прийти в иммиграционный офис, показать все необходимые документы, пройти интервью и уже тогда получить карточку резидента.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/47c/b51/b2a/47cb51b2a351313e7d0206ed6fcd86f0.webp" alt="" title="" width="1200" height="800">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Барбадос</h3>
+                     <p>Когда-нибудь слышали про Барбадос? Какой-то пиратский остров на Карибах, бывшая британская колония? Сейчас это независимое государство и чтобы понять как выглядит Барбадос, стоит просто представить рекламу Баунти и вот оно.</p>
+                     <p>Барбадос в 2020 году организовал свою&nbsp;<a href="https://barbadoswelcomestamp.bb/" rel="noopener noreferrer nofollow">программу</a>&nbsp;привлечения номадов. Она конечно недешевая,&nbsp;3000$&nbsp;на семью, но и в целом жизнь там дорогая: ближайший ориентир это британские цены. Поэтому надо сразу рассчитывать свои силы и понимать потянешь ли такое приключение, чтобы не жить в палатке.</p>
+                     <p>Но заплатив эту сумму и предоставив всего лишь паспорт и несколько фото, через неделю ты получаешь визу на&nbsp;12 месяцев. Больше информации на официальном&nbsp;<a href="https://barbadoswelcomestamp.bb/" rel="noopener noreferrer nofollow">сайте</a>&nbsp;программы.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/b1c/a12/221/b1ca122218bb6c78db8e955035b0e910.webp" alt="" title="" width="1180" height="664">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Кюрасао</h3>
+                     <p>Есть такой маленький остров в Карибском бассейне, называется Кюрасао. Он входит в состав Королевства Нидерландов, но является самоуправляемым государством. Кстати ликер Блю Кюрасао как раз делается из цитрусового фрукта, который растёт на острове.</p>
+                     <p>Но тут не про коктейли. Кюрасао попадает в мой список nomad-friendly стран т.к. имеет специальную программу для цифровых кочевников&nbsp;<a href="https://athomeincuracao.com/remote-workers/" rel="noopener noreferrer nofollow">@HOME in Curaçao</a>!</p>
+                     <p>По требованиям всё очень легко:</p>
+                     <ul>
+                      <li><p>Заявление</p></li>
+                      <li><p>Сборы 294$</p></li>
+                      <li><p>Копия паспорта</p></li>
+                      <li><p>Пруфы удаленной работы</p></li>
+                      <li><p>Медстраховка</p></li>
+                     </ul>
+                     <p>Как я понял,&nbsp;нет строгих требованиях по сумме дохода, а время обработки заявки всего 2 недели.</p>
+                     <p>Программа даёт право находиться на острове в течение&nbsp;6 месяцев&nbsp;с возможностью продления на такой же срок. В это время можно спокойно выезжать и заезжать обратно.</p>
+                     <p>На сайте обещают, что на острове проведена инфраструктура по европейским стандартам, при этом Кюрасао обладает белоснежными пляжами, теплым морем и морскими черепахами.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/8b1/faa/a86/8b1faaa86fb5e00de4065952f6a653f1.webp" alt="" title="" width="1200" height="675">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Бермуды</h3>
+                     <p>Бермудские острова имеют программу для удаленных работников&nbsp;<a href="https://forms.gov.bm/work-from-bermuda/" rel="noopener noreferrer nofollow">Work From Bermuda Certificate</a>, которая подойдет любому, кто сможет обеспечить себе жизнь на этих островах.</p>
+                     <p>Чем там заняться подробнейше описано в их "<a href="https://forms.gov.bm/work-from-bermuda/" rel="noopener noreferrer nofollow">Приключенческом альманахе</a>". В целом, типичные активности для курортного островка, но на Бермудах. Бермудская столица Гамильтон выглядит довольно большим и оживленным городом — судя по картинкам там не придется скучать по цивилизации. Также есть старый город с британской колониальной архитектурой.</p>
+                     <p>Что по требованиям:</p>
+                     <ul>
+                      <li><p>Заполнить форму</p></li>
+                      <li><p>Оплатить сбор около 260$</p></li>
+                      <li><p>Отсутствие судимостей</p></li>
+                      <li><p>Страховка</p></li>
+                      <li><p>Рабочий контракт или регистрация бизнеса за пределами Бермуд</p></li>
+                      <li><p>Кругленькая сумма на счету или кругленький ежемесячный доход. Предположительно это около 30000$ или&nbsp;5000$, соответственно.</p></li>
+                     </ul>
+                     <p>Для вдохновения можно полазать по их рекламному&nbsp;<a href="https://www.gotobermuda.com/" rel="noopener noreferrer nofollow">сайту</a>, а подать заявку можно&nbsp;<a href="https://forms.gov.bm/work-from-bermuda/Apply" rel="noopener noreferrer nofollow">здесь</a>. Обработка заявки занимает 5 рабочих дней, а полученный сертификат позволяет жить на Бермудах&nbsp;целый год. В определенных случаях его можно даже продлить.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/370/02a/932/37002a932fc05cd1fd05fe941a6056cc.webp" alt="" title="" width="1200" height="528">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Хорватия</h3>
+                     <p>С 1-го января 2021 года Хорватия запустила программу ВНЖ для цифровых кочевников. Хоть многие СМИ и называют по новомодному Digital Nomad Visa, по факту это получение временной резиденции в Европе с очень приятными условиями и короткими сроками ожидания.</p>
+                     <p>Про что вообще Хорватия? Кристально чистое море, красивые городишки, приятные образованные люди, интересное расположение на Балканах между Австрией на севере и Грецией на юге.</p>
+                     <p>Виза выдается сроком на&nbsp;12 месяцев, подать на новую можно только через 6 месяцев после окончания предыдущей. Еще можно взять с собой семью, надо только приложить дополнительные документы о родстве. И еще одна плюшка заключается в том, что номадам не нужно будет платить подоходный налог в Хорватии за этот год.</p>
+                     <p>Подать заявление на визу можно 3 способами:</p>
+                     <ul>
+                      <li><p>обратиться в ближайшее консульство Хорватии в России</p></li>
+                      <li><p>если вы уже в Хорватии, то сходить в полицейский участок</p></li>
+                      <li><p>подать заявление онлайн</p></li>
+                     </ul>
+                     <p>Что потребуется, чтобы получить заветную карточку резидента:</p>
+                     <p>— заполненное заявление</p>
+                     <p>— пруфы, что вы работаете не на Хорватию</p>
+                     <p>— копия паспорта</p>
+                     <p>— свидетельство о несудимости</p>
+                     <p>— страховка на время пребывания</p>
+                     <p>— показать ежемесячный доход&nbsp;2700$&nbsp;или банковский счет с 32000$</p>
+                     <p>— адрес в Хорватии (можно временный в отеле)</p>
+                     <p>— свидетельство о браке для супруга или о рождении для детей</p>
+                     <p>После того как вы подали заявление, вас уведомляют об одобрении или отказе ВНЖ. Бывалые пишут, что это занимает около месяца, но факторов много. Если вас одобрили, то затем летите в Хорватию, там идете в полицию, регистрируетесь и через 3 недели забираете карточку.</p>
+                     <p><a href="https://mup.gov.hr/aliens-281621/stay-and-work/temporary-stay-of-digital-nomads/286833" rel="noopener noreferrer nofollow">Инфа о визе</a>&nbsp;на официальном сайте МВД Хорватии или можно сразу подать заявку&nbsp;<a href="https://digitalnomadscroatia.mup.hr/Pages/Zahtjev" rel="noopener noreferrer nofollow">здесь</a>.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/265/8bf/68b/2658bf68b1dbeb5bdb87f60a4bcd15e9.jpg" width="1200" height="800" data-src="https://habrastorage.org/getpro/habr/upload_files/265/8bf/68b/2658bf68b1dbeb5bdb87f60a4bcd15e9.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Мальта</h3>
+                     <p>Чтобы хоть как-то приблизится как зарплатной вилке российского удаленщика, появился мальтийский Nomad Residence Permit, который позволяет пребывать на Мальте до&nbsp;365 дней&nbsp;и свободно перемещаться по шенгену.</p>
+                     <p>Требуемый месячный доход равен&nbsp;2700$, но проверяется он с помощью выписки из банка за последние 3 месяца. К тому же в требованиях они сами указывают на то, что источниками дохода могут быть дивиденды, проценты с инвестиций, доход со сдачи недвижимости, активы и etc. Последние два пункта особенно дают понять, что в принципе неважно откуда у вас деньги — главное чтоб могли показать.</p>
+                     <p>По остальным требованиям стандартно:</p>
+                     <ul>
+                      <li><p>Работа/бизнес за пределами Мальты</p></li>
+                      <li><p>Сопроводительное письмо</p></li>
+                      <li><p>Паспорт</p></li>
+                      <li><p>Страховка</p></li>
+                      <li><p>Договор аренды</p></li>
+                      <li><p>Пройти бэкграунд чек</p></li>
+                      <li><p>Оплатить 300€ (+300€ за супруга)</p></li>
+                      <li><p>Подождать до 30 дней</p></li>
+                     </ul>
+                     <p>Заявка подается по email, ответ также получаете онлайн. После одобрения вам даётся национальная виза на полгода. По прилете на Мальту, вы можете прийти в Residency Malta Agency офис для завершения процесса получения Nomad Residence Permit. А можете не приходить, если вам хватает полугода и не нужен остальной шенген. А если и года мало, то можно продлить.</p>
+                     <p>Общая инфа и видео можно глянуть&nbsp;<a href="https://residencymalta.gov.mt/overview/" rel="noopener noreferrer nofollow">здесь</a>. FAQ можно найти&nbsp;<a href="https://residencymalta.gov.mt/wp-content/uploads/2021/07/Nomad-Residence-Permit-FAQs_v1.3.pdf" rel="noopener noreferrer nofollow">здесь</a>, а чек-лист по документам и сама форма заявки —&nbsp;<a href="https://residencymalta.gov.mt/forms-and-checklists/" rel="noopener noreferrer nofollow">здесь</a>.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/a74/af2/5bb/a74af25bb5183514f142e29a205f3c07.webp" alt="" title="" width="1440" height="810">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Албания</h3>
+                     <p>Теплая страна с Адриатическим и Ионическим морями, живописными горами, озерами и низкими ценами. Рядом Черногория, Хорватия и Греция — может оказаться неплохой базой на Балканах. Кажется это привлекательнее чем Сочи и уж точно дешевле (можно снять апартаменты с 2мя спальнями за 200€). Говорят лучше ехать на юг, там сервис лучше, пляжи чище, вода лазурная, и при этом цены адекватные.</p>
+                     <p>У Албании есть виза для цифровых кочевников - она же виза для пенсионеров. Это резидентская виза, даёт право жить в стране до&nbsp;1 года&nbsp;с возможностью продления сначала на 2, потом до 5 лет. Узнать подробнее и оформить можно в ближайшем албанском посольстве.</p>
+                     <p>Что по требованиям:</p>
+                     <ul>
+                      <li><p>Доход (или пенсия) за пределами Албании (9800€&nbsp;в год)</p></li>
+                      <li><p>Счёт в банке</p></li>
+                      <li><p>Контракт на жилье</p></li>
+                      <li><p>Страховка</p></li>
+                      <li><p>Справка о несудимости</p></li>
+                     </ul>
+                     <p>Албания носит официальный статус страны-кандидата на вступление в ЕС. При этом уже сейчас для Албании действует безвизовый режим для туристических целей.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/0eb/2d6/cc5/0eb2d6cc5329db12d697d171489b88c2.webp" alt="" title="" width="1400" height="646">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Маврикий</h3>
+                     <p>Год назад к программе предоставления визы для цифровых кочевников присоединилась Республика Маврикий. В отличие от Карибских островов, Маврикий находится в одном часовом поясе с Москвой и сравнительно доступнее по ценам. Узнать, что есть привлекательного на Маврикии можно на сайте&nbsp;<a href="https://mauritiusnow.com/" rel="noopener noreferrer nofollow">Mauritius Now</a>&nbsp;(там даже можно посмотреть на остров в прямом в эфире по&nbsp;<a href="https://pv.viewsurf.com/1866/Maurice-Le-Morne?i=NzAzNDo" rel="noopener noreferrer nofollow">камерам</a>).</p>
+                     <p>Для посещения Маврикия россиянам виза не нужна, если срок пребывания не больше 60 дней, — вы отделаетесь только легкими штампами в паспорте при въезде и выезде. Но для тех, кто влюбится в остров и решит задержаться, правительство ввело&nbsp;<a href="https://www.edbmauritius.org/premium-visa" rel="noopener noreferrer nofollow">Premium visa</a>&nbsp;для номадов (и, конечно же, пенсионеров) со сроком пребывания до&nbsp;1 года&nbsp;с возможностью продления. А самое приятное, что есть список стран, которые могут податься на эту визу, и в этом списке есть Россия.</p>
+                     <p>Итак, какие требования:</p>
+                     <ul>
+                      <li><p>Доход должен быть вне Маврикия</p></li>
+                      <li><p>Паспорт</p></li>
+                      <li><p>Билеты туда-обратно</p></li>
+                      <li><p>Фото</p></li>
+                      <li><p>Email-адрес</p></li>
+                      <li><p>Страховка</p></li>
+                      <li><p>Резервация жилья</p></li>
+                      <li><p>Свидетельство о браке (если едете с супругом)</p></li>
+                      <li><p>Доказательство наличия&nbsp;1500$/1300€&nbsp;в месяц, либо выпиской из банка, либо рабочим контрактом</p></li>
+                     </ul>
+                     <p>Заявка подается онлайн, обрабатывается в течение 2 дней, а ответ придет по email и больше ничего не нужно делать, кроме как проверять почту и собирать чемоданы. Оформление данной визы - бесплатно. Кстати можно приехать по турвизе, а затем податься на эту визу, если приспичит остаться на подольше.</p>
+                     <p>Заполнить онлайн форму можно сразу по&nbsp;<a href="https://business.edbmauritius.org/wps/portal/business/home/licensing/Legislation/!ut/p/z1/hZHLboMwEEW_hiV4sHmlO-gjpYmUokRN6k2FwQFXgJFt0n5-gVSKVDWtd-M5c65Ggyg6INrlJ1HlRsgub8b6lQZvIY5xGkew2dw-30EWuSS73z66sHTRC9r_h9CxDVdeDOM8nZGLIdkmkK12AXG3HobI_wlEuwlYJmHqr1LwfPIN_BHyhGjVSHbeqDamv7HAAsFap5AtooX5tIdBlOhQssUCGCG2T8LA9nLs2SzwsR0QXLDwyKAI8OSIO0aiClHFj1xx5QxqVE9iPZvZoEXHtXZ4ydp8UMKIQTtSVRZ89NqCXiqTNxfOglq23IJGFLwbv0ZuzSuhm_kQvwXWUht0uJqD-vZhkb77zWnN91_WTf3S/dz/d5/L2dBISEvZ0FBIS9nQSEh/" rel="noopener noreferrer nofollow">ссылке</a>. Еще есть требования по въезду, которые касаются коронавирусных мер безопасности, про них читаем&nbsp;<a href="https://mauritiusnow.com/mauritius-travel-advice/" rel="noopener noreferrer nofollow">здесь</a>.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/b94/f09/523/b94f0952353043328ec9e5ddf4cceecb.webp" alt="" title="" width="1920" height="1080">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Норвегия</h3>
+                     <p>Норвежская программа для цифровых кочевников отличилась и запустила&nbsp;<a href="https://www.visitnorway.com/plan-your-trip/workation/" rel="noopener noreferrer nofollow">сайт</a>, который они сделали для популяризации удаленщиков в их регионе. Однако это одна из самых сложных виз в получении в плане требований. Требования не столько сложные, сколько специфичные — не каждый номад попадет под них.</p>
+                     <p>Итак, у вас есть возможность получить визу на&nbsp;2 года&nbsp;(с продлением до 6 лет) как самозанятый, оформленный за пределами Норвегии, если:</p>
+                     <ul>
+                      <li><p>У вас есть высшее образование или специальная квалификация, полученная входе долгой и упорной работы</p></li>
+                      <li><p>У вас ИП, а не ООО</p></li>
+                      <li><p>У вас есть контракт на жилье в Норвегии</p></li>
+                      <li><p>Вы зарабатываете не меньше, чем&nbsp;35719€ в год, до вычета налогов</p></li>
+                      <li><p>У вас должен быть норвежский клиент — настоящий бизнес с юридическим адресом</p></li>
+                      <li><p>Вы готовы отдать&nbsp;600€ за визу</p></li>
+                     </ul>
+                     <p>Итого, главный камень преткновения — это норвежский клиент: он либо у вас есть, либо нет. Если вас все равно заинтересовало, то можно&nbsp;<a href="https://www.udi.no/en/want-to-apply/work-immigration/skilled-workers/?c=rus#link-834" rel="noopener noreferrer nofollow">почитать подробнее</a>&nbsp;на официальном иммиграционном сайте Норвегии.</p>
+                     <p>На этой&nbsp;<a href="https://www.udi.no/en/want-to-apply/work-immigration/?c=rus" rel="noopener noreferrer nofollow">странице</a>&nbsp;можно найти другие варианты иммиграции в Норвегию для россиян. Например, там есть&nbsp;<a href="https://www.udi.no/en/want-to-apply/work-immigration/russian-workers/?c=rus#link-848" rel="noopener noreferrer nofollow">специальная программа</a>&nbsp;для жителей Баренцева региона.</p>
+                     <p>А еще в норвежском королевстве есть архипелаг, называемый Свальбард, который имеет безвизовый режим с более чем 40 странами, включая Россию. Граждане этих стран могут свободно приезжать на острова архипелага, жить там и работать. Официальная информация —&nbsp;<a href="https://www.sysselmesteren.no/en/visas-and-immigration/" rel="noopener noreferrer nofollow">здесь</a>.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/968/dc2/c96/968dc2c96c51b788fbc489f7694df7a2.jpg" width="1320" height="740" data-src="https://habrastorage.org/getpro/habr/upload_files/968/dc2/c96/968dc2c96c51b788fbc489f7694df7a2.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Бразилия</h3>
+                     <p>Буквально на днях Бразилия тоже присоединилась к тренду неудержимого появления виз для удаленных работников. Конечно, для россиян есть безвизовый въезд на 90 дней, но что если захочется остаться дольше? Теперь есть опция в виде&nbsp;<a href="https://www.in.gov.br/web/dou/-/resolucao-cnig-mjsp-n-45-de-9-de-setembro-de-2021-375554693" rel="noopener noreferrer nofollow">ВНЖ для цифровых кочевников</a>&nbsp;на&nbsp;1 год&nbsp;с возможностью продления до 2-х лет.</p>
+                     <p>Чтобы получить данную визу нужно будет прийти в посольство Бразилии и подать следующие документы:</p>
+                     <ul>
+                      <li><p>Заполненное заявление (скачать&nbsp;<a href="https://www.in.gov.br/web/dou/-/resolucao-cnig-mjsp-n-45-de-9-de-setembro-de-2021-375554693" rel="noopener noreferrer nofollow">здесь</a>&nbsp;в конце страницы)</p></li>
+                      <li><p>Доказательство статуса удаленного работника: контракт с компанией вне Бразилии или документы о владении компанией</p></li>
+                      <li><p>Месячная зарплата&nbsp;1500$&nbsp;или счет в банке на сумму 18000$</p></li>
+                      <li><p>Паспорт</p></li>
+                      <li><p>Страховка</p></li>
+                      <li><p>Чек об оплате пошлины</p></li>
+                      <li><p>Билет до Бразилии</p></li>
+                      <li><p>Справка о несудимости</p></li>
+                     </ul>
+                     <p>Обработка заявления должна занять не более 3-4 недель.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/7f6/63d/436/7f663d436bb0a6020838526bf15a52cf.webp" alt="" title="" width="1500" height="844">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Венгрия</h3>
+                     <p>Совсем недавно Венгрия тоже запустила визу для цифровых кочевников, называемую&nbsp;<a href="http://www.bmbah.hu/index.php?option=com_k2&amp;view=item&amp;layout=item&amp;id=1714&amp;Itemid=2100&amp;lang=en" rel="noopener noreferrer nofollow">White Card</a>. На удивление требования в ней прописаны очень чётко, можно сразу определить попадаешь ли ты под них. Данная виза позволяет жить в стране до&nbsp;1 года&nbsp;(с продлением до 2х), путешествовать по Шенгену и работать удаленно из Венгрии "<em>с использованием передовых цифровых технологий</em>".</p>
+                     <p>Что нужно сделать пошагово, чтобы получить венгерскую визу White Card:</p>
+                     <p>1. Собрать необходимые документы:</p>
+                     <ul>
+                      <li><p>Заполненное&nbsp;<a href="http://www.bmbah.hu/images/Formanyomtatvany_OIF_angol/egyeb_other/Application_for_Residence_Permit.pdf" rel="noopener noreferrer nofollow">заявление</a></p></li>
+                      <li><p>Трудовой договор с компанией вне Венгрии ИЛИ доказательства владения компанией</p></li>
+                      <li><p>Месячная зарплата не меньше 2000€</p></li>
+                      <li><p>Любое другое доказательство стабильности дохода: налоговая декларация, банковская выписка</p></li>
+                      <li><p>Контракт аренды жилья</p></li>
+                      <li><p>Страховка</p></li>
+                      <li><p>2 фотографии</p></li>
+                      <li><p>Оплатить пошлину 110€</p></li>
+                     </ul>
+                     <p>2. Подать все документы и заявление в посольство Венгрии на родине. Для стран с безвизом в Венгрию можно подать документы онлайн (<a href="http://oif.gov.hu/index.php?option=com_k2&amp;view=item&amp;layout=item&amp;id=1311&amp;Itemid=1848&amp;lang=en" rel="noopener noreferrer nofollow">подробнее</a>).</p>
+                     <p>3. Дождаться одобрения документов в течение 30 дней и получить въездную визу.</p>
+                     <p>4. Въехать в Венгрию в течение 30 дней действия въездной визы и прийти в местный иммиграционный офис со всеми документами для получения White Card.</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/getpro/habr/upload_files/854/9ce/8d5/8549ce8d561222333e38e89f2ae28c2b.webp" alt="" title="" width="2000" height="1125">
+                      <figcaption></figcaption>
+                     </figure>
+                     <h3>Португалия</h3>
+                     <p>В последнее время много разговоров про португальскую визу D7. С недавних пор виза D7 сейчас рассматривается и как виза для цифровых кочевников. "Так называемые «digital nomads»" — как гласит официальный документ консульства.</p>
+                     <p>Итак, как удаленному работнику получить португальскую визу D7.</p>
+                     <p>1. Записаться на приём для подачи документов на резидентскую визу D7:</p>
+                     <ul>
+                      <li><p>Для начала нужно зарегистрироваться на&nbsp;<a href="https://pedidodevistos.mne.pt/VistosOnline/" rel="noopener noreferrer nofollow">сайте консульства</a></p></li>
+                      <li><p>Заполнить анкету латинскими буквами, не используя символы</p></li>
+                      <li><p>В пункте "Консульское учреждение" выбрать строку "Консульский отдел посольства Португалии в Москве"</p></li>
+                      <li><p>Выбрать дату</p></li>
+                     </ul>
+                     <p>2. Собрать комплект документов для визы D7:</p>
+                     <ul>
+                      <li><p>Распечатанная копия анкеты с&nbsp;<a href="https://pedidodevistos.mne.pt/VistosOnline/" rel="noopener noreferrer nofollow">сайта консульства</a></p></li>
+                      <li><p>Две цветные фотографии 3,5х4,5 на белом фоне: одна наклеенная на анкету, вторая отдельно с написанными серией и номером загранпаспорта (слитно) на обратной стороне фотографии</p></li>
+                      <li><p>Ксерокопия всех страниц загранпаспорта, включая пустые</p></li>
+                      <li><p>Документальное подтверждение того, что последние 12 месяцев у вас был регулярный и легальный доход не менее&nbsp;705€&nbsp;в месяц. А так же доказательство того, что этот доход останется с вами по приезде на территорию Португалии, т.е. является удаленным. Документ должен быть переведен на португальский язык и заверен</p></li>
+                      <li><p>Выписка со счета в португальском банке с суммой не менее&nbsp;8460€</p></li>
+                      <li><p>Португальский номер налогоплательщика — без него вам не откроют счет в банке</p></li>
+                      <li><p>Контракт на жилье сроком не менее чем на 1 год или документ о владении недвижимостью в Португалии. Поговаривают, что сервисы онлайн бронирования типа AirBnB или Flatio не прокатывают</p></li>
+                      <li><p><a href="https://vistos.mne.gov.pt/images/schengen/formularios/aut_consulta_rc.pdf" rel="noopener noreferrer nofollow">Распечатанное</a>&nbsp;и подписанное согласие на обработку данных</p></li>
+                      <li><p>Справка о несудимости, выданная за последние 3 месяца, с апостилем и заверенным переводом на португальский язык</p></li>
+                      <li><p>Медстраховка</p></li>
+                      <li><p>Бронь авиабилета в Португалию. Дату вылета лучше брать не раннее, чем через 60 дней после подачи документов</p></li>
+                      <li><p>Если подаете на всю семью, то потребуются апостилированные и переведенные соответствующие документы: свидетельство о браке и/или о рождении ребенка. Также придется показать дополнительный доход: +50% на второго взрослого и +30% на каждого ребенка</p></li>
+                     </ul>
+                     <p>3. Лично подать документы на визу D7 в консульстве в Москве, находящемся по адресу Ботанический Переулок, дом 1. Оплатить консульский сбор 90€.</p>
+                     <p>4. Дождаться рассмотрения документов сроком до 60 рабочих дней и получить обратно загранпаспорт с вклеенной визой сроком на 120 дней. Отслеживать статус можно в личном кабинете на том же&nbsp;<a href="https://pedidodevistos.mne.pt/VistosOnline/" rel="noopener noreferrer nofollow">сайте</a></p>
+                     <p>5. Прилететь с этой визой в Португалию и записаться на интервью в SEF по телефону, в случае если при выдаче визы в консульстве вам сразу не сказали дату и место.</p>
+                     <p>6. Пройти интервью в офисе SEF. На всякий случай взять с собой оригиналы всех возможных документов.</p>
+                     <p>7. Дождаться писем с карточками резидентов на адрес, который вы предоставили при подаче документов</p>
+                     <p>Рекомендации и обновленный список документов от посольства Португалии в Москве можно скачать&nbsp;<a href="https://pronomad.ru/images/d7.pdf" rel="noopener noreferrer nofollow">здесь</a>.</p>
+                     <p><strong>Про Португалию и необычные способы эмиграции я пишу в своем канале&nbsp;</strong><a href="https://t.me/parol_ot_wifi" rel="noopener noreferrer nofollow"><strong>Пароль от вайфая</strong></a><strong>. Подписывайтесь на канал, если понравилась статья и в целом интересна тема географической независимости и эмиграции.</strong> </p>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D1%8D%D0%BC%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F%5D" class="tm-tags-list__link">эмиграция</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B6%D0%B8%D0%B7%D0%BD%D1%8C%20%D0%B7%D0%B0%20%D1%80%D1%83%D0%B1%D0%B5%D0%B6%D0%BE%D0%BC%5D" class="tm-tags-list__link">жизнь за рубежом</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bit-%D0%BC%D0%B8%D0%B3%D1%80%D0%B0%D1%86%D0%B8%D1%8F%5D" class="tm-tags-list__link">it-миграция</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BA%D0%B0%5D" class="tm-tags-list__link">удаленка</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B2%D0%B8%D0%B7%D1%8B%5D" class="tm-tags-list__link">визы</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%BC%D0%B8%D0%B3%D1%80%D0%B0%D0%BD%D1%82%D1%8B%5D" class="tm-tags-list__link">мигранты</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/freelance/" class="tm-hubs-list__link"> Фриланс </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/it_immigration/" class="tm-hubs-list__link"> IT-эмиграция </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/remote/" class="tm-hubs-list__link"> Удалённая работа </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 7: ↑5 и ↓2</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 7: ↑5 и ↓2" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+3</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">1.4K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 21 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/f1ashag/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <img alt="" src="//habrastorage.org/getpro/habr/avatars/862/3a7/4e4/8623a74e45f1c61974d8ded49256fb67.png" class="tm-entity-image__pic">
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 19 голосов " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         3 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         1.5
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <span class="tm-user-card__name tm-user-card__name_variant-article">Artem G</span> <a href="/ru/users/f1ashag/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @f1ashag </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">ИТ-генералист</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <!----> <!----> <!---->
+                  </div>
+                 </div> <!---->
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner14292" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/654877/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 1 </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> <!----> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner14293" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom14294" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654877/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654877/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654877":{"id":"654877","timePublished":"2022-03-09T18:09:13+00:00","isCorporative":false,"lang":"ru","titleHtml":"Как айтишнику получить визу зарубеж на основании удаленной работы в 2022 году","leadData":{"textHtml":"\u003Cp\u003EВ течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось на&nbsp;\u003Cem\u003Eвсякий случай\u003C\u002Fem\u003E&nbsp;иметь интересные варианты под рукой, поэтому я сохранял наиболее привлекательные программы в отдельный список вместе со всеми требованиями. Кажется сейчас самый подходящий момент, чтобы поделиться этой подборкой. Ниже представлены требования к оформлению виз для цифровых кочевников в разных странах и ссылками на подачу заявлений.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbce\u002Fd97\u002F13d\u002Fbced9713da14a8e1f93c252df649d735.png","buttonTextHtml":"Читать дальше &rarr;","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbce\u002Fd97\u002F13d\u002Fbced9713da14a8e1f93c252df649d735.png","fit":"cover","positionY":0,"positionX":0}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":3,"votesCount":19},"rating":1.5,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"759579","alias":"f1ashag","fullname":"Artem G","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F862\u002F3a7\u002F4e4\u002F8623a74e45f1c61974d8ded49256fb67.png","speciality":"ИТ-генералист"},"statistics":{"commentsCount":1,"favoritesCount":21,"readingCount":1401,"score":3,"votesCount":7},"hubs":[{"relatedData":null,"id":"20694","alias":"freelance","type":"collective","title":"Фриланс","titleHtml":"Фриланс","isProfiled":false},{"relatedData":null,"id":"20734","alias":"it_immigration","type":"collective","title":"IT-эмиграция","titleHtml":"IT-эмиграция","isProfiled":false},{"relatedData":null,"id":"22470","alias":"remote","type":"collective","title":"Удалённая работа","titleHtml":"Удалённая работа","isProfiled":false}],"flows":[{"id":"3","alias":"management","title":"Менеджмент"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw1560\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbce\u002Fd97\u002F13d\u002Fbced9713da14a8e1f93c252df649d735.png\" width=\"1595\" height=\"818\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbce\u002Fd97\u002F13d\u002Fbced9713da14a8e1f93c252df649d735.png\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EВ течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось на \u003Cem\u003Eвсякий случай\u003C\u002Fem\u003E иметь интересные варианты под рукой, поэтому я сохранял наиболее привлекательные программы в отдельный список вместе со всеми требованиями. Кажется сейчас самый подходящий момент, чтобы поделиться этой подборкой. Ниже представлены требования к оформлению виз для цифровых кочевников в разных странах и ссылками на подачу заявлений.\u003C\u002Fp\u003E\u003Ch3\u003EЭстония\u003C\u002Fh3\u003E\u003Cp\u003EПочему Эстония вообще может быть интересна? Вроде бы и Европа, а вроде бы и ничего особенного в плане туризма. Например, первый же загугленный список # вещей, которые нужно сделать в Эстонии, выглядит уж очень притянутым за уши.\u003C\u002Fp\u003E\u003Cp\u003EТем не менее Эстония одна из передовых стран в ЕС в плане цифровизации общества. У них уже давно все бюрократические вопросы решаются онлайн, а проголосовать за президента можно, не выходя из дома.\u003C\u002Fp\u003E\u003Cp\u003EИ тут для номада Эстония предоставляет две опции:\u003C\u002Fp\u003E\u003Cp\u003E1. Если хочешь пожить в Эстонии, потусить там годик-два, потратить свои кровные — велком в программу \u003Ca href=\"https:\u002F\u002Fe-resident.gov.ee\u002Fnomadvisa\u002F\" rel=\"noopener noreferrer nofollow\"\u003EDigital Nomad Visa\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EПо требованиям нужно лишь иметь работу вне Эстонии, правда заработок должен быть около 3500€ до вычета налогов. Также оплатить сборы 80-100€, пройти интервью и в течение 30 дней получить ответ.\u003C\u002Fp\u003E\u003Cp\u003EНадо понимать, что эта виза не вид на жительство, а лишь право на временное (продолжительное) пребывание в Эстонии — то есть по ЕС не поездить.\u003C\u002Fp\u003E\u003Cp\u003E2. Если в целом Эстония тебе не сдалась, но тебя привлекает открытие бизнеса в ЕС онлайн, без всякой бумажной волокиты, то тебе нужна \u003Ca href=\"https:\u002F\u002Fe-resident.gov.ee\u002Fbecome-an-e-resident\u002F\" rel=\"noopener noreferrer nofollow\"\u003EE-Residency\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EСтав е-резидентом Эстонии, ты как бы становишься резидентом их онлайн пространства. Ты можешь открыть компанию, банковский счет, проводить платежи, декларировать налоги и пр., не находясь физически в Эстонии.\u003C\u002Fp\u003E\u003Cp\u003EЧтобы податься на E-residency нужны\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EПаспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМотивационное письмо\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПара фоток\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКарта Visa или Mastercard\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EОплата взноса в размере 100-120€.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EЭто всё конечно круто, но в плане перемещений этот статус не добавляет никаких бонусов — ты даже не можешь заехать в Эстонию с этой карточкой. Но открыть компанию в ЕС, сидя на горшке, звучит заманчиво! Дальше только остается понять — зачем.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2b8\u002F0dc\u002F161\u002F2b80dc1613fdfda543a050fb43b1d3f5.webp\" alt=\"\" title=\"\" width=\"1999\" height=\"1220\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EМексика\u003C\u002Fh3\u003E\u003Cp\u003EИтак, Мексика и диджитал номады. Мексике ведь тоже нужно как-то привлекать деньги в страну, тем более оттуда все уезжают на заработки в Америку.\u003C\u002Fp\u003E\u003Cp\u003EНо если вы работаете удаленно, зарабатываете не менее 1700$ или имеете на счету больше 27000$, то вам открывается возможность получить \u003Ca href=\"https:\u002F\u002Fconsulmex.sre.gob.mx\u002Fleamington\u002Findex.php\u002Fnon-mexicans\u002Fvisas\u002F115-temporary-resident-visa\" rel=\"noopener noreferrer nofollow\"\u003ETemporary Resident Visa\u003C\u002Fa\u003E и ловить латинский вайб 4 года подряд!\u003C\u002Fp\u003E\u003Cp\u003EДа, россияне могут приезжать в Мексику по турвизе (или оформив электронное разрешение) на полгода и продлевать пребывание, делая визаран. И это логично: сначала приехать на разведку, сильно не заморачиваясь с документами, осмотреться и принять решение.\u003C\u002Fp\u003E\u003Cp\u003EА вот когда у вас появится желание обосноваться в Мексике надолго (например, чтобы сделать её своей базой и постепенно исследовать всю Латинскую Америку), то скорее всего вам захочется открыть счет в местном банке и купить машину. И вот здесь вам понадобится \u003Ca href=\"https:\u002F\u002Fconsulmex.sre.gob.mx\u002Fleamington\u002Findex.php\u002Fnon-mexicans\u002Fvisas\u002F115-temporary-resident-visa\" rel=\"noopener noreferrer nofollow\"\u003ETemporary Resident Visa\u003C\u002Fa\u003E, которая открывает эти возможности и дает право жить в Мексике до 4х лет.\u003C\u002Fp\u003E\u003Cp\u003EДля начала записываетесь на интервью в посольство Мексики, например, в Москве и приносите документы:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЗаполненную форму\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПаспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EФото\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСтраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДоказательство наличия средств к существованию\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EЗатем платите сбор в размере 44$ и вам ставят визу в паспорт.\u003C\u002Fp\u003E\u003Cp\u003EИ это еще не всё. Эта виза даёт только право один раз въехать в Мексику. После въезда вам нужно прийти в иммиграционный офис, показать все необходимые документы, пройти интервью и уже тогда получить карточку резидента.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F47c\u002Fb51\u002Fb2a\u002F47cb51b2a351313e7d0206ed6fcd86f0.webp\" alt=\"\" title=\"\" width=\"1200\" height=\"800\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EБарбадос\u003C\u002Fh3\u003E\u003Cp\u003EКогда-нибудь слышали про Барбадос? Какой-то пиратский остров на Карибах, бывшая британская колония? Сейчас это независимое государство и чтобы понять как выглядит Барбадос, стоит просто представить рекламу Баунти и вот оно.\u003C\u002Fp\u003E\u003Cp\u003EБарбадос в 2020 году организовал свою \u003Ca href=\"https:\u002F\u002Fbarbadoswelcomestamp.bb\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eпрограмму\u003C\u002Fa\u003E привлечения номадов. Она конечно недешевая, 3000$ на семью, но и в целом жизнь там дорогая: ближайший ориентир это британские цены. Поэтому надо сразу рассчитывать свои силы и понимать потянешь ли такое приключение, чтобы не жить в палатке.\u003C\u002Fp\u003E\u003Cp\u003EНо заплатив эту сумму и предоставив всего лишь паспорт и несколько фото, через неделю ты получаешь визу на 12 месяцев. Больше информации на официальном \u003Ca href=\"https:\u002F\u002Fbarbadoswelcomestamp.bb\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eсайте\u003C\u002Fa\u003E программы.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb1c\u002Fa12\u002F221\u002Fb1ca122218bb6c78db8e955035b0e910.webp\" alt=\"\" title=\"\" width=\"1180\" height=\"664\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EКюрасао\u003C\u002Fh3\u003E\u003Cp\u003EЕсть такой маленький остров в Карибском бассейне, называется Кюрасао. Он входит в состав Королевства Нидерландов, но является самоуправляемым государством. Кстати ликер Блю Кюрасао как раз делается из цитрусового фрукта, который растёт на острове.\u003C\u002Fp\u003E\u003Cp\u003EНо тут не про коктейли. Кюрасао попадает в мой список nomad-friendly стран т.к. имеет специальную программу для цифровых кочевников \u003Ca href=\"https:\u002F\u002Fathomeincuracao.com\u002Fremote-workers\u002F\" rel=\"noopener noreferrer nofollow\"\u003E@HOME in Curaçao\u003C\u002Fa\u003E!\u003C\u002Fp\u003E\u003Cp\u003EПо требованиям всё очень легко:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЗаявление\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСборы 294$\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКопия паспорта\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПруфы удаленной работы\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМедстраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EКак я понял, нет строгих требованиях по сумме дохода, а время обработки заявки всего 2 недели.\u003C\u002Fp\u003E\u003Cp\u003EПрограмма даёт право находиться на острове в течение 6 месяцев с возможностью продления на такой же срок. В это время можно спокойно выезжать и заезжать обратно.\u003C\u002Fp\u003E\u003Cp\u003EНа сайте обещают, что на острове проведена инфраструктура по европейским стандартам, при этом Кюрасао обладает белоснежными пляжами, теплым морем и морскими черепахами.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8b1\u002Ffaa\u002Fa86\u002F8b1faaa86fb5e00de4065952f6a653f1.webp\" alt=\"\" title=\"\" width=\"1200\" height=\"675\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EБермуды\u003C\u002Fh3\u003E\u003Cp\u003EБермудские острова имеют программу для удаленных работников \u003Ca href=\"https:\u002F\u002Fforms.gov.bm\u002Fwork-from-bermuda\u002F\" rel=\"noopener noreferrer nofollow\"\u003EWork From Bermuda Certificate\u003C\u002Fa\u003E, которая подойдет любому, кто сможет обеспечить себе жизнь на этих островах.\u003C\u002Fp\u003E\u003Cp\u003EЧем там заняться подробнейше описано в их \"\u003Ca href=\"https:\u002F\u002Fforms.gov.bm\u002Fwork-from-bermuda\u002F\" rel=\"noopener noreferrer nofollow\"\u003EПриключенческом альманахе\u003C\u002Fa\u003E\". В целом, типичные активности для курортного островка, но на Бермудах. Бермудская столица Гамильтон выглядит довольно большим и оживленным городом — судя по картинкам там не придется скучать по цивилизации. Также есть старый город с британской колониальной архитектурой.\u003C\u002Fp\u003E\u003Cp\u003EЧто по требованиям:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЗаполнить форму\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EОплатить сбор около 260$\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EОтсутствие судимостей\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСтраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EРабочий контракт или регистрация бизнеса за пределами Бермуд\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКругленькая сумма на счету или кругленький ежемесячный доход. Предположительно это около 30000$ или 5000$, соответственно.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EДля вдохновения можно полазать по их рекламному \u003Ca href=\"https:\u002F\u002Fwww.gotobermuda.com\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eсайту\u003C\u002Fa\u003E, а подать заявку можно \u003Ca href=\"https:\u002F\u002Fforms.gov.bm\u002Fwork-from-bermuda\u002FApply\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E. Обработка заявки занимает 5 рабочих дней, а полученный сертификат позволяет жить на Бермудах целый год. В определенных случаях его можно даже продлить.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F370\u002F02a\u002F932\u002F37002a932fc05cd1fd05fe941a6056cc.webp\" alt=\"\" title=\"\" width=\"1200\" height=\"528\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EХорватия\u003C\u002Fh3\u003E\u003Cp\u003EС 1-го января 2021 года Хорватия запустила программу ВНЖ для цифровых кочевников. Хоть многие СМИ и называют по новомодному Digital Nomad Visa, по факту это получение временной резиденции в Европе с очень приятными условиями и короткими сроками ожидания.\u003C\u002Fp\u003E\u003Cp\u003EПро что вообще Хорватия? Кристально чистое море, красивые городишки, приятные образованные люди, интересное расположение на Балканах между Австрией на севере и Грецией на юге.\u003C\u002Fp\u003E\u003Cp\u003EВиза выдается сроком на 12 месяцев, подать на новую можно только через 6 месяцев после окончания предыдущей. Еще можно взять с собой семью, надо только приложить дополнительные документы о родстве. И еще одна плюшка заключается в том, что номадам не нужно будет платить подоходный налог в Хорватии за этот год.\u003C\u002Fp\u003E\u003Cp\u003EПодать заявление на визу можно 3 способами:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eобратиться в ближайшее консульство Хорватии в России\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eесли вы уже в Хорватии, то сходить в полицейский участок\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eподать заявление онлайн\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EЧто потребуется, чтобы получить заветную карточку резидента:\u003C\u002Fp\u003E\u003Cp\u003E— заполненное заявление\u003C\u002Fp\u003E\u003Cp\u003E— пруфы, что вы работаете не на Хорватию\u003C\u002Fp\u003E\u003Cp\u003E— копия паспорта\u003C\u002Fp\u003E\u003Cp\u003E— свидетельство о несудимости\u003C\u002Fp\u003E\u003Cp\u003E— страховка на время пребывания\u003C\u002Fp\u003E\u003Cp\u003E— показать ежемесячный доход 2700$ или банковский счет с 32000$\u003C\u002Fp\u003E\u003Cp\u003E— адрес в Хорватии (можно временный в отеле)\u003C\u002Fp\u003E\u003Cp\u003E— свидетельство о браке для супруга или о рождении для детей\u003C\u002Fp\u003E\u003Cp\u003EПосле того как вы подали заявление, вас уведомляют об одобрении или отказе ВНЖ. Бывалые пишут, что это занимает около месяца, но факторов много. Если вас одобрили, то затем летите в Хорватию, там идете в полицию, регистрируетесь и через 3 недели забираете карточку.\u003C\u002Fp\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fmup.gov.hr\u002Faliens-281621\u002Fstay-and-work\u002Ftemporary-stay-of-digital-nomads\u002F286833\" rel=\"noopener noreferrer nofollow\"\u003EИнфа о визе\u003C\u002Fa\u003E на официальном сайте МВД Хорватии или можно сразу подать заявку \u003Ca href=\"https:\u002F\u002Fdigitalnomadscroatia.mup.hr\u002FPages\u002FZahtjev\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F265\u002F8bf\u002F68b\u002F2658bf68b1dbeb5bdb87f60a4bcd15e9.jpg\" width=\"1200\" height=\"800\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F265\u002F8bf\u002F68b\u002F2658bf68b1dbeb5bdb87f60a4bcd15e9.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EМальта\u003C\u002Fh3\u003E\u003Cp\u003EЧтобы хоть как-то приблизится как зарплатной вилке российского удаленщика, появился мальтийский Nomad Residence Permit, который позволяет пребывать на Мальте до 365 дней и свободно перемещаться по шенгену.\u003C\u002Fp\u003E\u003Cp\u003EТребуемый месячный доход равен 2700$, но проверяется он с помощью выписки из банка за последние 3 месяца. К тому же в требованиях они сами указывают на то, что источниками дохода могут быть дивиденды, проценты с инвестиций, доход со сдачи недвижимости, активы и etc. Последние два пункта особенно дают понять, что в принципе неважно откуда у вас деньги — главное чтоб могли показать.\u003C\u002Fp\u003E\u003Cp\u003EПо остальным требованиям стандартно:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EРабота\u002Fбизнес за пределами Мальты\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСопроводительное письмо\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПаспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСтраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДоговор аренды\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПройти бэкграунд чек\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EОплатить 300€ (+300€ за супруга)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПодождать до 30 дней\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EЗаявка подается по email, ответ также получаете онлайн. После одобрения вам даётся национальная виза на полгода. По прилете на Мальту, вы можете прийти в Residency Malta Agency офис для завершения процесса получения Nomad Residence Permit. А можете не приходить, если вам хватает полугода и не нужен остальной шенген. А если и года мало, то можно продлить.\u003C\u002Fp\u003E\u003Cp\u003EОбщая инфа и видео можно глянуть \u003Ca href=\"https:\u002F\u002Fresidencymalta.gov.mt\u002Foverview\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E. FAQ можно найти \u003Ca href=\"https:\u002F\u002Fresidencymalta.gov.mt\u002Fwp-content\u002Fuploads\u002F2021\u002F07\u002FNomad-Residence-Permit-FAQs_v1.3.pdf\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E, а чек-лист по документам и сама форма заявки — \u003Ca href=\"https:\u002F\u002Fresidencymalta.gov.mt\u002Fforms-and-checklists\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fa74\u002Faf2\u002F5bb\u002Fa74af25bb5183514f142e29a205f3c07.webp\" alt=\"\" title=\"\" width=\"1440\" height=\"810\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EАлбания\u003C\u002Fh3\u003E\u003Cp\u003EТеплая страна с Адриатическим и Ионическим морями, живописными горами, озерами и низкими ценами. Рядом Черногория, Хорватия и Греция — может оказаться неплохой базой на Балканах. Кажется это привлекательнее чем Сочи и уж точно дешевле (можно снять апартаменты с 2мя спальнями за 200€). Говорят лучше ехать на юг, там сервис лучше, пляжи чище, вода лазурная, и при этом цены адекватные.\u003C\u002Fp\u003E\u003Cp\u003EУ Албании есть виза для цифровых кочевников - она же виза для пенсионеров. Это резидентская виза, даёт право жить в стране до 1 года с возможностью продления сначала на 2, потом до 5 лет. Узнать подробнее и оформить можно в ближайшем албанском посольстве.\u003C\u002Fp\u003E\u003Cp\u003EЧто по требованиям:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EДоход (или пенсия) за пределами Албании (9800€ в год)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСчёт в банке\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКонтракт на жилье\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСтраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСправка о несудимости\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EАлбания носит официальный статус страны-кандидата на вступление в ЕС. При этом уже сейчас для Албании действует безвизовый режим для туристических целей.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F0eb\u002F2d6\u002Fcc5\u002F0eb2d6cc5329db12d697d171489b88c2.webp\" alt=\"\" title=\"\" width=\"1400\" height=\"646\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EМаврикий\u003C\u002Fh3\u003E\u003Cp\u003EГод назад к программе предоставления визы для цифровых кочевников присоединилась Республика Маврикий. В отличие от Карибских островов, Маврикий находится в одном часовом поясе с Москвой и сравнительно доступнее по ценам. Узнать, что есть привлекательного на Маврикии можно на сайте \u003Ca href=\"https:\u002F\u002Fmauritiusnow.com\u002F\" rel=\"noopener noreferrer nofollow\"\u003EMauritius Now\u003C\u002Fa\u003E (там даже можно посмотреть на остров в прямом в эфире по \u003Ca href=\"https:\u002F\u002Fpv.viewsurf.com\u002F1866\u002FMaurice-Le-Morne?i=NzAzNDo\" rel=\"noopener noreferrer nofollow\"\u003Eкамерам\u003C\u002Fa\u003E).\u003C\u002Fp\u003E\u003Cp\u003EДля посещения Маврикия россиянам виза не нужна, если срок пребывания не больше 60 дней, — вы отделаетесь только легкими штампами в паспорте при въезде и выезде. Но для тех, кто влюбится в остров и решит задержаться, правительство ввело \u003Ca href=\"https:\u002F\u002Fwww.edbmauritius.org\u002Fpremium-visa\" rel=\"noopener noreferrer nofollow\"\u003EPremium visa\u003C\u002Fa\u003E для номадов (и, конечно же, пенсионеров) со сроком пребывания до 1 года с возможностью продления. А самое приятное, что есть список стран, которые могут податься на эту визу, и в этом списке есть Россия.\u003C\u002Fp\u003E\u003Cp\u003EИтак, какие требования:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EДоход должен быть вне Маврикия\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПаспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EБилеты туда-обратно\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EФото\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EEmail-адрес\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСтраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EРезервация жилья\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСвидетельство о браке (если едете с супругом)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДоказательство наличия 1500$\u002F1300€ в месяц, либо выпиской из банка, либо рабочим контрактом\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EЗаявка подается онлайн, обрабатывается в течение 2 дней, а ответ придет по email и больше ничего не нужно делать, кроме как проверять почту и собирать чемоданы. Оформление данной визы - бесплатно. Кстати можно приехать по турвизе, а затем податься на эту визу, если приспичит остаться на подольше.\u003C\u002Fp\u003E\u003Cp\u003EЗаполнить онлайн форму можно сразу по \u003Ca href=\"https:\u002F\u002Fbusiness.edbmauritius.org\u002Fwps\u002Fportal\u002Fbusiness\u002Fhome\u002Flicensing\u002FLegislation\u002F!ut\u002Fp\u002Fz1\u002FhZHLboMwEEW_hiV4sHmlO-gjpYmUokRN6k2FwQFXgJFt0n5-gVSKVDWtd-M5c65Ggyg6INrlJ1HlRsgub8b6lQZvIY5xGkew2dw-30EWuSS73z66sHTRC9r_h9CxDVdeDOM8nZGLIdkmkK12AXG3HobI_wlEuwlYJmHqr1LwfPIN_BHyhGjVSHbeqDamv7HAAsFap5AtooX5tIdBlOhQssUCGCG2T8LA9nLs2SzwsR0QXLDwyKAI8OSIO0aiClHFj1xx5QxqVE9iPZvZoEXHtXZ4ydp8UMKIQTtSVRZ89NqCXiqTNxfOglq23IJGFLwbv0ZuzSuhm_kQvwXWUht0uJqD-vZhkb77zWnN91_WTf3S\u002Fdz\u002Fd5\u002FL2dBISEvZ0FBIS9nQSEh\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eссылке\u003C\u002Fa\u003E. Еще есть требования по въезду, которые касаются коронавирусных мер безопасности, про них читаем \u003Ca href=\"https:\u002F\u002Fmauritiusnow.com\u002Fmauritius-travel-advice\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fb94\u002Ff09\u002F523\u002Fb94f0952353043328ec9e5ddf4cceecb.webp\" alt=\"\" title=\"\" width=\"1920\" height=\"1080\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EНорвегия\u003C\u002Fh3\u003E\u003Cp\u003EНорвежская программа для цифровых кочевников отличилась и запустила \u003Ca href=\"https:\u002F\u002Fwww.visitnorway.com\u002Fplan-your-trip\u002Fworkation\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eсайт\u003C\u002Fa\u003E, который они сделали для популяризации удаленщиков в их регионе. Однако это одна из самых сложных виз в получении в плане требований. Требования не столько сложные, сколько специфичные — не каждый номад попадет под них.\u003C\u002Fp\u003E\u003Cp\u003EИтак, у вас есть возможность получить визу на 2 года (с продлением до 6 лет) как самозанятый, оформленный за пределами Норвегии, если:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EУ вас есть высшее образование или специальная квалификация, полученная входе долгой и упорной работы\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУ вас ИП, а не ООО\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУ вас есть контракт на жилье в Норвегии\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВы зарабатываете не меньше, чем 35719€ в год, до вычета налогов\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EУ вас должен быть норвежский клиент — настоящий бизнес с юридическим адресом\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВы готовы отдать 600€ за визу\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EИтого, главный камень преткновения — это норвежский клиент: он либо у вас есть, либо нет. Если вас все равно заинтересовало, то можно \u003Ca href=\"https:\u002F\u002Fwww.udi.no\u002Fen\u002Fwant-to-apply\u002Fwork-immigration\u002Fskilled-workers\u002F?c=rus#link-834\" rel=\"noopener noreferrer nofollow\"\u003Eпочитать подробнее\u003C\u002Fa\u003E на официальном иммиграционном сайте Норвегии.\u003C\u002Fp\u003E\u003Cp\u003EНа этой \u003Ca href=\"https:\u002F\u002Fwww.udi.no\u002Fen\u002Fwant-to-apply\u002Fwork-immigration\u002F?c=rus\" rel=\"noopener noreferrer nofollow\"\u003Eстранице\u003C\u002Fa\u003E можно найти другие варианты иммиграции в Норвегию для россиян. Например, там есть \u003Ca href=\"https:\u002F\u002Fwww.udi.no\u002Fen\u002Fwant-to-apply\u002Fwork-immigration\u002Frussian-workers\u002F?c=rus#link-848\" rel=\"noopener noreferrer nofollow\"\u003Eспециальная программа\u003C\u002Fa\u003E для жителей Баренцева региона.\u003C\u002Fp\u003E\u003Cp\u003EА еще в норвежском королевстве есть архипелаг, называемый Свальбард, который имеет безвизовый режим с более чем 40 странами, включая Россию. Граждане этих стран могут свободно приезжать на острова архипелага, жить там и работать. Официальная информация — \u003Ca href=\"https:\u002F\u002Fwww.sysselmesteren.no\u002Fen\u002Fvisas-and-immigration\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F968\u002Fdc2\u002Fc96\u002F968dc2c96c51b788fbc489f7694df7a2.jpg\" width=\"1320\" height=\"740\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F968\u002Fdc2\u002Fc96\u002F968dc2c96c51b788fbc489f7694df7a2.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EБразилия\u003C\u002Fh3\u003E\u003Cp\u003EБуквально на днях Бразилия тоже присоединилась к тренду неудержимого появления виз для удаленных работников. Конечно, для россиян есть безвизовый въезд на 90 дней, но что если захочется остаться дольше? Теперь есть опция в виде \u003Ca href=\"https:\u002F\u002Fwww.in.gov.br\u002Fweb\u002Fdou\u002F-\u002Fresolucao-cnig-mjsp-n-45-de-9-de-setembro-de-2021-375554693\" rel=\"noopener noreferrer nofollow\"\u003EВНЖ для цифровых кочевников\u003C\u002Fa\u003E на 1 год с возможностью продления до 2-х лет.\u003C\u002Fp\u003E\u003Cp\u003EЧтобы получить данную визу нужно будет прийти в посольство Бразилии и подать следующие документы:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЗаполненное заявление (скачать \u003Ca href=\"https:\u002F\u002Fwww.in.gov.br\u002Fweb\u002Fdou\u002F-\u002Fresolucao-cnig-mjsp-n-45-de-9-de-setembro-de-2021-375554693\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E в конце страницы)\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДоказательство статуса удаленного работника: контракт с компанией вне Бразилии или документы о владении компанией\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМесячная зарплата 1500$ или счет в банке на сумму 18000$\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПаспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСтраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЧек об оплате пошлины\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EБилет до Бразилии\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСправка о несудимости\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EОбработка заявления должна занять не более 3-4 недель.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7f6\u002F63d\u002F436\u002F7f663d436bb0a6020838526bf15a52cf.webp\" alt=\"\" title=\"\" width=\"1500\" height=\"844\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EВенгрия\u003C\u002Fh3\u003E\u003Cp\u003EСовсем недавно Венгрия тоже запустила визу для цифровых кочевников, называемую \u003Ca href=\"http:\u002F\u002Fwww.bmbah.hu\u002Findex.php?option=com_k2&amp;view=item&amp;layout=item&amp;id=1714&amp;Itemid=2100&amp;lang=en\" rel=\"noopener noreferrer nofollow\"\u003EWhite Card\u003C\u002Fa\u003E. На удивление требования в ней прописаны очень чётко, можно сразу определить попадаешь ли ты под них. Данная виза позволяет жить в стране до 1 года (с продлением до 2х), путешествовать по Шенгену и работать удаленно из Венгрии \"\u003Cem\u003Eс использованием передовых цифровых технологий\u003C\u002Fem\u003E\".\u003C\u002Fp\u003E\u003Cp\u003EЧто нужно сделать пошагово, чтобы получить венгерскую визу White Card:\u003C\u002Fp\u003E\u003Cp\u003E1. Собрать необходимые документы:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЗаполненное \u003Ca href=\"http:\u002F\u002Fwww.bmbah.hu\u002Fimages\u002FFormanyomtatvany_OIF_angol\u002Fegyeb_other\u002FApplication_for_Residence_Permit.pdf\" rel=\"noopener noreferrer nofollow\"\u003Eзаявление\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EТрудовой договор с компанией вне Венгрии ИЛИ доказательства владения компанией\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМесячная зарплата не меньше 2000€\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЛюбое другое доказательство стабильности дохода: налоговая декларация, банковская выписка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКонтракт аренды жилья\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСтраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E2 фотографии\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EОплатить пошлину 110€\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003E2. Подать все документы и заявление в посольство Венгрии на родине. Для стран с безвизом в Венгрию можно подать документы онлайн (\u003Ca href=\"http:\u002F\u002Foif.gov.hu\u002Findex.php?option=com_k2&amp;view=item&amp;layout=item&amp;id=1311&amp;Itemid=1848&amp;lang=en\" rel=\"noopener noreferrer nofollow\"\u003Eподробнее\u003C\u002Fa\u003E).\u003C\u002Fp\u003E\u003Cp\u003E3. Дождаться одобрения документов в течение 30 дней и получить въездную визу.\u003C\u002Fp\u003E\u003Cp\u003E4. Въехать в Венгрию в течение 30 дней действия въездной визы и прийти в местный иммиграционный офис со всеми документами для получения White Card.\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F854\u002F9ce\u002F8d5\u002F8549ce8d561222333e38e89f2ae28c2b.webp\" alt=\"\" title=\"\" width=\"2000\" height=\"1125\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Ch3\u003EПортугалия\u003C\u002Fh3\u003E\u003Cp\u003EВ последнее время много разговоров про португальскую визу D7. С недавних пор виза D7 сейчас рассматривается и как виза для цифровых кочевников. \"Так называемые «digital nomads»\" — как гласит официальный документ консульства.\u003C\u002Fp\u003E\u003Cp\u003EИтак, как удаленному работнику получить португальскую визу D7.\u003C\u002Fp\u003E\u003Cp\u003E1. Записаться на приём для подачи документов на резидентскую визу D7:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EДля начала нужно зарегистрироваться на \u003Ca href=\"https:\u002F\u002Fpedidodevistos.mne.pt\u002FVistosOnline\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eсайте консульства\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЗаполнить анкету латинскими буквами, не используя символы\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВ пункте \"Консульское учреждение\" выбрать строку \"Консульский отдел посольства Португалии в Москве\"\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВыбрать дату\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003E2. Собрать комплект документов для визы D7:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EРаспечатанная копия анкеты с \u003Ca href=\"https:\u002F\u002Fpedidodevistos.mne.pt\u002FVistosOnline\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eсайта консульства\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДве цветные фотографии 3,5х4,5 на белом фоне: одна наклеенная на анкету, вторая отдельно с написанными серией и номером загранпаспорта (слитно) на обратной стороне фотографии\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКсерокопия всех страниц загранпаспорта, включая пустые\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EДокументальное подтверждение того, что последние 12 месяцев у вас был регулярный и легальный доход не менее 705€ в месяц. А так же доказательство того, что этот доход останется с вами по приезде на территорию Португалии, т.е. является удаленным. Документ должен быть переведен на португальский язык и заверен\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EВыписка со счета в португальском банке с суммой не менее 8460€\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EПортугальский номер налогоплательщика — без него вам не откроют счет в банке\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКонтракт на жилье сроком не менее чем на 1 год или документ о владении недвижимостью в Португалии. Поговаривают, что сервисы онлайн бронирования типа AirBnB или Flatio не прокатывают\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E\u003Ca href=\"https:\u002F\u002Fvistos.mne.gov.pt\u002Fimages\u002Fschengen\u002Fformularios\u002Faut_consulta_rc.pdf\" rel=\"noopener noreferrer nofollow\"\u003EРаспечатанное\u003C\u002Fa\u003E и подписанное согласие на обработку данных\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EСправка о несудимости, выданная за последние 3 месяца, с апостилем и заверенным переводом на португальский язык\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EМедстраховка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EБронь авиабилета в Португалию. Дату вылета лучше брать не раннее, чем через 60 дней после подачи документов\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЕсли подаете на всю семью, то потребуются апостилированные и переведенные соответствующие документы: свидетельство о браке и\u002Fили о рождении ребенка. Также придется показать дополнительный доход: +50% на второго взрослого и +30% на каждого ребенка\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003E3. Лично подать документы на визу D7 в консульстве в Москве, находящемся по адресу Ботанический Переулок, дом 1. Оплатить консульский сбор 90€.\u003C\u002Fp\u003E\u003Cp\u003E4. Дождаться рассмотрения документов сроком до 60 рабочих дней и получить обратно загранпаспорт с вклеенной визой сроком на 120 дней. Отслеживать статус можно в личном кабинете на том же \u003Ca href=\"https:\u002F\u002Fpedidodevistos.mne.pt\u002FVistosOnline\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eсайте\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003Cp\u003E5. Прилететь с этой визой в Португалию и записаться на интервью в SEF по телефону, в случае если при выдаче визы в консульстве вам сразу не сказали дату и место.\u003C\u002Fp\u003E\u003Cp\u003E6. Пройти интервью в офисе SEF. На всякий случай взять с собой оригиналы всех возможных документов.\u003C\u002Fp\u003E\u003Cp\u003E7. Дождаться писем с карточками резидентов на адрес, который вы предоставили при подаче документов\u003C\u002Fp\u003E\u003Cp\u003EРекомендации и обновленный список документов от посольства Португалии в Москве можно скачать \u003Ca href=\"https:\u002F\u002Fpronomad.ru\u002Fimages\u002Fd7.pdf\" rel=\"noopener noreferrer nofollow\"\u003Eздесь\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003EПро Португалию и необычные способы эмиграции я пишу в своем канале \u003C\u002Fstrong\u003E\u003Ca href=\"https:\u002F\u002Ft.me\u002Fparol_ot_wifi\" rel=\"noopener noreferrer nofollow\"\u003E\u003Cstrong\u003EПароль от вайфая\u003C\u002Fstrong\u003E\u003C\u002Fa\u003E\u003Cstrong\u003E. Подписывайтесь на канал, если понравилась статья и в целом интересна тема географической независимости и эмиграции.\u003C\u002Fstrong\u003E  \u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"эмиграция"},{"titleHtml":"жизнь за рубежом"},{"titleHtml":"it-миграция"},{"titleHtml":"удаленка"},{"titleHtml":"визы"},{"titleHtml":"мигранты"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbce\u002Fd97\u002F13d\u002Fbced9713da14a8e1f93c252df649d735.png","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fbce\u002Fd97\u002F13d\u002Fbced9713da14a8e1f93c252df649d735.png","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654877\\\u002F\"},\"headline\":\"Как айтишнику получить визу зарубеж на основании удаленной работы в 2022 году\",\"datePublished\":\"2022-03-09T21:09:13+03:00\",\"dateModified\":\"2022-03-09T21:28:01+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"Artem G\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах поя...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654877\\\u002F#post-content-body\",\"about\":[\"h_freelance\",\"h_it_immigration\",\"h_remote\",\"f_management\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654877\\\u002Fb3de007e58596208bcb7da56f3e7ee55\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fbce\\\u002Fd97\\\u002F13d\\\u002Fbced9713da14a8e1f93c252df649d735.png\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F2b8\\\u002F0dc\\\u002F161\\\u002F2b80dc1613fdfda543a050fb43b1d3f5.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F47c\\\u002Fb51\\\u002Fb2a\\\u002F47cb51b2a351313e7d0206ed6fcd86f0.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fb1c\\\u002Fa12\\\u002F221\\\u002Fb1ca122218bb6c78db8e955035b0e910.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F8b1\\\u002Ffaa\\\u002Fa86\\\u002F8b1faaa86fb5e00de4065952f6a653f1.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F370\\\u002F02a\\\u002F932\\\u002F37002a932fc05cd1fd05fe941a6056cc.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F265\\\u002F8bf\\\u002F68b\\\u002F2658bf68b1dbeb5bdb87f60a4bcd15e9.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fa74\\\u002Faf2\\\u002F5bb\\\u002Fa74af25bb5183514f142e29a205f3c07.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F0eb\\\u002F2d6\\\u002Fcc5\\\u002F0eb2d6cc5329db12d697d171489b88c2.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fb94\\\u002Ff09\\\u002F523\\\u002Fb94f0952353043328ec9e5ddf4cceecb.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F968\\\u002Fdc2\\\u002Fc96\\\u002F968dc2c96c51b788fbc489f7694df7a2.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F7f6\\\u002F63d\\\u002F436\\\u002F7f663d436bb0a6020838526bf15a52cf.webp\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F854\\\u002F9ce\\\u002F8d5\\\u002F8549ce8d561222333e38e89f2ae28c2b.webp\"]}","metaDescription":"В течение всего прошлого года я искал информацию о разных визах для цифровых кочевников. Пандемия бушевала, страны закрывались для туризма, но как на дрожжах появлялись визы для удаленщиков. Хотелось...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":"freelance,it_immigration,remote"},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"t

@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>USB на регистрах: bulk endpoint на примере Mass Storage / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/549016\/"},"headline":"USB на регистрах: bulk endpoint на примере Mass Storage","datePublished":"2021-03-25T18:49:51+03:00","dateModified":"2021-05-23T12:30:06+03:00","author":{"@type":"Person","name":"COKPOWEHEU"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Еще более низкий уровень (avr-vusb) USB на регистрах: STM32L1 \/ STM32F1 USB на регистрах: interrupt endpoint на примере HID USB на регистрах: isochronous endpo...","url":"https:\/\/habr.com\/ru\/post\/549016\/#post-content-body","about":["h_controllers","h_circuit-design","f_develop"],"image":["https:\/\/habrastorage.org\/webt\/1u\/z-\/jg\/1uz-jgxrgj1i7br4qahtlcxu6ii.jpeg"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="USB на регистрах: bulk endpoint на примере Mass Storage" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="USB на регистрах: bulk endpoint на примере Mass Storage" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="USB на регистрах: bulk endpoint на примере Mass Storage" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере Audio device
+
+В..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере Audio device
+
+В..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере Audio device
+
+В..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере Audio device
+
+В..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="Еще более низкий уровень (avr-vusb)
+USB на регистрах: STM32L1 / STM32F1
+USB на регистрах: interrupt endpoint на примере HID
+USB на регистрах: isochronous endpoint на примере Audio device
+
+В..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habr.com/share/publication/549016/488600cf5255659f78252c2c87c31ba5/" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habr.com/share/publication/549016/488600cf5255659f78252c2c87c31ba5/" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habr.com/share/publication/549016/488600cf5255659f78252c2c87c31ba5/" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habr.com/share/publication/549016/488600cf5255659f78252c2c87c31ba5/" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habr.com/share/publication/549016/488600cf5255659f78252c2c87c31ba5/?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="549016" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2021-03-25T15:49:51.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/549016/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="arm, stm32, stm32l151, usb, usb-флэшки, msd, msc, грабли и велосипеды"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/549016/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/549016/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habr.com/share/publication/549016/488600cf5255659f78252c2c87c31ba5/" data-vmid="image:href"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/COKPOWEHEU/" title="COKPOWEHEU" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/COKPOWEHEU/" class="tm-user-info__username"> COKPOWEHEU </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2021-03-25T15:49:51.000Z" title="2021-03-25, 18:49">25 марта 2021 в 18:49</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>USB на регистрах: bulk endpoint на примере Mass Storage</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/controllers/" class="tm-article-snippet__hubs-item-link"><span>Программирование микроконтроллеров</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/circuit-design/" class="tm-article-snippet__hubs-item-link"><span>Схемотехника</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span>
+                  </div> <!----> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-1">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <img src="https://habrastorage.org/r/w780q1/webt/1u/z-/jg/1uz-jgxrgj1i7br4qahtlcxu6ii.jpeg" data-src="https://habrastorage.org/webt/1u/z-/jg/1uz-jgxrgj1i7br4qahtlcxu6ii.jpeg" data-blurred="true">
+                     <br> 
+                     <br> <a href="https://habr.com/ru/post/460815/">Еще более низкий уровень (avr-vusb)</a>
+                     <br> <a href="https://habr.com/ru/post/548150/">USB на регистрах: STM32L1 / STM32F1</a>
+                     <br> <a href="https://habr.com/ru/post/551720/">USB на регистрах: interrupt endpoint на примере HID</a>
+                     <br> <a href="https://habr.com/ru/post/558822/">USB на регистрах: isochronous endpoint на примере Audio device</a>
+                     <br> 
+                     <br> В прошлый раз мы познакомились с общими принципами организации USB и собрали простое устройство, иллюстрирующее работу конечной точки типа Control. Пришло время изучать следующий тип — Bulk. Конечные точки такого типа предназначены для обмена большими объемами информации, причем чувствительной к надежности, но не скорости обмена. 
+                     <br> 
+                     <br> Классические примеры — запоминающие устройства и переходники вроде USB-COM. Но переходники требуют еще наличия конечной точки типа Interrupt, которую мы пока «не проходили», так что остановимся на эмуляции флешки. Точнее, двух флешек одновременно.
+                     <br> <a name="habracut"></a>
+                     <br> Рекомендую параллельно сравнивать написанное с <a href="https://github.com/COKPOWEHEU/usb/tree/main/2.MSD_L1" rel="nofollow noopener noreferrer">исходным кодом</a>.
+                     <br> 
+                     <br> 
+                     <h3>Дескриптор</h3>
+                     <br> 
+                     <pre><code class="cpp">static const uint8_t USB_ConfigDescriptor[] = {
+  ARRLEN34(
+  ARRLEN1(
+    bLENGTH, // bLength: Configuration Descriptor size
+    USB_DESCR_CONFIG,    //bDescriptorType: Configuration
+    wTOTALLENGTH, //wTotalLength
+    1, // bNumInterfaces
+    1, // bConfigurationValue: Configuration value
+    0, // iConfiguration: Index of string descriptor describing the configuration
+    0x80, // bmAttributes: bus powered
+    0x32, // MaxPower 100 mA
+  )
+  ARRLEN1(
+    bLENGTH, //bLength
+    USB_DESCR_INTERFACE, //bDescriptorType
+    0, //bInterfaceNumber
+    0, // bAlternateSetting
+    2, // bNumEndpoints
+    MSDCLASS_MSD, // bInterfaceClass: 
+    MSDSUBCLASS_SCSI, // bInterfaceSubClass: 
+    MSDPROTOCOL_BULKONLY, // bInterfaceProtocol: 
+    0x00, // iInterface
+  )
+  ARRLEN1(
+    bLENGTH, //bLength
+    USB_DESCR_ENDPOINT, //bDescriptorType
+    ENDP_NUM | 0x80,  //Endpoint address
+    USB_ENDP_BULK,   //Bulk endpoint type
+    USB_U16(ENDP_SIZE), //endpoint size
+    0x00,   //Polling interval in milliseconds (ignored)
+  )
+  ARRLEN1(
+    bLENGTH, //bLength
+    USB_DESCR_ENDPOINT, //bDescriptorType
+    ENDP_NUM,  //Endpoint address
+    USB_ENDP_BULK,   //Bulk endpoint type
+    USB_U16(ENDP_SIZE), //endpoint size
+    0x00,   //Polling interval in milliseconds (ignored)
+  )
+  )
+};
+</code></pre>
+                     <br> Здесь мы видим сначала заголовок дескриптора с полной длиной и другими неинтересными параметрами. Потом идет описание единственного интерфейса запоминающего устройства, в котором важно правильно указать поля Class, Subclass и Protocol — именно они отвечают за правильную идентификацию устройства в системе. Также важное поле bNumEndpoints, которое показывает сколько конечных точек нашему интерфейсу принадлежит. В нашем случае их две: на чтение и на запись. И тут же идут их описания, в которых внимание нужно уделить номеру (в номере конечной точки типа IN также выставлен 7-й бит, что прописано в дескрипторе как OR с 0x80) и размеру. Организация конечных точек в STM32 позволяет один номер точки использовать как на передачу, так и на прием. Существует еще альтернативный режим, в котором направление у точки одно, а буфер «комплементарной» точки используется для двойной буферизации. По идее, это может повысить скорость, но мы так делать пока не будем и воспользуемся более простым способом — приемник и передатчик, 0x01 и 0x81. А вот поле частоты опроса роли не играет вообще: пока данные для передачи есть, хост будет нашу точку дергать так часто, как только сможет, а когда данные закончатся — оставит в покое.
+                     <br> 
+                     <br> Еще пару слов надо сказать про размер конечных точек. Согласно стандарту [1], он должен быть равен 8, 16, 32 или 64 байта. Правда, покупные флешки как-то умудряются использовать и 512-байтные… В любом случае, делать полноценную флешку на контроллере общего назначения не самая удачная идея, так что оставим 64 байта. Да и места под буферы у нас немного.
+                     <br> 
+                     <br> Приведенные в этом примере константы для Class / Subclass / Protocol не являются единственно возможными. Скажем, можно попытаться эмулировать флоппик (Subclass = 0x04 вместо нашего 0x06). И оно при подключении даже показывает красивую иконку дисекты. Правда, не в винде — очевидно, она использует какие-то специфичные запросы и не верит, что бывают флоппики, их не поддерживающие. Но до специфичных запросов мы еще доберемся. Еще, если поменять Protocol, можно воспользоваться для обмена не только Bulk-точками, но и Interrupt. Но опять же, Interrupt мы не проходили, да и реальные флешки таким тоже не пользуются.
+                     <br> 
+                     <br> Помните, у нас в DeviceDescriptor (который почти ни за что не отвечает, поэтому не меняется и поэтому же здесь не приведен) есть поле iSerialNumber? Так вот, на этом поле растут <b>грабли!</b> Стандарт предписывает последние 12 символов использовать для идентификации экземпляра устройства. Соответственно, «хвост» этой строки должен представлять собой последовательность шестнадцатеричных цифр ('0'-'9', 'A'-'F'), закодированных в 16-битной кодировке. Есть подозрение, что перед ними можно оставить осмысленный текст. А практика показала, что и количество «цифр» может быть меньше 12-и. 
+                     <br> 
+                     <br> Скажем, в моем примере вся строка состоит из единственного символа u''1'' и, кажется, работает. Но вот подставлять туда не-шестнадцатеричные символы все же не стоит: некоторые версии Windows такого пугаются и не хотят с устройством работать.
+                     <br> 
+                     <br> 
+                     <h3>SETUP запросы</h3>
+                     <br> Несмотря на то, что обмен данными идет только через Bulk-точки, кое-какая информация передается и через ep0 по соответствующим запросам. Нам понадобится всего два таких запроса — USBCLASS_MSC_RESET и USBCLASS_MSC_GET_MAX_LUN, причем первый (ресет) мы пока проигнорируем. А вот второй стоит рассмотреть подробнее. Дело в том, что запоминающее устройство по логике авторов стандарта состоит из независимых логических блоков (адресуемых по logical unit number, LUN), с каждым из которых можно общаться независимо. Дальше мы увидим, что в протокол обмена всегда входит поле bLUN, именно за это отвечающее. Всего в одном устройстве их может быть до 15 штук. Правда, никто не запрещает сделать составное устройство, где по 15 «носителей» будет в каждом. В общем, важная это штука, обрабатываем обязательно. Тем более что в качестве ответа на этот запрос достаточно вернуть всего один байт с номером последнего unit'а. <b>Важно!</b> Не количество, а именно номер. То есть если устройство у нас всего одно с lun=0, то и вернуть надо 0, а не 1.
+                     <br> 
+                     <br> 
+                     <h3>Принцип обмена bbb</h3>
+                     <br> BBB (bulk/bulk/bulk) или, что тоже самое, BOT (bulk only transport) — протокол обмена [1], при котором используется единственный тип конечной точки. Через нее передаются команды, через нее же передаются данные и через нее же успешность команд контролируется. Собственно всю логику обмена я сейчас и описал. Перейдем к подробностям:
+                     <br> 
+                     <br> Передача команд осуществляется всегда от хоста к устройству, то есть через конечную точку типа OUT, и представляет собой структуру следующего вида:
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">struct usb_msc_cbw{
+  uint32_t dSignature;
+  uint32_t dTag;
+  uint32_t dDataLength;
+  uint8_t  bmFlags;
+  uint8_t  bLUN;
+  uint8_t  bCBLength;
+  uint8_t  CB[16];
+}__attribute__((packed));</code></pre>
+                     <br> поле <u>dSignature</u> — волшебное чиселко, равное 0x43425355 (или же 4 символа ''USBC''), передающееся хостом для синхронизации. Благодаря им устройство могло более-менее достоверно отличить начало команды от простого потока данных. Дальше идет <u>dTag</u> — порядковый номер команды чтобы если хост не дождался завершения команды и послал другую, смог отличить ответы. Это число надо будет куда-нибудь сохранить, а потом хосту вернуть. 
+                     <br> 
+                     <br> Следующее поле, <u>dDataLength</u>, ограничивает количество байтов ответа. То есть наша посылка не может быть больше, чем dDataLength байт. Поле <u>bmFlags</u> для нас бесполезно, оно по большей части состоит из устаревших настроек. А вот <u>bLUN</u> это то, о чем я говорил раньше — номер «носителя», с которым хочет пообщаться хост. Если носитель у вас единственный, оно всегда будет равно нулю. Но в данном примере мы сделаем их два, так что этот самый LUN придется активно читать. <u>bCBLength</u> — снова бесполезное поле, которое показывает размер дополнительных данных… как будто мы его и так не знаем. И наконец, <u>CB[]</u> — данные, специфичные для конкретного запроса. Их мы будем рассматривать только применительно собственно к запросам. Хотя нет, не совсем так. Поле CB[0] собственно за запрос отвечает, поэтому его мы будем читать и по нему же определять как на данный запрос реагировать.
+                     <br> 
+                     <br> А реакция может заключаться либо в чтении данных размером dDataLength от хоста, либо запись данных того же объема. Формат этих данных зависит от принятой команды, так что пока не будем углубляться.
+                     <br> 
+                     <br> И наконец идет подтверждение — специальная структура следующего вида:
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">struct usb_msc_csw{
+  uint32_t dSignature;
+  uint32_t dTag;
+  uint32_t dDataResidue;
+  uint8_t  bStatus;
+}__attribute__((packed));</code></pre>
+                     <br> Поле <u>dSignature</u>, как и в случае запроса, является магическим чиселком, но <b>другим</b>: 0x53425355 (оно же строка u''USB<b>S</b>''). А вот поле <u>dTag</u> должно в точности совпадать с полученным нами при начале обмена. Смысл следующего поля, <u>dDataResidue</u>, я не слишком понял. Вроде бы оно содержит количество данных, которое мы хотели передать хосту, но в dDataLength не влезло, но не похоже чтобы значение там на что-то влияло. Пожалуй, самое важное поле здесь — <u>bStatus</u>. Если что-то пошло не так, по нему хост может увидеть, что команда завершилась ошибкой и надо что-то делать.
+                     <br> 
+                     <br> В результате первая посылка всегда идет от хоста, вторая либо от хоста, либо от нас, и третья — всегда от нас. 
+                     <br> 
+                     <br> Реализация этого алгоритма может показаться неочевидной, поэтому рассмотрю ее подробнее:
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">static void msc_ep1_in(uint8_t epnum);
+
+static void msc_ep1_out(uint8_t epnum){
+  int left = sizeof(usb_msc_cbw_t) - msc_cbw_count;
+  if(left &gt; 0){ //чтение команды
+    int sz = usb_ep_read(ENDP_NUM, (uint16_t*)&amp;(((uint8_t*)&amp;msc_cbw)[msc_cbw_count]) );
+    msc_cbw_count += sz;
+    if(msc_cbw_count == sizeof(usb_msc_cbw_t)){ //команда прочитана полностью
+      scsi_command();
+    }else return;
+  }else if(bytescount &lt; bytestoread){ //если разнести условие, произойдет повторное чтение буфера EP1_OUT, который был прочитан раньше, но size не сброшен (все равно этим железо занимается)
+    uint8_t lun = msc_cbw.bLUN;
+    int sz;
+    if(lun == 0){
+      sz = usb_ep_read(ENDP_NUM, (uint16_t*)&amp;buffer[0]);
+    }else{
+      sz = usb_ep_read(ENDP_NUM, (uint16_t*)&amp;rambuf[ start_lba*512 + bytescount ]);
+      cur_count += sz;
+    }
+    bytescount += sz;
+  }
+  if(bytescount &lt; bytestoread)return;
+  msc_ep1_in(ENDP_NUM | 0x80);
+}
+
+static void msc_ep1_in(uint8_t epnum){
+  if(! usb_ep_ready(epnum) )return;
+  
+  if(bytescount &lt; bytestowrite){
+    uint32_t left = bytestowrite - bytescount;
+    if(left &gt; ENDP_SIZE)left = ENDP_SIZE;
+    if(block_count == 0){
+      usb_ep_write(ENDP_NUM, &amp;buffer[bytescount], left);
+    }else{
+      uint8_t lun = msc_cbw.bLUN;
+      usb_ep_write(ENDP_NUM, &amp;storage[lun].buf[start_lba*512 + bytescount], left);
+      cur_count += left;
+    }
+    bytescount += left;
+  }else{
+    int32_t left = sizeof(msc_csw) - msc_csw_count;
+    if(left &gt; 0){
+      if(left &gt; ENDP_SIZE)left = ENDP_SIZE;
+      usb_ep_write(ENDP_NUM, (uint8_t*)&amp;(((uint8_t*)&amp;msc_csw)[msc_csw_count]), left);
+      msc_csw_count += left;
+    }else if(left == 0){
+      msc_cbw_count = 0;
+      msc_csw_count = 0;
+      bytestoread = 0;
+      bytestowrite = 0;
+      bytescount = 0;
+      
+      block_count = 0;
+      cur_count = 0;
+    }
+  }
+}</code></pre>
+                     <br> Как уже было сказано, обмен начинается с того, что в конечную точку OUT приходит посылка от хоста. Проблема в том, что размер посылки составляет 31 байт, а размер конечной точки может быть и 8 байт, так что стоит предусмотреть прием по частям. К счастью, пока мы не ответим на один запрос, другого нам слать не будут (если не вылетим по таймауту, конечно), поэтому для хранения запроса и ответа заведем глобальные переменные
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">usb_msc_cbw_t msc_cbw; //принимаемый от хоста запрос
+uint8_t msc_cbw_count = 0; //сколько байтов уже принято
+
+usb_msc_csw_t msc_csw = { //передаваемый хосту отчет
+  .dSignature = 0x53425355,
+};
+uint8_t msc_csw_count = 0; //сколько байтов уже передано</code></pre>
+                     <br> И до тех пор пока количество принятых байтов не сравняется с размером запроса, читать будем именно туда. Если последний байт принят «в нашу смену», то не спешим выходить, а сразу запускаем обработчик команд scsi_command() и даже пересылку ответа (мы ведь помним, что для начала IN транзакции первый пакет надо передать вручную). Но вот запросы на чтение обрабатывать сразу не выйдет, ведь в буфере приема у нас «хвост» команды, а вовсе не данные. 
+                     <br> 
+                     <br> Поэтому scsi_command() только выставляет количество данных (bytestoread). В частности, может выставить в 0 чтобы показать что чтение не нужно. Таким образом дальнейший прием будет повторяться пока количество реально принятых байтов bytescount не достигнет желаемого. После чего все равно произойдет ручной вызов обработчика конечной точки IN, которая пошлет если не данные, то хотя бы отчет об успешности.
+                     <br> 
+                     <br> Собственно, устройство точки IN не слишком отличается от OUT. Основная разница, что она сначала пытается передать bytestowrite байтов и только потом структуру msc_csw с использованием ее персонального счетчика msc_csw_count.
+                     <br> 
+                     <br> 
+                     <h3>Организация памяти и прочие извращения</h3>
+                     <br> Раз уж решили реализовать несколько LUN'ов, имеет смысл и внутреннюю организацию им сделать максимально различной (впрочем, максимальной она не получилась, чуть позже объясню почему). Причем желательно обойтись без возни с подключением к контроллеру периферии Допустим, LUN=0 будет отображением части флешки контроллера (а поскольку возиться с записью на нее данных опять же лень, сделаем ее read-only), а LUN=1 — оперативки. 
+                     <br> 
+                     <br> Объем флешки у L151 целых 256 кБ, но ведь нам его еще программировать, а это долго. 
+                     <br> 
+                     <br> Ограничимся объемом 100 кБ: на таком объеме уже можно создать файловую систему FAT и даже место для файлов останется. Оперативки у нас поменьше, всего 32 кБ, от которых мы откусим 29 кБ и заполним первый «сектор» копией из образа флешки. Пусть тоже будет считаться FAT'ом, хотя и корявым. Впрочем, если будете экспериментировать с моим кодом, рекомендую взять образ флешки поменьше, чтобы не ждать минуту пока оно прошьется.
+                     <br> 
+                     <br> Не уверен, что это нужно, но все же расскажу как можно подготовить этот образ. Первым делом создаем «болванку» <u><i>dd if=/dev/zero of=fatexample.img bs=1k count=100</i></u>
+                     <br> Дальнейшие действия, увы, придется производить от рута:
+                     <br> создаем на «болванке» файловую систему <u><i>mkfs.vfat fatexample.img</i></u>
+                     <br> куда-нибудь ее монтируем <u><i>mount fatexample.img /mnt -o user,umask=0</i></u>
+                     <br> флажки в конце нужны чтобы пользоваться этой файловой системой мог обычный пользователь. 
+                     <br> 
+                     <br> Собственно, от его (своего) имени и кидаем туда файлы. Из хулиганских соображений я предпочел записать туда исходники прошивки. Только надо учитывать, что винда не поймет обычный конец строки '\n', ей надо '\r\n'. То есть открываем каждый скопированный файл и меняем ему формат конца строки. Возможно, это как-то делается и из консоли, но я не искал.
+                     <br> Наконец снова заходим в рута дабы отмонтировать образ <u><i>umount /mnt</i></u>
+                     <br> Сразу предупреждаю: я не знаю как подобное делается в Windows. Не исключено, что по-человечески оно там вообще не делается, придется искать и скачивать какие-то сторонние программы. Ну или пользоваться для тестов каким-то из моих образов.
+                     <br> 
+                     <br> Теперь, когда бинарный образ готов, его надо как-то слинковать с остальным проектом. Для этого преобразуем образ в обычный объектный файл: <u><i>arm-none-eabi-ld -r -b binary -o fatexample.o fatexample.img</i></u>
+                     <br> Проблема в том, что линкер попытается разместить его в оперативной памяти и закономерно потерпит неудачу. Поэтому преобразуем его еще раз: <u><i>arm-none-eabi-objcopy --rename-section .data=.rodata,alloc,load,readonly,data,contents fatexample.o fatexample.o</i></u>
+                     <br> Вот теперь можно линковать. Чтобы не вводить эти команды каждый раз вручную, я прописал их прямо в makefile.
+                     <br> 
+                     <br> 
+                     <h3>Обязательные команды</h3>
+                     <br> Все команды, с которыми мы будем иметь дело, относятся к семейству SCSI (Small Computer System Interface) — интерфейсу обмена данными с носителями информации и много чем еще. Причем не только по USB. 
+                     <br> 
+                     <br> Обязательными для реализации являются следующие (достаточно подробно описаны тут):
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">#define SCSI_TEST_UNIT_READY 0x00 //проверка готовности LUN
+#define SCSI_REQUEST_SENSE   0x03 //запрос подробностей при ошибках
+#define SCSI_INQUIRY         0x12 //запрос подробностей по данному LUN'у
+#define SCSI_READ_CAPACITY   0x25 //запрос емкости
+#define SCSI_READ_10         0x28 //чтение
+#define SCSI_WRITE_10        0x2A //запись</code></pre>
+                     <br> Также еще несколько запросов, которые формально не обязательны, но лучше бы их реализовать
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">#define SCSI_MODE_SENSE_6              0x1A //еще немного подробностей по LUN'у
+#define SCSI_MMC_START_STOP_UNIT       0x1B //запрос на отключение
+#define SCSI_MMC_PREVENT_ALLOW_REMOVAL 0x1E //еще один запрос на отключение
+#define SCSI_MMC_READ_FORMAT_CAPACITY  0x23 //определение емкости (windows-specific)</code></pre>
+                     <br> Первым делом хост запрашивает у носителей данных подробности их внутреннего устройства, посылая для этого запрос SCSI_INQUIRY. В ответ он ожидает очередную волшебную структуру, подробно рассматривать которую я не хочу. Для нашего случая достаточно скопировать готовую и немного поиграться с константами. Скажем, поменять строку вендора. Или, например, нулевой байт изменить с 0x00 на 0x05 чтобы данный LUN считался не просто носителем, а CD/DVD диском. Правда, одного этого недостаточно: необходимо дописать поддержку каких-то специфичных запросы. Поэтому уж настолько извращаться не будем… а жаль
+                     <br> 
+                     <br> Далее идет запрос емкости (SCSI_READ_CAPACITY), на который надо ответить двумя 32-битными числами (суммарно 8 байт, очевидно): 0-3 байты это <b>номер последнего блока</b>, а 4-7 это размер одного блока. Дело в том, что носители данных не обеспечивают доступ к отдельному байту — только к блоку размером обычно 512 байт. На такие же блоки устройство поделим и мы. 
+                     <br> 
+                     <br> Обратите внимание, что передается не количество блоков, а, как и в случае LUN, номер последнего. То есть uint32_t last_lba = capacity / 512 — 1;
+                     <br> 
+                     <br> <b>Внимание, грабли!</b> Винда почему-то не полагается на запрос SCSI_READ_CAPACITY, а отправляет SCSI_MMC_READ_FORMAT_CAPACITY с немного другим форматом. И ее не волнует что этот запрос не обязателен для реализации, так что после получения ошибки «запрос не поддерживается» она еще долго отключает-подключает устройство в надежде что то образумится. Если не хотите полчаса ждать пока винда таки смирится что неподдерживаемый запрос не поддерживается, лучше этот запрос реализовать. Как несложно догадаться, линукс ведет себя адекватно и понимает с первого раза.
+                     <br> 
+                     <br> Еще один запрос, который имеет смысл обработать — SCSI_MODE_SENSE_6. Точнее, опять забить вместо ответа чей-то готовый кусок. 1-й байт в нем отвечает за размер посылки и будет равен 3, второй байт описывает тип носителя (что-то вендор-специфичное, оставим ноль). 
+                     <br> 
+                     <br> Третий байт самый для нас интересный. Его 7-й бит означает защиту от записи, его мы и взведем для 0-го LUN чтобы хост даже не пытался писать в нашу флеш-память. Вот в LUN=1 (оперативка) — другое дело, там этот бит будет нулевым и пусть пишет на здоровье.
+                     <br> 
+                     <br> Потом хост проверяет готов ли вообще носитель с нужным номером к обмену (SCSI_TEST_UNIT_READY), причем пакет данных ему для ответа не нужен — достаточно кода ошибки: готов — не готов.
+                     <br> 
+                     <br> Далее по хронологии должен идти рассказ про чтение и запись, но их мы оставим на конец.
+                     <br> 
+                     <br> Хост может попытаться управлять подключением носителей данных при помощи команд SCSI_MMC_START_STOP_UNIT и SCSI_MMC_PREVENT_ALLOW_REMOVAL, причем если они не поддерживаются, ругается что не может отмонтировать устройство. Впрочем, заглушки, возвращающей «все хорошо» ему достаточно, так что глубже я и не копал. В реальном применении покопать все же придется, поскольку некоторой периферии нужно больше нуля секунд для корректного завершения работы. А пока она медленно отключается, надо попросить хоста чтобы подождал.
+                     <br> 
+                     <br> Если что-то пошло не так (на этапе подтверждения устройство вернуло ошибку), хост запрашивает по этой ошибке подробности (SCSI_REQUEST_SENSE) — массив из трех байтов, кратко поясняющих что же именно случилось. Чаще всего у нас будет случаться SBC_SENSE_KEY_ILLEGAL_REQUEST (неподдерживаемый запрос), но в принципе таким же способом сообщают о неготовности носителя данных и многом другом. Кстати, раз запрос подробностей ошибки — отдельный запрос, то и хранить результат предыдущего надо в отдельной переменной, msc_sense.
+                     <br> 
+                     <br> 
+                     <h3>READ / WRITE</h3>
+                     <br> Ну и наконец самое интересное — чтение и запись данных. На самом деле это не один запрос, а целое семейство, отличающихся размером. Скажем, бывают READ(6), READ(10), READ(12), даже READ(16), которые занимают в msc_cbw.CB соответственно 6, 10, 12 и 16 байтов. Мы будем пользоваться READ(10). И WRITE(10), естественно. Формат у них одинаковый, отличается только направление передачи: от хоста к устройству или от устройства к хосту. Структура запроса такова:
+                     <br> 
+                     <br> 
+                     <pre><code class="cpp">typedef struct{
+  uint8_t opcode; //READ(10) / WRITE(10)
+  uint8_t cdb_info1;
+  uint32_t block_address;
+  uint8_t cdb_info2;
+  uint16_t length;
+  uint8_t control;
+}scsi_cbw_10_t;</code></pre>
+                     <br> Из нее нас интересуют только поля block_address и length — номер первого блока, который предстоит прочитать и количество этих блоков. Напоминаю, что размер блока мы сообщили хосту раньше, по запросу SCSI_READ_CAPACITY и что составляет он у нас 512 байт. 
+                     <br> 
+                     <br> Следовательно, адрес первого байта, с которого начнем чтение, равен block_address * 512, а их суммарное количество length * 512.
+                     <br> 
+                     <br> Из соображений простоты демонстрационного кода (ну и из лени, конечно) посекторной работы с внешней памятью вы здесь не увидите. В самом деле, что к оперативке, что к флешке контроллера доступ побайтный. Но вот при взаимодействии с более сложной периферией вроде SD-карточек уже придется лавировать между прерываниями USB и этой периферии. Возможно, кстати, работу с USB будет проще осуществлять опросом, чем прерываниями. По той же причине выбор нужного буфера на чтение или запись остался в обработчике IN и OUT, а не в scsi_command.
+                     <br> 
+                     <br> 
+                     <h3>Заключение</h3>
+                     <br> Вот мы и познакомились в общих чертах с принципом передачи данных в запоминающих устройствах и даже заставили макетную плату прикидываться одновременно read-only флешкой, накоторую записаны ее же исходники, и энерго-зависимой флешкой, которая информацию не сохраняет при отключении. Заодно протестировали работу конечной точки типа Bulk и обнаружили что ее использование не особо отличается от других.
+                     <br> 
+                     <br> Хотелось бы, конечно, еще сэмулировать флоппик и оптический дисковод, но там используются какие-то свои, специфичные команды. В рамках данной статьи это было бы неуместно.
+                     <br> 
+                     <br> Если кто-то захочет повторить данную конструкцию, исходный код как обычно в <a href="https://github.com/COKPOWEHEU/usb" rel="nofollow noopener noreferrer">репозитоии</a>, туда же я добавил найденную <a href="https://github.com/COKPOWEHEU/usb/tree/main/2.MSD_L1/doc" rel="nofollow noopener noreferrer">литературу</a>, поскольку это уже какая-то нездоровая традиция создавать на ровном месте проблемы со скачиванием официальной документации.
+                     <br> 
+                     <br> [1] Universal Serial Bus Mass Storage Class Bulk-Only Transport <a href="https://github.com/COKPOWEHEU/usb/blob/main/2.MSD_L1/doc/MSD_Bulk_only.pdf" rel="nofollow noopener noreferrer">копия</a>
+                     <br> [2] Universal Serial Bus Mass Storage Class Specification Overview <a href="https://github.com/COKPOWEHEU/usb/blob/main/2.MSD_L1/doc/MSD_overview.pdf" rel="nofollow noopener noreferrer">копия</a>
+                     <br> [3] SCSI Multimedia Commands – 2 (MMC-2) <a href="https://github.com/COKPOWEHEU/usb/blob/main/2.MSD_L1/doc/MSD_SCSI_MMC.pdf" rel="nofollow noopener noreferrer">копия</a>
+                     <br> [4] SCSI Primary Commands-3 (SPC-3) <a href="https://github.com/COKPOWEHEU/usb/blob/main/2.MSD_L1/doc/MSD_SPC3.pdf" rel="nofollow noopener noreferrer">копия</a>
+                     <br> [5] SCSI Commands Reference Manual (от Seagate) <a href="https://github.com/COKPOWEHEU/usb/blob/main/2.MSD_L1/doc/MSD_Seagate_SCSI_commands.pdf" rel="nofollow noopener noreferrer">копия</a>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Barm%5D" class="tm-tags-list__link">arm</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bstm32%5D" class="tm-tags-list__link">stm32</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bstm32l151%5D" class="tm-tags-list__link">stm32l151</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Busb%5D" class="tm-tags-list__link">usb</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Busb-%D1%84%D0%BB%D1%8D%D1%88%D0%BA%D0%B8%5D" class="tm-tags-list__link">usb-флэшки</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bmsd%5D" class="tm-tags-list__link">msd</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5Bmsc%5D" class="tm-tags-list__link">msc</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B3%D1%80%D0%B0%D0%B1%D0%BB%D0%B8%20%D0%B8%20%D0%B2%D0%B5%D0%BB%D0%BE%D1%81%D0%B8%D0%BF%D0%B5%D0%B4%D1%8B%5D" class="tm-tags-list__link">грабли и велосипеды</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/controllers/" class="tm-hubs-list__link"> Программирование микроконтроллеров </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/circuit-design/" class="tm-hubs-list__link"> Схемотехника </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 19: ↑19 и ↓0</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 19: ↑19 и ↓0" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+19</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">3.9K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 40 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/COKPOWEHEU/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <svg class="tm-svg-img tm-image-placeholder tm-image-placeholder_lilac">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 90 голосов " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         56 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         18
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <!----> <a href="/ru/users/COKPOWEHEU/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @COKPOWEHEU </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Пользователь</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <!----> <!----> <!---->
+                  </div>
+                 </div> <!---->
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner5429" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/549016/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 37 </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> <!----> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner5430" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom5431" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/549016/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/549016/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"549016":{"id":"549016","timePublished":"2021-03-25T15:49:51+00:00","isCorporative":false,"lang":"ru","titleHtml":"USB на регистрах: bulk endpoint на примере Mass Storage","leadData":{"textHtml":"\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002F1u\u002Fz-\u002Fjg\u002F1uz-jgxrgj1i7br4qahtlcxu6ii.jpeg\"\u003E\u003Cbr\u003E\r\n\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F460815\u002F\"\u003EЕще более низкий уровень (avr-vusb)\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F548150\u002F\"\u003EUSB на регистрах: STM32L1 \u002F STM32F1\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F551720\u002F\"\u003EUSB на регистрах: interrupt endpoint на примере HID\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F558822\u002F\"\u003EUSB на регистрах: isochronous endpoint на примере Audio device\u003C\u002Fa\u003E\u003Cbr\u003E\r\n\u003Cbr\u003E\r\nВ прошлый раз мы познакомились с общими принципами организации USB и собрали простое устройство, иллюстрирующее работу конечной точки типа Control. Пришло время изучать следующий тип — Bulk. Конечные точки такого типа предназначены для обмена большими объемами информации, причем чувствительной к надежности, но не скорости обмена. \u003Cbr\u003E\r\n\u003Cbr\u003E\r\nКлассические примеры — запоминающие устройства и переходники вроде USB-COM. Но переходники требуют еще наличия конечной точки типа Interrupt, которую мы пока «не проходили», так что остановимся на эмуляции флешки. Точнее, двух флешек одновременно.\u003Cbr\u003E","imageUrl":null,"buttonTextHtml":"Читать дальше &rarr;","image":null},"editorVersion":"1.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":56,"votesCount":90},"rating":18,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"1876369","alias":"COKPOWEHEU","fullname":null,"avatarUrl":null,"speciality":null},"statistics":{"commentsCount":37,"favoritesCount":40,"readingCount":3904,"score":19,"votesCount":19},"hubs":[{"relatedData":null,"id":"19737","alias":"controllers","type":"collective","title":"Программирование микроконтроллеров","titleHtml":"Программирование микроконтроллеров","isProfiled":true},{"relatedData":null,"id":"21472","alias":"circuit-design","type":"collective","title":"Схемотехника","titleHtml":"Схемотехника","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fwebt\u002F1u\u002Fz-\u002Fjg\u002F1uz-jgxrgj1i7br4qahtlcxu6ii.jpeg\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fwebt\u002F1u\u002Fz-\u002Fjg\u002F1uz-jgxrgj1i7br4qahtlcxu6ii.jpeg\" data-blurred=\"true\"\u002F\u003E\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F460815\u002F\"\u003EЕще более низкий уровень (avr-vusb)\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F548150\u002F\"\u003EUSB на регистрах: STM32L1 \u002F STM32F1\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F551720\u002F\"\u003EUSB на регистрах: interrupt endpoint на примере HID\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F558822\u002F\"\u003EUSB на регистрах: isochronous endpoint на примере Audio device\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nВ прошлый раз мы познакомились с общими принципами организации USB и собрали простое устройство, иллюстрирующее работу конечной точки типа Control. Пришло время изучать следующий тип — Bulk. Конечные точки такого типа предназначены для обмена большими объемами информации, причем чувствительной к надежности, но не скорости обмена. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nКлассические примеры — запоминающие устройства и переходники вроде USB-COM. Но переходники требуют еще наличия конечной точки типа Interrupt, которую мы пока «не проходили», так что остановимся на эмуляции флешки. Точнее, двух флешек одновременно.\u003Cbr\u002F\u003E\r\n\u003Ca name=\"habracut\"\u003E\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\nРекомендую параллельно сравнивать написанное с \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F2.MSD_L1\" rel=\"nofollow noopener noreferrer\"\u003Eисходным кодом\u003C\u002Fa\u003E.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EДескриптор\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Estatic const uint8_t USB_ConfigDescriptor[] = {\n  ARRLEN34(\n  ARRLEN1(\n    bLENGTH, \u002F\u002F bLength: Configuration Descriptor size\n    USB_DESCR_CONFIG,    \u002F\u002FbDescriptorType: Configuration\n    wTOTALLENGTH, \u002F\u002FwTotalLength\n    1, \u002F\u002F bNumInterfaces\n    1, \u002F\u002F bConfigurationValue: Configuration value\n    0, \u002F\u002F iConfiguration: Index of string descriptor describing the configuration\n    0x80, \u002F\u002F bmAttributes: bus powered\n    0x32, \u002F\u002F MaxPower 100 mA\n  )\n  ARRLEN1(\n    bLENGTH, \u002F\u002FbLength\n    USB_DESCR_INTERFACE, \u002F\u002FbDescriptorType\n    0, \u002F\u002FbInterfaceNumber\n    0, \u002F\u002F bAlternateSetting\n    2, \u002F\u002F bNumEndpoints\n    MSDCLASS_MSD, \u002F\u002F bInterfaceClass: \n    MSDSUBCLASS_SCSI, \u002F\u002F bInterfaceSubClass: \n    MSDPROTOCOL_BULKONLY, \u002F\u002F bInterfaceProtocol: \n    0x00, \u002F\u002F iInterface\n  )\n  ARRLEN1(\n    bLENGTH, \u002F\u002FbLength\n    USB_DESCR_ENDPOINT, \u002F\u002FbDescriptorType\n    ENDP_NUM | 0x80,  \u002F\u002FEndpoint address\n    USB_ENDP_BULK,   \u002F\u002FBulk endpoint type\n    USB_U16(ENDP_SIZE), \u002F\u002Fendpoint size\n    0x00,   \u002F\u002FPolling interval in milliseconds (ignored)\n  )\n  ARRLEN1(\n    bLENGTH, \u002F\u002FbLength\n    USB_DESCR_ENDPOINT, \u002F\u002FbDescriptorType\n    ENDP_NUM,  \u002F\u002FEndpoint address\n    USB_ENDP_BULK,   \u002F\u002FBulk endpoint type\n    USB_U16(ENDP_SIZE), \u002F\u002Fendpoint size\n    0x00,   \u002F\u002FPolling interval in milliseconds (ignored)\n  )\n  )\n};\n\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nЗдесь мы видим сначала заголовок дескриптора с полной длиной и другими неинтересными параметрами. Потом идет описание единственного интерфейса запоминающего устройства, в котором важно правильно указать поля Class, Subclass и Protocol — именно они отвечают за правильную идентификацию устройства в системе. Также важное поле bNumEndpoints, которое показывает сколько конечных точек нашему интерфейсу принадлежит. В нашем случае их две: на чтение и на запись. И тут же идут их описания, в которых внимание нужно уделить номеру (в номере конечной точки типа IN также выставлен 7-й бит, что прописано в дескрипторе как OR с 0x80) и размеру. Организация конечных точек в STM32 позволяет один номер точки использовать как на передачу, так и на прием. Существует еще альтернативный режим, в котором направление у точки одно, а буфер «комплементарной» точки используется для двойной буферизации. По идее, это может повысить скорость, но мы так делать пока не будем и воспользуемся более простым способом — приемник и передатчик, 0x01 и 0x81. А вот поле частоты опроса роли не играет вообще: пока данные для передачи есть, хост будет нашу точку дергать так часто, как только сможет, а когда данные закончатся — оставит в покое.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nЕще пару слов надо сказать про размер конечных точек. Согласно стандарту [1], он должен быть равен 8, 16, 32 или 64 байта. Правда, покупные флешки как-то умудряются использовать и 512-байтные… В любом случае, делать полноценную флешку на контроллере общего назначения не самая удачная идея, так что оставим 64 байта. Да и места под буферы у нас немного.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПриведенные в этом примере константы для Class \u002F Subclass \u002F Protocol не являются единственно возможными. Скажем, можно попытаться эмулировать флоппик (Subclass = 0x04 вместо нашего 0x06). И оно при подключении даже показывает красивую иконку дисекты. Правда, не в винде — очевидно, она использует какие-то специфичные запросы и не верит, что бывают флоппики, их не поддерживающие. Но до специфичных запросов мы еще доберемся. Еще, если поменять Protocol, можно воспользоваться для обмена не только Bulk-точками, но и Interrupt. Но опять же, Interrupt мы не проходили, да и реальные флешки таким тоже не пользуются.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПомните, у нас в DeviceDescriptor (который почти ни за что не отвечает, поэтому не меняется и поэтому же здесь не приведен) есть поле iSerialNumber? Так вот, на этом поле растут \u003Cb\u003Eграбли!\u003C\u002Fb\u003E Стандарт предписывает последние 12 символов использовать для идентификации экземпляра устройства. Соответственно, «хвост» этой строки должен представлять собой последовательность шестнадцатеричных цифр ('0'-'9', 'A'-'F'), закодированных в 16-битной кодировке. Есть подозрение, что перед ними можно оставить осмысленный текст. А практика показала, что и количество «цифр» может быть меньше 12-и. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nСкажем, в моем примере вся строка состоит из единственного символа u''1'' и, кажется, работает. Но вот подставлять туда не-шестнадцатеричные символы все же не стоит: некоторые версии Windows такого пугаются и не хотят с устройством работать.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003ESETUP запросы\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nНесмотря на то, что обмен данными идет только через Bulk-точки, кое-какая информация передается и через ep0 по соответствующим запросам. Нам понадобится всего два таких запроса — USBCLASS_MSC_RESET и USBCLASS_MSC_GET_MAX_LUN, причем первый (ресет) мы пока проигнорируем. А вот второй стоит рассмотреть подробнее. Дело в том, что запоминающее устройство по логике авторов стандарта состоит из независимых логических блоков (адресуемых по logical unit number, LUN), с каждым из которых можно общаться независимо. Дальше мы увидим, что в протокол обмена всегда входит поле bLUN, именно за это отвечающее. Всего в одном устройстве их может быть до 15 штук. Правда, никто не запрещает сделать составное устройство, где по 15 «носителей» будет в каждом. В общем, важная это штука, обрабатываем обязательно. Тем более что в качестве ответа на этот запрос достаточно вернуть всего один байт с номером последнего unit'а. \u003Cb\u003EВажно!\u003C\u002Fb\u003E Не количество, а именно номер. То есть если устройство у нас всего одно с lun=0, то и вернуть надо 0, а не 1.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EПринцип обмена bbb\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nBBB (bulk\u002Fbulk\u002Fbulk) или, что тоже самое, BOT (bulk only transport) — протокол обмена [1], при котором используется единственный тип конечной точки. Через нее передаются команды, через нее же передаются данные и через нее же успешность команд контролируется. Собственно всю логику обмена я сейчас и описал. Перейдем к подробностям:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПередача команд осуществляется всегда от хоста к устройству, то есть через конечную точку типа OUT, и представляет собой структуру следующего вида:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Estruct usb_msc_cbw{\n  uint32_t dSignature;\n  uint32_t dTag;\n  uint32_t dDataLength;\n  uint8_t  bmFlags;\n  uint8_t  bLUN;\n  uint8_t  bCBLength;\n  uint8_t  CB[16];\n}__attribute__((packed));\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nполе \u003Cu\u003EdSignature\u003C\u002Fu\u003E — волшебное чиселко, равное 0x43425355 (или же 4 символа ''USBC''), передающееся хостом для синхронизации. Благодаря им устройство могло более-менее достоверно отличить начало команды от простого потока данных. Дальше идет \u003Cu\u003EdTag\u003C\u002Fu\u003E — порядковый номер команды чтобы если хост не дождался завершения команды и послал другую, смог отличить ответы. Это число надо будет куда-нибудь сохранить, а потом хосту вернуть. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nСледующее поле, \u003Cu\u003EdDataLength\u003C\u002Fu\u003E, ограничивает количество байтов ответа. То есть наша посылка не может быть больше, чем dDataLength байт. Поле \u003Cu\u003EbmFlags\u003C\u002Fu\u003E для нас бесполезно, оно по большей части состоит из устаревших настроек. А вот \u003Cu\u003EbLUN\u003C\u002Fu\u003E это то, о чем я говорил раньше — номер «носителя», с которым хочет пообщаться хост. Если носитель у вас единственный, оно всегда будет равно нулю. Но в данном примере мы сделаем их два, так что этот самый LUN придется активно читать. \u003Cu\u003EbCBLength\u003C\u002Fu\u003E — снова бесполезное поле, которое показывает размер дополнительных данных… как будто мы его и так не знаем. И наконец, \u003Cu\u003ECB[]\u003C\u002Fu\u003E — данные, специфичные для конкретного запроса. Их мы будем рассматривать только применительно собственно к запросам. Хотя нет, не совсем так. Поле CB[0] собственно за запрос отвечает, поэтому его мы будем читать и по нему же определять как на данный запрос реагировать.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nА реакция может заключаться либо в чтении данных размером dDataLength от хоста, либо запись данных того же объема. Формат этих данных зависит от принятой команды, так что пока не будем углубляться.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nИ наконец идет подтверждение — специальная структура следующего вида:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Estruct usb_msc_csw{\n  uint32_t dSignature;\n  uint32_t dTag;\n  uint32_t dDataResidue;\n  uint8_t  bStatus;\n}__attribute__((packed));\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nПоле \u003Cu\u003EdSignature\u003C\u002Fu\u003E, как и в случае запроса, является магическим чиселком, но \u003Cb\u003Eдругим\u003C\u002Fb\u003E: 0x53425355 (оно же строка u''USB\u003Cb\u003ES\u003C\u002Fb\u003E''). А вот поле \u003Cu\u003EdTag\u003C\u002Fu\u003E должно в точности совпадать с полученным нами при начале обмена. Смысл следующего поля, \u003Cu\u003EdDataResidue\u003C\u002Fu\u003E, я не слишком понял. Вроде бы оно содержит количество данных, которое мы хотели передать хосту, но в dDataLength не влезло, но не похоже чтобы значение там на что-то влияло. Пожалуй, самое важное поле здесь — \u003Cu\u003EbStatus\u003C\u002Fu\u003E. Если что-то пошло не так, по нему хост может увидеть, что команда завершилась ошибкой и надо что-то делать.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nВ результате первая посылка всегда идет от хоста, вторая либо от хоста, либо от нас, и третья — всегда от нас. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nРеализация этого алгоритма может показаться неочевидной, поэтому рассмотрю ее подробнее:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Estatic void msc_ep1_in(uint8_t epnum);\n\nstatic void msc_ep1_out(uint8_t epnum){\n  int left = sizeof(usb_msc_cbw_t) - msc_cbw_count;\n  if(left \u003E 0){ \u002F\u002Fчтение команды\n    int sz = usb_ep_read(ENDP_NUM, (uint16_t*)&amp;(((uint8_t*)&amp;msc_cbw)[msc_cbw_count]) );\n    msc_cbw_count += sz;\n    if(msc_cbw_count == sizeof(usb_msc_cbw_t)){ \u002F\u002Fкоманда прочитана полностью\n      scsi_command();\n    }else return;\n  }else if(bytescount &lt; bytestoread){ \u002F\u002Fесли разнести условие, произойдет повторное чтение буфера EP1_OUT, который был прочитан раньше, но size не сброшен (все равно этим железо занимается)\n    uint8_t lun = msc_cbw.bLUN;\n    int sz;\n    if(lun == 0){\n      sz = usb_ep_read(ENDP_NUM, (uint16_t*)&amp;buffer[0]);\n    }else{\n      sz = usb_ep_read(ENDP_NUM, (uint16_t*)&amp;rambuf[ start_lba*512 + bytescount ]);\n      cur_count += sz;\n    }\n    bytescount += sz;\n  }\n  if(bytescount &lt; bytestoread)return;\n  msc_ep1_in(ENDP_NUM | 0x80);\n}\n\nstatic void msc_ep1_in(uint8_t epnum){\n  if(! usb_ep_ready(epnum) )return;\n  \n  if(bytescount &lt; bytestowrite){\n    uint32_t left = bytestowrite - bytescount;\n    if(left \u003E ENDP_SIZE)left = ENDP_SIZE;\n    if(block_count == 0){\n      usb_ep_write(ENDP_NUM, &amp;buffer[bytescount], left);\n    }else{\n      uint8_t lun = msc_cbw.bLUN;\n      usb_ep_write(ENDP_NUM, &amp;storage[lun].buf[start_lba*512 + bytescount], left);\n      cur_count += left;\n    }\n    bytescount += left;\n  }else{\n    int32_t left = sizeof(msc_csw) - msc_csw_count;\n    if(left \u003E 0){\n      if(left \u003E ENDP_SIZE)left = ENDP_SIZE;\n      usb_ep_write(ENDP_NUM, (uint8_t*)&amp;(((uint8_t*)&amp;msc_csw)[msc_csw_count]), left);\n      msc_csw_count += left;\n    }else if(left == 0){\n      msc_cbw_count = 0;\n      msc_csw_count = 0;\n      bytestoread = 0;\n      bytestowrite = 0;\n      bytescount = 0;\n      \n      block_count = 0;\n      cur_count = 0;\n    }\n  }\n}\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nКак уже было сказано, обмен начинается с того, что в конечную точку OUT приходит посылка от хоста. Проблема в том, что размер посылки составляет 31 байт, а размер конечной точки может быть и 8 байт, так что стоит предусмотреть прием по частям. К счастью, пока мы не ответим на один запрос, другого нам слать не будут (если не вылетим по таймауту, конечно), поэтому для хранения запроса и ответа заведем глобальные переменные\u003Cbr\u002F\u003E\r\n \u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Eusb_msc_cbw_t msc_cbw; \u002F\u002Fпринимаемый от хоста запрос\nuint8_t msc_cbw_count = 0; \u002F\u002Fсколько байтов уже принято\n\nusb_msc_csw_t msc_csw = { \u002F\u002Fпередаваемый хосту отчет\n  .dSignature = 0x53425355,\n};\nuint8_t msc_csw_count = 0; \u002F\u002Fсколько байтов уже передано\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nИ до тех пор пока количество принятых байтов не сравняется с размером запроса, читать будем именно туда. Если последний байт принят «в нашу смену», то не спешим выходить, а сразу запускаем обработчик команд scsi_command() и даже пересылку ответа (мы ведь помним, что для начала IN транзакции первый пакет надо передать вручную). Но вот запросы на чтение обрабатывать сразу не выйдет, ведь в буфере приема у нас «хвост» команды, а вовсе не данные. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПоэтому scsi_command() только выставляет количество данных (bytestoread). В частности, может выставить в 0 чтобы показать что чтение не нужно. Таким образом дальнейший прием будет повторяться пока количество реально принятых байтов bytescount не достигнет желаемого. После чего все равно произойдет ручной вызов обработчика конечной точки IN, которая пошлет если не данные, то хотя бы отчет об успешности.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nСобственно, устройство точки IN не слишком отличается от OUT. Основная разница, что она сначала пытается передать bytestowrite байтов и только потом структуру msc_csw с использованием ее персонального счетчика msc_csw_count.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EОрганизация памяти и прочие извращения\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nРаз уж решили реализовать несколько LUN'ов, имеет смысл и внутреннюю организацию им сделать максимально различной (впрочем, максимальной она не получилась, чуть позже объясню почему). Причем желательно обойтись без возни с подключением к контроллеру периферии Допустим, LUN=0 будет отображением части флешки контроллера (а поскольку возиться с записью на нее данных опять же лень, сделаем ее read-only), а LUN=1 — оперативки. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nОбъем флешки у L151 целых 256 кБ, но ведь нам его еще программировать, а это долго. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nОграничимся объемом 100 кБ: на таком объеме уже можно создать файловую систему FAT и даже место для файлов останется. Оперативки у нас поменьше, всего 32 кБ, от которых мы откусим 29 кБ и заполним первый «сектор» копией из образа флешки. Пусть тоже будет считаться FAT'ом, хотя и корявым. Впрочем, если будете экспериментировать с моим кодом, рекомендую взять образ флешки поменьше, чтобы не ждать минуту пока оно прошьется.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nНе уверен, что это нужно, но все же расскажу как можно подготовить этот образ. Первым делом создаем «болванку» \u003Cu\u003E\u003Ci\u003Edd if=\u002Fdev\u002Fzero of=fatexample.img bs=1k count=100\u003C\u002Fi\u003E\u003C\u002Fu\u003E\u003Cbr\u002F\u003E\r\nДальнейшие действия, увы, придется производить от рута:\u003Cbr\u002F\u003E\r\nсоздаем на «болванке» файловую систему \u003Cu\u003E\u003Ci\u003Emkfs.vfat fatexample.img\u003C\u002Fi\u003E\u003C\u002Fu\u003E\u003Cbr\u002F\u003E\r\nкуда-нибудь ее монтируем \u003Cu\u003E\u003Ci\u003Emount fatexample.img \u002Fmnt -o user,umask=0\u003C\u002Fi\u003E\u003C\u002Fu\u003E\u003Cbr\u002F\u003E\r\nфлажки в конце нужны чтобы пользоваться этой файловой системой мог обычный пользователь. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nСобственно, от его (своего) имени и кидаем туда файлы. Из хулиганских соображений я предпочел записать туда исходники прошивки. Только надо учитывать, что винда не поймет обычный конец строки '\\n', ей надо '\\r\\n'. То есть открываем каждый скопированный файл и меняем ему формат конца строки. Возможно, это как-то делается и из консоли, но я не искал.\u003Cbr\u002F\u003E\r\nНаконец снова заходим в рута дабы отмонтировать образ \u003Cu\u003E\u003Ci\u003Eumount \u002Fmnt\u003C\u002Fi\u003E\u003C\u002Fu\u003E\u003Cbr\u002F\u003E\r\nСразу предупреждаю: я не знаю как подобное делается в Windows. Не исключено, что по-человечески оно там вообще не делается, придется искать и скачивать какие-то сторонние программы. Ну или пользоваться для тестов каким-то из моих образов.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nТеперь, когда бинарный образ готов, его надо как-то слинковать с остальным проектом. Для этого преобразуем образ в обычный объектный файл: \u003Cu\u003E\u003Ci\u003Earm-none-eabi-ld -r -b binary -o fatexample.o fatexample.img\u003C\u002Fi\u003E\u003C\u002Fu\u003E\u003Cbr\u002F\u003E\r\nПроблема в том, что линкер попытается разместить его в оперативной памяти и закономерно потерпит неудачу. Поэтому преобразуем его еще раз: \u003Cu\u003E\u003Ci\u003Earm-none-eabi-objcopy --rename-section .data=.rodata,alloc,load,readonly,data,contents fatexample.o fatexample.o\u003C\u002Fi\u003E\u003C\u002Fu\u003E\u003Cbr\u002F\u003E\r\nВот теперь можно линковать. Чтобы не вводить эти команды каждый раз вручную, я прописал их прямо в makefile.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EОбязательные команды\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nВсе команды, с которыми мы будем иметь дело, относятся к семейству SCSI (Small Computer System Interface) — интерфейсу обмена данными с носителями информации и много чем еще. Причем не только по USB. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nОбязательными для реализации являются следующие (достаточно подробно описаны тут):\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E#define SCSI_TEST_UNIT_READY 0x00 \u002F\u002Fпроверка готовности LUN\n#define SCSI_REQUEST_SENSE   0x03 \u002F\u002Fзапрос подробностей при ошибках\n#define SCSI_INQUIRY         0x12 \u002F\u002Fзапрос подробностей по данному LUN'у\n#define SCSI_READ_CAPACITY   0x25 \u002F\u002Fзапрос емкости\n#define SCSI_READ_10         0x28 \u002F\u002Fчтение\n#define SCSI_WRITE_10        0x2A \u002F\u002Fзапись\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nТакже еще несколько запросов, которые формально не обязательны, но лучше бы их реализовать\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003E#define SCSI_MODE_SENSE_6              0x1A \u002F\u002Fеще немного подробностей по LUN'у\n#define SCSI_MMC_START_STOP_UNIT       0x1B \u002F\u002Fзапрос на отключение\n#define SCSI_MMC_PREVENT_ALLOW_REMOVAL 0x1E \u002F\u002Fеще один запрос на отключение\n#define SCSI_MMC_READ_FORMAT_CAPACITY  0x23 \u002F\u002Fопределение емкости (windows-specific)\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nПервым делом хост запрашивает у носителей данных подробности их внутреннего устройства, посылая для этого запрос SCSI_INQUIRY. В ответ он ожидает очередную волшебную структуру, подробно рассматривать которую я не хочу. Для нашего случая достаточно скопировать готовую и немного поиграться с константами. Скажем, поменять строку вендора. Или, например, нулевой байт изменить с 0x00 на 0x05 чтобы данный LUN считался не просто носителем, а CD\u002FDVD диском. Правда, одного этого недостаточно: необходимо дописать поддержку каких-то специфичных запросы. Поэтому уж настолько извращаться не будем… а жаль\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nДалее идет запрос емкости (SCSI_READ_CAPACITY), на который надо ответить двумя 32-битными числами (суммарно 8 байт, очевидно): 0-3 байты это \u003Cb\u003Eномер последнего блока\u003C\u002Fb\u003E, а 4-7 это размер одного блока. Дело в том, что носители данных не обеспечивают доступ к отдельному байту — только к блоку размером обычно 512 байт. На такие же блоки устройство поделим и мы. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nОбратите внимание, что передается не количество блоков, а, как и в случае LUN, номер последнего. То есть uint32_t last_lba = capacity \u002F 512 — 1;\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cb\u003EВнимание, грабли!\u003C\u002Fb\u003E Винда почему-то не полагается на запрос SCSI_READ_CAPACITY, а отправляет SCSI_MMC_READ_FORMAT_CAPACITY с немного другим форматом. И ее не волнует что этот запрос не обязателен для реализации, так что после получения ошибки «запрос не поддерживается» она еще долго отключает-подключает устройство в надежде что то образумится. Если не хотите полчаса ждать пока винда таки смирится что неподдерживаемый запрос не поддерживается, лучше этот запрос реализовать. Как несложно догадаться, линукс ведет себя адекватно и понимает с первого раза.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nЕще один запрос, который имеет смысл обработать — SCSI_MODE_SENSE_6. Точнее, опять забить вместо ответа чей-то готовый кусок. 1-й байт в нем отвечает за размер посылки и будет равен 3, второй байт описывает тип носителя (что-то вендор-специфичное, оставим ноль). \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nТретий байт самый для нас интересный. Его 7-й бит означает защиту от записи, его мы и взведем для 0-го LUN чтобы хост даже не пытался писать в нашу флеш-память. Вот в LUN=1 (оперативка) — другое дело, там этот бит будет нулевым и пусть пишет на здоровье.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nПотом хост проверяет готов ли вообще носитель с нужным номером к обмену (SCSI_TEST_UNIT_READY), причем пакет данных ему для ответа не нужен — достаточно кода ошибки: готов — не готов.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nДалее по хронологии должен идти рассказ про чтение и запись, но их мы оставим на конец.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nХост может попытаться управлять подключением носителей данных при помощи команд SCSI_MMC_START_STOP_UNIT и SCSI_MMC_PREVENT_ALLOW_REMOVAL, причем если они не поддерживаются, ругается что не может отмонтировать устройство. Впрочем, заглушки, возвращающей «все хорошо» ему достаточно, так что глубже я и не копал. В реальном применении покопать все же придется, поскольку некоторой периферии нужно больше нуля секунд для корректного завершения работы. А пока она медленно отключается, надо попросить хоста чтобы подождал.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nЕсли что-то пошло не так (на этапе подтверждения устройство вернуло ошибку), хост запрашивает по этой ошибке подробности (SCSI_REQUEST_SENSE) — массив из трех байтов, кратко поясняющих что же именно случилось. Чаще всего у нас будет случаться SBC_SENSE_KEY_ILLEGAL_REQUEST (неподдерживаемый запрос), но в принципе таким же способом сообщают о неготовности носителя данных и многом другом. Кстати, раз запрос подробностей ошибки — отдельный запрос, то и хранить результат предыдущего надо в отдельной переменной, msc_sense.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EREAD \u002F WRITE\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nНу и наконец самое интересное — чтение и запись данных. На самом деле это не один запрос, а целое семейство, отличающихся размером. Скажем, бывают READ(6), READ(10), READ(12), даже READ(16), которые занимают в msc_cbw.CB соответственно 6, 10, 12 и 16 байтов. Мы будем пользоваться READ(10). И WRITE(10), естественно. Формат у них одинаковый, отличается только направление передачи: от хоста к устройству или от устройства к хосту. Структура запроса такова:\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Cpre\u003E\u003Ccode class=\"cpp\"\u003Etypedef struct{\n  uint8_t opcode; \u002F\u002FREAD(10) \u002F WRITE(10)\n  uint8_t cdb_info1;\n  uint32_t block_address;\n  uint8_t cdb_info2;\n  uint16_t length;\n  uint8_t control;\n}scsi_cbw_10_t;\u003C\u002Fcode\u003E\u003C\u002Fpre\u003E\u003Cbr\u002F\u003E\r\nИз нее нас интересуют только поля block_address и length — номер первого блока, который предстоит прочитать и количество этих блоков. Напоминаю, что размер блока мы сообщили хосту раньше, по запросу SCSI_READ_CAPACITY и что составляет он у нас 512 байт. \u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nСледовательно, адрес первого байта, с которого начнем чтение, равен block_address * 512, а их суммарное количество length * 512.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nИз соображений простоты демонстрационного кода (ну и из лени, конечно) посекторной работы с внешней памятью вы здесь не увидите. В самом деле, что к оперативке, что к флешке контроллера доступ побайтный. Но вот при взаимодействии с более сложной периферией вроде SD-карточек уже придется лавировать между прерываниями USB и этой периферии. Возможно, кстати, работу с USB будет проще осуществлять опросом, чем прерываниями. По той же причине выбор нужного буфера на чтение или запись остался в обработчике IN и OUT, а не в scsi_command.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n\u003Ch3\u003EЗаключение\u003C\u002Fh3\u003E\u003Cbr\u002F\u003E\r\nВот мы и познакомились в общих чертах с принципом передачи данных в запоминающих устройствах и даже заставили макетную плату прикидываться одновременно read-only флешкой, накоторую записаны ее же исходники, и энерго-зависимой флешкой, которая информацию не сохраняет при отключении. Заодно протестировали работу конечной точки типа Bulk и обнаружили что ее использование не особо отличается от других.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nХотелось бы, конечно, еще сэмулировать флоппик и оптический дисковод, но там используются какие-то свои, специфичные команды. В рамках данной статьи это было бы неуместно.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\nЕсли кто-то захочет повторить данную конструкцию, исходный код как обычно в \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\" rel=\"nofollow noopener noreferrer\"\u003Eрепозитоии\u003C\u002Fa\u003E, туда же я добавил найденную \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Ftree\u002Fmain\u002F2.MSD_L1\u002Fdoc\" rel=\"nofollow noopener noreferrer\"\u003Eлитературу\u003C\u002Fa\u003E, поскольку это уже какая-то нездоровая традиция создавать на ровном месте проблемы со скачиванием официальной документации.\u003Cbr\u002F\u003E\r\n\u003Cbr\u002F\u003E\r\n[1] Universal Serial Bus Mass Storage Class Bulk-Only Transport \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Fblob\u002Fmain\u002F2.MSD_L1\u002Fdoc\u002FMSD_Bulk_only.pdf\" rel=\"nofollow noopener noreferrer\"\u003Eкопия\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n[2] Universal Serial Bus Mass Storage Class Specification Overview \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Fblob\u002Fmain\u002F2.MSD_L1\u002Fdoc\u002FMSD_overview.pdf\" rel=\"nofollow noopener noreferrer\"\u003Eкопия\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n[3] SCSI Multimedia Commands – 2 (MMC-2) \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Fblob\u002Fmain\u002F2.MSD_L1\u002Fdoc\u002FMSD_SCSI_MMC.pdf\" rel=\"nofollow noopener noreferrer\"\u003Eкопия\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n[4] SCSI Primary Commands-3 (SPC-3) \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Fblob\u002Fmain\u002F2.MSD_L1\u002Fdoc\u002FMSD_SPC3.pdf\" rel=\"nofollow noopener noreferrer\"\u003Eкопия\u003C\u002Fa\u003E\u003Cbr\u002F\u003E\r\n[5] SCSI Commands Reference Manual (от Seagate) \u003Ca href=\"https:\u002F\u002Fgithub.com\u002FCOKPOWEHEU\u002Fusb\u002Fblob\u002Fmain\u002F2.MSD_L1\u002Fdoc\u002FMSD_Seagate_SCSI_commands.pdf\" rel=\"nofollow noopener noreferrer\"\u003Eкопия\u003C\u002Fa\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"arm"},{"titleHtml":"stm32"},{"titleHtml":"stm32l151"},{"titleHtml":"usb"},{"titleHtml":"usb-флэшки"},{"titleHtml":"msd"},{"titleHtml":"msc"},{"titleHtml":"грабли и велосипеды"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F549016\u002F488600cf5255659f78252c2c87c31ba5\u002F","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F549016\u002F488600cf5255659f78252c2c87c31ba5\u002F?format=vk","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F549016\\\u002F\"},\"headline\":\"USB на регистрах: bulk endpoint на примере Mass Storage\",\"datePublished\":\"2021-03-25T18:49:51+03:00\",\"dateModified\":\"2021-05-23T12:30:06+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"COKPOWEHEU\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Еще более низкий уровень (avr-vusb) USB на регистрах: STM32L1 \\\u002F STM32F1 USB на регистрах: interrupt endpoint на примере HID USB на регистрах: isochronous endpo...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F549016\\\u002F#post-content-body\",\"about\":[\"h_controllers\",\"h_circuit-design\",\"f_develop\"],\"image\":[\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002F1u\\\u002Fz-\\\u002Fjg\\\u002F1uz-jgxrgj1i7br4qahtlcxu6ii.jpeg\"]}","metaDescription":"Еще более низкий уровень (avr-vusb)\r\nUSB на регистрах: STM32L1 \u002F STM32F1\r\nUSB на регистрах: interrupt endpoint на примере HID\r\nUSB на регистрах: isochronous endpoint на примере Audio device\r\n\r\nВ...","mainImageUrl":null,"amp":false,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":"controllers,circuit-design"},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":false,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"technotext":{"nominationsList":[]},"userHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"userInvites":{"availableInvites":0,"usedInvitesIds":[],"usedInvitesRefs":{},"usedInvitesPagesCount":0,"unusedInvitesIds":[],"unusedInvitesRefs":{},"unusedInvitesPagesCount":0},"users":{"authorRefs":{},"authorIds":{},"pagesCount":{},"authorProfiles":{},"userHubs":{},"userInvitations":{},"authorFollowers":{},"authorFollowed":{},"userSpecialization":{},"karmaStats":[],"statistics":null,"isLoading":false,"authorFollowersLoading":false,"authorFollowedLoading":false,"userHubsLoading":false,"userInvitationsLoading":false,"route":{}},"viewport":{"prevScrollY":{},"scrollY":0,"width":0},"tracker":{"items":{},"pagesCache":{},"markedViewedSilently":{},"markedRead":{},"unreadCounters":{"applications":null,"system":null,"mentions":null,"subscribers":null,"posts_and_comments":null},"unviewedCounters":{"applications":null,"system":null,"mentions":null,"subscribers":null,"posts_and_comments":null}}};(function(){var s;(s=document.currentScript||document.scripts[document.scripts.length-1]).parentNode.removeChild(s);}());</script> 
+  <script src="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" defer></script>
+  <script src="https://assets.habr.com/habr-web/js/app.69ba180e.js" defer></script> 
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    </script> 
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+    ym(24049213, "init", {
+      defer:true,
+      trackLinks:true,
+      accurateTrackBounce:true,
+      webvisor:false,
+    });
+  </script> 
+  <noscript> 
+   <div> 
+    <img src="https://mc.yandex.ru/watch/24049213" style="position:absolute; left:-9999px;" alt=""> 
+   </div> 
+  </noscript> 
+  <script type="text/javascript">
+      window.addEventL

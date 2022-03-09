@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Создание программно интерфейса. А так же передача объекта между контроллерами / Комментарии / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/page-article-comments.5497aa9d.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/page-article-comments.97bb766a.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/page-article-comments.5497aa9d.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" itemprop="image" content="/img/habr_ru.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="/img/habr_ru.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="/img/habr_ru.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="/img/habr_ru.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="/img/habr_ru.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" property="og:type" content="website" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Хабр" data-vmid="og:title">
+  <meta data-vue-meta="ssr" property="og:url" content="https://habr.com/ru/post/654839/comments/" data-vmid="og:url"> 
+  <link data-vue-meta="ssr" image_src="image" href="/img/habr_ru.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654839/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654839/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <article class="tm-article-comments__article-body">
+            <div class="tm-article-comments__article-snippet">
+             <div class="tm-article-snippet">
+              <div class="tm-article-snippet__meta-container">
+               <div class="tm-article-snippet__meta">
+                <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/MaksMai/" title="MaksMai" class="tm-user-info__userpic">
+                  <div class="tm-entity-image">
+                   <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_green">
+                    <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                   </svg>
+                  </div></a> <span class="tm-user-info__user"><a href="/ru/users/MaksMai/" class="tm-user-info__username"> MaksMai </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T13:34:57.000Z" title="2022-03-09, 16:34">сегодня в 16:34</time></span>
+               </div> <!---->
+              </div> 
+              <h1 class="tm-article-snippet__title tm-article-snippet__title_h1"><a href="/ru/post/654839/" data-article-link="" class="tm-article-snippet__title-link router-link-active"><span>Создание программно интерфейса. А так же передача объекта между контроллерами</span></a></h1> 
+              <div class="tm-article-snippet__hubs">
+               <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/swift/" class="tm-article-snippet__hubs-item-link"><span>Swift</span> <span title="Профильный хаб" class="tm-article-snippet__profiled-hub">*</span></a></span>
+              </div> 
+              <div class="tm-article-snippet__labels">
+               <div class="tm-article-snippet__label tm-article-snippet__label_variant-tutorial">
+                <span> Tutorial </span>
+               </div>
+              </div> <!----> <!---->
+             </div> 
+             <div class="tm-data-icons">
+              <!----> 
+              <div class="tm-votes-meter tm-data-icons__item">
+               <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                <title>Всего голосов 1: ↑0 и ↓1</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+               </svg> <span title="Всего голосов 1: ↑0 и ↓1" class="tm-votes-meter__value tm-votes-meter__value_negative tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">-1</span>
+              </div> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+               <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+               </svg> <span class="tm-icon-counter__value">276</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                 <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 2 </span></button> 
+              <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+               <a href="/ru/post/654839/comments/" aria-current="page" class="tm-article-comments-counter-link__link">
+                <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                 <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                </svg> <span class="tm-article-comments-counter-link__value"> 1 </span></a> <!---->
+              </div> <!----> 
+              <div class="v-portal" style="display:none;"></div>
+             </div>
+            </div>
+           </article> 
+           <div class="tm-ad-banner__container tm-article-comments__top-banner">
+            <!----> 
+            <div id="commentsBanner10815" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+           </div> 
+           <div data-async-called="true" class="tm-article-comments-offloaded">
+            <div class="tm-article-comments">
+             <div class="tm-comments-wrapper">
+              <div class="tm-comments-wrapper__wrapper">
+               <header class="tm-comments-wrapper__header">
+                <h2 class="tm-comments-wrapper__title"> Комментарии <span class="tm-comments-wrapper__comments-count"> 1 </span></h2> 
+                <div class="tm-comments-wrapper__header-aside">
+                 <!----> <button class="tm-rss-button tm-rss-button_comments-header"><span class="tm-svg-icon__wrapper tm-rss-button__icon">
+                   <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+                    <title>Скопировать ссылку на RSS</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#rss"></use>
+                   </svg></span></button> <!---->
+                </div>
+               </header> 
+               <div class="tm-comments-wrapper__inner"> 
+                <div class="tm-comments__tree">
+                 <section class="tm-comment-thread">
+                  <!----> 
+                  <article class="tm-comment-thread__comment">
+                   <a name="comment_24149823" class="tm-comment-thread__target"></a> <button class="tm-comment-thread__breadcrumbs tm-comment-thread__indent_b_l-0">
+                    <div class="tm-comment-thread__circle"></div></button> <!----> 
+                   <div data-comment-body="24149823" class="tm-comment-thread__indent_l-0">
+                    <div data-gallery-root="" class="tm-comment">
+                     <header data-comment-header tabindex="-1" class="tm-comment__header">
+                      <div class="tm-comment__header-inner">
+                       <span class="tm-user-info tm-comment__user-info"><a href="/ru/users/boogiedimik/" title="boogiedimik" class="tm-user-info__userpic">
+                         <div class="tm-entity-image">
+                          <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_green">
+                           <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                          </svg>
+                         </div></a> <span class="tm-user-info__user"><a href="/ru/users/boogiedimik/" class="tm-user-info__username"> boogiedimik </a> <a href="#comment_24149823" class="tm-comment-thread__comment-link"> 09.03.2022 в 22:34 <!----></a></span></span>
+                      </div> 
+                      <div class="tm-comment__buttons">
+                       <!----> <!---->
+                      </div>
+                     </header> 
+                     <div class="tm-comment__body-content tm-comment__body-content_v2">
+                      <div xmlns="http://www.w3.org/1999/xhtml">
+                       <blockquote>
+                        <p>Он научит работать с Data и делегировать ее между контроллерами.</p>
+                       </blockquote>
+                       <p>но то, что описано дальше ниже, никакое не делегирование же...</p>
+                      </div>
+                     </div> <!----> <!---->
+                    </div> 
+                    <div class="tm-comment-footer">
+                     <div class="tm-votes-meter tm-comment-footer__votes-meter">
+                      <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-comment">
+                       <title>Комментарий пока не оценивали</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                      </svg> <span title="Комментарий пока не оценивали" class="tm-votes-meter__value tm-votes-meter__value_appearance-comment tm-votes-meter__value_rating">0</span>
+                     </div> <button type="button" class="tm-comment-thread__button"> Ответить </button> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-comment-footer__button tm-comment-footer__button_with-icon"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                       <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                        <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                       </svg></span> <!----></button> <button data-comment-popup="24149823" class="tm-comment__button tm-comment__button_with-icon">
+                      <svg height="16" width="16" class="tm-svg-img tm-comment__icon tm-comment__icon_dots">
+                       <title>Ещё</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#dots"></use>
+                      </svg></button> <!---->
+                    </div>
+                   </div>
+                  </article> <!----> <!---->
+                 </section>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div>
+              </div> 
+              <div class="tm-notice tm-comments__comment-notice tm-notice_positive">
+               <!----> 
+               <div class="tm-notice__inner">
+                <!----> 
+                <div class="tm-notice__content">
+                 <span>Только полноправные пользователи могут оставлять комментарии. <a rel="nofollow" href="/kek/v1/auth/habrahabr/?back=/ru/post/654839/comments/&amp;hl=ru">Войдите</a>, пожалуйста.</span>
+                </div>
+               </div>
+              </div>
+             </div>
+            </div>
+           </div> <!----> <!---->
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div hl="ru" id="654839" class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner10816" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom10817" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654839/comments/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654839/comments/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654839":{"id":"654839","timePublished":"2022-03-09T13:34:57+00:00","isCorporative":false,"lang":"ru","titleHtml":"Создание программно интерфейса. А так же передача объекта между контроллерами","leadData":{"textHtml":"\u003Cp\u003EВ предыдуще\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F652543\u002F\" rel=\"noopener noreferrer nofollow\"\u003E статье\u003C\u002Fa\u003E мы рассмотрели создание TabBarController и NavigationController программно в UIKit. В данной статье мы продолжим выполнение заданий и рассмотрим пункты 6 и 7. А Bar Button Item и Alert мы оставим на десерт и рассмотрим в следующей статье.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":null},"editorVersion":"2.0","postType":"article","postLabels":[{"type":"tutorial","data":null}],"author":{"scoreStats":{"score":1,"votesCount":3},"rating":-1,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"2940253","alias":"MaksMai","fullname":null,"avatarUrl":null,"speciality":null},"statistics":{"commentsCount":1,"favoritesCount":2,"readingCount":276,"score":-1,"votesCount":1},"hubs":[{"relatedData":null,"id":"19039","alias":"swift","type":"collective","title":"Swift","titleHtml":"Swift","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cp\u003EВ предыдуще\u003Ca href=\"https:\u002F\u002Fhabr.com\u002Fru\u002Fpost\u002F652543\u002F\" rel=\"noopener noreferrer nofollow\"\u003E статье\u003C\u002Fa\u003E мы рассмотрели создание TabBarController и NavigationController программно в UIKit. В данной статье мы продолжим выполнение заданий и рассмотрим пункты 6 и 7. А Bar Button Item и Alert мы оставим на десерт и рассмотрим в следующей статье.\u003C\u002Fp\u003E\u003Ch3\u003EДобавьте PostViewController и настройка элементов для показа выбранного поста.\u003C\u002Fh3\u003E\u003Cp\u003EЧтобы у нас контроллеры не валялись, где не попадя давайте создадим папку \u003Ccode\u003EControllers\u003C\u002Fcode\u003E  и поместим в нее все файлы наших контроллеров. Так же в этой папку создаем новый \u003Ccode\u003EUIViewController\u003C\u002Fcode\u003E c именем \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E. Это будет наш контроллер для показа поста.\u003C\u002Fp\u003E\u003Cp\u003EПервый делом, как просит нас задание, поменяйте заголовок у контроллера и цвет главной view. Для выполнения этого пункта у нас есть два пути:\u003C\u002Fp\u003E\u003Cp\u003E1-й путь кустарно-топорный и к нему нет притензий. Просто внутри \u003Ccode\u003EviewDidLoad\u003C\u002Fcode\u003E прописываем все что нам надо:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eoverride func viewDidLoad() {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        super.viewDidLoad()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        \u002F\u002F Задаем базовый цвет\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.view.backgroundColor = .lightGray\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        \u002F\u002F Выставляем title полученного поста в качестве заголовка контроллера.\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.navigationItem.title = \"Мой пост\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E2-й более элегантный и покажет в вас задатки будущего программиста использующего навыки ООП. Мы создаем метод в котором пишем то, что хотим сделать и вызываем этот метод внутри \u003Ccode\u003EviewDidLoad\u003C\u002Fcode\u003E  :\u003C\u002Fp\u003E\u003Cp\u003E \u003Ccode\u003Eprivate func setupView() {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.view.backgroundColor = .lightGray\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.navigationItem.title = \"Мой пост\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.navigationItem.rightBarButtonItem = button\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EПрекрасно, контроллер поста у нас есть. А как на него попасть? Для этого нужно действие перехода и это действие нам дает кнопка.\u003C\u002Fp\u003E\u003Cp\u003EСоздаем в FeedViewController кнопу перехода на  \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E:\u003C\u002Fp\u003E\u003Cp\u003E \u003Ccode\u003E\u002F\u002F Создаем кнопку перехода\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    private lazy var button: UIButton = {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        let button = UIButton()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        button.backgroundColor = .blue\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        button.layer.cornerRadius = 12\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        button.setTitle(\"Перейти на пост\", for: .normal)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        button.setTitleColor(.lightGray, for: .normal)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 24)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        button.translatesAutoresizingMaskIntoConstraints = false\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        return button\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EКнопка у нас принадлежит данному классу и поэтому \u003Ccode\u003Eprivate\u003C\u002Fcode\u003E . Чтобы компилятор о ней постоянно не думал и не напрягался она у нас \u003Ccode\u003Elazy\u003C\u002Fcode\u003E.  И далее в переменной мы ее создаем как кнопку \u003Ccode\u003EUIButton()\u003C\u002Fcode\u003E . Методом \u003Ccode\u003E.backgroundColor\u003C\u002Fcode\u003E задаем ей цвет. \u003Ccode\u003E.layer.cornerRadius\u003C\u002Fcode\u003E позволит нам скруглить углы и сделать ее более красивой. Так же создадим внутри кнопки текст для ее нормального состояния \u003Ccode\u003E.setTitle()\u003C\u002Fcode\u003E и зададим тексту цвет \u003Ccode\u003E.setTitleColor()\u003C\u002Fcode\u003E, если есть желание можем поменять размер и толщину шрифта \u003Ccode\u003E.titleLabel?.font\u003C\u002Fcode\u003E.  Отключам стандартные ограничения (констрейнты) \u003Ccode\u003E.translatesAutoresizingMaskIntoConstraints = false\u003C\u002Fcode\u003E  их мы зададим чуть ниже. И добавляем кнопке действие  \u003Ccode\u003E.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)\u003C\u002Fcode\u003E, а для чего мы ее собственно и создали.\u003C\u002Fp\u003E\u003Cp\u003EАх да... не забываем эту самую кнопку вернуть \u003Ccode\u003E return button\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНу как говориться, пол дела сделано! Собственно теперь нам осталось добавить кнопку и установить ее положение на экране. Как я писал выше вы можете делать напрямую во \u003Ccode\u003EviewDidLoad\u003C\u002Fcode\u003E  или создавать метод и его добавлять - мне нравится второй метод:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eprivate func setupButton {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.view.addSubview(self.button)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.button.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -100).isActive = true \u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20).isActive = true\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.button.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20).isActive = true\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.button.heightAnchor.constraint(equalToConstant: 50).isActive = true\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eself.view.addSubview(self.button)\u003C\u002Fcode\u003E добавляет нашу кнопку непосредственно во \u003Ccode\u003Eview\u003C\u002Fcode\u003E , а далее мы привязываем кнопку к низу с отступом в 100 пикселей (т.к. отступ у нас идет вверх, то и знак \"-\". Это относится и к отступам справа), справа и слева, и задаем высоту.\u003C\u002Fp\u003E\u003Cp\u003EНу соотсветсвенно и сам метод перехода.\u003C\u002Fp\u003E\u003Cp\u003E \u003Ccode\u003E@objc private func buttonAction() {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        let postViewController = PostViewController()\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E        self.navigationController?.pushViewController(postViewController, animated: true)\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    }\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EА вот тут нам нужно создать сначала сам \u003Ccode\u003EUIViewController\u003C\u002Fcode\u003E на который мы хотим перейти и потом сделать переход (как говорят - запушить), предварительно завернув его в \u003Ccode\u003ENavigationController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНу и не забываем добавить методы в \u003Ccode\u003EviewDidLoad\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Ch2\u003EСоздание и передача объектов между контроллерами\u003C\u002Fh2\u003E\u003Cp\u003EДанный пункт заслуживает внимания. Он научит работать с Data и делегировать ее между контроллерами. \u003C\u002Fp\u003E\u003Cp\u003EДля начала создадим папку \u003Ccode\u003EData\u003C\u002Fcode\u003E  и в ней создадим swift файл \u003Ccode\u003EPost\u003C\u002Fcode\u003E и внутри это файла создаем структуру \u003Ccode\u003EPost\u003C\u002Fcode\u003E со свойством \u003Ccode\u003Etitle: String\u003C\u002Fcode\u003E. \u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Estruct Post {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    var title: String\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E}\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EДалее мы создайте объект типа \u003Ccode\u003EPost\u003C\u002Fcode\u003E в \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E и передаем его в \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E. Для это просто создаем переменную \u003Ccode\u003Epost\u003C\u002Fcode\u003E со свойством \u003Ccode\u003EPost\u003C\u002Fcode\u003E сразу после создания самого класса \u003Ccode\u003EFeedViewController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eclass FeedViewController: UIViewController {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    \u002F\u002F Создаем объект типа Post в FeedViewController\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    var post = Post(title: \"Мой пост\")\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EА для того, чтобы передать его в  \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E  некоторые подумают, что нужно создавать делегаты или писать замыкания. Нет, ничего не надо!\u003C\u002Fp\u003E\u003Cp\u003EВ предыдущем пункте мы уже в методе\u003Ccode\u003EbuttonAction()\u003C\u002Fcode\u003E создали \u003Ccode\u003EUIViewController\u003C\u002Fcode\u003E , тем самым обеспечив к нему доступ.\u003C\u002Fp\u003E\u003Cp\u003EИ сейчас, предварительно создав переменную для заголовка поста в \u003Ccode\u003EPostViewController\u003C\u002Fcode\u003E:\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003Eclass PostViewController: UIViewController {\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E\u003Ccode\u003E    var titlePost: String = \"Anonymous\"\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003E  Мы просто в внутри метода \u003Ccode\u003EbuttonAction()\u003C\u002Fcode\u003E присваиваем переменной \u003Ccode\u003EtitlePost\u003C\u002Fcode\u003E  значение переменной \u003Ccode\u003Epost\u003C\u002Fcode\u003E :\u003C\u002Fp\u003E\u003Cp\u003E postViewController.titlePost = post.title\u003C\u002Fp\u003E\u003Cp\u003EОсталось только в \u003Ccode\u003Eself.navigationItem.title\u003C\u002Fcode\u003E заменить \u003Ccode\u003E\"Мой пост\"\u003C\u002Fcode\u003E на \u003Ccode\u003EtitlePost\u003C\u002Fcode\u003E :\u003C\u002Fp\u003E\u003Cp\u003E \u003Ccode\u003Eself.navigationItem.title = titlePost\u003C\u002Fcode\u003E\u003C\u002Fp\u003E\u003Cp\u003EНу вот и все! Сегодня вы научились создавать и настраивать кнопку, а также делать переход между \u003Ccode\u003EViewController.\u003C\u002Fcode\u003E Получили вводну в \u003Ccode\u003EData\u003C\u002Fcode\u003E - создание объектов и работу с ними. \u003C\u002Fp\u003E\u003Cp\u003EА в следующей публикации мы создадим и настроим \u003Ccode\u003EBar Button Item\u003C\u002Fcode\u003E и \u003Ccode\u003EUIAlertAction\u003C\u002Fcode\u003E.  \u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"uibutton"},{"titleHtml":"uiviewcontroller"},{"titleHtml":"constraint"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F654839\u002F836a757b4221e36507ce4bb62822110f\u002F","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabr.com\u002Fshare\u002Fpublication\u002F654839\u002F836a757b4221e36507ce4bb62822110f\u002F?format=vk","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654839\\\u002F\"},\"headline\":\"Создание программно интерфейса. А так же передача объекта между контроллерами\",\"datePublished\":\"2022-03-09T16:34:57+03:00\",\"dateModified\":\"2022-03-09T16:34:57+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"MaksMai\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"В предыдуще статье мы рассмотрели создание TabBarController и NavigationController программно в UIKit. В данной статье мы продолжим выполнение заданий и рассмотр...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654839\\\u002F#post-content-body\",\"about\":[\"h_swift\",\"f_develop\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654839\\\u002F836a757b4221e36507ce4bb62822110f\\\u002F\"]}","metaDescription":"В предыдуще статье мы рассмотрели создание TabBarController и NavigationController программно в UIKit. В данной статье мы продолжим выполнение заданий и рассмотрим пункты 6 и 7. А Bar Button Item и...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{"654839":{"refs":{"24149823":{"id":"24149823","parentId":null,"level":0,"timePublished":"2022-03-09T19:34:40+00:00","timeChanged":null,"isSuspended":false,"score":0,"votesCount":0,"message":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cblockquote\u003E\u003Cp\u003EОн научит работать с Data и делегировать ее между контроллерами.\u003C\u002Fp\u003E\u003C\u002Fblockquote\u003E\u003Cp\u003Eно то, что описано дальше ниже, никакое не делегирование же...\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","editorVersion":2,"author":{"id":"2649587","alias":"boogiedimik","fullname":null,"avatarUrl":null,"speciality":"iOS-Developer"},"isAuthor":false,"isPostAuthor":false,"isNew":false,"isFavorite":false,"isCanEdit":false,"timeEditAllowedTill":null,"children":[],"vote":{"value":null,"isCanVote":false}}},"root":["24149823"]}},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{"isCanComment":false,"cantCommentReasonKey":"AUTH_REQUIRED","cantCommentReason":"Authorization required","data":null},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":1646854480,"moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name

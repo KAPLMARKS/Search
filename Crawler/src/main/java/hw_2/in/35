@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Таиланд. Пхукет. Документы, банки. 2022 / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script data-vue-meta="ssr" type="application/ld+json" data-vmid="ldjson-schema">{"@context":"http:\/\/schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/habr.com\/ru\/post\/654859\/"},"headline":"Таиланд. Пхукет. Документы, банки. 2022","datePublished":"2022-03-09T19:58:47+03:00","dateModified":"2022-03-09T20:35:27+03:00","author":{"@type":"Person","name":"mag"},"publisher":{"@type":"Organization","name":"Habr","logo":{"@type":"ImageObject","url":"https:\/\/habrastorage.org\/webt\/a_\/lk\/9m\/a_lk9mjkccjox-zccjrpfolmkmq.png"}},"description":"Данная статья &ndash; практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в оста...","url":"https:\/\/habr.com\/ru\/post\/654859\/#post-content-body","about":["h_business-laws","h_finance","h_lifehacks","h_remote","f_management","f_popsci"],"image":["https:\/\/habr.com\/share\/publication\/654859\/1d75750650dabe942e0090834fe6df60\/","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/92d\/7bf\/511\/92d7bf511cba6b9ff55a6eadb7750bf4.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/561\/40b\/0ab\/56140b0abde5472ec77f6845a16af893.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/23a\/8ab\/471\/23a8ab471d0bbc39effb3ebdac2ec8f5.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/71d\/693\/19b\/71d69319bb78184cc5b250621b966075.jpg","https:\/\/habrastorage.org\/getpro\/habr\/upload_files\/d76\/86a\/55b\/d7686a55bd130595ec05a6785de4b9b2.jpg"]}</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Таиланд. Пхукет. Документы, банки. 2022" data-vmid="og:title">
+  <meta data-vue-meta="ssr" name="twitter:title" content="Таиланд. Пхукет. Документы, банки. 2022" data-vmid="twitter:title">
+  <meta data-vue-meta="ssr" name="aiturec:title" content="Таиланд. Пхукет. Документы, банки. 2022" data-vmid="aiturec:title">
+  <meta data-vue-meta="ssr" name="description" content="Данная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться..." data-vmid="description">
+  <meta data-vue-meta="ssr" itemprop="description" content="Данная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться..." data-vmid="description:itemprop">
+  <meta data-vue-meta="ssr" property="og:description" content="Данная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться..." data-vmid="og:description">
+  <meta data-vue-meta="ssr" name="twitter:description" content="Данная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться..." data-vmid="twitter:description">
+  <meta data-vue-meta="ssr" property="aiturec:description" content="Данная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться..." data-vmid="aiturec:description">
+  <meta data-vue-meta="ssr" itemprop="image" content="https://habrastorage.org/getpro/habr/upload_files/7dd/1c3/22c/7dd1c322c705f8223263074d72ef2a5e.jpg" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="https://habrastorage.org/getpro/habr/upload_files/7dd/1c3/22c/7dd1c322c705f8223263074d72ef2a5e.jpg" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="https://habrastorage.org/getpro/habr/upload_files/7dd/1c3/22c/7dd1c322c705f8223263074d72ef2a5e.jpg" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="https://habrastorage.org/getpro/habr/upload_files/7dd/1c3/22c/7dd1c322c705f8223263074d72ef2a5e.jpg" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="https://habrastorage.org/getpro/habr/upload_files/7dd/1c3/22c/7dd1c322c705f8223263074d72ef2a5e.jpg?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="aiturec:item_id" content="654859" data-vmid="aiturec:item_id">
+  <meta data-vue-meta="ssr" property="aiturec:datetime" content="2022-03-09T16:58:47.000Z" data-vmid="aiturec:datetime">
+  <meta data-vue-meta="ssr" content="https://habr.com/ru/post/654859/" property="og:url" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:type" content="article" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" name="keywords" content="таиланд, пхукет, счёт, банк"> 
+  <link data-vue-meta="ssr" href="https://habr.com/ru/rss/post/654859/?fl=ru" type="application/rss+xml" title="" rel="alternate" name="rss">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/post/654859/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" data-vmid="hreflang">
+  <link data-vue-meta="ssr" image_src="image" href="https://habrastorage.org/getpro/habr/upload_files/7dd/1c3/22c/7dd1c322c705f8223263074d72ef2a5e.jpg" data-vmid="image:href">
+  <link data-vue-meta="ssr" rel="amphtml" href="https://habr.com/ru/amp/post/654859/"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div hl="ru" data-async-called="true" class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-article-presenter"> 
+            <div class="tm-article-presenter__body">
+             <div class="tm-misprint-area">
+              <div class="tm-misprint-area__wrapper">
+               <article class="tm-article-presenter__content tm-article-presenter__content_narrow">
+                <div class="tm-article-presenter__header"> 
+                 <div class="tm-article-snippet tm-article-presenter__snippet">
+                  <div class="tm-article-snippet__meta-container">
+                   <div class="tm-article-snippet__meta">
+                    <span class="tm-user-info tm-article-snippet__author"><a href="/ru/users/mag/" title="mag" class="tm-user-info__userpic">
+                      <div class="tm-entity-image">
+                       <svg height="24" width="24" class="tm-svg-img tm-image-placeholder tm-image-placeholder_pink">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> <span class="tm-user-info__user"><a href="/ru/users/mag/" class="tm-user-info__username"> mag </a> </span></span> <span class="tm-article-snippet__datetime-published"><time datetime="2022-03-09T16:58:47.000Z" title="2022-03-09, 19:58">сегодня в 19:58</time></span>
+                   </div> <!---->
+                  </div> 
+                  <h1 lang="ru" class="tm-article-snippet__title tm-article-snippet__title_h1"><span>Таиланд. Пхукет. Документы, банки. 2022</span></h1> 
+                  <div class="tm-article-snippet__hubs">
+                   <span class="tm-article-snippet__hubs-item"><a href="/ru/hub/business-laws/" class="tm-article-snippet__hubs-item-link"><span>Законодательство в IT</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/finance/" class="tm-article-snippet__hubs-item-link"><span>Финансы в IT</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/lifehacks/" class="tm-article-snippet__hubs-item-link"><span>Лайфхаки для гиков</span> <!----></a></span><span class="tm-article-snippet__hubs-item"><a href="/ru/hub/remote/" class="tm-article-snippet__hubs-item-link"><span>Удалённая работа</span> <!----></a></span>
+                  </div> <!----> <!----> <!---->
+                 </div>
+                </div> <!----> 
+                <div data-gallery-root="" lang="ru" class="tm-article-body">
+                 <div></div> 
+                 <div id="post-content-body">
+                  <div>
+                   <div class="article-formatted-body article-formatted-body_version-2">
+                    <div xmlns="http://www.w3.org/1999/xhtml">
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/92d/7bf/511/92d7bf511cba6b9ff55a6eadb7750bf4.jpg" width="1280" height="960" data-src="https://habrastorage.org/getpro/habr/upload_files/92d/7bf/511/92d7bf511cba6b9ff55a6eadb7750bf4.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Данная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться какие-то нюансы.</p>
+                     <p>Так получилось, что давно запланированный отпуск с семьёй на Пхукете заканчивается тем, что отменены рейсы, невозможно дозвониться в авиакомпанию, отрезана возможность получать зарплату, не работают карточки российских банков и даже никакие средства не отправить через системы мгновенных переводов. Остались ещё криптовалюты, но и с ними есть нюансы.</p>
+                     <p>Ниже будет информация, которая будет полезна тем, кто оказался в подобной ситуации, что именно нужно сделать, куда обратиться, какие именно бумаги требуются и для чего. Так как информация постоянно меняется, то не могу гарантировать, что через неделю всё будет также, но практика показывает, что если что-то и меняется, то как ни странно, в упрощение, в лучшую сторону.</p>
+                     <h2>Шаг 1. Продление пребывания</h2>
+                     <p>Я въехал по "штампу" – ставят в аэропорту по прилёту и по нему можно находиться 30 дней. Этот срок необходим продлевать. Для этого есть несколько вариантов, но в данный момент самый оптимальный (на мой взгляд) вариант – это так называемое "ковидное продление", по которому на 60 дней увеличивают срок действия "штампа", то есть именно на 60 дней с даты окончания действия, а не с даты когда подашь заявление.</p>
+                     <p>Что надо для продления?</p>
+                     <ul>
+                      <li><p>Загран паспорт</p></li>
+                      <li><p>Копия заграна с лицом + копия иммиграционной карточки (заполняется в самолёте, маленький квиток - форма TM6) + копия страницы со штампом. Нужно расписаться на каждой копии. Копии можно сделать в отеле, обычно это бесплатно</p></li>
+                      <li><p>Цветное фото 4х6 - его можно сделать рядом с иммиграционным офисом, я делал тут: <a href="https://goo.gl/maps/doi1X59wBDjKSwn49" rel="noopener noreferrer nofollow">https://goo.gl/maps/doi1X59wBDjKSwn49</a></p></li>
+                      <li><p>форма TM30 - подтверждение проживания, выдаётся в отеле, для тех кто снимает квартиру, она иная, нужно получать у того у кого снимаете, они должны знать. Я брал в отеле, делают её не сразу, лучше заказать заранее за день до похода. Выглядит форма так: </p></li>
+                     </ul>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/561/40b/0ab/56140b0abde5472ec77f6845a16af893.jpg" alt="TM30" title="TM30" width="1280" height="960" data-src="https://habrastorage.org/getpro/habr/upload_files/561/40b/0ab/56140b0abde5472ec77f6845a16af893.jpg" data-blurred="true">
+                      <figcaption>
+                       TM30
+                      </figcaption>
+                     </figure>
+                     <p>то есть это по сути скрин с их какой-то системы учёта и такое принимается – все именно такое и приносят. На мой взгляд несколько странно, но там так.</p>
+                     <ul>
+                      <li><p>заполненные формы: TM7, STM2, Affidavit Covid-19<br>Настоятельно рекомендую распечатать это всё заранее и спокойно заполнить дома/в отеле. Формы можно <a href="https://drive.google.com/drive/folders/18pS8QbrERWPBvw6XBs52Zwi80oyQsI9U?usp=sharing" rel="noopener noreferrer nofollow">найти тут</a>. Пример заполнения отлично описан по этой ссылке: <a href="http://room-number.ru/thailand/covid-60-days/" rel="noopener noreferrer nofollow">Ковидная виза в Таиланде на 2 месяца (60 дней) (room-number.ru)</a> </p></li>
+                      <li><p>цена вопроса: 1900 бат на каждого заявителя. Есть информация что этот сбор собираются отменить, но пока так.</p></li>
+                     </ul>
+                     <p>Все документы делаются на каждого члена семьи. Подавать может кто-то один за всех, но присутствовать при подаче должны все, нужно будет показаться оператору и оператор сфотает вас с паспортом и номерком. По этому номерку потом получать сам паспорт со штампиком.</p>
+                     <p>Куда ехать? 482 Phuket Rd, Tambon Talat Yai, Mueang Phuket District, Phuket 83000 или <a href="https://goo.gl/maps/pqkkyTrNPPru1iWK7" rel="noopener noreferrer nofollow">https://goo.gl/maps/pqkkyTrNPPru1iWK7</a> Режим работы: с 8:30 до 12:00 и с 13:00 до 16:30.</p>
+                     <p>Лучше всего с утра. Если до обеда подать документы, то после обеда их уже отдадут и не надо будет второй раз туда мотаться. </p>
+                     <p>При первом посещении этого заведения может быть некоторая растерянность, но на самом деле всё довольно просто. Везде висят таблички куда идти, часто на русском, всегда на английском. Если вообще ничего не понятно – можно спросить у оператора, расскажут подробно и направят в нужное окошко. В целом всё довольно просто, но долго, лучше выделить на это день и спокойно сделать.</p>
+                     <h2>Шаг 2. Временное "резидентство"</h2>
+                     <p>Чтоб наладить какой-то финансовый процесс хорошо бы открыть счёт в банке. Для этого в том же центре иммиграции нужно получить вот такую бумажку:</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/23a/8ab/471/23a8ab471d0bbc39effb3ebdac2ec8f5.jpg" width="901" height="1280" data-src="https://habrastorage.org/getpro/habr/upload_files/23a/8ab/471/23a8ab471d0bbc39effb3ebdac2ec8f5.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Говорите "document for bank account" – сразу понятно что вам нужно.</p>
+                     <p>для её оформления требуется:</p>
+                     <ul>
+                      <li><p>форма TM30 из шага 1</p></li>
+                      <li><p>такое же фото 4х6</p></li>
+                      <li><p>300 бат</p></li>
+                      <li><p>около часа времени на ожидание в очередях</p></li>
+                     </ul>
+                     <p>Если подать документы на продление пребывания (шаг 1), затем получить после обеда паспорт и сразу подать на получение этой бумаги, то можно значительно упростить себе жизнь и сэкономить время. Я этого не знал и пришлось ездить несколько раз.</p>
+                     <p>Зачем она нужна эта бумажка? Иностранцам с таким вот временным "штампиком" нигде вообще счёт не открывают. Специально сегодня обошёл наверное 6 банков – везде нужен work permit или виза на долгий срок. Зато есть замечательный Bangkok Bank, который открывает именно с такой бумажкой.</p>
+                     <h2>Шаг 3. Открытие счёта в банке</h2>
+                     <p>Открытие счёта со страховкой от несчастных случаев, карточкой UnionPay и стартовыми 500 батами на счету стоит 7100 бат. Сегодня появилась информация, что страховку поменяют и будет раза в два дешевле. Хорошо если так.</p>
+                     <p>За дополнительные 500 бат можно сразу же получить мастеркард.</p>
+                     <p>Куда обращаться?<br><br>В любой офис Bangkok Bank, он есть в Old Town, в Central Festival – на 4-м этаже торгового центра. В общем куда ближе – туда и надо идти.</p>
+                     <p>Что нужно?</p>
+                     <ul>
+                      <li><p>паспорт</p></li>
+                      <li><p>местный мобильный номер телефона</p></li>
+                      <li><p>бумажка из шага 2</p></li>
+                      <li><p>в банке примерно минут 30 времени для заполнения кучи бумажек</p></li>
+                     </ul>
+                     <p>По итогу будет счёт в банке в тайских батах. Можно открыть счёт и в другой валюте, вот тарифы:</p>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/71d/693/19b/71d69319bb78184cc5b250621b966075.jpg" width="947" height="1280" data-src="https://habrastorage.org/getpro/habr/upload_files/71d/693/19b/71d69319bb78184cc5b250621b966075.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <figure class="full-width ">
+                      <img src="https://habrastorage.org/r/w780q1/getpro/habr/upload_files/d76/86a/55b/d7686a55bd130595ec05a6785de4b9b2.jpg" width="890" height="1280" data-src="https://habrastorage.org/getpro/habr/upload_files/d76/86a/55b/d7686a55bd130595ec05a6785de4b9b2.jpg" data-blurred="true">
+                      <figcaption></figcaption>
+                     </figure>
+                     <p>Свифт-переводы работают, уже проверено. При переводе валюты отличной от батов – сконвертируется по курсу банка, который не такой ужи плохой. Карточки тоже работают сразу. В общем можно немного вздохнуть.</p>
+                     <p>В банке сразу лучше поставить приложение (для iOS это: <a href="https://apps.apple.com/ru/app/bualuang-mbanking/id660238716" rel="noopener noreferrer nofollow">https://apps.apple.com/ru/app/bualuang-mbanking/id660238716</a>), залогиниться, проверить что всё хорошо. Само приложение вроде как неплохое, всё основное есть, но до российских примерно как до луны.</p>
+                     <p>Надеюсь, информация будет полезна и сэкономит время тем кто оказался в подобной моей ситуации.</p>
+                    </div>
+                   </div>
+                  </div> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div> <!----> <!---->
+                </div> 
+                <div class="tm-article-presenter__meta">
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Теги:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D1%82%D0%B0%D0%B8%D0%BB%D0%B0%D0%BD%D0%B4%5D" class="tm-tags-list__link">таиланд</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%BF%D1%85%D1%83%D0%BA%D0%B5%D1%82%5D" class="tm-tags-list__link">пхукет</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D1%81%D1%87%D1%91%D1%82%5D" class="tm-tags-list__link">счёт</a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/search/?target_type=posts&amp;order=relevance&amp;q=%5B%D0%B1%D0%B0%D0%BD%D0%BA%5D" class="tm-tags-list__link">банк</a></li>
+                  </ul>
+                 </div> 
+                 <div class="tm-separated-list tm-article-presenter__meta-list">
+                  <span class="tm-separated-list__title">Хабы:</span> 
+                  <ul class="tm-separated-list__list">
+                   <li class="tm-separated-list__item"><a href="/ru/hub/business-laws/" class="tm-hubs-list__link"> Законодательство в IT </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/finance/" class="tm-hubs-list__link"> Финансы в IT </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/lifehacks/" class="tm-hubs-list__link"> Лайфхаки для гиков </a></li>
+                   <li class="tm-separated-list__item"><a href="/ru/hub/remote/" class="tm-hubs-list__link"> Удалённая работа </a></li>
+                  </ul>
+                 </div>
+                </div>
+               </article>
+              </div> <!---->
+             </div> 
+             <div class="tm-article-sticky-panel">
+              <div class="tm-data-icons tm-article-sticky-panel__icons">
+               <div class="tm-article-rating tm-data-icons__item">
+                <div class="tm-votes-meter tm-article-rating__votes-switcher">
+                 <svg height="24" width="24" class="tm-svg-img tm-votes-meter__icon tm-votes-meter__icon_appearance-article">
+                  <title>Всего голосов 10: ↑9 и ↓1</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-rating"></use>
+                 </svg> <span title="Всего голосов 10: ↑9 и ↓1" class="tm-votes-meter__value tm-votes-meter__value_positive tm-votes-meter__value_appearance-article tm-votes-meter__value_rating">+8</span>
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                 <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                </svg> <span class="tm-icon-counter__value">2.8K</span></span> <button title="Добавить в закладки" type="button" class="bookmarks-button tm-data-icons__item"><span title="Добавить в закладки" class="tm-svg-icon__wrapper bookmarks-button__icon">
+                 <svg height="24" width="24" class="tm-svg-img tm-svg-icon">
+                  <title>Добавить в закладки</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-favorite"></use>
+                 </svg></span> <span title="Количество пользователей, добавивших публикацию в закладки" class="bookmarks-button__counter"> 6 </span></button> <!----> 
+               <div title="Поделиться" class="tm-sharing tm-data-icons__item">
+                <button type="button" class="tm-sharing__button">
+                 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="tm-sharing__icon">
+                  <path fill="currentColor" d="M13.8 13.8V18l7.2-6.6L13.8 5v3.9C5 8.9 3 18.6 3 18.6c2.5-4.4 6-4.8 10.8-4.8z"></path>
+                 </svg></button> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> 
+               <div class="v-portal" style="display:none;"></div>
+              </div> 
+             </div>
+            </div> 
+            <div class="v-portal" style="display:none;"></div> 
+            <div class="tm-article-presenter__footer">
+             <div class="tm-article-blocks">
+              <!----> 
+              <section class="tm-block tm-block_spacing-bottom">
+               <!----> 
+               <div class="tm-block__body tm-block__body_variant-balanced">
+                <div class="tm-article-author"> 
+                 <div class="tm-user-card tm-article-author__user-card tm-user-card_variant-article">
+                  <div class="tm-user-card__info-container">
+                   <div class="tm-user-card__header">
+                    <div class="tm-user-card__header-data">
+                     <a href="/ru/users/mag/" class="tm-user-card__userpic tm-user-card__userpic_size-40">
+                      <div class="tm-entity-image">
+                       <svg class="tm-svg-img tm-image-placeholder tm-image-placeholder_pink">
+                        <!----> <use xlink:href="/img/megazord-v25.4b679db1.svg#placeholder-user"></use>
+                       </svg>
+                      </div></a> 
+                     <div class="tm-user-card__meta">
+                      <div title=" 48 голосов " class="tm-karma tm-user-card__karma">
+                       <div class="tm-karma__votes tm-karma__votes_positive">
+                         38 
+                       </div> 
+                       <div class="tm-karma__text">
+                         Карма 
+                       </div>
+                      </div> 
+                      <div title="Рейтинг пользователя" class="tm-rating tm-user-card__rating">
+                       <div class="tm-rating__header"> 
+                        <div class="tm-rating__counter">
+                         4
+                        </div>
+                       </div> 
+                       <div class="tm-rating__text">
+                         Рейтинг 
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                   </div> 
+                   <div class="tm-user-card__info tm-user-card__info_variant-article">
+                    <div class="tm-user-card__title tm-user-card__title_variant-article">
+                     <span class="tm-user-card__name tm-user-card__name_variant-article">mag</span> <a href="/ru/users/mag/" class="tm-user-card__nickname tm-user-card__nickname_variant-article"> @mag </a> <!---->
+                    </div> 
+                    <p class="tm-user-card__short-info tm-user-card__short-info_variant-article">Пользователь</p>
+                   </div>
+                  </div> 
+                  <div class="tm-user-card__buttons tm-user-card__buttons_variant-article">
+                   <!----> <!----> <!----> <!----> <!---->
+                  </div>
+                 </div> <!---->
+                </div> 
+                <div class="v-portal" style="display:none;"></div>
+               </div> <!---->
+              </section> 
+              <div class="tm-ad-banner__container tm-page-article__banner">
+               <!----> 
+               <div id="articleBottomBanner10526" class="tm-ad-banner tm-ad-banner_variant-leaderboard"></div>
+              </div> 
+              <div class="tm-article-blocks__comments">
+               <div class="tm-article-page-comments">
+                <div class="tm-article-comments-counter-link tm-article-comments-counter-button">
+                 <a href="/ru/post/654859/comments/" class="tm-article-comments-counter-link__link tm-article-comments-counter-link__link_button-style">
+                  <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon tm-article-comments-counter-link__icon_contrasted">
+                   <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                  </svg> <span class="tm-article-comments-counter-link__value tm-article-comments-counter-link__value_contrasted"> Комментарии 10 </span></a> <!---->
+                </div>
+               </div>
+              </div> <!----> <!----> <!----> <!----> 
+             </div>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner10527" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <!----> <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom10528" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/post/654859/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/post/654859/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{"654859":{"id":"654859","timePublished":"2022-03-09T16:58:47+00:00","isCorporative":false,"lang":"ru","titleHtml":"Таиланд. Пхукет. Документы, банки. 2022","leadData":{"textHtml":"\u003Cp\u003EДанная статься - практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться какие-то нюансы.\u003C\u002Fp\u003E\u003Cp\u003EТак получилось, что давно запланированный отпуск с семьёй на Пхукете заканчивается тем, что отменены рейсы, невозможно дозвониться в авиакомпанию, отрезана возможность получать зарплату, не работают карточки российских банков и даже никакие средства не отправить через системы мгновенных переводов. Остались ещё криптовалюты, но и с ними есть нюансы.\u003C\u002Fp\u003E\u003Cp\u003EНиже будет информация, которая будет полезна тем, кто оказался в подобной ситуации, что именно нужно сделать, куда обратиться, какие именно бумаги требуются и для чего. Так как информация постоянно меняется, то не могу гарантировать, что через неделю всё будет также, но практика показывает, что если что-то и меняется, то как ни странно, в упрощение, в лучшую сторону.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7dd\u002F1c3\u002F22c\u002F7dd1c322c705f8223263074d72ef2a5e.jpg","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7dd\u002F1c3\u002F22c\u002F7dd1c322c705f8223263074d72ef2a5e.jpg","fit":"cover","positionY":55.454545454545,"positionX":4.2307692307692}},"editorVersion":"2.0","postType":"article","postLabels":[],"author":{"scoreStats":{"score":38,"votesCount":48},"rating":4,"relatedData":null,"contacts":[],"authorContacts":[],"paymentDetails":{"paymentYandexMoney":null,"paymentPayPalMe":null,"paymentWebmoney":null},"id":"8740","alias":"mag","fullname":"mag","avatarUrl":null,"speciality":null},"statistics":{"commentsCount":10,"favoritesCount":6,"readingCount":2768,"score":8,"votesCount":10},"hubs":[{"relatedData":null,"id":"20738","alias":"business-laws","type":"collective","title":"Законодательство в IT","titleHtml":"Законодательство в IT","isProfiled":false},{"relatedData":null,"id":"21928","alias":"finance","type":"collective","title":"Финансы в IT","titleHtml":"Финансы в IT","isProfiled":false},{"relatedData":null,"id":"21982","alias":"lifehacks","type":"collective","title":"Лайфхаки для гиков","titleHtml":"Лайфхаки для гиков","isProfiled":false},{"relatedData":null,"id":"22470","alias":"remote","type":"collective","title":"Удалённая работа","titleHtml":"Удалённая работа","isProfiled":false}],"flows":[{"id":"3","alias":"management","title":"Менеджмент"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"textHtml":"\u003Cdiv xmlns=\"http:\u002F\u002Fwww.w3.org\u002F1999\u002Fxhtml\"\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F92d\u002F7bf\u002F511\u002F92d7bf511cba6b9ff55a6eadb7750bf4.jpg\" width=\"1280\" height=\"960\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F92d\u002F7bf\u002F511\u002F92d7bf511cba6b9ff55a6eadb7750bf4.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EДанная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться какие-то нюансы.\u003C\u002Fp\u003E\u003Cp\u003EТак получилось, что давно запланированный отпуск с семьёй на Пхукете заканчивается тем, что отменены рейсы, невозможно дозвониться в авиакомпанию, отрезана возможность получать зарплату, не работают карточки российских банков и даже никакие средства не отправить через системы мгновенных переводов. Остались ещё криптовалюты, но и с ними есть нюансы.\u003C\u002Fp\u003E\u003Cp\u003EНиже будет информация, которая будет полезна тем, кто оказался в подобной ситуации, что именно нужно сделать, куда обратиться, какие именно бумаги требуются и для чего. Так как информация постоянно меняется, то не могу гарантировать, что через неделю всё будет также, но практика показывает, что если что-то и меняется, то как ни странно, в упрощение, в лучшую сторону.\u003C\u002Fp\u003E\u003Ch2\u003EШаг 1. Продление пребывания\u003C\u002Fh2\u003E\u003Cp\u003EЯ въехал по \"штампу\" – ставят в аэропорту по прилёту и по нему можно находиться 30 дней. Этот срок необходим продлевать. Для этого есть несколько вариантов, но в данный момент самый оптимальный (на мой взгляд) вариант – это так называемое \"ковидное продление\", по которому на 60 дней увеличивают срок действия \"штампа\", то есть именно на 60 дней с даты окончания действия, а не с даты когда подашь заявление.\u003C\u002Fp\u003E\u003Cp\u003EЧто надо для продления?\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003EЗагран паспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EКопия заграна с лицом + копия иммиграционной карточки (заполняется в самолёте, маленький квиток - форма TM6) + копия страницы со штампом. Нужно расписаться на каждой копии. Копии можно сделать в отеле, обычно это бесплатно\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003EЦветное фото 4х6 - его можно сделать рядом с иммиграционным офисом, я делал тут: \u003Ca href=\"https:\u002F\u002Fgoo.gl\u002Fmaps\u002Fdoi1X59wBDjKSwn49\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fgoo.gl\u002Fmaps\u002Fdoi1X59wBDjKSwn49\u003C\u002Fa\u003E\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eформа TM30 - подтверждение проживания, выдаётся в отеле, для тех кто снимает квартиру, она иная, нужно получать у того у кого снимаете, они должны знать. Я брал в отеле, делают её не сразу, лучше заказать заранее за день до похода. Выглядит форма так: \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F561\u002F40b\u002F0ab\u002F56140b0abde5472ec77f6845a16af893.jpg\" alt=\"TM30\" title=\"TM30\" width=\"1280\" height=\"960\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F561\u002F40b\u002F0ab\u002F56140b0abde5472ec77f6845a16af893.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003ETM30\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003Eто есть это по сути скрин с их какой-то системы учёта и такое принимается – все именно такое и приносят. На мой взгляд несколько странно, но там так.\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eзаполненные формы: TM7, STM2, Affidavit Covid-19\u003Cbr\u002F\u003EНастоятельно рекомендую распечатать это всё заранее и спокойно заполнить дома\u002Fв отеле. Формы можно \u003Ca href=\"https:\u002F\u002Fdrive.google.com\u002Fdrive\u002Ffolders\u002F18pS8QbrERWPBvw6XBs52Zwi80oyQsI9U?usp=sharing\" rel=\"noopener noreferrer nofollow\"\u003Eнайти тут\u003C\u002Fa\u003E. Пример заполнения отлично описан по этой ссылке: \u003Ca href=\"http:\u002F\u002Froom-number.ru\u002Fthailand\u002Fcovid-60-days\u002F\" rel=\"noopener noreferrer nofollow\"\u003EКовидная виза в Таиланде на 2 месяца (60 дней) (room-number.ru)\u003C\u002Fa\u003E  \u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eцена вопроса: 1900 бат на каждого заявителя. Есть информация что этот сбор собираются отменить, но пока так.\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EВсе документы делаются на каждого члена семьи. Подавать может кто-то один за всех, но присутствовать при подаче должны все, нужно будет показаться оператору и оператор сфотает вас с паспортом и номерком. По этому номерку потом получать сам паспорт со штампиком.\u003C\u002Fp\u003E\u003Cp\u003EКуда ехать? 482 Phuket Rd, Tambon Talat Yai, Mueang Phuket District, Phuket 83000 или \u003Ca href=\"https:\u002F\u002Fgoo.gl\u002Fmaps\u002FpqkkyTrNPPru1iWK7\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fgoo.gl\u002Fmaps\u002FpqkkyTrNPPru1iWK7\u003C\u002Fa\u003E Режим работы: с 8:30 до 12:00 и с 13:00 до 16:30.\u003C\u002Fp\u003E\u003Cp\u003EЛучше всего с утра. Если до обеда подать документы, то после обеда их уже отдадут и не надо будет второй раз туда мотаться. \u003C\u002Fp\u003E\u003Cp\u003EПри первом посещении этого заведения может быть некоторая растерянность, но на самом деле всё довольно просто. Везде висят таблички куда идти, часто на русском, всегда на английском. Если вообще ничего не понятно – можно спросить у оператора, расскажут подробно и направят в нужное окошко. В целом всё довольно просто, но долго, лучше выделить на это день и спокойно сделать.\u003C\u002Fp\u003E\u003Ch2\u003EШаг 2. Временное \"резидентство\"\u003C\u002Fh2\u003E\u003Cp\u003EЧтоб наладить какой-то финансовый процесс хорошо бы открыть счёт в банке. Для этого в том же центре иммиграции нужно получить вот такую бумажку:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F23a\u002F8ab\u002F471\u002F23a8ab471d0bbc39effb3ebdac2ec8f5.jpg\" width=\"901\" height=\"1280\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F23a\u002F8ab\u002F471\u002F23a8ab471d0bbc39effb3ebdac2ec8f5.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EГоворите \"document for bank account\" – сразу понятно что вам нужно.\u003C\u002Fp\u003E\u003Cp\u003Eдля её оформления требуется:\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eформа TM30 из шага 1\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eтакое же фото 4х6\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003E300 бат\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eоколо часа времени на ожидание в очередях\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EЕсли подать документы на продление пребывания (шаг 1), затем получить после обеда паспорт и сразу подать на получение этой бумаги, то можно значительно упростить себе жизнь и сэкономить время. Я этого не знал и пришлось ездить несколько раз.\u003C\u002Fp\u003E\u003Cp\u003EЗачем она нужна эта бумажка? Иностранцам с таким вот временным \"штампиком\" нигде вообще счёт не открывают. Специально сегодня обошёл наверное 6 банков – везде нужен work permit или виза на долгий срок. Зато есть замечательный Bangkok Bank, который открывает именно с такой бумажкой.\u003C\u002Fp\u003E\u003Ch2\u003EШаг 3. Открытие счёта в банке\u003C\u002Fh2\u003E\u003Cp\u003EОткрытие счёта со страховкой от несчастных случаев, карточкой UnionPay и стартовыми 500 батами на счету стоит 7100 бат. Сегодня появилась информация, что страховку поменяют и будет раза в два дешевле. Хорошо если так.\u003C\u002Fp\u003E\u003Cp\u003EЗа дополнительные 500 бат можно сразу же получить мастеркард.\u003C\u002Fp\u003E\u003Cp\u003EКуда обращаться?\u003Cbr\u002F\u003E\u003Cbr\u002F\u003EВ любой офис Bangkok Bank, он есть в Old Town, в Central Festival – на 4-м этаже торгового центра. В общем куда ближе – туда и надо идти.\u003C\u002Fp\u003E\u003Cp\u003EЧто нужно?\u003C\u002Fp\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003Eпаспорт\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eместный мобильный номер телефона\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eбумажка из шага 2\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003Cli\u003E\u003Cp\u003Eв банке примерно минут 30 времени для заполнения кучи бумажек\u003C\u002Fp\u003E\u003C\u002Fli\u003E\u003C\u002Ful\u003E\u003Cp\u003EПо итогу будет счёт в банке в тайских батах. Можно открыть счёт и в другой валюте, вот тарифы:\u003C\u002Fp\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F71d\u002F693\u002F19b\u002F71d69319bb78184cc5b250621b966075.jpg\" width=\"947\" height=\"1280\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F71d\u002F693\u002F19b\u002F71d69319bb78184cc5b250621b966075.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cfigure class=\"full-width \"\u003E\u003Cimg src=\"https:\u002F\u002Fhabrastorage.org\u002Fr\u002Fw780q1\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd76\u002F86a\u002F55b\u002Fd7686a55bd130595ec05a6785de4b9b2.jpg\" width=\"890\" height=\"1280\" data-src=\"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd76\u002F86a\u002F55b\u002Fd7686a55bd130595ec05a6785de4b9b2.jpg\" data-blurred=\"true\"\u002F\u003E\u003Cfigcaption\u003E\u003C\u002Ffigcaption\u003E\u003C\u002Ffigure\u003E\u003Cp\u003EСвифт-переводы работают, уже проверено. При переводе валюты отличной от батов – сконвертируется по курсу банка, который не такой ужи плохой. Карточки тоже работают сразу. В общем можно немного вздохнуть.\u003C\u002Fp\u003E\u003Cp\u003EВ банке сразу лучше поставить приложение (для iOS это: \u003Ca href=\"https:\u002F\u002Fapps.apple.com\u002Fru\u002Fapp\u002Fbualuang-mbanking\u002Fid660238716\" rel=\"noopener noreferrer nofollow\"\u003Ehttps:\u002F\u002Fapps.apple.com\u002Fru\u002Fapp\u002Fbualuang-mbanking\u002Fid660238716\u003C\u002Fa\u003E), залогиниться, проверить что всё хорошо. Само приложение вроде как неплохое, всё основное есть, но до российских примерно как до луны.\u003C\u002Fp\u003E\u003Cp\u003EНадеюсь, информация будет полезна и сэкономит время тем кто оказался в подобной моей ситуации.\u003C\u002Fp\u003E\u003C\u002Fdiv\u003E","tags":[{"titleHtml":"таиланд"},{"titleHtml":"пхукет"},{"titleHtml":"счёт"},{"titleHtml":"банк"}],"metadata":{"stylesUrls":[],"scriptUrls":[],"shareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7dd\u002F1c3\u002F22c\u002F7dd1c322c705f8223263074d72ef2a5e.jpg","shareImageWidth":1200,"shareImageHeight":630,"vkShareImageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F7dd\u002F1c3\u002F22c\u002F7dd1c322c705f8223263074d72ef2a5e.jpg","schemaJsonLd":"{\"@context\":\"http:\\\u002F\\\u002Fschema.org\",\"@type\":\"Article\",\"mainEntityOfPage\":{\"@type\":\"WebPage\",\"@id\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654859\\\u002F\"},\"headline\":\"Таиланд. Пхукет. Документы, банки. 2022\",\"datePublished\":\"2022-03-09T19:58:47+03:00\",\"dateModified\":\"2022-03-09T20:35:27+03:00\",\"author\":{\"@type\":\"Person\",\"name\":\"mag\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Habr\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fwebt\\\u002Fa_\\\u002Flk\\\u002F9m\\\u002Fa_lk9mjkccjox-zccjrpfolmkmq.png\"}},\"description\":\"Данная статья &ndash; практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в оста...\",\"url\":\"https:\\\u002F\\\u002Fhabr.com\\\u002Fru\\\u002Fpost\\\u002F654859\\\u002F#post-content-body\",\"about\":[\"h_business-laws\",\"h_finance\",\"h_lifehacks\",\"h_remote\",\"f_management\",\"f_popsci\"],\"image\":[\"https:\\\u002F\\\u002Fhabr.com\\\u002Fshare\\\u002Fpublication\\\u002F654859\\\u002F1d75750650dabe942e0090834fe6df60\\\u002F\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F92d\\\u002F7bf\\\u002F511\\\u002F92d7bf511cba6b9ff55a6eadb7750bf4.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F561\\\u002F40b\\\u002F0ab\\\u002F56140b0abde5472ec77f6845a16af893.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F23a\\\u002F8ab\\\u002F471\\\u002F23a8ab471d0bbc39effb3ebdac2ec8f5.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002F71d\\\u002F693\\\u002F19b\\\u002F71d69319bb78184cc5b250621b966075.jpg\",\"https:\\\u002F\\\u002Fhabrastorage.org\\\u002Fgetpro\\\u002Fhabr\\\u002Fupload_files\\\u002Fd76\\\u002F86a\\\u002F55b\\\u002Fd7686a55bd130595ec05a6785de4b9b2.jpg\"]}","metaDescription":"Данная статья – практическое описание того через что нужно будет пройти если вынуждено или не вынуждено остаться на острове. Информация только про Пхукет, в остальных провинциях могут отличаться...","mainImageUrl":null,"amp":true,"customTrackerLinks":[]},"polls":[],"commentsEnabled":true,"rulesRemindEnabled":false,"votesEnabled":true,"status":"published","plannedPublishTime":null,"checked":null,"isEditorial":false}},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[""],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":"business-laws,finance,lifehacks,remote"},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":[],"articleRefs":{},"pagesCount":null,"route":{},"lastVisitedRoute":{},"isLoading":false},"search":{"searchQueryError":null},"settingsOther":{"inputs":{"uiLang":{"errors":[],"ref":null,"value":""},"articlesLangEnglish":{"errors":[],"ref":null,"value":false},"articlesLangRussian":{"errors":[],"ref":null,"value":false},"agreement":{"errors":[],"ref":null,"value":false},"email":{"errors":[],"ref":null,"value":true},"digest":{"errors":[],"ref":null,"value":true}}},"similarList":{"similarListIds":[],"similarListRefs":null},"ssr":{"error":null,"isDataLoaded":false,"isDataLoading":false,"isHydrationFailed":false,"isServer":false},"technotext":{"nominationsList":[]},"userHubsContribution":{"contributio

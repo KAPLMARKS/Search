@@ -1,0 +1,1513 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Хабы / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/page-flows.336318d3.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/page-flows.a2d6ab48.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/page-flow~page-flows.21e7f92a.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/page-flow~page-flows.9f28b747.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/page-flows.336318d3.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/page-flow~page-flows.21e7f92a.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" itemprop="image" content="/img/habr_ru.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="/img/habr_ru.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="/img/habr_ru.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="/img/habr_ru.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="/img/habr_ru.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" property="og:type" content="website" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:title" content="Хабы / Хабр" data-vmid="og:title">
+  <meta data-vue-meta="ssr" property="og:url" content="https://habr.com/ru/hubs/" data-vmid="og:url"> 
+  <link data-vue-meta="ssr" image_src="image" href="/img/habr_ru.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/hubs/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/hubs/" hreflang="ru" rel="alternate" data-vmid="hreflang">
+  <link data-vue-meta="ssr" href="https://habr.com/en/hubs/" hreflang="en" rel="alternate" data-vmid="hreflang"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" class="tm-header__become-author-btn"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-page__top">
+            <div class="tm-section-name">
+             <h1 class="tm-section-name__text"> Все потоки </h1> <!----> <a href="/ru/feedback/?type=8&amp;subj=suggest_hub" class="tm-suggest-button"> Предложить хаб </a>
+            </div> 
+            <div class="tm-tabs tm-tabs_page-header">
+             <div class="tm-tabs__scroll-area">
+              <span class="tm-tabs__tab-item"><a href="/ru/flows/all" class="tm-tabs__tab-link"> Статьи <!----></a></span><span class="tm-tabs__tab-item"><a href="/ru/news/" class="tm-tabs__tab-link"> Новости <!----></a></span><span class="tm-tabs__tab-item"><a href="/ru/hubs/" aria-current="page" data-test-id="tab-link-active" class="tm-tabs__tab-link router-link-exact-active  tm-tabs__tab-link_active"> Хабы <!----></a></span><span class="tm-tabs__tab-item"><a href="/ru/users/" class="tm-tabs__tab-link"> Авторы <!----></a></span><span class="tm-tabs__tab-item"><a href="/ru/companies/" class="tm-tabs__tab-link"> Компании <!----></a></span>
+             </div> <!---->
+            </div> <!----> 
+            <div class="tm-navigation-search__input">
+             <div autocomplete="off" maxlength="50" name="searchQuery" placeholder="Поиск" class="tm-input-text-decorated tm-input-text-decorated_has-label-after">
+              <!----> 
+              <input autocomplete="off" maxlength="50" name="searchQuery" placeholder="Поиск" class="tm-input-text-decorated__input"> 
+              <div class="tm-input-text-decorated__label tm-input-text-decorated__label_after">
+               <span class="tm-svg-icon__wrapper tm-search__icon">
+                <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+                 <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#input-search"></use>
+                </svg></span>
+              </div>
+             </div>
+            </div>
+           </div> 
+           <div data-async-called="true">
+            <!----> 
+            <div class="tm-hubs-list__sorting-panel">
+             <div class="tm-navigation-sorting">
+              <div class="tm-navigation-sorting__row-option tm-navigation-sorting__row-option_sortable">
+                Название 
+               <svg height="16" width="16" class="tm-svg-img tm-navigation-sorting__arrow">
+                <title>Сортировка</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#sorting-down"></use>
+               </svg>
+              </div>
+              <div class="tm-navigation-sorting__row-option tm-navigation-sorting__row-option_active tm-navigation-sorting__row-option_sortable">
+                Рейтинг 
+               <svg height="16" width="16" class="tm-svg-img tm-navigation-sorting__arrow tm-navigation-sorting__arrow_desc">
+                <title>Сортировка</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#sorting-down"></use>
+               </svg>
+              </div>
+              <div class="tm-navigation-sorting__row-option tm-navigation-sorting__row-option_sortable">
+                Подписчики 
+               <svg height="16" width="16" class="tm-svg-img tm-navigation-sorting__arrow">
+                <title>Сортировка</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#sorting-down"></use>
+               </svg>
+              </div> <!---->
+             </div>
+            </div> 
+            <div class="tm-hubs-list">
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/infosecurity/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/135/2db/187/1352db18765addaa6e0b2ac013d386d8.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/infosecurity/" class="tm-hub__title"><span>Информационная безопасность</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Защита данных
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">информационная безопасность</a><a href="/ru/search/?q=%5B%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">безопасность</a><a href="/ru/search/?q=%5B%D1%85%D0%B0%D0%BA%D0%B5%D1%80%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">хакеры</a><a href="/ru/search/?q=%5B%D0%BA%D0%B8%D0%B1%D0%B5%D1%80%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">кибербезопасность</a><a href="/ru/search/?q=%5B%D0%B2%D0%B7%D0%BB%D0%BE%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">взлом</a><a href="/ru/search/?q=%5B%D1%83%D1%8F%D0%B7%D0%B2%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">уязвимости</a><a href="/ru/search/?q=%5Bcybersecurity%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">cybersecurity</a><a href="/ru/search/?q=%5Bmicrosoft%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">microsoft</a><a href="/ru/search/?q=%5B%D1%81%D1%88%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">сша</a><a href="/ru/search/?q=%5Bsecurity%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">security</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 1007.66 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 551K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/popular_science/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/02f/206/0b9/02f2060b99e6f4d9403eee0420d7d5b8.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/popular_science/" class="tm-hub__title"><span>Научно-популярное</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  IT в науке и наука в IT
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">космос</a><a href="/ru/search/?q=%5B%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">история</a><a href="/ru/search/?q=%5B%D0%BD%D0%B0%D1%83%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">наука</a><a href="/ru/search/?q=%5B%D0%BD%D0%B0%D1%81%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">наса</a><a href="/ru/search/?q=%5Bruvds_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ruvds_статьи</a><a href="/ru/search/?q=%5B%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">астрономия</a><a href="/ru/search/?q=%5B%D0%B1%D0%B8%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">биология</a><a href="/ru/search/?q=%5B%D0%BC%D0%B5%D0%B4%D0%B8%D1%86%D0%B8%D0%BD%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">медицина</a><a href="/ru/search/?q=%5B%D0%BC%D0%BA%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">мкс</a><a href="/ru/search/?q=%5B%D0%BD%D0%B0%D1%83%D1%87%D0%BD%D0%BE-%D0%BF%D0%BE%D0%BF%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D0%BE%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">научно-популярное</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 766.81 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 152K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/it-infrastructure/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/594/546/45b/59454645b38d9a58a92e6870133ae8e6.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/it-infrastructure/" class="tm-hub__title"><span>IT-инфраструктура</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Инфоцентры + базы данных + системы связи
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bdevops%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">devops</a><a href="/ru/search/?q=%5Bkubernetes%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">kubernetes</a><a href="/ru/search/?q=%5Bit-%D0%B8%D0%BD%D1%84%D1%80%D0%B0%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">it-инфраструктура</a><a href="/ru/search/?q=%5B%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">информационная безопасность</a><a href="/ru/search/?q=%5B%D0%B8%D0%BD%D1%84%D1%80%D0%B0%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">инфраструктура</a><a href="/ru/search/?q=%5B%D1%86%D0%BE%D0%B4%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">цод</a><a href="/ru/search/?q=%5B%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">мониторинг</a><a href="/ru/search/?q=%5Bopen%20source%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">open source</a><a href="/ru/search/?q=%5Bvoip%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">voip</a><a href="/ru/search/?q=%5B%D0%B4%D0%B0%D1%82%D0%B0-%D1%86%D0%B5%D0%BD%D1%82%D1%80%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">дата-центр</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 621.2 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 143K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/read/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/04e/1a1/ccd/04e1a1ccda37543704ede864665b2ccd.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/read/" class="tm-hub__title"><span>Читальный зал</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Полезное чтиво по IT-темам
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bskillfactory%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">skillfactory</a><a href="/ru/search/?q=%5B%D1%87%D0%B5%D1%80%D1%82%20%D0%B7%D0%BD%D0%B0%D0%B5%D1%82%20%D1%87%D1%82%D0%BE%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">черт знает что</a><a href="/ru/search/?q=%5B%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">история</a><a href="/ru/search/?q=%5B%D1%87%D0%B8%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9%20%D0%B7%D0%B0%D0%BB%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">читальный зал</a><a href="/ru/search/?q=%5B%D0%BA%D0%BD%D0%B8%D0%B3%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">книги</a><a href="/ru/search/?q=%5Bruvds_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ruvds_статьи</a><a href="/ru/search/?q=%5B%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">карьера</a><a href="/ru/search/?q=%5B%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">информационные технологии</a><a href="/ru/search/?q=%5B%D0%BC%D0%BE%D0%B7%D0%B3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">мозг</a><a href="/ru/search/?q=%5B%D1%8D%D0%BB%D1%8C%D0%B4%D0%BE%D1%80%D0%B0%D0%B4%D0%BE%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">эльдорадо</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 564.06 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 12K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/career/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/cab/f82/067/cabf82067c7be08c90a5903f860c9abf.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/career/" class="tm-hub__title"><span>Карьера в IT-индустрии</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Работать, работать и работать (в IT)
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">карьера</a><a href="/ru/search/?q=%5B%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D0%B0%20%D0%B2%20it%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">карьера в it</a><a href="/ru/search/?q=%5B%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D0%B0%20%D0%B2%20it-%D0%B8%D0%BD%D0%B4%D1%83%D1%81%D1%82%D1%80%D0%B8%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">карьера в it-индустрии</a><a href="/ru/search/?q=%5B%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D0%B0%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%81%D1%82%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">карьера программиста</a><a href="/ru/search/?q=%5B%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">обучение</a><a href="/ru/search/?q=%5B%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D0%B0%20%D0%B8%D1%82-%D1%81%D0%BF%D0%B5%D1%86%D0%B8%D0%B0%D0%BB%D0%B8%D1%81%D1%82%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">карьера ит-специалиста</a><a href="/ru/search/?q=%5B%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">собеседование</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">программирование</a><a href="/ru/search/?q=%5B%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">удаленная работа</a><a href="/ru/search/?q=%5Bhr%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">hr</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 483.78 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 63K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/programming/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/db2/c8f/4a1/db2c8f4a1974bf334d01595732f339c1.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/programming/" class="tm-hub__title"><span>Программирование</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Искусство создания компьютерных программ
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">программирование</a><a href="/ru/search/?q=%5Bpython%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">python</a><a href="/ru/search/?q=%5Bjavascript%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">javascript</a><a href="/ru/search/?q=%5Bskillfactory%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">skillfactory</a><a href="/ru/search/?q=%5Bjava%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">java</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка</a><a href="/ru/search/?q=%5Bc%2B%2B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">c++</a><a href="/ru/search/?q=%5Bgo%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">go</a><a href="/ru/search/?q=%5Bgolang%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">golang</a><a href="/ru/search/?q=%5Bmicrosoft%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">microsoft</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 492.42 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 314K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/DIY/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/0ac/9b4/828/0ac9b48281cd7ba7401b4a4f5d9cd8d8.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/DIY/" class="tm-hub__title"><span>DIY или Сделай сам</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Для тех, у кого руки растут из нужного места
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bdiy%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy</a><a href="/ru/search/?q=%5Barduino%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">arduino</a><a href="/ru/search/?q=%5Bdiy%20%D0%B8%D0%BB%D0%B8%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%B9%20%D1%81%D0%B0%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy или сделай сам</a><a href="/ru/search/?q=%5Braspberry%20pi%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">raspberry pi</a><a href="/ru/search/?q=%5B%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%B9%20%D1%81%D0%B0%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">сделай сам</a><a href="/ru/search/?q=%5B%D1%83%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">умный дом</a><a href="/ru/search/?q=%5Bruvds_%D1%81%D1%82%D0%B0%D1%82%D1%8C%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ruvds_статьи</a><a href="/ru/search/?q=%5Bdiy-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy-проекты</a><a href="/ru/search/?q=%5Bruvds_%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ruvds_перевод</a><a href="/ru/search/?q=%5B%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">электроника</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 455.32 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 425K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/itcompanies/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/dfb/d32/674/dfbd326740d2d30fba37f441919619f5.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/itcompanies/" class="tm-hub__title"><span>IT-компании</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Компании из индустрии №1
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">проблема</a><a href="/ru/search/?q=%5Bapple%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">apple</a><a href="/ru/search/?q=%5B%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">яндекс</a><a href="/ru/search/?q=%5Bgoogle%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">google</a><a href="/ru/search/?q=%5Bfacebook%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">facebook</a><a href="/ru/search/?q=%5Bmicrosoft%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">microsoft</a><a href="/ru/search/?q=%5B%D1%81%D1%88%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">сша</a><a href="/ru/search/?q=%5Bmeta%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">meta</a><a href="/ru/search/?q=%5B%D1%80%D0%BE%D1%81%D0%BA%D0%BE%D0%BC%D0%BD%D0%B0%D0%B4%D0%B7%D0%BE%D1%80%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">роскомнадзор</a><a href="/ru/search/?q=%5B%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">россия</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 439.67 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 442K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/webdev/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/2a2/ac7/3dd/2a2ac73dd5cddc6e05b47a3d502b4c0d.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/webdev/" class="tm-hub__title"><span>Разработка веб-сайтов</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Делаем веб лучше
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bjavascript%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">javascript</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка</a><a href="/ru/search/?q=%5Bcss%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">css</a><a href="/ru/search/?q=%5Breact%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">react</a><a href="/ru/search/?q=%5B%D0%B4%D0%B0%D0%B9%D0%B4%D0%B6%D0%B5%D1%81%D1%82%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">дайджест</a><a href="/ru/search/?q=%5Bangular%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">angular</a><a href="/ru/search/?q=%5Bphp%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">php</a><a href="/ru/search/?q=%5Bweb-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">web-разработка</a><a href="/ru/search/?q=%5Bvue%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">vue</a><a href="/ru/search/?q=%5B%D1%84%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">фронтенд</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 451.07 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 571K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/business-laws/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/a57/348/ade/a57348ade2b5c33e99e869aaee204c3f.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/business-laws/" class="tm-hub__title"><span>Законодательство в IT</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Следим за тем, как регулируют IT-индустрию
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%80%D0%BE%D1%81%D0%BA%D0%BE%D0%BC%D0%BD%D0%B0%D0%B4%D0%B7%D0%BE%D1%80%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">роскомнадзор</a><a href="/ru/search/?q=%5Bgoogle%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">google</a><a href="/ru/search/?q=%5B%D1%81%D1%83%D0%B4%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">суд</a><a href="/ru/search/?q=%5B%D1%81%D1%88%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">сша</a><a href="/ru/search/?q=%5Bfacebook%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">facebook</a><a href="/ru/search/?q=%5B%D1%80%D0%BA%D0%BD%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ркн</a><a href="/ru/search/?q=%5B%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">россия</a><a href="/ru/search/?q=%5B%D0%B7%D0%B0%D0%BA%D0%BE%D0%BD%D0%BE%D0%B4%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D1%82%D0%B2%D0%BE%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">законодательство</a><a href="/ru/search/?q=%5B%D0%BC%D0%B8%D0%BD%D1%86%D0%B8%D1%84%D1%80%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">минцифры</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B1%D0%BB%D0%B5%D0%BC%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">проблема</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 370.78 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 133K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/finance/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/fd6/71f/dcf/fd671fdcf24393f28b04673ef09bcd62.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/finance/" class="tm-hub__title"><span>Финансы в IT</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  О сложных финансовых материях
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">финансы</a><a href="/ru/search/?q=%5B%D0%B8%D0%BD%D0%B2%D0%B5%D1%81%D1%82%D0%B8%D1%86%D0%B8%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">инвестиции</a><a href="/ru/search/?q=%5B%D0%B0%D0%BA%D1%86%D0%B8%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">акции</a><a href="/ru/search/?q=%5B%D0%B1%D0%B8%D1%80%D0%B6%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">биржа</a><a href="/ru/search/?q=%5B%D0%B1%D0%B0%D0%BD%D0%BA%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">банки</a><a href="/ru/search/?q=%5B%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%BE%D0%B2%D0%B0%D0%BB%D1%8E%D1%82%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">криптовалюты</a><a href="/ru/search/?q=%5B%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">яндекс</a><a href="/ru/search/?q=%5Bapple%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">apple</a><a href="/ru/search/?q=%5B%D1%80%D0%BE%D1%81%D1%81%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">россия</a><a href="/ru/search/?q=%5Bfacebook%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">facebook</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 342.44 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 93K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/hr_management/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/2c0/c6b/86a/2c0c6b86a9011cf811ce4b6820865115.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/hr_management/" class="tm-hub__title"><span>Управление персоналом</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Как правильно нанимать, управлять и расставаться
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BB%D1%8E%D0%B4%D1%8C%D0%BC%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление людьми</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%BB%D0%BE%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление персоналом</a><a href="/ru/search/?q=%5B%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">карьера</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D0%B9%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление командой</a><a href="/ru/search/?q=%5B%D1%83%D0%B4%D0%B0%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">удаленная работа</a><a href="/ru/search/?q=%5Bhr%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">hr</a><a href="/ru/search/?q=%5B%D1%83%D0%B4%D0%B0%D0%BB%D1%91%D0%BD%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">удалёнка</a><a href="/ru/search/?q=%5B%D1%87%D0%B5%D1%80%D1%82%20%D0%B7%D0%BD%D0%B0%D0%B5%D1%82%20%D1%87%D1%82%D0%BE%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">черт знает что</a><a href="/ru/search/?q=%5B%D1%85%D0%B0%D0%B1%D1%80%20%D0%BA%D0%B0%D1%80%D1%8C%D0%B5%D1%80%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">хабр карьера</a><a href="/ru/search/?q=%5B%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%BC%D0%B5%D0%BD%D1%82%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">менеджмент</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 352.64 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 44K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/electronics/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/269/015/f78/269015f78421d3d8efa321a6f81574f1.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/electronics/" class="tm-hub__title"><span>Производство и разработка электроники</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Как наладить процесс
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">электроника</a><a href="/ru/search/?q=%5Bintel%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">intel</a><a href="/ru/search/?q=%5B%D1%87%D0%B8%D0%BF%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">чипы</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка электроники</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B8%D0%B7%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">производство электроники</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D1%80%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">процессоры</a><a href="/ru/search/?q=%5Btsmc%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">tsmc</a><a href="/ru/search/?q=%5Bamd%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">amd</a><a href="/ru/search/?q=%5Bstm32%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">stm32</a><a href="/ru/search/?q=%5B%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BF%D0%BB%D0%B0%D1%82%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">печатные платы</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 305.11 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 7.1K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/habr/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/de0/f55/204/de0f552047d74d5841a0fd05ec19a98e.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/habr/" class="tm-hub__title"><span>Habr</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Торт или не торт?
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%85%D0%B0%D0%B1%D1%80%D0%B0%D1%85%D0%B0%D0%B1%D1%80%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">хабрахабр</a><a href="/ru/search/?q=%5B%D0%BA%D0%BE%D0%BC%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D1%80%D0%B8%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">комментарии</a><a href="/ru/search/?q=%5B%D0%BA%D0%B0%D1%80%D0%BC%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">карма</a><a href="/ru/search/?q=%5B%D0%B8%D0%B4%D0%B5%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">идея</a><a href="/ru/search/?q=%5B%D0%BE%D1%88%D0%B8%D0%B1%D0%BA%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ошибки</a><a href="/ru/search/?q=%5B%D1%8E%D0%B7%D0%B0%D0%B1%D0%B8%D0%BB%D0%B8%D1%82%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">юзабилити</a><a href="/ru/search/?q=%5Brss%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">rss</a><a href="/ru/search/?q=%5B%D0%B1%D0%BB%D0%BE%D0%B3%D0%BE%D1%81%D1%84%D0%B5%D1%80%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">блогосфера</a><a href="/ru/search/?q=%5B%D1%80%D0%B5%D0%B9%D1%82%D0%B8%D0%BD%D0%B3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">рейтинг</a><a href="/ru/search/?q=%5B%D0%B1%D0%B0%D0%B3%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">баги</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 267.75 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 123K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/health/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/612/aab/212/612aab212721194fe115ed84dea966cc.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/health/" class="tm-hub__title"><span>Здоровье</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  «Это норма» или как прожить подольше
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BA%D0%BE%D1%80%D0%BE%D0%BD%D0%B0%D0%B2%D0%B8%D1%80%D1%83%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">коронавирус</a><a href="/ru/search/?q=%5Bcovid-19%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">covid-19</a><a href="/ru/search/?q=%5B%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8C%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">здоровье</a><a href="/ru/search/?q=%5B%D0%BC%D0%B5%D0%B4%D0%B8%D1%86%D0%B8%D0%BD%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">медицина</a><a href="/ru/search/?q=%5B%D0%BC%D0%BE%D0%B7%D0%B3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">мозг</a><a href="/ru/search/?q=%5B%D0%B2%D0%B0%D0%BA%D1%86%D0%B8%D0%BD%D0%B0%D1%86%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">вакцинация</a><a href="/ru/search/?q=%5B%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8C%D0%B5%20%D0%B3%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">здоровье гика</a><a href="/ru/search/?q=%5B%D0%BF%D0%B0%D0%BD%D0%B4%D0%B5%D0%BC%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">пандемия</a><a href="/ru/search/?q=%5B%D0%BF%D1%81%D0%B8%D1%85%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">психология</a><a href="/ru/search/?q=%5B%D0%B2%D0%B8%D1%80%D1%83%D1%81%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">вирусы</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 263.46 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 15K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/easyelectronics/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/6d9/47d/a08/6d947da0853000328fc6f5ba630006fb.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/easyelectronics/" class="tm-hub__title"><span>Электроника для начинающих</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Arduino, DYI и как собрать Электроника
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Barduino%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">arduino</a><a href="/ru/search/?q=%5Bdiy%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy</a><a href="/ru/search/?q=%5B%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">электроника</a><a href="/ru/search/?q=%5Bdiy%20%D0%B8%D0%BB%D0%B8%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%B9%20%D1%81%D0%B0%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy или сделай сам</a><a href="/ru/search/?q=%5B%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BD%D0%B0%D1%87%D0%B8%D0%BD%D0%B0%D1%8E%D1%89%D0%B8%D1%85%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">электроника для начинающих</a><a href="/ru/search/?q=%5B%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">микроконтроллеры</a><a href="/ru/search/?q=%5Bstm32%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">stm32</a><a href="/ru/search/?q=%5B%D1%81%D1%85%D0%B5%D0%BC%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">схемотехника</a><a href="/ru/search/?q=%5B%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BF%D0%BB%D0%B0%D1%82%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">печатные платы</a><a href="/ru/search/?q=%5Bfpga%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">fpga</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 223.45 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 108K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/gamedev/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/b31/347/904/b31347904b72455522b1f645ea28ef1a.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/gamedev/" class="tm-hub__title"><span>Разработка игр</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Разработка игр
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D0%B8%D0%B3%D1%80%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка игр</a><a href="/ru/search/?q=%5Bgamedev%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">gamedev</a><a href="/ru/search/?q=%5B%D0%B8%D0%B3%D1%80%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">игры</a><a href="/ru/search/?q=%5Bunity%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">unity</a><a href="/ru/search/?q=%5B%D0%B3%D0%B5%D0%B9%D0%BC%D0%B4%D0%B5%D0%B2%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">геймдев</a><a href="/ru/search/?q=%5Bunity3d%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">unity3d</a><a href="/ru/search/?q=%5B%D0%B3%D0%B5%D0%B9%D0%BC%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">геймдизайн</a><a href="/ru/search/?q=%5Bgame%20development%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">game development</a><a href="/ru/search/?q=%5B%D0%BF%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B4%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">перевод</a><a href="/ru/search/?q=%5Bc%23%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">c#</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 227.93 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 132K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/open_source/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/dc9/dbe/e1d/dc9dbee1d24188b925e86946bafb15c7.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/open_source/" class="tm-hub__title"><span>Open source</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Открытое программное обеспечение
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bopen%20source%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">open source</a><a href="/ru/search/?q=%5Blinux%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">linux</a><a href="/ru/search/?q=%5Bkubernetes%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">kubernetes</a><a href="/ru/search/?q=%5Bred%20hat%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">red hat</a><a href="/ru/search/?q=%5Bfree%20software%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">free software</a><a href="/ru/search/?q=%5B%D0%B4%D0%B0%D0%B9%D0%B4%D0%B6%D0%B5%D1%81%D1%82%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">дайджест</a><a href="/ru/search/?q=%5Bfoss%20news%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">foss news</a><a href="/ru/search/?q=%5B%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">новости</a><a href="/ru/search/?q=%5Bpython%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">python</a><a href="/ru/search/?q=%5Bgithub%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">github</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 228.03 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 112K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/pm/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/94a/b35/1ad/94ab351adac61ac363e9de79c1382a67.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/pm/" class="tm-hub__title"><span>Управление проектами</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Как заставить всё работать
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0%D0%BC%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление проектами</a><a href="/ru/search/?q=%5Bagile%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">agile</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BB%D1%8E%D0%B4%D1%8C%D0%BC%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление людьми</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D0%B9%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление командой</a><a href="/ru/search/?q=%5Bscrum%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">scrum</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%BE%D0%B9%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление разработкой</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0%D0%BC%D0%B8%20%D0%B8%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D0%B9%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление проектами и командой</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка</a><a href="/ru/search/?q=%5Bproject%20management%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">project management</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82%D0%BE%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление продуктом</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 206.63 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 62K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/net/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/a5a/5ae/a29/a5a5aea294f48a0d81c4b1968432e5e1.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/net/" class="tm-hub__title"><span>.NET</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Хаб со знаниями про NET Framework
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B.net%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">.net</a><a href="/ru/search/?q=%5Bc%23%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">c#</a><a href="/ru/search/?q=%5Bmicrosoft%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">microsoft</a><a href="/ru/search/?q=%5B.net%20core%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">.net core</a><a href="/ru/search/?q=%5Basp.net%20core%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">asp.net core</a><a href="/ru/search/?q=%5Bvisual%20studio%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">visual studio</a><a href="/ru/search/?q=%5Basp.net%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">asp.net</a><a href="/ru/search/?q=%5Bdotnext%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">dotnext</a><a href="/ru/search/?q=%5Bpvs-studio%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">pvs-studio</a><a href="/ru/search/?q=%5Bazure%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">azure</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 199.38 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 121K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/controllers/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/479/657/b87/479657b871482c25c8f0a6f32efec586.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/controllers/" class="tm-hub__title"><span>Программирование микроконтроллеров</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Учимся программировать микроконтроллеры
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">микроконтроллеры</a><a href="/ru/search/?q=%5Bstm32%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">stm32</a><a href="/ru/search/?q=%5Barduino%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">arduino</a><a href="/ru/search/?q=%5Bfpga%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">fpga</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D0%BE%D0%B2%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">программирование микроконтроллеров</a><a href="/ru/search/?q=%5B%D0%BF%D0%BB%D0%B8%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">плис</a><a href="/ru/search/?q=%5Barm%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">arm</a><a href="/ru/search/?q=%5Bavr%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">avr</a><a href="/ru/search/?q=%5Biot%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">iot</a><a href="/ru/search/?q=%5Bverilog%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">verilog</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 187.21 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 96K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/space/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/f07/ba2/b9d/f07ba2b9d63b419e332a4d5ddeec8a99.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/space/" class="tm-hub__title"><span>Космонавтика</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Всё о космосе и его захвате
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">космос</a><a href="/ru/search/?q=%5Bspacex%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">spacex</a><a href="/ru/search/?q=%5B%D0%BD%D0%B0%D1%81%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">наса</a><a href="/ru/search/?q=%5B%D0%BC%D0%BA%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">мкс</a><a href="/ru/search/?q=%5B%D1%80%D0%BE%D1%81%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">роскосмос</a><a href="/ru/search/?q=%5B%D0%BB%D1%83%D0%BD%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">луна</a><a href="/ru/search/?q=%5B%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D0%BD%D0%B0%D0%B2%D1%82%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">космонавтика</a><a href="/ru/search/?q=%5B%D0%BC%D0%B0%D1%80%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">марс</a><a href="/ru/search/?q=%5B%D1%81%D0%BF%D1%83%D1%82%D0%BD%D0%B8%D0%BA%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">спутники</a><a href="/ru/search/?q=%5Bnasa%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">nasa</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 182.85 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 118K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/social_networks/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/659/9b8/08c/6599b808c4d9faf273204167b601b2a0.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/social_networks/" class="tm-hub__title"><span>Социальные сети и сообщества</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Виртуальная жизнь
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bfacebook%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">facebook</a><a href="/ru/search/?q=%5B%D1%81%D0%BE%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D1%81%D0%B5%D1%82%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">социальные сети</a><a href="/ru/search/?q=%5Btwitter%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">twitter</a><a href="/ru/search/?q=%5B%D1%80%D0%BE%D1%81%D0%BA%D0%BE%D0%BC%D0%BD%D0%B0%D0%B4%D0%B7%D0%BE%D1%80%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">роскомнадзор</a><a href="/ru/search/?q=%5Btelegram%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">telegram</a><a href="/ru/search/?q=%5Binstagram%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">instagram</a><a href="/ru/search/?q=%5Byoutube%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">youtube</a><a href="/ru/search/?q=%5B%D1%81%D0%BE%D1%86%D1%81%D0%B5%D1%82%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">соцсети</a><a href="/ru/search/?q=%5B%D1%80%D0%BA%D0%BD%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ркн</a><a href="/ru/search/?q=%5Bgoogle%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">google</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 183.16 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 168K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/python/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/1c6/724/437/1c6724437b83f3d71abd08e5c2877a7a.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/python/" class="tm-hub__title"><span>Python</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Высокоуровневый язык программирования
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bpython%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">python</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">программирование</a><a href="/ru/search/?q=%5B%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">машинное обучение</a><a href="/ru/search/?q=%5Bpython3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">python3</a><a href="/ru/search/?q=%5Bdata%20science%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">data science</a><a href="/ru/search/?q=%5Bskillfactory%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">skillfactory</a><a href="/ru/search/?q=%5Bmachine%20learning%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">machine learning</a><a href="/ru/search/?q=%5Bdjango%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">django</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка</a><a href="/ru/search/?q=%5Bpytorch%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">pytorch</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 176.23 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 188K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/dev_management/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/979/b7b/9be/979b7b9bec5637525f70e76f05a498fb.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/dev_management/" class="tm-hub__title"><span>Управление разработкой</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Планирование, отслеживание и контроль
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bagile%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">agile</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0%D0%BC%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление проектами</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%BE%D0%B9%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление разработкой</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BB%D1%8E%D0%B4%D1%8C%D0%BC%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление людьми</a><a href="/ru/search/?q=%5Bscrum%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">scrum</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D0%B9%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление командой</a><a href="/ru/search/?q=%5Bdevops%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">devops</a><a href="/ru/search/?q=%5B%D1%82%D0%B8%D0%BC%D0%BB%D0%B8%D0%B4%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">тимлид</a><a href="/ru/search/?q=%5B%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0%D0%BC%D0%B8%20%D0%B8%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%BE%D0%B9%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">управление проектами и командой</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 168.87 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 44K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/soft/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/c08/ac8/abd/c08ac8abdf8edc624ac48e8411851998.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/soft/" class="tm-hub__title"><span>Софт</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Программное обеспечение
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bmicrosoft%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">microsoft</a><a href="/ru/search/?q=%5Bwindows%2010%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">windows 10</a><a href="/ru/search/?q=%5B%D1%81%D0%BE%D1%84%D1%82%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">софт</a><a href="/ru/search/?q=%5Blinux%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">linux</a><a href="/ru/search/?q=%5Bwindows%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">windows</a><a href="/ru/search/?q=%5B%D0%BE%D0%BF%D0%B5%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">операционные системы</a><a href="/ru/search/?q=%5Bapple%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">apple</a><a href="/ru/search/?q=%5Bwindows%2011%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">windows 11</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE%D0%B5%20%D0%BE%D0%B1%D0%B5%D1%81%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">программное обеспечение</a><a href="/ru/search/?q=%5Bgoogle%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">google</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 164.46 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 188K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/circuit-design/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/931/d7e/aa4/931d7eaa44179f5195debd4b35d47c51.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/circuit-design/" class="tm-hub__title"><span>Схемотехника</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Проектирование электронных схем
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%81%D1%85%D0%B5%D0%BC%D0%BE%D1%82%D0%B5%D1%85%D0%BD%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">схемотехника</a><a href="/ru/search/?q=%5Bstm32%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">stm32</a><a href="/ru/search/?q=%5B%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">электроника</a><a href="/ru/search/?q=%5Bdiy%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy</a><a href="/ru/search/?q=%5B%D0%BC%D0%B8%D0%BA%D1%80%D0%BE%D0%BA%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D0%BB%D0%B5%D1%80%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">микроконтроллеры</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка электроники</a><a href="/ru/search/?q=%5Barduino%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">arduino</a><a href="/ru/search/?q=%5B%D1%81%D0%B8%D0%BB%D0%BE%D0%B2%D0%B0%D1%8F%20%D1%8D%D0%BB%D0%B5%D0%BA%D1%82%D1%80%D0%BE%D0%BD%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">силовая электроника</a><a href="/ru/search/?q=%5Bfpga%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">fpga</a><a href="/ru/search/?q=%5Bdiy%20%D0%B8%D0%BB%D0%B8%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%B9%20%D1%81%D0%B0%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy или сделай сам</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 139.6 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 7.2K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/javascript/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/2b3/99b/964/2b399b964d456f3ad1bfddc0346b60d4.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/javascript/" class="tm-hub__title"><span>JavaScript</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Прототипно-ориентированный язык программирования
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bjavascript%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">javascript</a><a href="/ru/search/?q=%5Breact%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">react</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка</a><a href="/ru/search/?q=%5Bcss%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">css</a><a href="/ru/search/?q=%5Bangular%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">angular</a><a href="/ru/search/?q=%5Bvue%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">vue</a><a href="/ru/search/?q=%5Btypescript%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">typescript</a><a href="/ru/search/?q=%5B%D1%84%D1%80%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D0%B4%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">фронтенд</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">программирование</a><a href="/ru/search/?q=%5Bfrontend%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">frontend</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 155.08 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 174K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/sys_admin/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/6c5/db3/8c2/6c5db38c23972b6c0916e91e408edff8.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/sys_admin/" class="tm-hub__title"><span>Системное администрирование</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Лишь бы юзер был доволен
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bkubernetes%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">kubernetes</a><a href="/ru/search/?q=%5Blinux%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">linux</a><a href="/ru/search/?q=%5Bdevops%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">devops</a><a href="/ru/search/?q=%5B%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%B5%20%D0%B0%D0%B4%D0%BC%D0%B8%D0%BD%D0%B8%D1%81%D1%82%D1%80%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">системное администрирование</a><a href="/ru/search/?q=%5Bmicrosoft%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">microsoft</a><a href="/ru/search/?q=%5B%D0%BC%D0%BE%D0%BD%D0%B8%D1%82%D0%BE%D1%80%D0%B8%D0%BD%D0%B3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">мониторинг</a><a href="/ru/search/?q=%5Bdocker%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">docker</a><a href="/ru/search/?q=%5Bzabbix%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">zabbix</a><a href="/ru/search/?q=%5Bpostgresql%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">postgresql</a><a href="/ru/search/?q=%5Bwindows%2010%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">windows 10</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 149.33 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 136K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/lifehacks/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/9fa/5f9/72e/9fa5f972e61ea8e0b7d0258ddafd3fbe.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/lifehacks/" class="tm-hub__title"><span>Лайфхаки для гиков</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Хитрости жизни хозяйке на заметку
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BB%D0%B0%D0%B9%D1%84%D1%85%D0%B0%D0%BA%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">лайфхаки</a><a href="/ru/search/?q=%5Bdiy%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy</a><a href="/ru/search/?q=%5Bskillfactory%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">skillfactory</a><a href="/ru/search/?q=%5Bpython%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">python</a><a href="/ru/search/?q=%5B%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">гаджеты</a><a href="/ru/search/?q=%5B%D0%BB%D0%B0%D0%B9%D1%84%D1%85%D0%B0%D0%BA%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">лайфхак</a><a href="/ru/search/?q=%5B%D0%BC%D0%BE%D0%B7%D0%B3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">мозг</a><a href="/ru/search/?q=%5B%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">аудиомания</a><a href="/ru/search/?q=%5B%D0%B7%D0%B4%D0%BE%D1%80%D0%BE%D0%B2%D1%8C%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">здоровье</a><a href="/ru/search/?q=%5Balconost%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">alconost</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 146.99 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 19K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/raspberrypi/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/337/210/c0f/337210c0f187ef2605bc9335bb74ae0c.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/raspberrypi/" class="tm-hub__title"><span>Разработка на Raspberry Pi</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Одноплатный компьютер компактного размера
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Braspberry%20pi%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">raspberry pi</a><a href="/ru/search/?q=%5Braspberry%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">raspberry</a><a href="/ru/search/?q=%5Bdiy%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy</a><a href="/ru/search/?q=%5Bpython%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">python</a><a href="/ru/search/?q=%5B%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">разработка</a><a href="/ru/search/?q=%5B%D1%83%D0%BC%D0%BD%D1%8B%D0%B9%20%D0%B4%D0%BE%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">умный дом</a><a href="/ru/search/?q=%5Blinux%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">linux</a><a href="/ru/search/?q=%5Braspberry%20pi%204%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">raspberry pi 4</a><a href="/ru/search/?q=%5Braspberrypi%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">raspberrypi</a><a href="/ru/search/?q=%5Bdiy%20%D0%B8%D0%BB%D0%B8%20%D1%81%D0%B4%D0%B5%D0%BB%D0%B0%D0%B9%20%D1%81%D0%B0%D0%BC%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">diy или сделай сам</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 136.16 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 35K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/astronomy/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/79a/987/250/79a987250ade16638dfafcce24213f3d.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/astronomy/" class="tm-hub__title"><span>Астрономия</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Естественная наука о Вселенной
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">космос</a><a href="/ru/search/?q=%5B%D0%B0%D1%81%D1%82%D1%80%D0%BE%D0%BD%D0%BE%D0%BC%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">астрономия</a><a href="/ru/search/?q=%5B%D0%BD%D0%B0%D1%81%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">наса</a><a href="/ru/search/?q=%5B%D0%BB%D1%83%D0%BD%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">луна</a><a href="/ru/search/?q=%5B%D0%BC%D0%B0%D1%80%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">марс</a><a href="/ru/search/?q=%5B%D0%B2%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">вселенная</a><a href="/ru/search/?q=%5B%D0%B7%D0%B2%D0%B5%D0%B7%D0%B4%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">звезды</a><a href="/ru/search/?q=%5B%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">телескоп</a><a href="/ru/search/?q=%5B%D1%8D%D0%BA%D0%B7%D0%BE%D0%BF%D0%BB%D0%B0%D0%BD%D0%B5%D1%82%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">экзопланеты</a><a href="/ru/search/?q=%5B%D1%82%D0%B5%D0%BB%D0%B5%D1%81%D0%BA%D0%BE%D0%BF%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">телескопы</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 138.5 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 47K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/futurenow/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/8c3/df1/7fe/8c3df17fe6153c109d190d6364f4afa5.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/futurenow/" class="tm-hub__title"><span>Будущее здесь</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Оно буквально в дверь стучится
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%B1%D1%83%D0%B4%D1%83%D1%89%D0%B5%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">будущее</a><a href="/ru/search/?q=%5B%D0%BA%D0%BE%D1%81%D0%BC%D0%BE%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">космос</a><a href="/ru/search/?q=%5B%D0%B8%D1%81%D0%BA%D1%83%D1%81%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D1%82%D0%B5%D0%BB%D0%BB%D0%B5%D0%BA%D1%82%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">искусственный интеллект</a><a href="/ru/search/?q=%5B%D1%80%D0%BE%D0%B1%D0%BE%D1%82%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">роботы</a><a href="/ru/search/?q=%5Bspacex%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">spacex</a><a href="/ru/search/?q=%5B%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">технологии</a><a href="/ru/search/?q=%5B%D0%BC%D0%B0%D1%80%D1%81%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">марс</a><a href="/ru/search/?q=%5B%D0%B8%D0%BB%D0%BE%D0%BD%20%D0%BC%D0%B0%D1%81%D0%BA%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">илон маск</a><a href="/ru/search/?q=%5B%D0%BB%D1%83%D0%BD%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">луна</a><a href="/ru/search/?q=%5Btesla%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">tesla</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 138.57 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 51K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/csharp/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/bc7/f1e/783/bc7f1e78397bca57cf5adcd5bf1725be.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/csharp/" class="tm-hub__title"><span>C#</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Объектно-ориентированный язык программирования
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bc%23%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">c#</a><a href="/ru/search/?q=%5B.net%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">.net</a><a href="/ru/search/?q=%5Bmicrosoft%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">microsoft</a><a href="/ru/search/?q=%5B.net%20core%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">.net core</a><a href="/ru/search/?q=%5Bunity%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">unity</a><a href="/ru/search/?q=%5Bunity3d%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">unity3d</a><a href="/ru/search/?q=%5Bpvs-studio%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">pvs-studio</a><a href="/ru/search/?q=%5Bvisual%20studio%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">visual studio</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">программирование</a><a href="/ru/search/?q=%5Basp.net%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">asp.net</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 136.45 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 155K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/web_analytics/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/f0c/262/1fb/f0c2621fbcdbe6ad994bdff586a20ea3.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/web_analytics/" class="tm-hub__title"><span>Веб-аналитика</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Измерение, сбор, анализ и представление информации
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%B2%D0%B5%D0%B1-%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">веб-аналитика</a><a href="/ru/search/?q=%5B%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">аналитика</a><a href="/ru/search/?q=%5Bgoogle%20analytics%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">google analytics</a><a href="/ru/search/?q=%5B%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">маркетинг</a><a href="/ru/search/?q=%5B%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82%D0%B8%D0%BD%D0%B3%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">интернет-маркетинг</a><a href="/ru/search/?q=%5B%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%81%D1%82%D0%B8%D0%BA%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">статистика</a><a href="/ru/search/?q=%5Bseo%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">seo</a><a href="/ru/search/?q=%5B%D0%BA%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">конверсия</a><a href="/ru/search/?q=%5Bgoogle%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">google</a><a href="/ru/search/?q=%5B%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BA%D1%81%D1%82%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">контекстная реклама</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 129.4 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 50K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/gadgets/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/d14/9ad/4f5/d149ad4f5d22a8b8775b070f3c92cf39.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/gadgets/" class="tm-hub__title"><span>Гаджеты</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Смартфоны, планшеты, ноутбуки и вот это всё
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%B3%D0%B0%D0%B4%D0%B6%D0%B5%D1%82%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">гаджеты</a><a href="/ru/search/?q=%5Bapple%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">apple</a><a href="/ru/search/?q=%5B%D1%81%D0%BC%D0%B0%D1%80%D1%82%D1%84%D0%BE%D0%BD%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">смартфоны</a><a href="/ru/search/?q=%5B%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">аудиомания</a><a href="/ru/search/?q=%5Bsamsung%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">samsung</a><a href="/ru/search/?q=%5Bled%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">led</a><a href="/ru/search/?q=%5B%D0%B7%D0%B2%D1%83%D0%BA%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">звук</a><a href="/ru/search/?q=%5Biphone%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">iphone</a><a href="/ru/search/?q=%5Bmadrobots%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">madrobots</a><a href="/ru/search/?q=%5B%D1%81%D0%B2%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D0%BE%D0%B4%D0%BD%D1%8B%D0%B5%20%D0%BB%D0%B0%D0%BC%D0%BF%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">светодиодные лампы</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 132.17 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 475K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/history/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/geektimes/hub/bbe/ec1/498/bbeec149811969c7214c33d0a6911160.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/history/" class="tm-hub__title"><span>История IT</span></a> <!---->
+                 </div> 
+                 <div class="tm-hub__description">
+                  Занимательные истории из прошлого
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%20it%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">история it</a><a href="/ru/search/?q=%5B%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">история</a><a href="/ru/search/?q=%5B%D1%81%D1%82%D0%B0%D1%80%D0%BE%D0%B5%20%D0%B6%D0%B5%D0%BB%D0%B5%D0%B7%D0%BE%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">старое железо</a><a href="/ru/search/?q=%5B%D0%B8%D0%B3%D1%80%D1%8B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">игры</a><a href="/ru/search/?q=%5B%D0%B0%D1%83%D0%B4%D0%B8%D0%BE%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">аудиомания</a><a href="/ru/search/?q=%5B%D0%B8%D1%81%D1%82%D0%BE%D1%80%D0%B8%D1%8F%20%D0%B8%D1%82%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">история ит</a><a href="/ru/search/?q=%5Bapple%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">apple</a><a href="/ru/search/?q=%5B%D0%B7%D0%B2%D1%83%D0%BA%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">звук</a><a href="/ru/search/?q=%5Bmicrosoft%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">microsoft</a><a href="/ru/search/?q=%5Bintel%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">intel</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 127.84 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 140K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/machine_learning/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/882/37a/b33/88237ab33b6f8acc090d443651c4f2f9.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/machine_learning/" class="tm-hub__title"><span>Машинное обучение</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Основа искусственного интеллекта
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D0%BC%D0%B0%D1%88%D0%B8%D0%BD%D0%BD%D0%BE%D0%B5%20%D0%BE%D0%B1%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">машинное обучение</a><a href="/ru/search/?q=%5Bmachine%20learning%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">machine learning</a><a href="/ru/search/?q=%5B%D0%B8%D1%81%D0%BA%D1%83%D1%81%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9%20%D0%B8%D0%BD%D1%82%D0%B5%D0%BB%D0%BB%D0%B5%D0%BA%D1%82%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">искусственный интеллект</a><a href="/ru/search/?q=%5Bdata%20science%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">data science</a><a href="/ru/search/?q=%5Bpython%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">python</a><a href="/ru/search/?q=%5B%D0%BD%D0%B5%D0%B9%D1%80%D0%BE%D1%81%D0%B5%D1%82%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">нейросети</a><a href="/ru/search/?q=%5Bcomputer%20vision%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">computer vision</a><a href="/ru/search/?q=%5Bskillfactory%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">skillfactory</a><a href="/ru/search/?q=%5B%D0%BD%D0%B5%D0%B9%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B5%20%D1%81%D0%B5%D1%82%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">нейронные сети</a><a href="/ru/search/?q=%5Bai%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ai</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 125.74 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 59K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/cpp/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/01b/2ed/295/01b2ed29584e1245479ca857b0264ff1.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/cpp/" class="tm-hub__title"><span>C++</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  Типизированный язык программирования
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5Bc%2B%2B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">c++</a><a href="/ru/search/?q=%5Bpvs-studio%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">pvs-studio</a><a href="/ru/search/?q=%5Bc%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">c</a><a href="/ru/search/?q=%5B%D1%81%2B%2B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">с++</a><a href="/ru/search/?q=%5B%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">программирование</a><a href="/ru/search/?q=%5B%D1%81%D1%82%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9%20%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7%20%D0%BA%D0%BE%D0%B4%D0%B0%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">статический анализ кода</a><a href="/ru/search/?q=%5Bopen%20source%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">open source</a><a href="/ru/search/?q=%5B%D1%81%D0%B8%2B%2B%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">си++</a><a href="/ru/search/?q=%5Bc%2B%2B17%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">c++17</a><a href="/ru/search/?q=%5Bqt%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">qt</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 124.77 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 132K 
+               </div>
+              </div>
+             </div>
+             <div class="tm-hubs-list__category-wrapper">
+              <div class="tm-hubs-list__hub">
+               <div class="tm-hub">
+                <a href="/ru/hub/network_technologies/" class="tm-hub__userpic-link">
+                 <div class="tm-entity-image">
+                  <img alt="" src="//habrastorage.org/getpro/habr/hub/b2e/13f/8fc/b2e13f8fcaf2711677c87418b98e85fe.png" class="tm-entity-image__pic">
+                 </div></a> 
+                <div class="tm-hub__info">
+                 <div>
+                  <a href="/ru/hub/network_technologies/" class="tm-hub__title"><span>Сетевые технологии</span></a> <span title="Профильный хаб" class="tm-hub__profiled"> * </span>
+                 </div> 
+                 <div class="tm-hub__description">
+                  От Ethernet до IPv6
+                 </div> 
+                 <div class="tm-hubs-list__hub-tags">
+                  <a href="/ru/search/?q=%5B%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D1%8B%D0%B5%20%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">сетевые технологии</a><a href="/ru/search/?q=%5Bcisco%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">cisco</a><a href="/ru/search/?q=%5Bvpn%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">vpn</a><a href="/ru/search/?q=%5Bwi-fi%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">wi-fi</a><a href="/ru/search/?q=%5B%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">интернет</a><a href="/ru/search/?q=%5Bts%20solution%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">ts solution</a><a href="/ru/search/?q=%5B%D0%B8%D0%BD%D1%84%D0%BE%D1%80%D0%BC%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%B1%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%BE%D1%81%D1%82%D1%8C%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">информационная безопасность</a><a href="/ru/search/?q=%5B%D1%81%D0%B5%D1%82%D0%B5%D0%B2%D0%BE%D0%B5%20%D0%BE%D0%B1%D0%BE%D1%80%D1%83%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">сетевое оборудование</a><a href="/ru/search/?q=%5Bmikrotik%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">mikrotik</a><a href="/ru/search/?q=%5Bzimbra%5D&amp;target_type=posts&amp;order=relevance" class="tm-hubs-list__hub-tag">zimbra</a>
+                 </div>
+                </div>
+               </div> 
+               <div class="tm-hubs-list__hub-rating">
+                <!----> 138.38 
+               </div> 
+               <div class="tm-hubs-list__hub-subscribers">
+                <!----> 141K 
+               </div>
+              </div>
+             </div>
+            </div> 
+            <div class="tm-pagination">
+             <div id="pagination-prev-page" data-pagination-prev="" rel="prev" class="tm-pagination__navigation-link">
+              <svg height="16" width="16" class="tm-svg-img tm-pagination__arrow tm-pagination__arrow_prev">
+               <title>Назад</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-back"></use>
+              </svg> <span class="tm-pagination__navigation-link-title"> Сюда </span>
+             </div> 
+             <div class="tm-pagination__pages"> <span class="tm-pagination__page tm-pagination__page_current"> 1 </span> 
+              <div class="tm-pagination__page-group">
+               <a href="/ru/hubs/page2/" class="tm-pagination__page"> 2 </a><a href="/ru/hubs/page3/" class="tm-pagination__page"> 3 </a> <span class="tm-pagination__page tm-pagination__page_skip"> ... </span>
+              </div>
+              <div class="tm-pagination__page-group">
+               <a href="/ru/hubs/page10/" class="tm-pagination__page"> 10 </a><a href="/ru/hubs/page11/" class="tm-pagination__page"> 11 </a> <!---->
+              </div>
+             </div> <a href="/ru/hubs/page2/" id="pagination-next-page" data-pagination-next="" rel="next" class="tm-pagination__navigation-link tm-pagination__navigation-link_active"><span class="tm-pagination__navigation-link-title"> Туда </span> 
+              <svg height="16" width="16" class="tm-svg-img tm-pagination__arrow tm-pagination__arrow_next">
+               <title>Назад</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-back"></use>
+              </svg></a>
+            </div>
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div data-async-called="true" class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__ads tm-layout-sidebar__ads_initial">
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_top">
+             <!----> 
+             <div id="sidebarBanner5336" class="tm-ad-banner tm-ad-banner_variant-half-page"></div>
+            </div>
+           </div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <section class="tm-block tm-block_spacing-bottom">
+             <header class="tm-block__header">
+              <h2 class="tm-block__title">Лучшие блоги</h2> <!---->
+             </header> 
+             <div class="tm-block__body">
+              <div class="tm-companies-rating">
+               <a href="/ru/company/ruvds/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/f27/ea8/5bd/f27ea85bd62fbd985c308110885af7e0.png" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">RUVDS.com</span> <span class="tm-companies-rating__rating">2381.94</span></a><a href="/ru/company/selectel/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/66a/f7d/039/66af7d03979b6d18654293d8f1e72837.png" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">Selectel</span> <span class="tm-companies-rating__rating">1059.88</span></a><a href="/ru/company/geltek/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/geektimes/company/4b5/de5/2aa/4b5de52aa90302f5a44e2dc3845b80d4.jpg" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">Гельтек-Медика</span> <span class="tm-companies-rating__rating">815.66</span></a><a href="/ru/company/timeweb/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/661/1f9/3df/6611f93df3001fe9faddb4779454c4d5.png" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">Timeweb Cloud</span> <span class="tm-companies-rating__rating">653.78</span></a><a href="/ru/company/habr/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/7e4/7b8/e31/7e47b8e31d0efe9f398461278a16a357.png" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">Хабр</span> <span class="tm-companies-rating__rating">614.8</span></a><a href="/ru/company/itsoft/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/f48/d46/029/f48d460297f1a9fe1a9e3e0a1e7aedc9.png" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">ITSOFT</span> <span class="tm-companies-rating__rating">590.64</span></a><a href="/ru/company/T1Holding/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/60a/71b/e01/60a71be016279e151d1de7d99e00008f.jpg" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">Группа Т1</span> <span class="tm-companies-rating__rating">568.23</span></a><a href="/ru/company/nv_clinic/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/5dc/a9c/dc8/5dca9cdc897df9151f3fc0c44dffdc16.jpg" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">Наше время</span> <span class="tm-companies-rating__rating">379.44</span></a><a href="/ru/company/first/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/80c/2cc/9c5/80c2cc9c5ae9e2489b84236ad661d02e.png" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">FirstVDS</span> <span class="tm-companies-rating__rating">360.71</span></a><a href="/ru/company/itsumma/blog/" class="tm-companies-rating__item">
+                <div class="tm-entity-image tm-companies-rating__avatar">
+                 <img alt="" height="36" src="//habrastorage.org/getpro/habr/company/757/81b/db7/75781bdb773986cb1efe18985b74b309.png" width="36" class="tm-entity-image__pic">
+                </div> <span class="tm-companies-rating__name">ITSumma</span> <span class="tm-companies-rating__rating">349.71</span></a>
+              </div>
+             </div> 
+             <footer class="tm-block__footer">
+              <a href="/ru/companies/" class="tm-block-extralink"> Все компании </a>
+             </footer>
+            </section> <!----> 
+            <div class="tm-ad-banner__container tm-layout-sidebar__banner tm-layout-sidebar__banner_bottom">
+             <!----> 
+             <div id="sidebarBannerBottom5337" class="tm-ad-banner tm-ad-banner_variant-medium-rectangle"></div>
+            </div>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/hubs/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/hubs/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" aria-current="page" class="footer-menu__item-link router-link-exact-active router-link-active"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{"ruvds":{"id":"3593","alias":"ruvds","titleHtml":"RUVDS.com","descriptionHtml":"VDS\u002FVPS-хостинг. Скидка 10% по коду \u003Cb\u003EHABR10\u003C\u002Fb\u003E","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002Ff27\u002Fea8\u002F5bd\u002Ff27ea85bd62fbd985c308110885af7e0.png","relatedData":null,"statistics":{"subscribersCount":46260,"rating":2381.94,"invest":null},"commonHubs":[{"id":"21910","alias":"popular_science","type":"collective","title":"Научно-популярное","titleHtml":"Научно-популярное","isProfiled":false},{"id":"20742","alias":"read","type":"collective","title":"Читальный зал","titleHtml":"Читальный зал","isProfiled":false},{"id":"21976","alias":"DIY","type":"collective","title":"DIY или Сделай сам","titleHtml":"DIY или Сделай сам","isProfiled":false},{"id":"50","alias":"infosecurity","type":"collective","title":"Информационная безопасность","titleHtml":"Информационная безопасность","isProfiled":true},{"id":"221","alias":"sys_admin","type":"collective","title":"Системное администрирование","titleHtml":"Системное администрирование","isProfiled":true}]},"selectel":{"id":"975","alias":"selectel","titleHtml":"Selectel","descriptionHtml":"IT-инфраструктура для бизнеса","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F66a\u002Ff7d\u002F039\u002F66af7d03979b6d18654293d8f1e72837.png","relatedData":null,"statistics":{"subscribersCount":30452,"rating":1059.88,"invest":null},"commonHubs":[{"id":"21898","alias":"hardware","type":"collective","title":"Компьютерное железо","titleHtml":"Компьютерное железо","isProfiled":false},{"id":"21894","alias":"gadgets","type":"collective","title":"Гаджеты","titleHtml":"Гаджеты","isProfiled":false},{"id":"6398","alias":"it-infrastructure","type":"collective","title":"IT-инфраструктура","titleHtml":"IT-инфраструктура","isProfiled":true},{"id":"22026","alias":"itcompanies","type":"collective","title":"IT-компании","titleHtml":"IT-компании","isProfiled":false},{"id":"21906","alias":"history","type":"collective","title":"История IT","titleHtml":"История IT","isProfiled":false}]},"geltek":{"id":"5488","alias":"geltek","titleHtml":"Гельтек-Медика","descriptionHtml":null,"imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fcompany\u002F4b5\u002Fde5\u002F2aa\u002F4b5de52aa90302f5a44e2dc3845b80d4.jpg","relatedData":null,"statistics":{"subscribersCount":6137,"rating":815.66,"invest":null},"commonHubs":[{"id":"21996","alias":"health","type":"collective","title":"Здоровье","titleHtml":"Здоровье","isProfiled":false},{"id":"21910","alias":"popular_science","type":"collective","title":"Научно-популярное","titleHtml":"Научно-популярное","isProfiled":false},{"id":"21912","alias":"biotech","type":"collective","title":"Биотехнологии","titleHtml":"Биотехнологии","isProfiled":false},{"id":"20682","alias":"pm","type":"collective","title":"Управление проектами","titleHtml":"Управление проектами","isProfiled":true},{"id":"20716","alias":"ecommerce","type":"collective","title":"Управление e-commerce","titleHtml":"Управление e-commerce","isProfiled":true}]},"timeweb":{"id":"1461","alias":"timeweb","titleHtml":"Timeweb Cloud","descriptionHtml":"Облачная платформа для разработчиков и бизнеса","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F661\u002F1f9\u002F3df\u002F6611f93df3001fe9faddb4779454c4d5.png","relatedData":null,"statistics":{"subscribersCount":704,"rating":653.78,"invest":null},"commonHubs":[{"id":"21910","alias":"popular_science","type":"collective","title":"Научно-популярное","titleHtml":"Научно-популярное","isProfiled":false},{"id":"20742","alias":"read","type":"collective","title":"Читальный зал","titleHtml":"Читальный зал","isProfiled":false},{"id":"359","alias":"programming","type":"collective","title":"Программирование","titleHtml":"Программирование","isProfiled":true},{"id":"357","alias":"javascript","type":"collective","title":"JavaScript","titleHtml":"JavaScript","isProfiled":true},{"id":"91","alias":"webdev","type":"collective","title":"Разработка веб-сайтов","titleHtml":"Разработка веб-сайтов","isProfiled":true}]},"habr":{"id":"412","alias":"habr","titleHtml":"Хабр","descriptionHtml":"Создаем и развиваем сервисы для гиков","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F7e4\u002F7b8\u002Fe31\u002F7e47b8e31d0efe9f398461278a16a357.png","relatedData":null,"statistics":{"subscribersCount":44397,"rating":614.8,"invest":null},"commonHubs":[{"id":"161","alias":"habr","type":"collective","title":"Habr","titleHtml":"Habr","isProfiled":false},{"id":"20720","alias":"contentmarketing","type":"collective","title":"Контент-маркетинг","titleHtml":"Контент-маркетинг","isProfiled":false},{"id":"20742","alias":"read","type":"collective","title":"Читальный зал","titleHtml":"Читальный зал","isProfiled":false},{"id":"22026","alias":"itcompanies","type":"collective","title":"IT-компании","titleHtml":"IT-компании","isProfiled":false},{"id":"21982","alias":"lifehacks","type":"collective","title":"Лайфхаки для гиков","titleHtml":"Лайфхаки для гиков","isProfiled":false}]},"itsoft":{"id":"7728","alias":"itsoft","titleHtml":"ITSOFT","descriptionHtml":"Дата-центры, майнинг-отель, веб-студия, поддержка.","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002Ff48\u002Fd46\u002F029\u002Ff48d460297f1a9fe1a9e3e0a1e7aedc9.png","relatedData":null,"statistics":{"subscribersCount":4020,"rating":590.64,"invest":null},"commonHubs":[{"id":"21910","alias":"popular_science","type":"collective","title":"Научно-популярное","titleHtml":"Научно-популярное","isProfiled":false},{"id":"22014","alias":"futurenow","type":"collective","title":"Будущее здесь","titleHtml":"Будущее здесь","isProfiled":false},{"id":"21962","alias":"space","type":"collective","title":"Космонавтика","titleHtml":"Космонавтика","isProfiled":false},{"id":"22012","alias":"Ecology","type":"collective","title":"Экология","titleHtml":"Экология","isProfiled":false},{"id":"50","alias":"infosecurity","type":"collective","title":"Информационная безопасность","titleHtml":"Информационная безопасность","isProfiled":true}]},"T1Holding":{"id":"4736","alias":"T1Holding","titleHtml":"Группа Т1","descriptionHtml":"Многопрофильный ИТ-холдинг","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F60a\u002F71b\u002Fe01\u002F60a71be016279e151d1de7d99e00008f.jpg","relatedData":null,"statistics":{"subscribersCount":398,"rating":568.23,"invest":null},"commonHubs":[{"id":"20682","alias":"pm","type":"collective","title":"Управление проектами","titleHtml":"Управление проектами","isProfiled":true},{"id":"397","alias":"analysis_design","type":"collective","title":"Анализ и проектирование систем","titleHtml":"Анализ и проектирование систем","isProfiled":true},{"id":"7504","alias":"refactoring","type":"collective","title":"Проектирование и рефакторинг","titleHtml":"Проектирование и рефакторинг","isProfiled":true},{"id":"17739","alias":"crm","type":"collective","title":"CRM-системы","titleHtml":"CRM-системы","isProfiled":true},{"id":"19275","alias":"hackathons","type":"collective","title":"Хакатоны","titleHtml":"Хакатоны","isProfiled":false}]},"nv_clinic":{"id":"7961","alias":"nv_clinic","titleHtml":"Наше время","descriptionHtml":"Блог клиники доказательной медицины","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F5dc\u002Fa9c\u002Fdc8\u002F5dca9cdc897df9151f3fc0c44dffdc16.jpg","relatedData":null,"statistics":{"subscribersCount":154,"rating":379.44,"invest":null},"commonHubs":[{"id":"21910","alias":"popular_science","type":"collective","title":"Научно-популярное","titleHtml":"Научно-популярное","isProfiled":false},{"id":"21996","alias":"health","type":"collective","title":"Здоровье","titleHtml":"Здоровье","isProfiled":false},{"id":"21990","alias":"brain","type":"collective","title":"Мозг","titleHtml":"Мозг","isProfiled":false},{"id":"21912","alias":"biotech","type":"collective","title":"Биотехнологии","titleHtml":"Биотехнологии","isProfiled":false}]},"first":{"id":"1726","alias":"first","titleHtml":"FirstVDS","descriptionHtml":"Виртуальные и выделенные серверы в ДЦ в Москве","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F80c\u002F2cc\u002F9c5\u002F80c2cc9c5ae9e2489b84236ad661d02e.png","relatedData":null,"statistics":{"subscribersCount":24228,"rating":360.71,"invest":null},"commonHubs":[{"id":"221","alias":"sys_admin","type":"collective","title":"Системное администрирование","titleHtml":"Системное администрирование","isProfiled":true},{"id":"21910","alias":"popular_science","type":"collective","title":"Научно-популярное","titleHtml":"Научно-популярное","isProfiled":false},{"id":"20","alias":"hosting","type":"collective","title":"Хостинг","titleHtml":"Хостинг","isProfiled":false},{"id":"20742","alias":"read","type":"collective","title":"Читальный зал","titleHtml":"Читальный зал","isProfiled":false},{"id":"359","alias":"programming","type":"collective","title":"Программирование","titleHtml":"Программирование","isProfiled":true}]},"itsumma":{"id":"909","alias":"itsumma","titleHtml":"ITSumma","descriptionHtml":"Собираем безумных людей и вместе спасаем интернет","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fcompany\u002F757\u002F81b\u002Fdb7\u002F75781bdb773986cb1efe18985b74b309.png","relatedData":null,"statistics":{"subscribersCount":44722,"rating":349.71,"invest":null},"commonHubs":[{"id":"21484","alias":"electronics","type":"collective","title":"Производство и разработка электроники","titleHtml":"Производство и разработка электроники","isProfiled":true},{"id":"21956","alias":"cpu","type":"collective","title":"Процессоры","titleHtml":"Процессоры","isProfiled":false},{"id":"21898","alias":"hardware","type":"collective","title":"Компьютерное железо","titleHtml":"Компьютерное железо","isProfiled":false},{"id":"144","alias":"open_source","type":"collective","title":"Open source","titleHtml":"Open source","isProfiled":true},{"id":"50","alias":"infosecurity","type":"collective","title":"Информационная безопасность","titleHtml":"Информационная безопасность","isProfiled":true}]}},"companyIds":{},"companyTopIds":["ruvds","selectel","geltek","timeweb","habr","itsoft","T1Holding","nv_clinic","first","itsumma"],"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{"infosecurity":{"id":"50","alias":"infosecurity","titleHtml":"Информационная безопасность","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F135\u002F2db\u002F187\u002F1352db18765addaa6e0b2ac013d386d8.png","descriptionHtml":"Защита данных","relatedData":null,"statistics":{"subscribersCount":550743,"rating":1007.66,"authorsCount":4067,"postsCount":14464},"commonTags":["информационная безопасность","безопасность","хакеры","кибербезопасность","взлом","уязвимости","cybersecurity","microsoft","сша","security"],"isProfiled":true,"isOfftop":false},"popular_science":{"id":"21910","alias":"popular_science","titleHtml":"Научно-популярное","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002F02f\u002F206\u002F0b9\u002F02f2060b99e6f4d9403eee0420d7d5b8.png","descriptionHtml":"IT в науке и наука в IT","relatedData":null,"statistics":{"subscribersCount":152127,"rating":766.81,"authorsCount":1685,"postsCount":11459},"commonTags":["космос","история","наука","наса","ruvds_статьи","астрономия","биология","медицина","мкс","научно-популярное"],"isProfiled":false,"isOfftop":false},"it-infrastructure":{"id":"6398","alias":"it-infrastructure","titleHtml":"IT-инфраструктура","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F594\u002F546\u002F45b\u002F59454645b38d9a58a92e6870133ae8e6.png","descriptionHtml":"Инфоцентры + базы данных + системы связи","relatedData":null,"statistics":{"subscribersCount":143259,"rating":621.2,"authorsCount":1740,"postsCount":5259},"commonTags":["devops","kubernetes","it-инфраструктура","информационная безопасность","инфраструктура","цод","мониторинг","open source","voip","дата-центр"],"isProfiled":true,"isOfftop":false},"read":{"id":"20742","alias":"read","titleHtml":"Читальный зал","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F04e\u002F1a1\u002Fccd\u002F04e1a1ccda37543704ede864665b2ccd.png","descriptionHtml":"Полезное чтиво по IT-темам","relatedData":null,"statistics":{"subscribersCount":12137,"rating":564.06,"authorsCount":908,"postsCount":2705},"commonTags":["skillfactory","черт знает что","история","читальный зал","книги","ruvds_статьи","карьера","информационные технологии","мозг","эльдорадо"],"isProfiled":false,"isOfftop":false},"career":{"id":"20740","alias":"career","titleHtml":"Карьера в IT-индустрии","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Fcab\u002Ff82\u002F067\u002Fcabf82067c7be08c90a5903f860c9abf.png","descriptionHtml":"Работать, работать и работать (в IT)","relatedData":null,"statistics":{"subscribersCount":62922,"rating":483.78,"authorsCount":2136,"postsCount":5306},"commonTags":["карьера","карьера в it","карьера в it-индустрии","карьера программиста","обучение","карьера ит-специалиста","собеседование","программирование","удаленная работа","hr"],"isProfiled":false,"isOfftop":false},"programming":{"id":"359","alias":"programming","titleHtml":"Программирование","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Fdb2\u002Fc8f\u002F4a1\u002Fdb2c8f4a1974bf334d01595732f339c1.png","descriptionHtml":"Искусство создания компьютерных программ","relatedData":null,"statistics":{"subscribersCount":314474,"rating":492.42,"authorsCount":5569,"postsCount":14927},"commonTags":["программирование","python","javascript","skillfactory","java","разработка","c++","go","golang","microsoft"],"isProfiled":true,"isOfftop":false},"DIY":{"id":"21976","alias":"DIY","titleHtml":"DIY или Сделай сам","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002F0ac\u002F9b4\u002F828\u002F0ac9b48281cd7ba7401b4a4f5d9cd8d8.png","descriptionHtml":"Для тех, у кого руки растут из нужного места","relatedData":null,"statistics":{"subscribersCount":424667,"rating":455.32,"authorsCount":2275,"postsCount":5431},"commonTags":["diy","arduino","diy или сделай сам","raspberry pi","сделай сам","умный дом","ruvds_статьи","diy-проекты","ruvds_перевод","электроника"],"isProfiled":false,"isOfftop":false},"itcompanies":{"id":"22026","alias":"itcompanies","titleHtml":"IT-компании","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002Fdfb\u002Fd32\u002F674\u002Fdfbd326740d2d30fba37f441919619f5.png","descriptionHtml":"Компании из индустрии №1","relatedData":null,"statistics":{"subscribersCount":441892,"rating":439.67,"authorsCount":2868,"postsCount":13776},"commonTags":["проблема","apple","яндекс","google","facebook","microsoft","сша","meta","роскомнадзор","россия"],"isProfiled":false,"isOfftop":false},"webdev":{"id":"91","alias":"webdev","titleHtml":"Разработка веб-сайтов","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F2a2\u002Fac7\u002F3dd\u002F2a2ac73dd5cddc6e05b47a3d502b4c0d.png","descriptionHtml":"Делаем веб лучше","relatedData":null,"statistics":{"subscribersCount":571264,"rating":451.07,"authorsCount":5214,"postsCount":13447},"commonTags":["javascript","разработка","css","react","дайджест","angular","php","web-разработка","vue","фронтенд"],"isProfiled":true,"isOfftop":false},"business-laws":{"id":"20738","alias":"business-laws","titleHtml":"Законодательство в IT","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Fa57\u002F348\u002Fade\u002Fa57348ade2b5c33e99e869aaee204c3f.png","descriptionHtml":"Следим за тем, как регулируют IT-индустрию","relatedData":null,"statistics":{"subscribersCount":132947,"rating":370.78,"authorsCount":934,"postsCount":5882},"commonTags":["роскомнадзор","google","суд","сша","facebook","ркн","россия","законодательство","минцифры","проблема"],"isProfiled":false,"isOfftop":false},"finance":{"id":"21928","alias":"finance","titleHtml":"Финансы в IT","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002Ffd6\u002F71f\u002Fdcf\u002Ffd671fdcf24393f28b04673ef09bcd62.png","descriptionHtml":"О сложных финансовых материях","relatedData":null,"statistics":{"subscribersCount":92554,"rating":342.44,"authorsCount":874,"postsCount":4714},"commonTags":["финансы","инвестиции","акции","биржа","банки","криптовалюты","яндекс","apple","россия","facebook"],"isProfiled":false,"isOfftop":false},"hr_management":{"id":"20736","alias":"hr_management","titleHtml":"Управление персоналом","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F2c0\u002Fc6b\u002F86a\u002F2c0c6b86a9011cf811ce4b6820865115.png","descriptionHtml":"Как правильно нанимать, управлять и расставаться","relatedData":null,"statistics":{"subscribersCount":44021,"rating":352.64,"authorsCount":1319,"postsCount":3431},"commonTags":["управление людьми","управление персоналом","карьера","управление командой","удаленная работа","hr","удалёнка","черт знает что","хабр карьера","менеджмент"],"isProfiled":true,"isOfftop":false},"electronics":{"id":"21484","alias":"electronics","titleHtml":"Производство и разработка электроники","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F269\u002F015\u002Ff78\u002F269015f78421d3d8efa321a6f81574f1.png","descriptionHtml":"Как наладить процесс","relatedData":null,"statistics":{"subscribersCount":7146,"rating":305.11,"authorsCount":428,"postsCount":1577},"commonTags":["электроника","intel","чипы","разработка электроники","производство электроники","процессоры","tsmc","amd","stm32","печатные платы"],"isProfiled":true,"isOfftop":false},"habr":{"id":"161","alias":"habr","titleHtml":"Habr","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Fde0\u002Ff55\u002F204\u002Fde0f552047d74d5841a0fd05ec19a98e.png","descriptionHtml":"Торт или не торт?","relatedData":null,"statistics":{"subscribersCount":122654,"rating":267.75,"authorsCount":925,"postsCount":1996},"commonTags":["хабрахабр","комментарии","карма","идея","ошибки","юзабилити","rss","блогосфера","рейтинг","баги"],"isProfiled":false,"isOfftop":false},"health":{"id":"21996","alias":"health","titleHtml":"Здоровье","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002F612\u002Faab\u002F212\u002F612aab212721194fe115ed84dea966cc.png","descriptionHtml":"«Это норма» или как прожить подольше","relatedData":null,"statistics":{"subscribersCount":14587,"rating":263.46,"authorsCount":942,"postsCount":3781},"commonTags":["коронавирус","covid-19","здоровье","медицина","мозг","вакцинация","здоровье гика","пандемия","психология","вирусы"],"isProfiled":false,"isOfftop":false},"easyelectronics":{"id":"22016","alias":"easyelectronics","titleHtml":"Электроника для начинающих","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002F6d9\u002F47d\u002Fa08\u002F6d947da0853000328fc6f5ba630006fb.png","descriptionHtml":"Arduino, DYI и как собрать Электроника","relatedData":null,"statistics":{"subscribersCount":107968,"rating":223.45,"authorsCount":566,"postsCount":1439},"commonTags":["arduino","diy","электроника","diy или сделай сам","электроника для начинающих","микроконтроллеры","stm32","схемотехника","печатные платы","fpga"],"isProfiled":false,"isOfftop":false},"gamedev":{"id":"7773","alias":"gamedev","titleHtml":"Разработка игр","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Fb31\u002F347\u002F904\u002Fb31347904b72455522b1f645ea28ef1a.png","descriptionHtml":"Разработка игр","relatedData":null,"statistics":{"subscribersCount":132308,"rating":227.93,"authorsCount":1994,"postsCount":5575},"commonTags":["разработка игр","gamedev","игры","unity","геймдев","unity3d","геймдизайн","game development","перевод","c#"],"isProfiled":true,"isOfftop":false},"open_source":{"id":"144","alias":"open_source","titleHtml":"Open source","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Fdc9\u002Fdbe\u002Fe1d\u002Fdc9dbee1d24188b925e86946bafb15c7.png","descriptionHtml":"Открытое программное обеспечение","relatedData":null,"statistics":{"subscribersCount":111777,"rating":228.03,"authorsCount":1975,"postsCount":5377},"commonTags":["open source","linux","kubernetes","red hat","free software","дайджест","foss news","новости","python","github"],"isProfiled":true,"isOfftop":false},"pm":{"id":"20682","alias":"pm","titleHtml":"Управление проектами","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F94a\u002Fb35\u002F1ad\u002F94ab351adac61ac363e9de79c1382a67.png","descriptionHtml":"Как заставить всё работать","relatedData":null,"statistics":{"subscribersCount":61925,"rating":206.63,"authorsCount":2012,"postsCount":4665},"commonTags":["управление проектами","agile","управление людьми","управление командой","scrum","управление разработкой","управление проектами и командой","разработка","project management","управление продуктом"],"isProfiled":true,"isOfftop":false},"net":{"id":"546","alias":"net","titleHtml":".NET","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Fa5a\u002F5ae\u002Fa29\u002Fa5a5aea294f48a0d81c4b1968432e5e1.png","descriptionHtml":"Хаб со знаниями про NET Framework","relatedData":null,"statistics":{"subscribersCount":121385,"rating":199.38,"authorsCount":1618,"postsCount":4068},"commonTags":[".net","c#","microsoft",".net core","asp.net core","visual studio","asp.net","dotnext","pvs-studio","azure"],"isProfiled":true,"isOfftop":false},"controllers":{"id":"19737","alias":"controllers","titleHtml":"Программирование микроконтроллеров","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F479\u002F657\u002Fb87\u002F479657b871482c25c8f0a6f32efec586.png","descriptionHtml":"Учимся программировать микроконтроллеры","relatedData":null,"statistics":{"subscribersCount":96438,"rating":187.21,"authorsCount":661,"postsCount":1546},"commonTags":["микроконтроллеры","stm32","arduino","fpga","программирование микроконтроллеров","плис","arm","avr","iot","verilog"],"isProfiled":true,"isOfftop":false},"space":{"id":"21962","alias":"space","titleHtml":"Космонавтика","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002Ff07\u002Fba2\u002Fb9d\u002Ff07ba2b9d63b419e332a4d5ddeec8a99.png","descriptionHtml":"Всё о космосе и его захвате","relatedData":null,"statistics":{"subscribersCount":117658,"rating":182.85,"authorsCount":656,"postsCount":5085},"commonTags":["космос","spacex","наса","мкс","роскосмос","луна","космонавтика","марс","спутники","nasa"],"isProfiled":false,"isOfftop":false},"social_networks":{"id":"21924","alias":"social_networks","titleHtml":"Социальные сети и сообщества","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002F659\u002F9b8\u002F08c\u002F6599b808c4d9faf273204167b601b2a0.png","descriptionHtml":"Виртуальная жизнь","relatedData":null,"statistics":{"subscribersCount":168474,"rating":183.16,"authorsCount":1280,"postsCount":4480},"commonTags":["facebook","социальные сети","twitter","роскомнадзор","telegram","instagram","youtube","соцсети","ркн","google"],"isProfiled":false,"isOfftop":false},"python":{"id":"340","alias":"python","titleHtml":"Python","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F1c6\u002F724\u002F437\u002F1c6724437b83f3d71abd08e5c2877a7a.png","descriptionHtml":"Высокоуровневый язык программирования","relatedData":null,"statistics":{"subscribersCount":187718,"rating":176.23,"authorsCount":2325,"postsCount":5075},"commonTags":["python","программирование","машинное обучение","python3","data science","skillfactory","machine learning","django","разработка","pytorch"],"isProfiled":true,"isOfftop":false},"dev_management":{"id":"19583","alias":"dev_management","titleHtml":"Управление разработкой","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F979\u002Fb7b\u002F9be\u002F979b7b9bec5637525f70e76f05a498fb.png","descriptionHtml":"Планирование, отслеживание и контроль","relatedData":null,"statistics":{"subscribersCount":44402,"rating":168.87,"authorsCount":1191,"postsCount":2282},"commonTags":["agile","управление проектами","управление разработкой","разработка","управление людьми","scrum","управление командой","devops","тимлид","управление проектами и командой"],"isProfiled":true,"isOfftop":false},"soft":{"id":"21918","alias":"soft","titleHtml":"Софт","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002Fc08\u002Fac8\u002Fabd\u002Fc08ac8abdf8edc624ac48e8411851998.png","descriptionHtml":"Программное обеспечение","relatedData":null,"statistics":{"subscribersCount":188159,"rating":164.46,"authorsCount":953,"postsCount":3169},"commonTags":["microsoft","windows 10","софт","linux","windows","операционные системы","apple","windows 11","программное обеспечение","google"],"isProfiled":false,"isOfftop":false},"circuit-design":{"id":"21472","alias":"circuit-design","titleHtml":"Схемотехника","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F931\u002Fd7e\u002Faa4\u002F931d7eaa44179f5195debd4b35d47c51.png","descriptionHtml":"Проектирование электронных схем","relatedData":null,"statistics":{"subscribersCount":7158,"rating":139.6,"authorsCount":178,"postsCount":320},"commonTags":["схемотехника","stm32","электроника","diy","микроконтроллеры","разработка электроники","arduino","силовая электроника","fpga","diy или сделай сам"],"isProfiled":true,"isOfftop":false},"javascript":{"id":"357","alias":"javascript","titleHtml":"JavaScript","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F2b3\u002F99b\u002F964\u002F2b399b964d456f3ad1bfddc0346b60d4.png","descriptionHtml":"Прототипно-ориентированный язык программирования","relatedData":null,"statistics":{"subscribersCount":173852,"rating":155.08,"authorsCount":3244,"postsCount":7803},"commonTags":["javascript","react","разработка","css","angular","vue","typescript","фронтенд","программирование","frontend"],"isProfiled":true,"isOfftop":false},"sys_admin":{"id":"221","alias":"sys_admin","titleHtml":"Системное администрирование","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F6c5\u002Fdb3\u002F8c2\u002F6c5db38c23972b6c0916e91e408edff8.png","descriptionHtml":"Лишь бы юзер был доволен","relatedData":null,"statistics":{"subscribersCount":135758,"rating":149.33,"authorsCount":2122,"postsCount":5570},"commonTags":["kubernetes","linux","devops","системное администрирование","microsoft","мониторинг","docker","zabbix","postgresql","windows 10"],"isProfiled":true,"isOfftop":false},"lifehacks":{"id":"21982","alias":"lifehacks","titleHtml":"Лайфхаки для гиков","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002F9fa\u002F5f9\u002F72e\u002F9fa5f972e61ea8e0b7d0258ddafd3fbe.png","descriptionHtml":"Хитрости жизни хозяйке на заметку","relatedData":null,"statistics":{"subscribersCount":18611,"rating":146.99,"authorsCount":700,"postsCount":1528},"commonTags":["лайфхаки","diy","skillfactory","python","гаджеты","лайфхак","мозг","аудиомания","здоровье","alconost"],"isProfiled":false,"isOfftop":false},"raspberrypi":{"id":"21476","alias":"raspberrypi","titleHtml":"Разработка на Raspberry Pi","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002F337\u002F210\u002Fc0f\u002F337210c0f187ef2605bc9335bb74ae0c.png","descriptionHtml":"Одноплатный компьютер компактного размера","relatedData":null,"statistics":{"subscribersCount":35146,"rating":136.16,"authorsCount":192,"postsCount":317},"commonTags":["raspberry pi","raspberry","diy","python","разработка","умный дом","linux","raspberry pi 4","raspberrypi","diy или сделай сам"],"isProfiled":true,"isOfftop":false},"astronomy":{"id":"22022","alias":"astronomy","titleHtml":"Астрономия","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002F79a\u002F987\u002F250\u002F79a987250ade16638dfafcce24213f3d.png","descriptionHtml":"Естественная наука о Вселенной","relatedData":null,"statistics":{"subscribersCount":47447,"rating":138.5,"authorsCount":210,"postsCount":1351},"commonTags":["космос","астрономия","наса","луна","марс","вселенная","звезды","телескоп","экзопланеты","телескопы"],"isProfiled":false,"isOfftop":false},"futurenow":{"id":"22014","alias":"futurenow","titleHtml":"Будущее здесь","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002F8c3\u002Fdf1\u002F7fe\u002F8c3df17fe6153c109d190d6364f4afa5.png","descriptionHtml":"Оно буквально в дверь стучится","relatedData":null,"statistics":{"subscribersCount":51150,"rating":138.57,"authorsCount":919,"postsCount":4081},"commonTags":["будущее","космос","искусственный интеллект","роботы","spacex","технологии","марс","илон маск","луна","tesla"],"isProfiled":false,"isOfftop":false},"csharp":{"id":"17718","alias":"csharp","titleHtml":"C#","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Fbc7\u002Ff1e\u002F783\u002Fbc7f1e78397bca57cf5adcd5bf1725be.png","descriptionHtml":"Объектно-ориентированный язык программирования","relatedData":null,"statistics":{"subscribersCount":155472,"rating":136.45,"authorsCount":1165,"postsCount":2510},"commonTags":["c#",".net","microsoft",".net core","unity","unity3d","pvs-studio","visual studio","программирование","asp.net"],"isProfiled":true,"isOfftop":false},"web_analytics":{"id":"20698","alias":"web_analytics","titleHtml":"Веб-аналитика","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fhub\u002Ff0c\u002F262\u002F1fb\u002Ff0c2621fbcdbe6ad994bdff586a20ea3.png","descriptionHtml":"Измерение, сбор, анализ и представление информации","relatedData":null,"statistics":{"subscribersCount":49609,"rating":129.4,"authorsCount":394,"postsCount":738},"commonTags":["веб-аналитика","аналитика","google analytics","маркетинг","интернет-маркетинг","статистика","seo","конверсия","google","контекстная реклама"],"isProfiled":true,"isOfftop":false},"gadgets":{"id":"21894","alias":"gadgets","titleHtml":"Гаджеты","imageUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fgeektimes\u002Fhub\u002Fd14\u002F9ad\u002F4f5\u002Fd149ad4f5d22a8b8775b070f3c92cf39.png","descriptionHtml":"Смартфоны, планшеты, ноутбуки и вот это всё","relatedData":null,"statistics":{"subscribersCount":475

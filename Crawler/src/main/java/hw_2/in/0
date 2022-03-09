@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="ru" data-vue-meta="%7B%22lang%22:%7B%22ssr%22:%22ru%22%7D%7D"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover"> 
+  <meta name="referrer" content="unsafe-url"> 
+  <title>Самое важное / Песочница / Хабр</title> 
+  <style>
+    /* cyrillic-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSxf6TF0.woff2) format('woff2');
+      unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+    }
+
+    /* cyrillic */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveQhf6TF0.woff2) format('woff2');
+      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+    }
+
+    /* latin-ext */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveSBf6TF0.woff2) format('woff2');
+      unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/s/firasans/v11/va9B4kDNxMZdWfMOD5VnZKveRhf6.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+
+    /* non-breaking hyphen */
+    @font-face {
+      font-family: 'Fira Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url(https://fonts.gstatic.com/l/font?kit=KFOlCnqEu92Fr1MmEU9vBh0_IsHAlmrO6g&skey=ee881451c540fdec&v=v29) format('woff2');
+      unicode-range: U+02011;
+    }
+  </style> 
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/chunk-vendors.55ca5167.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/app.69ba180e.js" as="script">
+  <link rel="preload" href="https://assets.habr.com/habr-web/css/sandbox.0052cc26.css" as="style">
+  <link rel="preload" href="https://assets.habr.com/habr-web/js/sandbox.7eebc5b0.js" as="script"> 
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/chunk-vendors.961b6771.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/app.d1834a6b.css">
+  <link rel="stylesheet" href="https://assets.habr.com/habr-web/css/sandbox.0052cc26.css"> 
+  <script>window.i18nFetch = new Promise((res, rej) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', '/js/i18n/ru-compiled.2822d469ec31a56409ac330bbcf7fcbf.json');
+          xhr.responseType = 'json';
+          xhr.onload = function(e) {
+            if (this.status === 200) {
+              res({ru: xhr.response});
+            } else {
+              rej(e);
+            }
+          };
+          xhr.send();
+        });</script> 
+  <script src="//www.googletagservices.com/tag/js/gpt.js" async></script> 
+  <style>.grecaptcha-badge{visibility: hidden;}</style> 
+  <meta name="habr-version" content="2.66.0"> 
+  <meta data-vue-meta="ssr" itemprop="image" content="/img/habr_ru.png" data-vmid="image:itemprop">
+  <meta data-vue-meta="ssr" property="og:image" content="/img/habr_ru.png" data-vmid="og:image">
+  <meta data-vue-meta="ssr" property="og:image:width" content="1200" data-vmid="og:image:width">
+  <meta data-vue-meta="ssr" property="og:image:height" content="630" data-vmid="og:image:height">
+  <meta data-vue-meta="ssr" property="aiturec:image" content="/img/habr_ru.png" data-vmid="aiturec:image">
+  <meta data-vue-meta="ssr" name="twitter:image" content="/img/habr_ru.png" data-vmid="twitter:image">
+  <meta data-vue-meta="ssr" property="vk:image" content="/img/habr_ru.png?format=vk" data-vmid="vk:image">
+  <meta data-vue-meta="ssr" property="fb:app_id" content="444736788986613">
+  <meta data-vue-meta="ssr" property="fb:pages" content="472597926099084">
+  <meta data-vue-meta="ssr" name="twitter:card" content="summary_large_image">
+  <meta data-vue-meta="ssr" name="twitter:site" content="@habr_com">
+  <meta data-vue-meta="ssr" property="og:locale" content="ru_RU" data-vmid="og:locale">
+  <meta data-vue-meta="ssr" property="og:type" content="website" data-vmid="og:type">
+  <meta data-vue-meta="ssr" property="og:site_name" content="Хабр" data-vmid="og:site_name">
+  <meta data-vue-meta="ssr" property="og:url" content="https://habr.com/ru/sandbox/start/" data-vmid="og:url">
+  <meta data-vue-meta="ssr" property="og:title" content="Самое важное / Песочница / Хабр" data-vmid="og:title"> 
+  <link data-vue-meta="ssr" image_src="image" href="/img/habr_ru.png" data-vmid="image:href">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/sandbox/start/" rel="canonical" data-vmid="canonical">
+  <link data-vue-meta="ssr" href="https://habr.com/ru/sandbox/start/" hreflang="ru" rel="alternate" data-vmid="hreflang">
+  <link data-vue-meta="ssr" href="https://habr.com/en/sandbox/start/" hreflang="en" rel="alternate" data-vmid="hreflang"> 
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303b44"> 
+  <meta name="msapplication-TileColor" content="#629FBC"> 
+  <meta name="apple-mobile-web-app-capable" content="yes"> 
+  <meta name="mobile-web-app-capable" content="yes"> 
+  <link rel="shortcut icon" type="image/png" sizes="16x16" href="https://assets.habr.com/habr-web/img/favicons/favicon-16.png"> 
+  <link rel="shortcut icon" type="image/png" sizes="32x32" href="https://assets.habr.com/habr-web/img/favicons/favicon-32.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-76.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="152x152" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-152.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-180.png"> 
+  <link rel="apple-touch-icon" type="image/png" sizes="256x256" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-256.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1136x640.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2436x1125.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1792x828.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_828x1792.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_1334x750.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2208x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1125x2436.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1242x2208.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2732x2048.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2688x1242.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2224x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_750x1334.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x2732.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2388x1668.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2224.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_640x1136.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1668x2388.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="https://assets.habr.com/habr-web/img/splashes/splash_2048x1536.png"> 
+  <link rel="apple-touch-startup-image" media="screen and (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="https://assets.habr.com/habr-web/img/splashes/splash_1536x2048.png"> 
+  <link rel="mask-icon" color="#77a2b6" href="https://assets.habr.com/habr-web/img/favicons/apple-touch-icon-120.svg"> 
+  <link crossorigin="use-credentials" href="/manifest.webmanifest" rel="manifest"> 
+ </head> 
+ <body> 
+  <div id="app" data-server-rendered="true" data-async-called="true">
+   <div class="tm-layout__wrapper">
+    <!----> 
+    <div></div> <!----> 
+    <header class="tm-header">
+     <div class="tm-page-width">
+      <div class="tm-header__container">
+       <!----> <span class="tm-header__logo-wrap"><a href="/ru/" class="tm-header__logo tm-header__logo_ru">
+         <svg height="16" width="16" class="tm-svg-img tm-header__icon">
+          <title>Хабр</title> <use xlink:href="/img/habr-logo-ru.svg#logo"></use>
+         </svg></a> <span class="tm-header__beta-sign" style="display:none;">β</span></span> 
+       <div class="tm-dropdown tm-header__projects">
+        <div class="tm-dropdown__head">
+         <button class="tm-header__dropdown-toggle">
+          <svg height="16" width="16" class="tm-svg-img tm-header__icon tm-header__icon_dropdown">
+           <title>Открыть список</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#arrow-down"></use>
+          </svg></button>
+        </div> <!---->
+       </div> <a href="/ru/sandbox/start/" aria-current="page" class="tm-header__become-author-btn router-link-exact-active router-link-active"> Как стать автором </a> 
+       <div class="tm-feature tm-header__feature tm-feature_variant-inline">
+        <!---->
+       </div> <!----> <!---->
+      </div>
+     </div>
+    </header> 
+    <div class="tm-layout">
+     <div class="tm-page-progress-bar"></div> 
+     <div data-menu-sticky="true" class="tm-base-layout__header tm-base-layout__header_is-sticky">
+      <div class="tm-page-width">
+       <div class="tm-base-layout__header-wrapper">
+        <div class="tm-main-menu">
+         <div class="tm-main-menu__section">
+          <nav class="tm-main-menu__section-content">
+           <!----> <a href="/ru/flows/all" class="tm-main-menu__item"> Все потоки </a> <a href="/ru/flows/develop/" class="tm-main-menu__item"> Разработка </a><a href="/ru/flows/admin/" class="tm-main-menu__item"> Администрирование </a><a href="/ru/flows/design/" class="tm-main-menu__item"> Дизайн </a><a href="/ru/flows/management/" class="tm-main-menu__item"> Менеджмент </a><a href="/ru/flows/marketing/" class="tm-main-menu__item"> Маркетинг </a><a href="/ru/flows/popsci/" class="tm-main-menu__item"> Научпоп </a>
+          </nav>
+         </div>
+        </div> 
+        <div class="tm-header-user-menu tm-base-layout__user-menu">
+         <a href="/ru/search/" class="tm-header-user-menu__item tm-header-user-menu__search">
+          <svg height="24" width="24" class="tm-svg-img tm-header-user-menu__icon tm-header-user-menu__icon_search tm-header-user-menu__icon_dark">
+           <title>Поиск</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#search"></use>
+          </svg></a> <!----> <!----> <!----> 
+         <div class="tm-header-user-menu__item tm-header-user-menu__user_desktop">
+          <div class="tm-dropdown">
+           <div class="tm-dropdown__head">
+            <svg height="24" width="24" data-test-id="menu-toggle-guest" class="tm-svg-img tm-header-user-menu__icon">
+             <title>Профиль</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#header-user"></use>
+            </svg> <!---->
+           </div> <!---->
+          </div> <!---->
+         </div> <!---->
+        </div>
+       </div>
+      </div>
+     </div> <!----> 
+     <div class="tm-page-width"></div> 
+     <main class="tm-layout__container">
+      <div class="tm-page">
+       <div class="tm-page-width">
+        <!----> 
+        <div class="tm-page__wrapper">
+         <div class="tm-page__main tm-page__main_has-sidebar">
+          <div class="pull-down">
+           <div class="pull-down__header" style="height:0px;">
+            <div class="pull-down__content" style="bottom:10px;">
+             <svg height="24" width="24" class="tm-svg-img pull-down__arrow">
+              <title>Обновить</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#pull-arrow"></use>
+             </svg>
+            </div>
+           </div> 
+           <div class="tm-page__top">
+            <div class="tm-section-name">
+             <h1 class="tm-section-name__text"> Как стать автором </h1> 
+            </div> 
+            <div class="tm-tabs tm-tabs_page-header">
+             <div class="tm-tabs__scroll-area">
+              <span class="tm-tabs__tab-item"><a href="/ru/sandbox/start/" aria-current="page" data-test-id="tab-link-active" class="tm-tabs__tab-link router-link-exact-active  tm-tabs__tab-link_active"> Самое важное <!----></a></span><span class="tm-tabs__tab-item"><a href="/ru/sandbox/invited/" class="tm-tabs__tab-link"> Новые авторы <!----></a></span><span class="tm-tabs__tab-item"><a href="/ru/sandbox/" class="tm-tabs__tab-link"> Ожидают приглашения <!----></a></span>
+             </div> <!---->
+            </div> <!---->
+           </div> 
+           <div class="about-subpage">
+            <p> На&nbsp;Хабре интересуются&nbsp;IT и&nbsp;всеми сторонами современной жизни: программированием, технологиями, дизайном, наукой, образованием, играми, карьерой, здоровьем. Не&nbsp;обязательно писать хардкорно, но&nbsp;важно, чтобы была польза. Если у&nbsp;вас уже есть крутой материал на&nbsp;другой площадке, запостите его и&nbsp;здесь, чтобы сообщество Хабра тоже его оценило. </p> 
+            <p> Если пост полезен и&nbsp;хорошо написан, его прочитают десятки тысяч человек. К&nbsp;тому&nbsp;же он&nbsp;появится у&nbsp;нас в <a href="https://vk.com/habr" rel="noopener noreferrer nofollow" target="_blank">ВК</a>, <a href="https://www.facebook.com/habrahabr.ru/" rel="noopener noreferrer nofollow" target="_blank">Фейсбуке</a> и <a href="https://t.me/habr_com" rel="noopener noreferrer nofollow" target="_blank">Телеграме</a>. А, может быть, и&nbsp;попадет в&nbsp;почтовую рассылку лучшего за&nbsp;неделю. </p> 
+            <h2>Как всё произойдет</h2> 
+            <p> Вы&nbsp;пишете первый пост, его <a href="/ru/docs/help/sandbox/"> проверяют модераторы </a>, и, если всё хорошо, отправляют в&nbsp;основную ленту Хабра, где он&nbsp;набирает просмотры, комментарии и&nbsp;рейтинг. В&nbsp;дальнейшем премодерация уже не&nbsp;понадобится. Если с&nbsp;постом что-то не&nbsp;так, вас попросят его доработать. </p> <a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/sandbox/start/&amp;hl=ru" rel="nofollow" class="tm-write-button"> Написать пост </a> 
+            <h2>Зачем вообще писать</h2> 
+            <ol>
+             <li> Написать пост&nbsp;— значит как следует разложить всё по&nbsp;полочкам, обобщить опыт и&nbsp;поделиться им&nbsp;с&nbsp;другими. Приносить пользу чертовски приятно, попробуйте. </li> 
+             <li> Никогда не&nbsp;угадаешь, кто прочитает ваш пост. Часто это&nbsp;те, кто разбирается в&nbsp;вопросе на&nbsp;голову лучше вас. Фидбэк от&nbsp;таких людей&nbsp;— возможно, самое ценное, что вы&nbsp;приобретете на&nbsp;Хабре. </li> 
+             <li> Ваши публикации&nbsp;— это ваша репутация. Они лучше резюме расскажут, кто&nbsp;вы, чем занимаетесь и&nbsp;в&nbsp;чем разбираетесь. </li> 
+             <li> За&nbsp;первый крутой пост вы&nbsp;получите полноправный аккаунт и&nbsp;плюс в&nbsp;карму. </li> 
+             <li> В&nbsp;дальнейшем за&nbsp;статьи с&nbsp;высоким рейтингом по&nbsp;профильным темам мы&nbsp;можем поощрять материально. Для этого на&nbsp;Хабре есть Программа поощрения авторов. </li>
+            </ol> 
+            <h2>Какой формат выбрать</h2> 
+            <p> Определитесь, что вы&nbsp;хотите написать. На&nbsp;Хабре есть несколько распространенных форматов. К&nbsp;каждому из&nbsp;них мы&nbsp;написали краткую инструкцию&nbsp;— они помогут структурировать текст. </p> 
+            <ul>
+             <li><strong>Новости</strong> <br> Первыми узнали о&nbsp;сбое в&nbsp;Сети? Увидели новый продукт раньше всех? Прочитали свежий законопроект? Поделитесь с&nbsp;остальными. <br></li> 
+             <li><strong>Кейсы</strong> <br> Организовали умный дом за&nbsp;10к рублей? Переехали в&nbsp;Новую Зеландию писать код по&nbsp;распознаванию киви? Пишите пост, это&nbsp;же очень интересно. <br></li> 
+             <li><strong>Туториалы</strong> <br> Справились с&nbsp;непростой задачей? Расскажите по&nbsp;пунктам, как ее&nbsp;решить&nbsp;— читатели будут благодарны. <br></li> 
+             <li><strong>Ретроспективы</strong> <br> Помните в&nbsp;подробностях, как зарождались вещи, к&nbsp;которым уже все привыкли? Кайф! Это&nbsp;то, что приятно почитать долгими зимними вечерами! <br></li> 
+             <li><strong>Обзоры</strong> <br> Вы&nbsp;перепробовали кучу моноколес, стриминговых сервисов или сред разработки? Поделитесь, что там к&nbsp;чему, на&nbsp;что лучше обратить внимание. <br></li> 
+             <li><strong>Мнения</strong> <br> У&nbsp;вас особый взгляд на&nbsp;острый вопрос? Хотите это обсудить? Напишите, что думаете, и&nbsp;готовьтесь провести вечер в&nbsp;комментариях. <br></li> 
+             <li><strong>Справочные</strong> <br> Вы&nbsp;глубоко изучили сложную тему? Готовы рассказать на&nbsp;пальцах, как все устроено? Дерзайте! <br></li> 
+             <li><strong>Интервью</strong> <br> Есть доступ к&nbsp;человеку с&nbsp;необычным опытом? Срочно берите его в&nbsp;охапку и&nbsp;задавайте вопросы. А&nbsp;что он&nbsp;ответил, потом расскажите Хабру. <br></li> 
+             <li><strong>Дайджесты</strong> <br> Накопилась подборка интересных ссылок и&nbsp;хочется поделиться своими открытиями? Вперед! Мы&nbsp;тут очень любознательные и&nbsp;с&nbsp;большим кругозором. <br></li> 
+             <li><strong>Репортажи</strong> <br> Попали на&nbsp;знаковое мероприятие? Расскажите о&nbsp;самом интересном сообществу Хабра. <br></li> 
+             <li><strong>Аналитика</strong> <br> Уловили тренды, понимаете что станет с&nbsp;рынком через полгода, нравится строить графики и&nbsp;диаграммы? Поделитесь, ведь обобщать данные не&nbsp;каждому дано. <br></li>
+            </ul> 
+            <h2>Как писать классно</h2> 
+            <p>На&nbsp;случай, если вы&nbsp;не&nbsp;знаете, как подступиться к&nbsp;тому или иному формату, мы&nbsp;написали короткие гайды, о&nbsp;том, как сделать ваши материалы полезными и&nbsp;оформить так, чтобы было удобно читать.</p> 
+            <ul>
+             <li><a href="/docs/authors/news/"> Написать новость и не облажаться </a></li> 
+             <li><a href="/docs/authors/case/"> Описать кейс, чтобы было полезно </a></li> 
+             <li><a href="/docs/authors/tutorial/"> Составить понятный туториал </a></li> 
+             <li><a href="/docs/authors/interview/"> Взять интервью круче, чем Дудь </a></li> 
+             <li><a href="/docs/authors/retrospective/"> Сделать ретроспективу всем на зависть </a></li> 
+             <li><a href="/docs/authors/review/"> Написать полезный обзор </a></li> 
+             <li><a href="/docs/authors/infocards/"> Составить исчерпывающую справочную </a></li> 
+             <li><a href="/docs/authors/opinion/"> Оформить мнение в пост на Хабре </a></li> 
+             <li><a href="/docs/authors/digest/"> Составить информативный дайджест </a></li> 
+             <li><a href="/docs/authors/report/"> Сделать внятный репортаж </a></li>
+            </ul> 
+            <h2>Чем ещё можем помочь</h2> 
+            <h3>Направим в&nbsp;нужное русло</h3> 
+            <p> Не&nbsp;уверены, стоит&nbsp;ли писать пост? Напишите нам на&nbsp;<a href="mailto:neo@habr.team">neo@habr.team</a>. В&nbsp;письме расскажите о&nbsp;себе и&nbsp;в&nbsp;чём будет польза вашего материала. Лучше, если у&nbsp;вас уже будут намётки или хотя&nbsp;бы план статьи. Редакторы зададут уточняющие вопросы&nbsp;и, если нужно, предложат правки, чтобы отточить текст и&nbsp;направить его точно в&nbsp;цель.<br> <strong>Важно:</strong> если вы представитель компании, пишите на <a href="mailto:corp@habr.team">corp@habr.team</a>. </p> 
+            <h3>Найдем спикеров</h3> 
+            <p> Здорово, когда в&nbsp;тексте несколько взглядов на&nbsp;один вопрос. Если вы&nbsp;пишете о&nbsp;том, как обучали нейросеть не&nbsp;пускать кошку в&nbsp;дом, хорошо&nbsp;бы найти фелинолога, который расскажет про психологию котиков, и&nbsp;ИИ-инженера, который прокомментирует программное решение. Не&nbsp;знаете, где искать таких людей? Мы&nbsp;поможем. </p> 
+            <h3>Аккредитуем</h3> 
+            <p> Хотите попасть на&nbsp;профильное мероприятие? Отправьте нам письмо, мы&nbsp;свяжемся с&nbsp;организаторами и&nbsp;попробуем вас аккредитовать. В&nbsp;ответ мы&nbsp;ждем, что вы&nbsp;напишете о&nbsp;самом интересном с&nbsp;конференции&nbsp;— заодно попробуете себя в&nbsp;роли корреспондента. </p> <a href="https://habr.com/kek/v1/auth/habrahabr/?back=/ru/sandbox/start/&amp;hl=ru" rel="nofollow" class="tm-write-button"> Написать пост </a> <!---->
+           </div>
+          </div>
+         </div> 
+         <div class="tm-page__sidebar">
+          <div data-async-called="true" class="tm-layout-sidebar">
+           <div class="tm-layout-sidebar__placeholder_initial"></div> 
+           <div class="tm-sexy-sidebar tm-sexy-sidebar_initial" style="margin-top:0px;">
+            <section class="tm-block">
+             <header class="tm-block__header">
+              <h2 class="tm-block__title">Новые авторы</h2> <!---->
+             </header> 
+             <div class="tm-block__body">
+              <ul class="tm-article-list-block__list">
+               <li class="tm-article-list-block__item">
+                <article class="tm-article-snippet-block-sidebar tm-article-snippet-block-sidebar_preview">
+                 <div class="tm-article-snippet-block__user-meta">
+                  <div class="tm-article-snippet-block__date">
+                   <time datetime="2022-03-09T13:31:39.000Z" title="2022-03-09, 16:31">сегодня в 16:31</time>
+                  </div>
+                 </div> 
+                 <h2 class="tm-article-title tm-article-title_sidebar"><a href="/ru/post/654837/" class="tm-article-title__link"><span>Кейс интеграции IoT &amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео</span></a></h2> 
+                 <div class="tm-data-icons">
+                  <!----> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                   <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                    <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                   </svg> <span class="tm-icon-counter__value">253</span></span> <!----> 
+                  <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+                   <a href="/ru/post/654837/comments/" class="tm-article-comments-counter-link__link">
+                    <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                     <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                    </svg> <span class="tm-article-comments-counter-link__value"> 0 </span></a> <!---->
+                  </div> <!----> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div>
+                </article></li>
+               <li class="tm-article-list-block__item">
+                <article class="tm-article-snippet-block-sidebar tm-article-snippet-block-sidebar_preview">
+                 <div class="tm-article-snippet-block__user-meta">
+                  <div class="tm-article-snippet-block__date">
+                   <time datetime="2022-03-09T08:53:06.000Z" title="2022-03-09, 11:53">сегодня в 11:53</time>
+                  </div>
+                 </div> 
+                 <h2 class="tm-article-title tm-article-title_sidebar"><a href="/ru/post/654769/" class="tm-article-title__link"><span>Все, что нужно знать про «Broken access control»</span></a></h2> 
+                 <div class="tm-data-icons">
+                  <!----> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                   <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                    <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                   </svg> <span class="tm-icon-counter__value">836</span></span> <!----> 
+                  <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+                   <a href="/ru/post/654769/comments/" class="tm-article-comments-counter-link__link">
+                    <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                     <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                    </svg> <span class="tm-article-comments-counter-link__value"> 0 </span></a> <!---->
+                  </div> <!----> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div>
+                </article></li>
+               <li class="tm-article-list-block__item">
+                <article class="tm-article-snippet-block-sidebar tm-article-snippet-block-sidebar_preview">
+                 <div class="tm-article-snippet-block__user-meta">
+                  <div class="tm-article-snippet-block__date">
+                   <time datetime="2022-03-08T18:19:04.000Z" title="2022-03-08, 21:19">вчера в 21:19</time>
+                  </div>
+                 </div> 
+                 <h2 class="tm-article-title tm-article-title_sidebar"><a href="/ru/post/654737/" class="tm-article-title__link"><span>Wanna more? No, TinyML</span></a></h2> 
+                 <div class="tm-data-icons">
+                  <!----> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                   <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                    <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                   </svg> <span class="tm-icon-counter__value">4.1K</span></span> <!----> 
+                  <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+                   <a href="/ru/post/654737/comments/" class="tm-article-comments-counter-link__link">
+                    <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                     <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                    </svg> <span class="tm-article-comments-counter-link__value"> 4 </span></a> <!---->
+                  </div> <!----> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div>
+                </article></li>
+               <li class="tm-article-list-block__item">
+                <article class="tm-article-snippet-block-sidebar tm-article-snippet-block-sidebar_preview">
+                 <div class="tm-article-snippet-block__user-meta">
+                  <div class="tm-article-snippet-block__date">
+                   <time datetime="2022-03-08T15:16:02.000Z" title="2022-03-08, 18:16">вчера в 18:16</time>
+                  </div>
+                 </div> 
+                 <h2 class="tm-article-title tm-article-title_sidebar"><a href="/ru/post/654729/" class="tm-article-title__link"><span>Интерфейсы/протоколы для начинающих</span></a></h2> 
+                 <div class="tm-data-icons">
+                  <!----> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                   <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                    <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                   </svg> <span class="tm-icon-counter__value">5.7K</span></span> <!----> 
+                  <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+                   <a href="/ru/post/654729/comments/" class="tm-article-comments-counter-link__link">
+                    <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                     <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                    </svg> <span class="tm-article-comments-counter-link__value"> 5 </span></a> <!---->
+                  </div> <!----> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div>
+                </article></li>
+               <li class="tm-article-list-block__item">
+                <article class="tm-article-snippet-block-sidebar tm-article-snippet-block-sidebar_preview">
+                 <div class="tm-article-snippet-block__user-meta">
+                  <div class="tm-article-snippet-block__date">
+                   <time datetime="2022-03-08T11:10:09.000Z" title="2022-03-08, 14:10">вчера в 14:10</time>
+                  </div>
+                 </div> 
+                 <h2 class="tm-article-title tm-article-title_sidebar"><a href="/ru/post/654719/" class="tm-article-title__link"><span>Анонимизация базы данных или как быть уверенным, что ты не нарушаешь закон “О персональных данных”</span></a></h2> 
+                 <div class="tm-data-icons">
+                  <!----> <!----> <span title="Количество просмотров" class="tm-icon-counter tm-data-icons__item">
+                   <svg height="24" width="24" class="tm-svg-img tm-icon-counter__icon">
+                    <title>Просмотры</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-views"></use>
+                   </svg> <span class="tm-icon-counter__value">5.3K</span></span> <!----> 
+                  <div title="Читать комментарии" class="tm-article-comments-counter-link tm-data-icons__item">
+                   <a href="/ru/post/654719/comments/" class="tm-article-comments-counter-link__link">
+                    <svg height="24" width="24" class="tm-svg-img tm-article-comments-counter-link__icon">
+                     <title>Комментарии</title> <use xlink:href="/img/megazord-v25.4b679db1.svg#counter-comments"></use>
+                    </svg> <span class="tm-article-comments-counter-link__value"> 5 </span></a> <!---->
+                  </div> <!----> 
+                  <div class="v-portal" style="display:none;"></div>
+                 </div>
+                </article></li> <!---->
+              </ul>
+             </div> <!---->
+            </section> <!---->
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </main> <!---->
+    </div> 
+    <div class="tm-footer-menu">
+     <div class="tm-page-width">
+      <div class="tm-footer-menu__container">
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Ваш аккаунт </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr/?back=/ru/sandbox/start/&amp;hl=ru" rel="nofollow" target="_self"> Войти </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/kek/v1/auth/habrahabr-register/?back=/ru/sandbox/start/&amp;hl=ru" rel="nofollow" target="_self"> Регистрация </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Разделы </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/" class="footer-menu__item-link router-link-active"> Публикации </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/news/" class="footer-menu__item-link"> Новости </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/hubs/" class="footer-menu__item-link"> Хабы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/companies/" class="footer-menu__item-link"> Компании </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/users/" class="footer-menu__item-link"> Авторы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/sandbox/" class="footer-menu__item-link router-link-active"> Песочница </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Информация </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/help/" class="footer-menu__item-link"> Устройство сайта </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/authors/codex/" class="footer-menu__item-link"> Для авторов </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/companies/corpblogs/" class="footer-menu__item-link"> Для компаний </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/docs/docs/transparency/" class="footer-menu__item-link"> Документы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/agreement" target="_blank"> Соглашение </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://account.habr.com/info/confidential/" target="_blank"> Конфиденциальность </a></li>
+         </ul>
+        </div>
+       </div>
+       <div class="tm-footer-menu__block">
+        <h3 class="tm-footer-menu__block-title"> Услуги </h3> 
+        <div class="tm-footer-menu__block-content">
+         <ul class="tm-footer-menu__list">
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQLwRfQmXibiUlWaRg-BAc38s7oM3lJiaPju7qmdJsp8ysIvZ_G-Npem0njJLMozE2bPHMpDqiI5hhy/pub?start=false&amp;loop=false&amp;delayms=60000&amp;slide=id.g91a03369cd_4_297" target="_blank"> Реклама </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://habrastorage.org/storage/stuff/habr/service_price.pdf" target="_blank"> Тарифы </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://docs.google.com/presentation/d/e/2PACX-1vQJJds8-Di7BQSP_guHxICN7woVYoN5NP_22ra-BIo4bqnTT9FR6fB-Ku2P0AoRpX0Ds-LRkDeAoD8F/pub?start=false&amp;loop=false&amp;delayms=60000" target="_blank"> Контент </a></li>
+          <li class="tm-footer-menu__list-item"><a href="https://tmtm.timepad.ru/" target="_blank"> Семинары </a></li>
+          <li class="tm-footer-menu__list-item"><a href="/ru/megaprojects/" class="footer-menu__item-link"> Мегапроекты </a></li>
+         </ul>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div> 
+    <div class="tm-footer">
+     <div class="tm-page-width">
+      <div class="tm-footer__container">
+       <!----> 
+       <div class="tm-footer__social">
+        <a href="https://www.facebook.com/habrahabr.ru" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Facebook</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-facebook"></use>
+         </svg></a><a href="https://twitter.com/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Twitter</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-twitter"></use>
+         </svg></a><a href="https://vk.com/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>VK</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-vkontakte"></use>
+         </svg></a><a href="https://telegram.me/habr_com" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Telegram</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-telegram"></use>
+         </svg></a><a href="https://www.youtube.com/channel/UCd_sTwKqVrweTt4oAKY5y4w" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Youtube</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-youtube"></use>
+         </svg></a><a href="https://zen.yandex.ru/habr" rel="nofollow noopener noreferrer" target="_blank" class="tm-svg-icon__wrapper tm-social-icons__icon">
+         <svg height="16" width="16" class="tm-svg-img tm-svg-icon">
+          <title>Яндекс Дзен</title> <use xlink:href="/img/social-icons-sprite.svg#social-logo-zen"></use>
+         </svg></a>
+       </div> 
+       <div class="v-portal" style="display:none;"></div> <button class="tm-footer__link"><!----> Настройка языка </button> <a href="/ru/about" class="tm-footer__link"> О сайте </a> <a href="/ru/feedback/" class="tm-footer__link"> Техническая поддержка </a> <!----> <a href="/berserk-mode-nope" class="tm-footer__link"> Вернуться на старую версию </a> 
+       <div class="tm-footer-copyright">
+        <span class="tm-copyright"><span class="tm-copyright__years">© 2006–2022 </span> <span class="tm-copyright__name">«<a href="https://company.habr.com/" rel="noopener" target="_blank" class="tm-copyright__link">Habr</a>»</span></span>
+       </div>
+      </div>
+     </div>
+    </div> <!----> <!---->
+   </div> 
+   <div class="vue-portal-target"></div>
+  </div> 
+  <script>window.__INITIAL_STATE__={"adblock":{"hasAcceptableAdsFilter":false,"hasAdblock":false},"articlesList":{"articlesList":{},"articlesIds":{},"isLoading":false,"pagesCount":{},"route":{},"reasonsList":null,"view":"cards","lastVisitedRoute":{},"ssrCommentsArticleIds":[],"karma":{}},"authorContribution":{"authors":{}},"betaTest":{"currentAnnouncement":null,"announcements":{},"announcementCards":null,"announcementComments":{},"announcementCommentThreads":{},"announcementCommentingStatuses":{},"archivedList":[]},"authorStatistics":{"articleRefs":{},"articleIds":{},"pagesCount":{},"route":{},"viewsCount":[],"maxStatsCount":{}},"career":{"seoLandings":[],"hubs":""},"comments":{"articleComments":{},"searchCommentsResults":null,"previewComment":null,"pagesCount":null,"commentAccess":{},"scrollParents":{},"pageArticleComments":{"lastViewedComment":0,"postId":null,"lastCommentTimestamp":"","moderated":[],"moderatedIds":[],"commentRoute":""}},"companies":{"companyRefs":{},"companyIds":{},"companyTopIds":{},"pagesCount":{},"companyProfiles":{},"companiesCategories":[],"companiesCategoriesTotalCount":0,"companiesWidgets":{},"companiesWorkers":{},"companiesFans":{},"route":{},"isLoading":false,"companyWorkersLoading":false,"companyFansLoading":false,"vacancies":{},"workplaceInfo":null},"companyAdmin":{"companyInfo":null,"companyInfoLoading":false,"faqArticles":null,"brandingPreviewImageUrl":null},"companiesContribution":{"hubs":{},"flows":{},"companyRefs":{}},"companyHubsContribution":{"contributionRefs":{"hubRefs":{},"hubIds":{}}},"conversation":{"messages":[],"respondent":null,"isLoadMore":false},"conversations":{"conversations":[],"unreadCount":0,"pagesCount":0,"isLoadMore":false},"desktopState":{"desktopFl":null,"desktopHl":null,"isChecked":false,"isLoginDemanded":false},"docs":{"menu":{},"articles":{},"mainMenu":[],"loading":{"main":false,"dropdown":false,"article":false}},"feature":{"isProbablyVisible":"true"},"flows":{"flows":[{"alias":"develop","id":1,"route":{"name":"FLOW_PAGE","params":{"flowName":"develop"}}},{"alias":"admin","id":6,"route":{"name":"FLOW_PAGE","params":{"flowName":"admin"}}},{"alias":"design","id":2,"route":{"name":"FLOW_PAGE","params":{"flowName":"design"}}},{"alias":"management","id":3,"route":{"name":"FLOW_PAGE","params":{"flowName":"management"}}},{"alias":"marketing","id":4,"route":{"name":"FLOW_PAGE","params":{"flowName":"marketing"}}},{"alias":"popsci","id":7,"route":{"name":"FLOW_PAGE","params":{"flowName":"popsci"}}}]},"global":{"isPwa":false,"device":"desktop","isHabrCom":true},"hubs":{"hubRefs":{},"hubIds":{},"pagesCount":{},"isLoading":false,"route":{}},"hubsBlock":{"hubRefs":{},"hubIds":{}},"i18n":{"fl":"ru","hl":"ru"},"info":{"infoPage":{},"isLoading":true},"location":{"urlStruct":{"protocol":null,"slashes":null,"auth":null,"host":null,"port":null,"hostname":null,"hash":null,"search":null,"query":{},"pathname":null,"path":null,"href":""},"searchQuery":null},"me":{"user":null,"ppgDemanded":false,"karmaResetInfo":{"canReincarnate":null,"wasReincarnated":null,"currentScore":null},"notes":null},"mostReadingList":{"mostReadingListIds":[],"mostReadingListRefs":null,"promoPost":null},"pinnedPost":{"pinnedPost":null},"ppa":{"articles":{},"card":null,"transactions":null,"totalTransactions":null,"isAccessible":null},"projectsBlocks":{"activeBlocks":{}},"promoData":{"isLoading":false,"hasLoaded":false,"featurer":null,"megaposts":null,"promoLinks":null,"promoPosts":null},"pullRefresh":{"shouldRefresh":false},"sandbox":{"articleIds":{"MOST_IMPORTANT_SANBOX_INFO":["654837","654769","654737","654729","654719","654677","654667","654659","654655","654599","654595","654569","654515","654511","654489","654449","654411","654407","654371","654351"]},"articleRefs":{"654351":{"id":"654351","timePublished":"2022-03-04T09:34:05+00:00","isCorporative":false,"lang":"ru","titleHtml":"Измерение концентрации ксенон-кислородной смеси вакуумметром Пирани","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2199526","alias":"Kudriavyi","fullname":null,"avatarUrl":"","speciality":""},"statistics":{"commentsCount":5,"favoritesCount":14,"readingCount":1353,"score":18,"votesCount":18},"hubs":[{"relatedData":null,"id":"21472","alias":"circuit-design","type":"collective","title":"Схемотехника","titleHtml":"Схемотехника","isProfiled":true},{"relatedData":null,"id":"21484","alias":"electronics","type":"collective","title":"Производство и разработка электроники","titleHtml":"Производство и разработка электроники","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EХочу поделиться своим опытом в применении датчика Пирани для измерения теплопроводности газовой смеси и расчета концентрации по этим данным. Для медицинского применения ксенона необходимо измерять его концентрацию. Данный материал актуален не только для ксенона, но и для других инертных газов.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F2ff\u002F537\u002F943\u002F2ff5379431f8ce9845eb5d9ea59e1fda.jpg","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"ксенон"},{"titleHtml":"вакуумметр"},{"titleHtml":"вакуумметр пирани"},{"titleHtml":"теплопроводность газов"},{"titleHtml":"измерение концентрации газов"}]},"654371":{"id":"654371","timePublished":"2022-03-04T11:25:37+00:00","isCorporative":false,"lang":"ru","titleHtml":"Когда произойдет повсеместный переход в VR?","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2467727","alias":"BlackVR","fullname":"Кристина Шумская","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F7b0\u002F419\u002Fff3\u002F7b0419ff3e16a0c013a999dc33e192b6.jpg","speciality":"Глава отдела разработки студии Black VR"},"statistics":{"commentsCount":52,"favoritesCount":13,"readingCount":4478,"score":3,"votesCount":11},"hubs":[{"relatedData":null,"id":"20904","alias":"arvrdev","type":"collective","title":"Разработка под AR и VR","titleHtml":"Разработка под AR и VR","isProfiled":true},{"relatedData":null,"id":"21940","alias":"arvr","type":"collective","title":"AR и VR","titleHtml":"AR и VR","isProfiled":false}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EСегодня я поднимаю тему будущего. В 2022 остро стоит вопрос: в какой момент люди начнут полноценно работать в VR, сидя в шлемах? Да действительно, в наш век всего лишь необходимо разработать виртуальную среду, имитирующую привычное рабочее место, и готово. Казалось бы.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F67a\u002F33a\u002F493\u002F67a33a4937242098457e18872d0bd9a8.jpg","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"переход в виртуальность"},{"titleHtml":"жизнь в виртуальной реальности"},{"titleHtml":"технологии будущего"},{"titleHtml":"технологии в бизнесе"}]},"654407":{"id":"654407","timePublished":"2022-03-04T16:00:20+00:00","isCorporative":false,"lang":"ru","titleHtml":"Основы теории вероятностей с помощью Python","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2097035","alias":"DessDaz1996","fullname":"Михаил","avatarUrl":"","speciality":"Исследователь"},"statistics":{"commentsCount":9,"favoritesCount":172,"readingCount":10344,"score":9,"votesCount":17},"hubs":[{"relatedData":null,"id":"340","alias":"python","type":"collective","title":"Python","titleHtml":"Python","isProfiled":true},{"relatedData":null,"id":"359","alias":"programming","type":"collective","title":"Программирование","titleHtml":"Программирование","isProfiled":true},{"relatedData":null,"id":"17812","alias":"maths","type":"collective","title":"Математика","titleHtml":"Математика","isProfiled":true},{"relatedData":null,"id":"19309","alias":"lib","type":"collective","title":"Профессиональная литература","titleHtml":"Профессиональная литература","isProfiled":false},{"relatedData":null,"id":"21890","alias":"statistics","type":"collective","title":"Статистика в IT","titleHtml":"Статистика в IT","isProfiled":false}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EПривет, Хабр! Я очень долго собирался с мыслями, чтобы попробовать опубликовать свою статью в вашем сообществе, это дебют, поэтому буду рад услышать в комментариях обратную связь по поводу содержимого материала. Тематика сегодняшнего сообщения – это разбор базовых понятий в теории вероятности с помощью языка программирования Python. \u003C\u002Fp\u003E\u003Cp\u003EПрежде чем приступить к изложению базовых понятий немного расскажу о себе, о профессиональном опыте, чтобы вы могли иметь представление об авторе. Я окончил Уральский Федеральный Университет по направлению бизнес-информатика и сейчас работаю младшим научным сотрудником в Институте экономики Уральской Академии наук (г. Екатеринбург). В основном направление, по которому я обучался, опиралось на моделировании бизнес процессов. Было конечно немного статистики и теории вероятности, но по мере своего профессионального роста знаний, полученных в университете, мне оказалось недостаточно, поэтому сейчас я вспоминаю изученный материал и постепенно изучаю новый. В качестве такого своеобразного отчёта о проделанной работе принял решение публиковать небольшие статьи здесь. Надеюсь для новичков, которым собственно я и являюсь по сегодняшний день данный материал будет полезен. \u003C\u002Fp\u003E\u003Cp\u003EЗа основу для изучения взял оксфордский учебник на английском языке «Bayesian Statistics for Beginners» (автор Therese M и Ruth M.Mickey). Если у вас есть какие-то базовые знания по математике, которые вы хотите углубить или вспомнить данная книга как раз для вас. Мне очень понравилось её необычное изложение в форме интервью, достаточно простой английский (для уровня B1-B2). Думаю, если вы часто читаете документацию на английском языке или ещё лучше научную литературу, учебник можно осилить практически без словаря. Сама книга – цветная, читать формулы – одно удовольствие. В общем зарекомендовал как мог.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F3a4\u002F94e\u002Ffa4\u002F3a494efa48ce191f4d55f4889a351765.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F3a4\u002F94e\u002Ffa4\u002F3a494efa48ce191f4d55f4889a351765.png","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"теория вероятностей"},{"titleHtml":"программирование"},{"titleHtml":"понятие вероятности"},{"titleHtml":"учебная задача"},{"titleHtml":"математика"},{"titleHtml":"python"},{"titleHtml":"начало анализа данны"}]},"654411":{"id":"654411","timePublished":"2022-03-04T16:33:29+00:00","isCorporative":false,"lang":"ru","titleHtml":"Почему пользователи не читают документацию или как можно улучшить руководство пользователя","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2960989","alias":"explain714","fullname":null,"avatarUrl":"","speciality":""},"statistics":{"commentsCount":17,"favoritesCount":49,"readingCount":4373,"score":8,"votesCount":10},"hubs":[{"relatedData":null,"id":"22596","alias":"technical_writing","type":"collective","title":"Подготовка технической документации","titleHtml":"Подготовка технической документации","isProfiled":true}],"flows":[{"id":"3","alias":"management","title":"Менеджмент"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EЧасть первая\u003C\u002Fp\u003E\u003Cp\u003EДанная статья не предполагает каких-то заумных и крайне неочевидных советов по написанию и проверке технической документации. Многие из перечисленных «советов» многим покажутся очевидными, но из раза в раз, анализируя документацию наших пользователей, мы сталкиваемся с одними и теми же банальными ошибками, которые чаще всего происходят из-за фактора «забыл». Так что данный пост можно расценить как памятку не техническому писателю.\u003C\u002Fp\u003E\u003Cp\u003EПриятного чтения\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F531\u002Fffd\u002Fff3\u002F531ffdff39ba7964381180be3c630042.jpeg","fit":"cover","positionY":46.818181818182,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"пользовательская документация"},{"titleHtml":"разработка документации"},{"titleHtml":"технический писатель"}]},"654449":{"id":"654449","timePublished":"2022-03-05T09:09:23+00:00","isCorporative":false,"lang":"ru","titleHtml":"Пишем простой счетчик для сайта или приложения с помощью Google Cloud Functions и AWS Lambda\u002FSnowflake","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2958125","alias":"leontyev_anton","fullname":null,"avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F07a\u002F867\u002F44e\u002F07a86744e78804008c0fb23e51975a69.jpg","speciality":""},"statistics":{"commentsCount":0,"favoritesCount":16,"readingCount":1215,"score":2,"votesCount":2},"hubs":[{"relatedData":null,"id":"17682","alias":"aws","type":"collective","title":"Amazon Web Services","titleHtml":"Amazon Web Services","isProfiled":true},{"relatedData":null,"id":"20698","alias":"web_analytics","type":"collective","title":"Веб-аналитика","titleHtml":"Веб-аналитика","isProfiled":true},{"relatedData":null,"id":"20724","alias":"mobileanalytics","type":"collective","title":"Аналитика мобильных приложений","titleHtml":"Аналитика мобильных приложений","isProfiled":true},{"relatedData":null,"id":"20922","alias":"googlecloud","type":"collective","title":"Google Cloud Platform","titleHtml":"Google Cloud Platform","isProfiled":true},{"relatedData":null,"id":"22374","alias":"data_engineering","type":"collective","title":"Data Engineering","titleHtml":"Data Engineering","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"4","alias":"marketing","title":"Маркетинг"},{"id":"6","alias":"admin","title":"Администрирование"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EКак работают популярные счетчики веб или мобильной аналитики, например, Google Analytics или AppsFlyer? На сайт устанавливаются их коды или в приложение интегрируется мобильное SDK. Потом при каждом действии клиента отправляется http запрос на сервер аналитики.   \u003C\u002Fp\u003E\u003Cp\u003EУ использования стандартных счетчиков\u002Fпикселей есть минусы:\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E• \u003C\u002Fstrong\u003Eнекоторые посетители используют анонимайзеры, которые блокируют такие запросы;\u003C\u002Fp\u003E\u003Cp\u003E\u003Cstrong\u003E• \u003C\u002Fstrong\u003Eих сложно кастомизировать под себя.\u003C\u002Fp\u003E\u003Cp\u003EВ этой статье мы напишем собственный простой счетчик, который будет решать эти проблемы. Встроим его в PowerBI отчеты. Но принцип одинаков, его можно будет использовать и на веб-сайте, и в приложении, и в других&nbsp; устройствах с доступом к интернету. Попробуем две точки сбора событий, чтобы изучить больше технологий: Google Cloud Function, которая будет писать события в Google BigQuery, и Amazon Lambda Functions с записью событий в Snowflake.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":null},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"google analytics"},{"titleHtml":"appsflyer"},{"titleHtml":"powerbi"},{"titleHtml":"aws lambda"},{"titleHtml":"bigquery"},{"titleHtml":"snowflake"},{"titleHtml":"data engineering"},{"titleHtml":"пиксели"}]},"654489":{"id":"654489","timePublished":"2022-03-05T11:16:02+00:00","isCorporative":false,"lang":"ru","titleHtml":"«Что я получу, если смешаю корень златоцветника и настойку полыни?» или 10 вопросов для Junior Python-разработчика","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2821939","alias":"ya_boiko","fullname":"Влад Бойко","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Fe69\u002F07a\u002F6c4\u002Fe6907a6c4774bc62b89b017f737a7e41.jpg","speciality":"Junior Python developer"},"statistics":{"commentsCount":27,"favoritesCount":147,"readingCount":9330,"score":15,"votesCount":19},"hubs":[{"relatedData":null,"id":"340","alias":"python","type":"collective","title":"Python","titleHtml":"Python","isProfiled":true},{"relatedData":null,"id":"359","alias":"programming","type":"collective","title":"Программирование","titleHtml":"Программирование","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003E12 разных издательств отказывали Джоан Роулинг в публикации первой части Гарри Поттера. Многим программистам отказывали не меньше. \u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F125\u002F39c\u002Fe42\u002F12539ce429f6b1968bd2653401425688.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F125\u002F39c\u002Fe42\u002F12539ce429f6b1968bd2653401425688.png","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"junior"},{"titleHtml":"python"},{"titleHtml":"python3"},{"titleHtml":"типы"},{"titleHtml":"тернарный оператор"},{"titleHtml":"собеседование"},{"titleHtml":"вопросы"},{"titleHtml":"ответ"}]},"654511":{"id":"654511","timePublished":"2022-03-05T13:31:36+00:00","isCorporative":true,"lang":"ru","titleHtml":"Распознавание достопримечательностей с помощью машинного обучения","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2951277","alias":"Jackson134","fullname":"Jackson","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F954\u002F523\u002F4c9\u002F9545234c9a0936ee7abee45b8f2c0e33.jpg","speciality":"Software Engineer for HMS Core"},"statistics":{"commentsCount":8,"favoritesCount":18,"readingCount":1469,"score":4,"votesCount":4},"hubs":[{"relatedData":null,"id":"19709","alias":"huawei","type":"corporative","title":"Блог компании Huawei","titleHtml":"Блог компании Huawei","isProfiled":false},{"relatedData":null,"id":"6345","alias":"mobile_dev","type":"collective","title":"Разработка мобильных приложений","titleHtml":"Разработка мобильных приложений","isProfiled":true},{"relatedData":null,"id":"17107","alias":"android_dev","type":"collective","title":"Разработка под Android","titleHtml":"Разработка под Android","isProfiled":true},{"relatedData":null,"id":"19439","alias":"machine_learning","type":"collective","title":"Машинное обучение","titleHtml":"Машинное обучение","isProfiled":true},{"relatedData":null,"id":"21922","alias":"artificial_intelligence","type":"collective","title":"Искусственный интеллект","titleHtml":"Искусственный интеллект","isProfiled":false}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EБывает листаешь книгу или журнал, видишь красивое место или здание, но не знаешь, где оно и как называется. Тут пригодилось бы приложение, которое распознает его по фотографии.\u003C\u002Fp\u003E\u003Cp\u003EС помощью машинного обучения создать такое приложение довольно просто. Об этом и пойдет речь в этой статье.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F008\u002Fe74\u002F21e\u002F008e7421e52ba2f8b14d6d8514b740d3.png","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"android"},{"titleHtml":"artificial intelligence"},{"titleHtml":"machine learning"},{"titleHtml":"vision recoginzation"},{"titleHtml":"huawei"},{"titleHtml":"hms"}]},"654515":{"id":"654515","timePublished":"2022-03-05T13:41:39+00:00","isCorporative":false,"lang":"ru","titleHtml":"Понятие растворимости, растворения. Процесс растворения. Факторы, влияющие на процесс растворения","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2966901","alias":"KoshelevGeorge1989","fullname":null,"avatarUrl":"","speciality":""},"statistics":{"commentsCount":23,"favoritesCount":35,"readingCount":2865,"score":9,"votesCount":13},"hubs":[{"relatedData":null,"id":"17812","alias":"maths","type":"collective","title":"Математика","titleHtml":"Математика","isProfiled":true},{"relatedData":null,"id":"21968","alias":"physics","type":"collective","title":"Физика","titleHtml":"Физика","isProfiled":false},{"relatedData":null,"id":"22010","alias":"Chemistry","type":"collective","title":"Химия","titleHtml":"Химия","isProfiled":false}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EПонятие растворимости, растворения. Процесс растворения. Факторы, влияющие на процесс растворения\u003C\u002Fp\u003E\u003Cp\u003EВ данной статье мы постараемся не только максимально раскрыть теорию растворения, но и обобщить, систематизировать сведения из различных источников о процессе растворения и влиянии внешних факторов на растворимость. Но главная цель статьи — вывести уравнение зависимости растворимости твердых веществ в воде и других жидких растворителях от температуры. Или другими словами, вывести уравнение температурного фактора растворимости твердых веществ.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fde7\u002Fb6b\u002F08d\u002Fde7b6b08dd9731a016a4eb4d0a341e79.png","fit":"cover","positionY":100,"positionX":0.38461538461538}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"растворимость"},{"titleHtml":"температура"},{"titleHtml":"жидкий растворитель"},{"titleHtml":"твердое вещество"},{"titleHtml":"дифференциал"},{"titleHtml":"дифференциальное уравнение"},{"titleHtml":"график"},{"titleHtml":"давление"},{"titleHtml":"вывод уравнения"},{"titleHtml":"сольватация"}]},"654569":{"id":"654569","timePublished":"2022-03-06T11:35:28+00:00","isCorporative":false,"lang":"ru","titleHtml":"Собеседование Golang разработчика (теоретические вопросы), Часть I","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2895183","alias":"doroshenkoam","fullname":"Алексей Дорошенко","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Fa67\u002F98b\u002Fc18\u002Fa6798bc18023605b22a95d37e63eb0d7.jpg","speciality":"Backend developer"},"statistics":{"commentsCount":16,"favoritesCount":202,"readingCount":12380,"score":36,"votesCount":38},"hubs":[{"relatedData":null,"id":"359","alias":"programming","type":"collective","title":"Программирование","titleHtml":"Программирование","isProfiled":true},{"relatedData":null,"id":"17748","alias":"go","type":"collective","title":"Go","titleHtml":"Go","isProfiled":true},{"relatedData":null,"id":"20740","alias":"career","type":"collective","title":"Карьера в IT-индустрии","titleHtml":"Карьера в IT-индустрии","isProfiled":false}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"3","alias":"management","title":"Менеджмент"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EКак сейчас проходят собеседования на golang разработчика? Что спрашивают?\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":null},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"golang"},{"titleHtml":"go"},{"titleHtml":"собеседование"},{"titleHtml":"программирование"},{"titleHtml":"вопросы на собеседование"},{"titleHtml":"карьера"},{"titleHtml":"карьера в it-индустрии"}]},"654595":{"id":"654595","timePublished":"2022-03-06T17:14:31+00:00","isCorporative":false,"lang":"ru","titleHtml":"DevRel за копейки","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"1809789","alias":"Yulia_Izy","fullname":"Yulia Izbyakova","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002Fd9c\u002Fa7d\u002F136\u002Fd9ca7d136fa75bb71eb1f1648979fa76.jpg","speciality":"Head of IT HR в Зарплате.ру"},"statistics":{"commentsCount":4,"favoritesCount":20,"readingCount":2324,"score":7,"votesCount":9},"hubs":[{"relatedData":null,"id":"20736","alias":"hr_management","type":"collective","title":"Управление персоналом","titleHtml":"Управление персоналом","isProfiled":true},{"relatedData":null,"id":"20750","alias":"branding","type":"collective","title":"Брендинг","titleHtml":"Брендинг","isProfiled":false},{"relatedData":null,"id":"21924","alias":"social_networks","type":"collective","title":"Социальные сети и сообщества","titleHtml":"Социальные сети и сообщества","isProfiled":false},{"relatedData":null,"id":"22026","alias":"itcompanies","type":"collective","title":"IT-компании","titleHtml":"IT-компании","isProfiled":false}],"flows":[{"id":"3","alias":"management","title":"Менеджмент"},{"id":"4","alias":"marketing","title":"Маркетинг"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003E\u003Cem\u003EПрактически любая компания дорастает до момента, когда желает, чтобы о ней узнали все вокруг. Я не буду сейчас давать пошаговый план достижения всемирной популярности, но расскажу, с чего следует начать, чтобы не спустить целое состояние.&nbsp;\u003C\u002Fem\u003E\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd53\u002Fef4\u002F9be\u002Fd53ef49be2e9f47639cadac868e2ef40.jpg","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"devrel"},{"titleHtml":"event"},{"titleHtml":"brand"},{"titleHtml":"hr-бренд"},{"titleHtml":"meetup"},{"titleHtml":"techtalk"}]},"654599":{"id":"654599","timePublished":"2022-03-06T18:31:37+00:00","isCorporative":false,"lang":"ru","titleHtml":"Single Activity с Navigation Component. Или как я мучался с графами. Boilerplate ч. 1","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null},{"type":"tutorial","data":null}],"author":{"id":"2886665","alias":"TheAlisher","fullname":null,"avatarUrl":"","speciality":"Kotlin разработчик"},"statistics":{"commentsCount":2,"favoritesCount":16,"readingCount":1245,"score":3,"votesCount":5},"hubs":[{"relatedData":null,"id":"6345","alias":"mobile_dev","type":"collective","title":"Разработка мобильных приложений","titleHtml":"Разработка мобильных приложений","isProfiled":true},{"relatedData":null,"id":"17107","alias":"android_dev","type":"collective","title":"Разработка под Android","titleHtml":"Разработка под Android","isProfiled":true},{"relatedData":null,"id":"19441","alias":"kotlin","type":"collective","title":"Kotlin","titleHtml":"Kotlin","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EВсем привет! Меня зовут Алишер, Android-разработчик уже как 1,5 года. За это время у меня появился шаблонный (Boilerplate) проект в котором у нас базовая архитектура приложений которую мы будем разбирать. В этой статье я расскажу, и покажу как я ел Single Activity Architecture с Fragment'ами и Navigation Component.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe6f\u002F7bd\u002F338\u002Fe6f7bd338f6ef862240400b629626e3c.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fe6f\u002F7bd\u002F338\u002Fe6f7bd338f6ef862240400b629626e3c.png","fit":"cover","positionY":68.863636363636,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"Android"},{"titleHtml":"Navigation Component"},{"titleHtml":"Kotlin"},{"titleHtml":"Single Activity"},{"titleHtml":"Single Activity Architecture"},{"titleHtml":"FlowFragment"},{"titleHtml":"navigation"}]},"654655":{"id":"654655","timePublished":"2022-03-07T13:30:53+00:00","isCorporative":false,"lang":"ru","titleHtml":"Frontend-разработка: какие концепции остаются актуальными в 2022 году","editorVersion":"2.0","postType":"article","postLabels":[{"type":"recovery","data":null},{"type":"sandbox","data":null}],"author":{"id":"2967201","alias":"acsais-com","fullname":"Алексей Афанасьев","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F22d\u002Fa17\u002F48d\u002F22da1748d586da6b486435565b480b92.png","speciality":"Fullstack-developer"},"statistics":{"commentsCount":5,"favoritesCount":21,"readingCount":10017,"score":-16,"votesCount":24},"hubs":[{"relatedData":null,"id":"47","alias":"web_design","type":"collective","title":"Веб-дизайн","titleHtml":"Веб-дизайн","isProfiled":true},{"relatedData":null,"id":"91","alias":"webdev","type":"collective","title":"Разработка веб-сайтов","titleHtml":"Разработка веб-сайтов","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"2","alias":"design","title":"Дизайн"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EКогда вы разрабатываете сайт, то либо решаете проблему пользователя, либо нет. Будет это эффективный инструмент для бизнеса, приносящий прибыль, или это будет еще один сайт в сети Интернет? Это зависит от множества факторов…\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F83b\u002F9ca\u002Fdbe\u002F83b9cadbedde8b0fba0769e900122c7c.jpg","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"frontend"},{"titleHtml":"front-end разработка"},{"titleHtml":"сайтостроение"},{"titleHtml":"сайт"},{"titleHtml":"разработка сайтов"},{"titleHtml":"тренды 2022"},{"titleHtml":"frontend-разработка"},{"titleHtml":"front-end development"},{"titleHtml":"front-end разработчик"}]},"654659":{"id":"654659","timePublished":"2022-03-07T14:25:24+00:00","isCorporative":false,"lang":"ru","titleHtml":"Как я Sberfight 2022 проходил на Swift","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2967865","alias":"Maxnxi","fullname":null,"avatarUrl":"","speciality":""},"statistics":{"commentsCount":1,"favoritesCount":6,"readingCount":2437,"score":2,"votesCount":6},"hubs":[{"relatedData":null,"id":"19039","alias":"swift","type":"collective","title":"Swift","titleHtml":"Swift","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EВ 2021 году на просторах интернета случайно увидел Sber на geecko.com, тогда компания Sber проводила fight типа \"староверы\" против \"новокодеров\". (Простите за неточности, вспоминаю по памяти.)\u003C\u002Fp\u003E\u003Cp\u003EИ когда запустили конкурс Sberfight я уже автоматически попал в рассылку.\u003C\u002Fp\u003E\u003Cp\u003EЯ относительно молод в Swift и тренировка умений или же проверка навыков на скорость очень привлекла. А формат в стиле \"Денди\" поднимает давно забытое чувство детства. (Моей любимой игрой были \"танчики\", \"контра\" и \"червяк Джим\"- правда у друзей на \"Сеге\".)\u003C\u002Fp\u003E\u003Cp\u003EОднако, первый неприятный сюрприз ждал в условиях конкурса - подсчет баллов. Оказывается подсчет баллов теперь осуществляется - 100 баллов за задание(при учете, что все тест кейсы положительные) и + за скорость(по формуле где Swift имеет коэффициент примерно 1.29, как и JS, а вот максимальный С# - 2). Всего 8 заданий - значит минимум 800 баллов без надбавок. А вот сколько за скорость? Ответ был найден быстро - только взглянув на турнирную таблицу (Топ-1 - примерно - 3400 баллов). То есть 2400 надбавка за скорость (предположим C# - значит в общем за Swift при таком же идеальном выполнении я получу - 2477 баллов). Тут-то интерес начал угасать.\u003C\u002Fp\u003E\u003Cp\u003EА, эскиз победителей уже нарисовался.\u003C\u002Fp\u003E\u003Cp\u003EПройдя два задания и поняв, что быстрее отведенного времени я не успеваю, а значит надбавки за скорость нет. Я взглянул на обновленный топ и увидев (Топ-1 - 5500 баллов) моей грусти не было предела.\u003C\u002Fp\u003E\u003Cp\u003EТак и закрыл я Sberfight до конца февраля, пока мне на почту не упало письмо от рекрутера Sber. (Что это была массовая рассылка - это понятно, но зачем за два задания из 8 для меня осталось вопросом.) Но такая напоминалка заинтриговала меня глянуть на лидеров и каким же было мое удивление, когда Топ 1 - стоял 3400 баллов. Понятно, кто-то нашел баг, накрутил себе баллов, а теперь все пофиксили. Вот тут интерес и разогрелся, увы, оставалось два дня. \u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":null},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"Swift"},{"titleHtml":"sber"},{"titleHtml":"sberfight"},{"titleHtml":"2022"},{"titleHtml":"2022 год"}]},"654667":{"id":"654667","timePublished":"2022-03-07T15:34:30+00:00","isCorporative":false,"lang":"ru","titleHtml":"Отношения с IT. Часть первая","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2334489","alias":"sasha_firsova","fullname":null,"avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F639\u002F698\u002Fb7b\u002F639698b7bf05b5c433304ea6d2e8ff43.jpg","speciality":"Пользователь"},"statistics":{"commentsCount":21,"favoritesCount":15,"readingCount":18371,"score":0,"votesCount":22},"hubs":[{"relatedData":null,"id":"20722","alias":"startuprise","type":"collective","title":"Развитие стартапа","titleHtml":"Развитие стартапа","isProfiled":false},{"relatedData":null,"id":"20726","alias":"productpm","type":"collective","title":"Управление продуктом","titleHtml":"Управление продуктом","isProfiled":true},{"relatedData":null,"id":"22026","alias":"itcompanies","type":"collective","title":"IT-компании","titleHtml":"IT-компании","isProfiled":false}],"flows":[{"id":"3","alias":"management","title":"Менеджмент"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003E\u003Cem\u003EВсе персонажи являются вымышленными. Любое&nbsp;совпадение&nbsp;с реально живущими или когда-либо жившими&nbsp;людьми&nbsp;случайно.\u003C\u002Fem\u003E\u003C\u002Fp\u003E\u003Cp\u003E&nbsp;- Понимаешь, наши заказчики жалуются на нас. Платят нам ежегодно миллионы и мечтают уйти, потому что мы задерживаем сроки и не успеваем сделать все, что обещали. На растущем рынке…\u003C\u002Fp\u003E\u003Cp\u003E- Сашуля, не учи меня делать бизнес. Это я, не ты заработал миллионы и сделал эту компанию. Писюн у меня, а не у тебя. – говорит мой сюзерен\u002FСЕО перспективной&nbsp;it-компании. Этого непростого человека я люблю дважды в месяц со звуком пуш-уведомления от Альфа-банка, в остальное время просто не понимаю.&nbsp;\u003C\u002Fp\u003E\u003Cp\u003EВыйдя из кабинета, я смотрю в экран ноутбука и думаю, что с одной стороны прав он, чертяка, когда меряется со мной&nbsp;\u003Cs\u003Eписюном\u003C\u002Fs\u003E&nbsp;счетом в банке и тычет в лицо прошлыми достижениями, как доказательством своей правоты и высшей степени экспертности. Только забывает к своим миллионам и успеху признать проблемы, которые тоже его: плохой сервис, неслаженная работа команды, пассивность, инфантильный топ-менеджмент, замалчивание проблем, выгорание у сотрудников, высокая текучка, низкая рентабельность бизнеса, непрофессионализм директоров-друзей-приятелей.\u003C\u002Fp\u003E\u003Cp\u003EУдача и успех в бизнесе окрыляет. Воодушевляет. Если к этому добавить бабки, то ощущение похоже на множественный оргазм, но своими могучими руками.\u003C\u002Fp\u003E\u003Cp\u003EВ последнее десятилетие одним из самых быстрорастущих и емких рынков в РФ стал рынок&nbsp;it. Огромный спрос, высокие входные барьеры и отсутствие сильной конкуренции дают собственникам почти безграничное ощущение власти. Такой рынок прощает управленцам отсутствие опыта и ошибки: стратегические, управленческие, тактические. Бизнес в этом случае все равно растет (при прочих равных условиях), но не благодаря менеджерским навыкам, а ввиду сложившихся уникальных факторов.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F054\u002F72c\u002Fe3f\u002F05472ce3fd4d858f74cfcf4d12956e12.JPG","fit":"cover","positionY":80.227272727273,"positionX":4.3589743589744}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"it-компании"},{"titleHtml":"it-стартапы"}]},"654677":{"id":"654677","timePublished":"2022-03-07T18:32:31+00:00","isCorporative":false,"lang":"ru","titleHtml":"Аутсорсинг как быстрый способ усилить компанию","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2968171","alias":"Evgeniya_Promanager","fullname":null,"avatarUrl":"","speciality":""},"statistics":{"commentsCount":11,"favoritesCount":16,"readingCount":3103,"score":1,"votesCount":9},"hubs":[{"relatedData":null,"id":"17189","alias":"itstandarts","type":"collective","title":"IT-стандарты","titleHtml":"IT-стандарты","isProfiled":true},{"relatedData":null,"id":"21890","alias":"statistics","type":"collective","title":"Статистика в IT","titleHtml":"Статистика в IT","isProfiled":false},{"relatedData":null,"id":"21928","alias":"finance","type":"collective","title":"Финансы в IT","titleHtml":"Финансы в IT","isProfiled":false},{"relatedData":null,"id":"22026","alias":"itcompanies","type":"collective","title":"IT-компании","titleHtml":"IT-компании","isProfiled":false}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"3","alias":"management","title":"Менеджмент"},{"id":"7","alias":"popsci","title":"Научпоп"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EСегодня все чаще малый и средний бизнес отдает некоторые работы на аутсорсинг, это может быть клининг, бухгалтерия, поиск и найм необходимого кандидата или реализация работ для заказчика, которые компании выгоднее отдать на аутсорсинг чем выполнять самостоятельно. Причин в общем то много, порой на аутсорсинг отдают целые бизнес-процессы - например продажи.\u003C\u002Fp\u003E\u003Cp\u003EЧаще всего в таких случаях мы говорим о достаточно простых и понятных процессах, в которых не нужны высококвалифицированные специалисты. Это действительно снижает затраты и дает возможность компаниям нарастить свои обороты. Тем не менее, такой тип работы с аутсорсингом больше похож на “крутить педали сильнее и быстрее” или “купить 2 велосипеда вместо одного” вместо того, чтобы пересесть в автомобиль и двигаться вперед в совершенно ином темпе.&nbsp;\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"И есть еще множество подобных историй","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002Fd93\u002F755\u002F7e3\u002Fd937557e325883711360d5b4396d933a.jpeg","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"manager"},{"titleHtml":"control"},{"titleHtml":"management"},{"titleHtml":"management studio"},{"titleHtml":"management controller"},{"titleHtml":"management and operations"},{"titleHtml":"management &amp;amp; operations"},{"titleHtml":"management interface"},{"titleHtml":"management information system"},{"titleHtml":"management plane"}]},"654719":{"id":"654719","timePublished":"2022-03-08T11:10:09+00:00","isCorporative":false,"lang":"ru","titleHtml":"Анонимизация базы данных или как быть уверенным, что ты не нарушаешь закон “О персональных данных”","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2933885","alias":"BigBread","fullname":null,"avatarUrl":"","speciality":""},"statistics":{"commentsCount":5,"favoritesCount":46,"readingCount":5344,"score":8,"votesCount":14},"hubs":[{"relatedData":null,"id":"91","alias":"webdev","type":"collective","title":"Разработка веб-сайтов","titleHtml":"Разработка веб-сайтов","isProfiled":true},{"relatedData":null,"id":"340","alias":"python","type":"collective","title":"Python","titleHtml":"Python","isProfiled":true},{"relatedData":null,"id":"359","alias":"programming","type":"collective","title":"Программирование","titleHtml":"Программирование","isProfiled":true},{"relatedData":null,"id":"403","alias":"django","type":"collective","title":"Django","titleHtml":"Django","isProfiled":true},{"relatedData":null,"id":"19197","alias":"dwh","type":"collective","title":"Хранение данных","titleHtml":"Хранение данных","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"6","alias":"admin","title":"Администрирование"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EВ настоящее время практически все ИТ-продукты работают с персональной информацией пользователя: ФИО, телефон, e-mail, паспортные и другие идентифицирующие данные. Для &nbsp;обеспечения защиты прав и свобод, человека и гражданина при обработке его персональных данных в Российской Федерации существует \u003Ca href=\"http:\u002F\u002Fwww.consultant.ru\u002Fdocument\u002Fcons_doc_LAW_61801\u002F\" rel=\"noopener noreferrer nofollow\"\u003EФедеральный закон от 27.07.2006 N 152-ФЗ “О персональных данных”\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EСогласно \u003Ca href=\"http:\u002F\u002Fwww.consultant.ru\u002Fdocument\u002Fcons_doc_LAW_61801\u002F96fbc469f91f57235cc842a85e0516a99f23dc85\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eпункту 2 статьи 5\u003C\u002Fa\u003E обработка персональных данных должна ограничиваться достижением конкретных, заранее определенных и законных целей, а в \u003Ca href=\"http:\u002F\u002Fwww.consultant.ru\u002Fdocument\u002Fcons_doc_LAW_61801\u002F315f051396c88f1e4f827ba3f2ae313d999a1873\u002F\" rel=\"noopener noreferrer nofollow\"\u003Eстатье 6\u003C\u002Fa\u003E установлено, что обработка персональных данных осуществляется с согласия субъекта персональных данных. Все это накладывает определенные ограничения на разработку программных продуктов и заставляет разработчиков думать о возможных последствиях несоблюдения норм законодательства.\u003C\u002Fp\u003E\u003Cp\u003EХочется заметить, что во многих случаях для непосредственной разработки личные данные пользователя не важны, необходима сама структура данных, их полнота и количество. По этой причине, а также в рамках соблюдения закона, персональные данные пользователя можно анонимизировать, чем и пришлось заниматься в рамках своей профессиональной деятельности.&nbsp;\u003C\u002Fp\u003E\u003Cp\u003EПод анонимизацией в рамках статьи стоит понимать процесс изменения данных введенных пользователем и сохраненных в БД на программно сгенерированные данные, которые по виду и типу совпадают с реальными, но не имеют отношения к конкретному пользователю.&nbsp; О том, как была организована работа по этому вопросу и какой в итоге получился результат и будет эта статья.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8c6\u002F9a2\u002F365\u002F8c69a2365c3215b51c6cc13c8172c626.jpg","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"django rest framework"},{"titleHtml":"django"},{"titleHtml":"flake8"},{"titleHtml":"gdpr"},{"titleHtml":"анонимизация"},{"titleHtml":"база дынных"},{"titleHtml":"152-фз"},{"titleHtml":"персональные данные"},{"titleHtml":"плагин"},{"titleHtml":"python"}]},"654729":{"id":"654729","timePublished":"2022-03-08T15:16:02+00:00","isCorporative":false,"lang":"ru","titleHtml":"Интерфейсы\u002Fпротоколы для начинающих","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2638841","alias":"tim3lord","fullname":"Андрей Жаров","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F109\u002Fe06\u002F4e4\u002F109e064e458f881115ed29573b72e5ab.jpg","speciality":"Начинающий iOS-разработчик"},"statistics":{"commentsCount":5,"favoritesCount":27,"readingCount":5672,"score":4,"votesCount":10},"hubs":[{"relatedData":null,"id":"548","alias":"ios_dev","type":"collective","title":"Разработка под iOS","titleHtml":"Разработка под iOS","isProfiled":true},{"relatedData":null,"id":"18794","alias":"xcode","type":"collective","title":"Xcode","titleHtml":"Xcode","isProfiled":true},{"relatedData":null,"id":"19039","alias":"swift","type":"collective","title":"Swift","titleHtml":"Swift","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EСублимация попыток объяснить друзьям чем отличаются классы от протоколов и почему без организации целого концерта здесь никак не обойтись.\u003C\u002Fp\u003E","imageUrl":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F36a\u002Fbc9\u002Fcbf\u002F36abc9cbf6539a2673ea60fcd614977f.png","buttonTextHtml":"Читать далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F36a\u002Fbc9\u002Fcbf\u002F36abc9cbf6539a2673ea60fcd614977f.png","fit":"cover","positionY":0.22727272727273,"positionX":49.230769230769}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"протокол"},{"titleHtml":"ios"},{"titleHtml":"ios разработка"},{"titleHtml":"junior developer"},{"titleHtml":"beginners"},{"titleHtml":"для начинающих"},{"titleHtml":"closure"},{"titleHtml":"птицы"},{"titleHtml":"swift"},{"titleHtml":"swift  разработка"}]},"654737":{"id":"654737","timePublished":"2022-03-08T18:19:04+00:00","isCorporative":false,"lang":"ru","titleHtml":"Wanna more? No, TinyML","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2722029","alias":"Triderit","fullname":"MARIYA MASHKOVSKAYA","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F48d\u002Fd8c\u002Fb32\u002F48dd8cb32c5dc73d690e3e421efe854f.jpg","speciality":"RichToked"},"statistics":{"commentsCount":4,"favoritesCount":16,"readingCount":4083,"score":5,"votesCount":11},"hubs":[{"relatedData":null,"id":"22392","alias":"tensorflow","type":"collective","title":"TensorFlow","titleHtml":"TensorFlow","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003E\u003Cstrong\u003ETinyML, ИИ &amp;&amp; Микроконтроллеры\u003C\u002Fstrong\u003E\u003C\u002Fp\u003E\u003Cp\u003EНа фото изображен микроконтроллер нового поколения с аппаратным обеспечением для ИИ, Eta Compute.\u003C\u002Fp\u003E\u003Cp\u003EЧто в нем есть хорошего? А плохого? Ответ на оба вопроса - читайте далее, и сможете узнать и понять как применять новое поколение микроконтроллеров, и причем тут еще какое-то \u003Cstrong\u003ETiny\u003C\u002Fstrong\u003EML.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Понять далее","image":{"url":"https:\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Fupload_files\u002F8c7\u002F8dc\u002F40a\u002F8c78dc40af14fede5d035e4ea23ee941.jpeg","fit":"cover","positionY":0,"positionX":0}},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"tensorflow"},{"titleHtml":"микроконтроллер"},{"titleHtml":"микроконтроллеры"},{"titleHtml":"нейронные сети"}]},"654769":{"id":"654769","timePublished":"2022-03-09T08:53:06+00:00","isCorporative":false,"lang":"ru","titleHtml":"Все, что нужно знать про «Broken access control»","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"145560","alias":"dborisov","fullname":"Ден","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F3d6\u002Ff0b\u002Fcff\u002F3d6f0bcff09303525dd70445b66fb494.jpg","speciality":"Ведущий специалист по информационной безопасности"},"statistics":{"commentsCount":0,"favoritesCount":9,"readingCount":836,"score":-1,"votesCount":1},"hubs":[{"relatedData":null,"id":"50","alias":"infosecurity","type":"collective","title":"Информационная безопасность","titleHtml":"Информационная безопасность","isProfiled":true},{"relatedData":null,"id":"357","alias":"javascript","type":"collective","title":"JavaScript","titleHtml":"JavaScript","isProfiled":true},{"relatedData":null,"id":"359","alias":"programming","type":"collective","title":"Программирование","titleHtml":"Программирование","isProfiled":true},{"relatedData":null,"id":"19583","alias":"dev_management","type":"collective","title":"Управление разработкой","titleHtml":"Управление разработкой","isProfiled":true},{"relatedData":null,"id":"20810","alias":"ctf","type":"collective","title":"CTF","titleHtml":"CTF","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"},{"id":"3","alias":"management","title":"Менеджмент"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EВ минувшем году OWASP обновил список TOP-10 самых распространенных векторов атак на современные веб-приложения. Этот список претерпел ряд изменений по сравнению с его последней редакцией, которая была в далеком 2017 году. В связи с чем мне бы хотелось рассказать о наиболее серьезной угрозе современных веб-приложений, которая перешла с пятого на первое место, а именно про \u003Ca href=\"https:\u002F\u002Fowasp.org\u002FTop10\u002FA01_2021-Broken_Access_Control\u002F\" rel=\"noopener noreferrer nofollow\"\u003EA01:2021-Broken Access Control\u003C\u002Fa\u003E.\u003C\u002Fp\u003E\u003Cp\u003EНе сомневаюсь, что все прекрасно знают о том, что авторизация предоставляет пользователю права на выполнение определённых действий, а также процесс проверки (подтверждения) данных прав при попытке выполнения этих действий. Авторизация не эквивалентна аутентификации. После успешной аутентификации авторизация определяет, к каким функциям и данным может получить доступ пользователь, обеспечивая при этом надлежащее разграничение прав доступа.\u003C\u002Fp\u003E\u003Cp\u003EИменно поэтому веб-приложению необходимы средства контроля доступа, позволяющие его пользователям использовать веб-приложение с различными привилегиями. Контроль доступа — это применение ограничений на то, кто (или что) может выполнять различные функции и получать доступ к запрошенным ресурсам. Нарушенный контроль доступа часто встречающаяся и часто критическая уязвимость в системе безопасности. Существуют несколько типов контроля доступа, равно как и уязвимостей, связанных с их нарушением.\u003C\u002Fp\u003E","imageUrl":null,"buttonTextHtml":"Читать далее","image":null},"status":"published","plannedPublishTime":null,"checked":null,"tags":[{"titleHtml":"owasp"},{"titleHtml":"top-10"},{"titleHtml":"vulnerability"},{"titleHtml":"access"},{"titleHtml":"broken access control"},{"titleHtml":"web"},{"titleHtml":"информационная безопасность"}]},"654837":{"id":"654837","timePublished":"2022-03-09T13:31:39+00:00","isCorporative":false,"lang":"ru","titleHtml":"Кейс интеграции IoT &amp; Metaverse. Удаленное управление гирляндой реальной елки и стриминг видео","editorVersion":"2.0","postType":"article","postLabels":[{"type":"sandbox","data":null}],"author":{"id":"2972819","alias":"MaffMedia","fullname":"Maff Media","avatarUrl":"\u002F\u002Fhabrastorage.org\u002Fgetpro\u002Fhabr\u002Favatars\u002F9fc\u002F56e\u002F32c\u002F9fc56e32c62e32675503afabb4e4be45.jpg","speciality":"Блокчейне, метавселенные, виртуальная реальность"},"statistics":{"commentsCount":0,"favoritesCount":4,"readingCount":253,"score":1,"votesCount":1},"hubs":[{"relatedData":null,"id":"357","alias":"javascript","type":"collective","title":"JavaScript","titleHtml":"JavaScript","isProfiled":true},{"relatedData":null,"id":"17110","alias":"nodejs","type":"collective","title":"Node.JS","titleHtml":"Node.JS","isProfiled":true},{"relatedData":null,"id":"21370","alias":"typescript","type":"collective","title":"TypeScript","titleHtml":"TypeScript","isProfiled":true},{"relatedData":null,"id":"21476","alias":"raspberrypi","type":"collective","title":"Разработка на Raspberry Pi","titleHtml":"Разработка на Raspberry Pi","isProfiled":true}],"flows":[{"id":"1","alias":"develop","title":"Разработка"}],"relatedData":null,"leadData":{"textHtml":"\u003Cp\u003EВ этой статье показан наш опыт интеграции интернета вещей (IoT) и метавселенной Decentraland. В ней вы найдете список необходимых навыков и мини-инструкцию, чтобы попробовать самим. В ко
